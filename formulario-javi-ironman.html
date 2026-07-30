@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Preparación Iron Man World Championship | eat&flow | Javi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #F5F9F7;
+            color: #2D4A3E;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1a5945 0%, #2D4A3E 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+
+        .header .brand {
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            opacity: 0.9;
+            text-transform: uppercase;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .header .subtitulo {
+            font-size: 15px;
+            opacity: 0.9;
+            margin-top: 8px;
+        }
+
+        .badge-competencia {
+            display: inline-block;
+            background: #ff9800;
+            color: white;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 5px 18px;
+            border-radius: 50px;
+            margin-top: 14px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .intro-box {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border-left: 4px solid #ff9800;
+        }
+
+        .intro-box h2 {
+            color: #ff9800;
+            font-size: 18px;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .intro-box p {
+            color: #555;
+            line-height: 1.75;
+            margin-bottom: 8px;
+            font-size: 14.5px;
+        }
+
+        .intro-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .section {
+            background: white;
+            padding: 30px 25px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .section h2 {
+            color: #1a5945;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #8bc34a;
+        }
+
+        .section h3 {
+            color: #2D4A3E;
+            font-size: 15px;
+            font-weight: 700;
+            margin: 28px 0 14px 0;
+            padding: 8px 14px;
+            background: #f0f7f4;
+            border-radius: 6px;
+            border-left: 3px solid #8bc34a;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .field {
+            margin-bottom: 22px;
+        }
+
+        .field label {
+            display: block;
+            font-weight: 600;
+            color: #2D4A3E;
+            margin-bottom: 8px;
+            font-size: 14.5px;
+            line-height: 1.4;
+        }
+
+        .field input,
+        .field textarea,
+        .field select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #E0EDE8;
+            border-radius: 8px;
+            font-size: 14.5px;
+            font-family: inherit;
+            background: #F5FAF8;
+            color: #2D4A3E;
+            transition: border-color 0.25s, background 0.25s;
+        }
+
+        .field input:focus,
+        .field textarea:focus,
+        .field select:focus {
+            outline: none;
+            border-color: #8bc34a;
+            background: white;
+        }
+
+        .field textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .field small {
+            display: block;
+            color: #7a9a8e;
+            font-size: 12.5px;
+            margin-top: 6px;
+            font-style: italic;
+            line-height: 1.4;
+        }
+
+        .radio-group,
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .radio-group label,
+        .checkbox-group label {
+            display: flex;
+            align-items: flex-start;
+            padding: 11px 14px;
+            background: #F5FAF8;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-weight: normal;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .radio-group label:hover,
+        .checkbox-group label:hover {
+            background: #e6f2ec;
+        }
+
+        .radio-group input[type="radio"],
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            margin-right: 10px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .alerta-box {
+            background: #fff8f0;
+            border: 2px solid #ff9800;
+            border-radius: 10px;
+            padding: 18px 20px;
+            margin-bottom: 22px;
+        }
+
+        .alerta-box p {
+            color: #7a4800;
+            font-size: 13.5px;
+            line-height: 1.6;
+        }
+
+        .alerta-box strong {
+            color: #e67e00;
+        }
+
+        .campos-dobles {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .campos-triples {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 16px;
+        }
+
+        .submit-section {
+            background: linear-gradient(135deg, #1a5945, #2D4A3E);
+            color: white;
+            padding: 35px 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .submit-section h2 {
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+
+        .submit-section p {
+            opacity: 0.9;
+            font-size: 14.5px;
+            margin-bottom: 8px;
+        }
+
+        .submit-btn {
+            background: #ff9800;
+            color: white;
+            padding: 16px 44px;
+            border: none;
+            border-radius: 50px;
+            font-size: 17px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(255, 152, 0, 0.35);
+            transition: transform 0.25s, box-shadow 0.25s;
+            letter-spacing: 0.5px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 22px rgba(255, 152, 0, 0.45);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #8a9e98;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .separador {
+            height: 1px;
+            background: #E0EDE8;
+            margin: 22px 0;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            .header { padding: 28px 20px; }
+            .header h1 { font-size: 22px; }
+            .section { padding: 22px 16px; }
+            .campos-dobles { grid-template-columns: 1fr; }
+            .campos-triples { grid-template-columns: 1fr; }
+            .submit-section { padding: 28px 20px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- Header -->
+    <div class="header">
+        <div class="brand">eat&flow</div>
+        <h1>Preparación Nutricional<br>Iron Man World Championship</h1>
+        <p class="subtitulo">Formulario de Intake Nutricional Personalizado</p>
+        <div class="badge-competencia">Triatlón Ironman - Aprox. 2.5 a 3 meses</div>
+    </div>
+
+    <!-- Introduccion -->
+    <div class="intro-box">
+        <h2>Antes de comenzar</h2>
+        <p><strong>Hola Javi, bienvenido a eat&flow.</strong></p>
+        <p>Vas al Mundial de Ironman y vamos a construir tu estrategia nutricional completa para llegar en tu mejor versión: la nutrición diaria que sostiene tu entrenamiento, y el protocolo específico de carrera para natación, bici y corrida.</p>
+        <p>Tu entrenamiento ya está a cargo de tu entrenador, así que este formulario es 100% sobre nutrición: qué comés antes, durante y después de cada sesión, y cómo comés el resto del día. Necesitamos tu calendario de entrenos no para modificarlo, sino para acomodar la comida alrededor de él.</p>
+        <p>Ya sos un atleta con experiencia, así que no vamos a explicarte lo básico. Vamos directo a entender exactamente qué estás haciendo hoy en tu nutrición para encontrar dónde están las oportunidades de mejora.</p>
+        <p><strong>Tiempo estimado:</strong> 30-40 minutos. Sé lo más específico posible con marcas, cantidades y horarios: eso es lo que hace la diferencia entre un plan genérico y uno que realmente te hace rendir mejor.</p>
+    </div>
+
+    <form action="https://formspree.io/f/mzzodpje" method="POST">
+
+        <!-- SECCION 1: DATOS PERSONALES Y FISICOS -->
+        <div class="section">
+            <h2>1. Datos Personales y Físicos</h2>
+
+            <div class="campos-dobles">
+                <div class="field">
+                    <label for="nombre">Nombre completo *</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+                <div class="field">
+                    <label for="edad">Edad *</label>
+                    <input type="number" id="edad" name="edad" min="15" max="75" required>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="field">
+                <label for="whatsapp">WhatsApp (con código de país) *</label>
+                <input type="tel" id="whatsapp" name="whatsapp" placeholder="+506 8XXX XXXX" required>
+            </div>
+
+            <div class="campos-dobles">
+                <div class="field">
+                    <label for="peso">Peso actual (kg) *</label>
+                    <input type="number" id="peso" name="peso" step="0.1" placeholder="Ej: 72.5" required>
+                </div>
+                <div class="field">
+                    <label for="estatura">Estatura (cm) *</label>
+                    <input type="number" id="estatura" name="estatura" placeholder="Ej: 178" required>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="peso-meta">Si tenés un peso o composición corporal meta para el Mundial, indicalo. Si no, escribí "No tengo meta de peso"</label>
+                <input type="text" id="peso-meta" name="peso-meta" placeholder="Ej: Bajar 2-3kg de grasa manteniendo potencia, o mantener mi peso actual">
+            </div>
+
+            <h3>Medidas corporales y composición</h3>
+            <p style="font-size: 13.5px; color: #666; margin-bottom: 16px;">Estas medidas son nuestro punto de partida para monitorear a lo largo de la preparación si estás ganando o perdiendo masa muscular, no solo peso en la báscula. Si no tenés todas, poné las que sí tengas y "no disponible" en el resto; las vamos a repetir periódicamente durante el proceso.</p>
+
+            <div class="field">
+                <label for="fecha-medicion">Fecha en que tomaste estas medidas *</label>
+                <input type="text" id="fecha-medicion" name="fecha-medicion" placeholder="Ej: 28 de julio 2026" required>
+            </div>
+
+            <div class="field">
+                <label for="metodo-composicion">Con qué método mediste tu composición corporal *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="metodo-composicion" value="InBody u otra bioimpedancia profesional"> InBody u otra bioimpedancia profesional</label>
+                    <label><input type="radio" name="metodo-composicion" value="Bascula de bioimpedancia casera"> Báscula de bioimpedancia casera</label>
+                    <label><input type="radio" name="metodo-composicion" value="Plicometria (pliegues cutaneos)"> Plicometría (pliegues cutáneos)</label>
+                    <label><input type="radio" name="metodo-composicion" value="No me he medido, solo tengo circunferencias o ninguna medida"> No me he medido, solo tengo circunferencias o ninguna medida</label>
+                </div>
+            </div>
+
+            <div class="campos-dobles">
+                <div class="field">
+                    <label for="porcentaje-grasa">Porcentaje de grasa corporal (si lo tenés)</label>
+                    <input type="text" id="porcentaje-grasa" name="porcentaje-grasa" placeholder="Ej: 14% o no disponible">
+                </div>
+                <div class="field">
+                    <label for="masa-muscular">Masa muscular esquelética en kg (si la tenés, dato de InBody)</label>
+                    <input type="text" id="masa-muscular" name="masa-muscular" placeholder="Ej: 36.2kg o no disponible">
+                </div>
+            </div>
+
+            <h3>Circunferencias corporales (cm)</h3>
+            <p style="font-size: 13.5px; color: #666; margin-bottom: 16px;">Tomá cada medida relajado, sin apretar la cinta. Si no tenés forma de medir alguna ahora, escribí "no disponible" y la tomamos en la primera revisión.</p>
+
+            <div class="campos-triples">
+                <div class="field">
+                    <label for="circ-cintura">Cintura (a la altura del ombligo)</label>
+                    <input type="text" id="circ-cintura" name="circ-cintura" placeholder="cm">
+                </div>
+                <div class="field">
+                    <label for="circ-cadera">Cadera</label>
+                    <input type="text" id="circ-cadera" name="circ-cadera" placeholder="cm">
+                </div>
+                <div class="field">
+                    <label for="circ-pecho">Pecho</label>
+                    <input type="text" id="circ-pecho" name="circ-pecho" placeholder="cm">
+                </div>
+            </div>
+
+            <div class="campos-triples">
+                <div class="field">
+                    <label for="circ-brazo-relajado">Brazo relajado (derecho)</label>
+                    <input type="text" id="circ-brazo-relajado" name="circ-brazo-relajado" placeholder="cm">
+                </div>
+                <div class="field">
+                    <label for="circ-brazo-contraido">Brazo contraído (derecho)</label>
+                    <input type="text" id="circ-brazo-contraido" name="circ-brazo-contraido" placeholder="cm">
+                </div>
+                <div class="field">
+                    <label for="circ-muslo">Muslo (derecho, punto medio)</label>
+                    <input type="text" id="circ-muslo" name="circ-muslo" placeholder="cm">
+                </div>
+            </div>
+
+            <div class="campos-dobles">
+                <div class="field">
+                    <label for="circ-pantorrilla">Pantorrilla (derecha)</label>
+                    <input type="text" id="circ-pantorrilla" name="circ-pantorrilla" placeholder="cm">
+                </div>
+                <div class="field">
+                    <label for="circ-abdomen">Abdomen (punto más ancho)</label>
+                    <input type="text" id="circ-abdomen" name="circ-abdomen" placeholder="cm">
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="frecuencia-mediciones">Con qué frecuencia estarías dispuesto a repetir estas medidas durante la preparación *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="frecuencia-mediciones" value="Cada 2 semanas"> Cada 2 semanas</label>
+                    <label><input type="radio" name="frecuencia-mediciones" value="Cada 4 semanas / mensual"> Cada 4 semanas / mensual</label>
+                    <label><input type="radio" name="frecuencia-mediciones" value="Solo puedo en revisiones con InBody"> Solo puedo en revisiones con InBody</label>
+                </div>
+                <small>Con esto vamos a comparar si el peso que sube o baja es músculo o grasa, algo clave en una preparación de este volumen de entrenamiento.</small>
+            </div>
+
+            <div class="field">
+                <label for="ocupacion">Ocupación o trabajo y horario laboral *</label>
+                <textarea id="ocupacion" name="ocupacion" placeholder="Ej: Trabajo de oficina de lunes a viernes 8am a 5pm, con flexibilidad para entrenar en la mañana. O: Horario rotativo, cambia cada semana." required></textarea>
+                <small>Esto define cuándo podés comer y cuándo podés entrenar con comida ya digerida.</small>
+            </div>
+
+            <div class="field">
+                <label for="vida-familiar">Situación de vida *</label>
+                <textarea id="vida-familiar" name="vida-familiar" placeholder="Ej: Vivo solo, cocino yo mismo. O: Vivo con pareja/familia, cocinamos juntos o cocina alguien más." required></textarea>
+                <small>Importante para saber quién prepara la comida y qué tan fácil es ajustar cantidades y horarios.</small>
+            </div>
+        </div>
+
+        <!-- SECCION 2: LA COMPETENCIA -->
+        <div class="section">
+            <h2>2. El Mundial de Ironman</h2>
+
+            <div class="alerta-box">
+                <p><strong>Acá solo necesitamos el nombre oficial del evento.</strong> Con eso nosotros investigamos clima, altitud, perfil de la ruta, historial de temperaturas y todo lo relevante para tu estrategia de carrera. No hace falta que nos des esos datos, concentrate en responder lo que sabés de tu propio plan de carrera.</p>
+            </div>
+
+            <div class="field">
+                <label for="nombre-evento">Nombre oficial completo del evento (ciudad, país, año) *</label>
+                <input type="text" id="nombre-evento" name="nombre-evento" placeholder="Ej: Ironman World Championship, Niza, Francia" required>
+            </div>
+
+            <div class="field">
+                <label for="fecha-evento">Fecha exacta del evento (o la más aproximada que tengás) *</label>
+                <input type="text" id="fecha-evento" name="fecha-evento" required>
+            </div>
+
+            <div class="field">
+                <label for="hora-salida">Hora de salida de la natación (o la que tengás estimada) *</label>
+                <input type="text" id="hora-salida" name="hora-salida" placeholder="Ej: 6:50am o 'todavía no confirmada'" required>
+            </div>
+
+            <h3>Tiempos objetivo por disciplina</h3>
+            <p style="font-size: 13.5px; color: #666; margin-bottom: 16px;">Danos tu tiempo estimado o meta para cada tramo. Si no tenés un número exacto, poné un rango basado en tus entrenos actuales o carreras previas.</p>
+
+            <div class="field">
+                <label for="tiempo-natacion">Tiempo estimado natación (3.8km) *</label>
+                <input type="text" id="tiempo-natacion" name="tiempo-natacion" placeholder="Ej: 1h05 - 1h10" required>
+            </div>
+
+            <div class="field">
+                <label for="tiempo-transicion1">Tiempo estimado T1 (transición natación a bici)</label>
+                <input type="text" id="tiempo-transicion1" name="tiempo-transicion1" placeholder="Ej: 5-8 minutos">
+            </div>
+
+            <div class="field">
+                <label for="tiempo-bici">Tiempo estimado bici (180km) *</label>
+                <input type="text" id="tiempo-bici" name="tiempo-bici" placeholder="Ej: 5h30 - 5h45" required>
+            </div>
+
+            <div class="field">
+                <label for="tiempo-transicion2">Tiempo estimado T2 (transición bici a corrida)</label>
+                <input type="text" id="tiempo-transicion2" name="tiempo-transicion2" placeholder="Ej: 4-6 minutos">
+            </div>
+
+            <div class="field">
+                <label for="tiempo-corrida">Tiempo estimado maratón (42.2km) *</label>
+                <input type="text" id="tiempo-corrida" name="tiempo-corrida" placeholder="Ej: 3h45 - 4h00" required>
+            </div>
+
+            <div class="field">
+                <label for="tiempo-total">Tiempo total meta para el Ironman completo *</label>
+                <input type="text" id="tiempo-total" name="tiempo-total" placeholder="Ej: Entre 10h30 y 11h00" required>
+            </div>
+
+            <div class="field">
+                <label for="experiencia-ironman">Cuántos Ironman o triatlones de distancia larga has completado *</label>
+                <textarea id="experiencia-ironman" name="experiencia-ironman" placeholder="Ej: Este será mi 3er Ironman completo, ya hice 2 medio Ironman antes. Contá cuáles, cuándo y cómo te fue." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="bonking-ironman">Has experimentado crisis energética, calambres o pared en algún triatlón o entreno largo *</label>
+                <textarea id="bonking-ironman" name="bonking-ironman" placeholder="Ej: En mi último medio Ironman, en el km 15 de la corrida sentí que se me acabó la energía por completo. O: No, nunca me ha pasado." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="problemas-digestivos-ironman">Tenés problemas digestivos durante entrenos largos o carreras (náuseas, urgencia de baño, distensión) *</label>
+                <textarea id="problemas-digestivos-ironman" name="problemas-digestivos-ironman" placeholder="Ej: En la bici estoy bien, pero al empezar a correr me da náusea si como algo sólido. O: Nunca he tenido problemas." required></textarea>
+                <small>Esto es distinto por disciplina en triatlón: contanos si te pasa más en una que en otra.</small>
+            </div>
+        </div>
+
+        <!-- SECCION 3: CALENDARIO DE ENTRENAMIENTO -->
+        <div class="section">
+            <h2>3. Tu Calendario de Entrenamiento Actual</h2>
+
+            <div class="alerta-box">
+                <p><strong>No vamos a tocar tu entrenamiento</strong>, eso ya lo maneja tu entrenador. Solo necesitamos ver tu semana tipo para poder ubicar la comida antes, durante y después de cada sesión en el momento correcto.</p>
+            </div>
+
+            <div class="field">
+                <label for="semana-tipo">Describí tu semana tipo de entrenamiento actual: día, disciplina, hora del día y duración aproximada *</label>
+                <textarea id="semana-tipo" name="semana-tipo" style="min-height: 160px;" placeholder="Ej: Lunes - natación 5:30am 1h, fuerza 6pm 45min. Martes - bici rodillo 5am 1h30. Miércoles - corrida 5:30am 1h + nado suave tarde. Jueves - descanso o bici suave. Viernes - bici larga 4am 3h. Sábado - brick bici+corrida 5am 4h. Domingo - corrida larga 6am 2h." required></textarea>
+                <small>Si tenés el calendario en Training Peaks, Strava o similar, describilo acá lo más detallado posible.</small>
+            </div>
+
+            <div class="field">
+                <label for="sesion-mas-larga">Cuál es tu sesión más larga actual por disciplina, y cuál será la más larga que harás antes del evento *</label>
+                <textarea id="sesion-mas-larga" name="sesion-mas-larga" placeholder="Ej: La bici más larga que he hecho es 5h, voy a subir a 6h en 3 semanas. La corrida más larga es 2h30." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="entrenos-dobles">Hacés entrenos dobles (dos sesiones el mismo día) o brick (bici seguido de corrida) *</label>
+                <textarea id="entrenos-dobles" name="entrenos-dobles" placeholder="Ej: Sí, los sábados hago brick de bici 4h seguido de corrida 45min. O: No, generalmente una sesión por día." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="fase-actual">En qué fase de entrenamiento estás ahora mismo *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="fase-actual" value="Base / acumulacion de volumen"> Base / acumulación de volumen</label>
+                    <label><input type="radio" name="fase-actual" value="Especifica / intensidad y ritmos de carrera"> Específica / intensidad y ritmos de carrera</label>
+                    <label><input type="radio" name="fase-actual" value="Tapering o afinamiento pre-competencia"> Tapering o afinamiento pre-competencia</label>
+                    <label><input type="radio" name="fase-actual" value="No estoy seguro, preguntarle a mi entrenador"> No estoy seguro, preguntarle a mi entrenador</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCION 4: NUTRICION ANTES DEL ENTRENO -->
+        <div class="section">
+            <h2>4. Nutrición Antes del Entrenamiento</h2>
+
+            <div class="field">
+                <label for="que-comes-antes-am">Qué comés actualmente antes de un entreno en la mañana temprano (natación, bici o corrida) *</label>
+                <textarea id="que-comes-antes-am" name="que-comes-antes-am" placeholder="Ej: Nada, entreno en ayunas. O: Un banano y café 30min antes. Sé específico con cantidades y horarios de cuánto antes comés." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="que-comes-antes-largo">Qué comés antes de las sesiones largas de fin de semana (bici larga, brick, corrida larga) *</label>
+                <textarea id="que-comes-antes-largo" name="que-comes-antes-largo" placeholder="Ej: Avena con banano y mantequilla de maní 1h30 antes, más un café. Contá qué tan bien te ha funcionado esto." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="entrenas-ayunas">Entrenás en ayunas actualmente *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="entrenas-ayunas" value="Si, la mayoria de sesiones"> Sí, la mayoría de sesiones</label>
+                    <label><input type="radio" name="entrenas-ayunas" value="Solo en sesiones cortas o de baja intensidad"> Solo en sesiones cortas o de baja intensidad</label>
+                    <label><input type="radio" name="entrenas-ayunas" value="Nunca, siempre como algo antes"> Nunca, siempre como algo antes</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCION 5: NUTRICION DURANTE EL ENTRENO -->
+        <div class="section">
+            <h2>5. Nutrición Durante el Entrenamiento y la Competencia</h2>
+
+            <div class="field">
+                <label for="nutricion-durante-bici">Qué consumís actualmente durante los entrenos de bici largos (agua, geles, barras, bebida, marcas y cantidades) *</label>
+                <textarea id="nutricion-durante-bici" name="nutricion-durante-bici" style="min-height: 130px;" placeholder="Ej: 2 botellas de agua con electrolitos, 1 gel cada 40min, medio banano cada hora. Sé muy específico con marcas y frecuencia exacta." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="nutricion-durante-corrida">Qué consumís actualmente durante los entrenos de corrida larga *</label>
+                <textarea id="nutricion-durante-corrida" name="nutricion-durante-corrida" placeholder="Ej: Geles cada 30min, agua en cada estación. O: Nada, corro sin comer nada en entreno." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="nutricion-natacion">Consumís algo antes o inmediatamente antes de entrar al agua en entrenos largos de natación o simulacros *</label>
+                <textarea id="nutricion-natacion" name="nutricion-natacion" placeholder="Ej: Nada especial, solo lo que como en el desayuno normal. O: Un gel justo antes de entrar al agua."></textarea>
+            </div>
+
+            <div class="field">
+                <label for="carbohidratos-hora">Aproximadamente cuántos gramos de carbohidrato por hora estimás que estás consumiendo en tus sesiones largas *</label>
+                <textarea id="carbohidratos-hora" name="carbohidratos-hora" placeholder="Ej: No lo he calculado, pero puedo describir todo lo que como y ustedes lo calculan. O: Trato de hacer unos 60g/hora." required></textarea>
+                <small>Si no lo has calculado nunca, no hay problema, solo describí todo lo que consumís con cantidades y nosotros hacemos el cálculo exacto.</small>
+            </div>
+
+            <div class="field">
+                <label for="hidratacion-sudoracion">Cómo es tu sudoración (mucha, poca, notás sal cristalizada en la piel o ropa después de entrenar) *</label>
+                <textarea id="hidratacion-sudoracion" name="hidratacion-sudoracion" placeholder="Ej: Sudo muchísimo, siempre quedan marcas blancas de sal en la gorra y la playera. O: Sudo poco comparado a otros." required></textarea>
+                <small>Esto es clave para calcular tu necesidad de sodio en carrera.</small>
+            </div>
+        </div>
+
+        <!-- SECCION 6: NUTRICION DESPUES DEL ENTRENO -->
+        <div class="section">
+            <h2>6. Nutrición Después del Entrenamiento</h2>
+
+            <div class="field">
+                <label for="que-comes-despues">Qué comés inmediatamente después de entrenar y cuánto tiempo después *</label>
+                <textarea id="que-comes-despues" name="que-comes-despues" placeholder="Ej: Un batido de proteína apenas termino, y almuerzo completo 1h después. Sé específico con marcas, cantidades y tiempos." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="recuperacion-dobles">En días de entreno doble o brick, cómo manejás la comida entre sesiones *</label>
+                <textarea id="recuperacion-dobles" name="recuperacion-dobles" placeholder="Ej: Entre la bici y la corrida del brick como un gel y tomo agua. O: No aplica, no hago dobles." required></textarea>
+            </div>
+        </div>
+
+        <!-- SECCION 7: SUPLEMENTOS ACTUALES -->
+        <div class="section">
+            <h2>7. Suplementos y Productos que Usás Actualmente</h2>
+
+            <div class="alerta-box">
+                <p><strong>Esta sección es muy importante.</strong> Necesitamos saber exactamente qué marcas usás hoy en día, para poder evaluar si son las mejores opciones para tu caso o si hay que ajustar algo.</p>
+            </div>
+
+            <div class="field">
+                <label for="proteina-marca">Qué proteína en polvo usás actualmente (marca, tipo y cuándo la tomás) *</label>
+                <textarea id="proteina-marca" name="proteina-marca" placeholder="Ej: Whey de tal marca, la tomo después de entrenar y antes de dormir. O: No uso proteína en polvo." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="geles-marca">Qué geles usás (marca específica, sabor, con o sin cafeína) *</label>
+                <textarea id="geles-marca" name="geles-marca" placeholder="Ej: Uso geles de tal marca sabor banano, algunos con cafeína en la segunda mitad de la carrera. O: No uso geles." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="sales-marca">Usás pastillas o cápsulas de sal (marca y dosis) *</label>
+                <textarea id="sales-marca" name="sales-marca" placeholder="Ej: Uso cápsulas de tal marca, 1 cada hora en clima caluroso. O: No uso, solo la bebida electrolítica." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="bebida-hidratante-marca">Qué bebida hidratante o electrolítica usás en el bidón (marca y cómo la preparás) *</label>
+                <textarea id="bebida-hidratante-marca" name="bebida-hidratante-marca" placeholder="Ej: Tal marca en polvo, 1 medida por botella de 500ml. O: Solo agua." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="barras-marca">Usás barras energéticas u otro sólido en carrera (marca) *</label>
+                <textarea id="barras-marca" name="barras-marca" placeholder="Ej: A veces llevo una barra de tal marca para la bici. O: No uso barras." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="cafeina-uso">Usás cafeína como ayuda ergogénica (fuente, dosis, momento) *</label>
+                <textarea id="cafeina-uso" name="cafeina-uso" placeholder="Ej: Un café antes de entrenar y un gel con cafeína en la última hora de carrera. O: No uso cafeína para entrenar." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="otros-suplementos">Otros suplementos que uses actualmente (creatina, magnesio, multivitamínico, omega 3, etc) *</label>
+                <textarea id="otros-suplementos" name="otros-suplementos" placeholder="Ej: Creatina 5g al día, magnesio antes de dormir. O: No tomo nada más." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="recetas-caseras">Hacés alguna receta casera para geles, barras o bebida hidratante en lugar de comprar *</label>
+                <textarea id="recetas-caseras" name="recetas-caseras" placeholder="Ej: A veces hago mi propia mezcla de agua con miel y sal para entrenos largos. O: No, siempre compro producto comercial." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="tolerancia-productos">De todo lo anterior, qué has tolerado mal o te ha dado problemas digestivos *</label>
+                <textarea id="tolerancia-productos" name="tolerancia-productos" placeholder="Ej: Los geles con fructosa me dan náusea después de la hora 3. Cierta marca de bebida me da dolor de estómago." required></textarea>
+            </div>
+        </div>
+
+        <!-- SECCION 8: ALIMENTACION DIARIA -->
+        <div class="section">
+            <h2>8. Alimentación Diaria Fuera del Entrenamiento</h2>
+
+            <div class="field">
+                <label for="dia-tipico">Describí tu día típico de comidas: desayuno, almuerzo, cena y meriendas con horarios *</label>
+                <textarea id="dia-tipico" name="dia-tipico" style="min-height: 140px;" placeholder="Ej: Desayuno 7am - avena con fruta. Almuerzo 12:30pm - arroz, pollo, ensalada. Merienda 4pm - fruta o yogurt. Cena 7:30pm - variable." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="quien-cocina">Quién cocina tus comidas y con qué frecuencia comés fuera o pedís comida *</label>
+                <textarea id="quien-cocina" name="quien-cocina" placeholder="Ej: Cocino yo la mayoría de días, como fuera 1-2 veces por semana." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="alimentos-no-come">Alimentos que no comés, no te gustan o evitás por cualquier razón *</label>
+                <textarea id="alimentos-no-come" name="alimentos-no-come" placeholder="Ej: No como mariscos. No me gusta el brócoli. Evito lácteos porque me caen pesados. O: Como de todo, no tengo restricciones." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="alergias-intolerancias">Alergias o intolerancias alimentarias diagnosticadas *</label>
+                <input type="text" id="alergias-intolerancias" name="alergias-intolerancias" placeholder="Ej: Ninguna. O: Intolerancia a la lactosa confirmada." required>
+            </div>
+
+            <div class="field">
+                <label for="hidratacion-diaria">Cuánta agua tomás en un día normal fuera del entrenamiento *</label>
+                <input type="text" id="hidratacion-diaria" name="hidratacion-diaria" placeholder="Ej: Como 2 litros, o no llevo la cuenta" required>
+            </div>
+
+            <div class="field">
+                <label for="alcohol">Con qué frecuencia consumís alcohol *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="alcohol" value="No tomo"> No tomo</label>
+                    <label><input type="radio" name="alcohol" value="Muy esporadico (menos de 1 vez al mes)"> Muy esporádico (menos de 1 vez al mes)</label>
+                    <label><input type="radio" name="alcohol" value="Ocasional (1-2 veces al mes)"> Ocasional (1-2 veces al mes)</label>
+                    <label><input type="radio" name="alcohol" value="Social (fines de semana)"> Social (fines de semana)</label>
+                    <label><input type="radio" name="alcohol" value="Frecuente (varias veces por semana)"> Frecuente (varias veces por semana)</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCION 9: HISTORIAL EN FONDOS Y ENTRENAMIENTOS -->
+        <div class="section">
+            <h2>9. Historial en Fondos y Entrenamientos Previos</h2>
+
+            <div class="field">
+                <label for="que-ha-funcionado">En tus entrenos y carreras largas, qué estrategia de nutrición te ha funcionado bien *</label>
+                <textarea id="que-ha-funcionado" name="que-ha-funcionado" placeholder="Ej: Cuando dosifico geles cada 30min desde el inicio, llego mejor a la corrida. Cuando desayuno avena me sostiene bien." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="que-no-ha-funcionado">Qué ha fallado o te ha dado problemas en el pasado *</label>
+                <textarea id="que-no-ha-funcionado" name="que-no-ha-funcionado" placeholder="Ej: Cuando espero mucho para empezar a comer en la bici, llego mal a la corrida. Los geles muy dulces me dan náusea con calor." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="peor-experiencia-nutricional">Cuál ha sido tu peor experiencia nutricional en una carrera o entreno largo *</label>
+                <textarea id="peor-experiencia-nutricional" name="peor-experiencia-nutricional" placeholder="Ej: En mi último medio Ironman tuve que caminar los últimos 5km por falta de energía. Describí qué pasó y por qué creés que fue." required></textarea>
+            </div>
+        </div>
+
+        <!-- SECCION 10: LOGISTICA Y HABITOS PRACTICOS -->
+        <div class="section">
+            <h2>10. Logística y Hábitos Prácticos</h2>
+
+            <div class="field">
+                <label for="tiempo-cocinar">Cuánto tiempo tenés disponible para cocinar en una semana típica *</label>
+                <textarea id="tiempo-cocinar" name="tiempo-cocinar" placeholder="Ej: Cocino los domingos para la semana, entre semana solo tengo 20-30min por comida." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="meal-prep">Hacés meal prep (preparación de comidas para varios días) *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="meal-prep" value="Si, regularmente"> Sí, regularmente</label>
+                    <label><input type="radio" name="meal-prep" value="A veces cuando tengo tiempo"> A veces cuando tengo tiempo</label>
+                    <label><input type="radio" name="meal-prep" value="No, nunca"> No, nunca</label>
+                    <label><input type="radio" name="meal-prep" value="No, alguien mas cocina en casa"> No, alguien más cocina en casa</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="presupuesto-alimentacion">Cuál es tu presupuesto mensual aproximado para alimentación y suplementos *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="presupuesto-alimentacion" value="Limitado (menos de 100,000 colones)"> Limitado (menos de ₡100,000 al mes)</label>
+                    <label><input type="radio" name="presupuesto-alimentacion" value="Moderado (100,000 a 200,000 colones)"> Moderado (₡100,000 a ₡200,000 al mes)</label>
+                    <label><input type="radio" name="presupuesto-alimentacion" value="Flexible (200,000 a 350,000 colones)"> Flexible (₡200,000 a ₡350,000 al mes)</label>
+                    <label><input type="radio" name="presupuesto-alimentacion" value="Amplio (mas de 350,000 colones)"> Amplio (más de ₡350,000 al mes)</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="supermercado">Dónde hacés las compras de alimentos y suplementos habitualmente *</label>
+                <input type="text" id="supermercado" name="supermercado" placeholder="Ej: Automercado, Walmart, tienda especializada de triatlón" required>
+            </div>
+
+            <div class="field">
+                <label for="viajes-competencias">Tenés viajes o competencias de preparación planificadas antes del Mundial que afecten tu rutina *</label>
+                <textarea id="viajes-competencias" name="viajes-competencias" placeholder="Ej: Tengo un medio Ironman de preparación en 6 semanas. Voy a viajar por trabajo 2 semanas antes del evento." required></textarea>
+            </div>
+        </div>
+
+        <!-- SECCION 11: HISTORIAL NUTRICIONAL -->
+        <div class="section">
+            <h2>11. Historial Nutricional y Experiencias Previas</h2>
+
+            <div class="field">
+                <label for="planes-previos">Has trabajado con un nutricionista o seguido algún plan específico antes *</label>
+                <textarea id="planes-previos" name="planes-previos" placeholder="Ej: Nunca he trabajado con nutricionista, todo lo he manejado por mi cuenta o por internet. O: Trabajé con alguien antes de mi último medio Ironman." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="relacion-comida">Cómo describís tu relación con la comida en general *</label>
+                <textarea id="relacion-comida" name="relacion-comida" placeholder="Ej: Saludable, como lo que necesito. O: A veces se me complica con el volumen de comida que necesito para tanto entreno." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="miedos-alimentacion">Tenés miedos o creencias sobre la alimentación que sentís que te limitan *</label>
+                <textarea id="miedos-alimentacion" name="miedos-alimentacion" placeholder="Ej: Me preocupa comer demasiado carbohidrato y subir de peso. O: No tengo miedos particulares." required></textarea>
+                <small>Contanos con honestidad. Esto ayuda a diseñar un plan que trabaje con tu psicología, no en contra.</small>
+            </div>
+        </div>
+
+        <!-- SECCION 12: OBJETIVOS Y COMPROMISOS -->
+        <div class="section">
+            <h2>12. Objetivos y Compromisos</h2>
+
+            <div class="field">
+                <label for="objetivo-competencia">Cuál es tu objetivo principal para el Mundial *</label>
+                <textarea id="objetivo-competencia" name="objetivo-competencia" placeholder="Ej: Hacer un tiempo específico sin sufrir crisis energética. Terminar disfrutando cada disciplina. Mejorar mi mejor marca personal." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="objetivo-nutricion-diaria">Cuál es tu objetivo principal con la nutrición del día a día más allá de la competencia *</label>
+                <textarea id="objetivo-nutricion-diaria" name="objetivo-nutricion-diaria" placeholder="Ej: Sostener el volumen de entreno sin quedarme sin energía. Mejorar composición corporal, ganando o manteniendo músculo mientras bajo grasa. Recuperarme mejor entre sesiones." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="cambio-mas-importante">Si solo pudieras cambiar UNA cosa de tu nutrición actual, cuál sería *</label>
+                <textarea id="cambio-mas-importante" name="cambio-mas-importante" placeholder="Ej: Entender exactamente cuántos carbohidratos necesito por hora en cada disciplina. Dejar de improvisar en las sesiones largas." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="nivel-compromiso">Qué tan comprometido estás a seguir el plan durante esta preparación *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="nivel-compromiso" value="100% (hare todo lo que me recomienden)"> 100% comprometido, haré todo lo que me recomienden</label>
+                    <label><input type="radio" name="nivel-compromiso" value="80-90% (seguire la mayoria con flexibilidad)"> 80-90%, seguiré la mayoría con algo de flexibilidad</label>
+                    <label><input type="radio" name="nivel-compromiso" value="50-70% (intentare pero tengo muchas limitaciones)"> 50-70%, intentaré pero tengo muchas limitaciones</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="limitaciones-seguimiento">Qué obstáculos concretos ves que podrían dificultar el seguimiento del plan *</label>
+                <textarea id="limitaciones-seguimiento" name="limitaciones-seguimiento" placeholder="Ej: Viajes de trabajo frecuentes. Horario de entreno muy temprano. Presupuesto limitado para ciertos productos." required></textarea>
+            </div>
+        </div>
+
+        <!-- SECCION 13: ESPACIO LIBRE -->
+        <div class="section">
+            <h2>13. Lo que Quieras que Sepamos</h2>
+
+            <div class="field">
+                <label for="info-adicional">Hay algo más sobre tu caso que sea importante que sepamos y que no te hayamos preguntado *</label>
+                <textarea id="info-adicional" name="info-adicional" style="min-height: 130px;" placeholder="Este es tu espacio. Puede ser sobre tu historial deportivo, una lesión reciente, una preocupación específica sobre el Mundial, lo que sea. Mientras más nos cuentes, mejor será el plan." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="pregunta-principal">Cuál es tu mayor duda o pregunta específica sobre nutrición para este evento o en general</label>
+                <textarea id="pregunta-principal" name="pregunta-principal" placeholder="Ej: Cuánto sodio necesito realmente en una carrera de este calor? Cómo manejo la nutrición en la transición de bici a corrida? Debo cambiar algo la semana del evento?"></textarea>
+            </div>
+        </div>
+
+        <!-- Submit -->
+        <div class="submit-section">
+            <h2>Listo</h2>
+            <p>Gracias por tomarte el tiempo de responder con detalle.</p>
+            <p>Con esta información vamos a diseñar tu plan nutricional completo para la preparación del Mundial: tu protocolo diario alrededor de cada disciplina y tu estrategia específica de carrera para natación, bici y corrida.</p>
+            <p style="margin-top: 12px;"><strong>Próximos pasos:</strong></p>
+            <p>1. Revisamos tu formulario (48 horas)</p>
+            <p>2. Investigamos el evento (clima, altitud, perfil de ruta)</p>
+            <p>3. Preparamos tu plan personalizado</p>
+            <p>4. Coordinamos llamada de revisión inicial</p>
+            <p style="margin-top: 12px;">Te escribimos por WhatsApp para coordinar.</p>
+            <button type="submit" class="submit-btn">Enviar Formulario</button>
+        </div>
+
+    </form>
+
+    <div class="footer">
+        <p><strong>eat&flow</strong> | Nutrición Deportiva</p>
+        <p>Asesoría Nutricional: Isa Herra | @isaherra.13 | @eatandflow.cr</p>
+        <p>Si tenés problemas con el formulario, escribinos directo por WhatsApp</p>
+    </div>
+
+</div>
+</body>
+</html>
