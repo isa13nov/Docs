@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Mes 2 — Agosto 2026 | eat&flow | Warner</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #F5F9F7;
+            color: #2D4A3E;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container { max-width: 700px; margin: 0 auto; }
+
+        .header {
+            background: linear-gradient(135deg, #1a5945 0%, #2D4A3E 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+
+        .header .brand { font-size: 20px; font-weight: 600; letter-spacing: 3px; margin-bottom: 15px; opacity: 0.9; text-transform: uppercase; }
+        .header h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; line-height: 1.3; }
+        .header .subtitulo { font-size: 15px; opacity: 0.9; margin-top: 8px; }
+
+        .badge {
+            display: inline-block;
+            background: #ff9800;
+            color: white;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 5px 18px;
+            border-radius: 50px;
+            margin-top: 14px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .intro-box {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border-left: 4px solid #ff9800;
+        }
+
+        .intro-box h2 { color: #ff9800; font-size: 18px; margin-bottom: 12px; font-weight: 700; }
+        .intro-box p { color: #555; line-height: 1.75; margin-bottom: 8px; font-size: 14.5px; }
+        .intro-box p:last-child { margin-bottom: 0; }
+
+        .section {
+            background: white;
+            padding: 30px 25px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .section h2 {
+            color: #1a5945;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #8bc34a;
+        }
+
+        .section h3 {
+            color: #2D4A3E;
+            font-size: 15px;
+            font-weight: 700;
+            margin: 28px 0 14px 0;
+            padding: 8px 14px;
+            background: #f0f7f4;
+            border-radius: 6px;
+            border-left: 3px solid #8bc34a;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .field { margin-bottom: 22px; }
+
+        .field label {
+            display: block;
+            font-weight: 600;
+            color: #2D4A3E;
+            margin-bottom: 8px;
+            font-size: 14.5px;
+            line-height: 1.4;
+        }
+
+        .field input,
+        .field textarea,
+        .field select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #E0EDE8;
+            border-radius: 8px;
+            font-size: 14.5px;
+            font-family: inherit;
+            background: #F5FAF8;
+            color: #2D4A3E;
+            transition: border-color 0.25s, background 0.25s;
+        }
+
+        .field input:focus,
+        .field textarea:focus,
+        .field select:focus {
+            outline: none;
+            border-color: #8bc34a;
+            background: white;
+        }
+
+        .field textarea { min-height: 90px; resize: vertical; }
+
+        .field small {
+            display: block;
+            color: #7a9a8e;
+            font-size: 12.5px;
+            margin-top: 6px;
+            font-style: italic;
+            line-height: 1.4;
+        }
+
+        .radio-group, .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .radio-group label,
+        .checkbox-group label {
+            display: flex;
+            align-items: flex-start;
+            padding: 11px 14px;
+            background: #F5FAF8;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-weight: normal;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .radio-group label:hover,
+        .checkbox-group label:hover { background: #e6f2ec; }
+
+        .radio-group input[type="radio"],
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            margin-right: 10px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        /* Escala de valoración 1-10 */
+        .scale-group {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 4px;
+        }
+
+        .scale-group label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+        }
+
+        .scale-group input[type="radio"] { display: none; }
+
+        .scale-group .num {
+            width: 42px;
+            height: 42px;
+            border-radius: 8px;
+            background: #F5FAF8;
+            border: 2px solid #E0EDE8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 15px;
+            color: #2D4A3E;
+            transition: all 0.2s;
+        }
+
+        .scale-group input[type="radio"]:checked + .num {
+            background: #1a5945;
+            color: white;
+            border-color: #1a5945;
+        }
+
+        .scale-group label:hover .num { background: #e6f2ec; border-color: #8bc34a; }
+
+        .scale-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            color: #7a9a8e;
+            margin-top: 4px;
+            font-style: italic;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #e8f5e9, #d4edda);
+            border-left: 4px solid #43a047;
+            padding: 16px 18px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .campos-dobles {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .campos-triples {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 14px;
+        }
+
+        .medidas-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .submit-section {
+            background: linear-gradient(135deg, #1a5945, #2D4A3E);
+            color: white;
+            padding: 35px 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .submit-section h2 { font-size: 22px; margin-bottom: 12px; }
+        .submit-section p { opacity: 0.9; font-size: 14.5px; margin-bottom: 6px; }
+
+        .submit-btn {
+            background: #ff9800;
+            color: white;
+            padding: 16px 44px;
+            border: none;
+            border-radius: 50px;
+            font-size: 17px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(255, 152, 0, 0.35);
+            transition: transform 0.25s, box-shadow 0.25s;
+            letter-spacing: 0.5px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 22px rgba(255, 152, 0, 0.45);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #8a9e98;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .alerta-box {
+            background: #fff8f0;
+            border: 2px solid #ff9800;
+            border-radius: 10px;
+            padding: 16px 18px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #7a4800;
+        }
+
+        .alerta-box strong { color: #e67e00; }
+
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            .header { padding: 28px 20px; }
+            .header h1 { font-size: 22px; }
+            .section { padding: 22px 16px; }
+            .campos-dobles { grid-template-columns: 1fr; }
+            .campos-triples { grid-template-columns: 1fr; }
+            .medidas-grid { grid-template-columns: 1fr 1fr; }
+            .scale-group .num { width: 34px; height: 34px; font-size: 13px; }
+            .submit-section { padding: 28px 20px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="header">
+        <div class="brand">eat&flow</div>
+        <h1>Revisión de Mes 1<br>Plan de Agosto 2026</h1>
+        <p class="subtitulo">Formulario de Check-in y Actualización</p>
+        <div class="badge">Pack Full Endurance · Mes 2</div>
+    </div>
+
+    <div class="intro-box">
+        <h2>Un mes completado, Warner</h2>
+        <p>Este formulario tiene dos propósitos. El primero es hacer un balance honesto del primer mes: medidas, cumplimiento del plan y cómo te sentiste. El segundo es darte la información que necesito para ajustar y construir el plan de agosto.</p>
+        <p>Respondé con honestidad total. No hay respuestas buenas ni malas. Un mes de 7 sobre 10 bien analizado sirve más que un 10 que no refleja la realidad. Cuanto más preciso seas, más útil va a ser el plan del mes que viene.</p>
+        <p><strong>Fecha de este check-in:</strong> 30 de julio de 2026.</p>
+    </div>
+
+    <form action="https://formspree.io/f/mzzodpje" method="POST">
+
+        <input type="hidden" name="formulario" value="Warner García — Check-in Mes 2 / Agosto 2026">
+
+        <!-- SECCIÓN 1: MEDIDAS CORPORALES -->
+        <div class="section">
+            <h2>1. Medidas Corporales — Actualización</h2>
+
+            <div class="info-box">
+                <p><strong>Protocolo importante:</strong> Para que estas medidas sean comparables con las del mes pasado, tomate las medidas en las mismas condiciones: mañana, en ayunas, antes de ejercitarte. Si las condiciones son diferentes, avisame en las notas para tenerlo en cuenta al comparar.</p>
+            </div>
+
+            <div class="campos-dobles">
+                <div class="field">
+                    <label for="peso-actual">Peso actual (kg) *</label>
+                    <input type="number" id="peso-actual" name="peso-actual" step="0.1" placeholder="Ej: 72.8" required>
+                    <small>Peso inicial: 73.5 kg</small>
+                </div>
+                <div class="field">
+                    <label for="hora-peso">¿A qué hora te pesaste? *</label>
+                    <input type="text" id="hora-peso" name="hora-peso" placeholder="Ej: 6:30 AM, en ayunas" required>
+                </div>
+            </div>
+
+            <div class="alerta-box">
+                <p><strong>Sobre la fluctuación de peso que mencionás:</strong> Subir y bajar 1-2 kg entre días es completamente normal y no indica pérdida ni ganancia real de grasa o músculo. Lo que sí determina si fue grasa o músculo es la comparación de medidas corporales y la progresión en el rendimiento. Por eso estas medidas son más importantes que el número de la báscula.</p>
+            </div>
+
+            <div class="medidas-grid">
+                <div class="field">
+                    <label for="cintura-actual">Cintura (cm) *</label>
+                    <input type="number" id="cintura-actual" name="cintura-actual" step="0.5" placeholder="Ej: 85" required>
+                    <small>Medida inicial: 88 cm</small>
+                </div>
+                <div class="field">
+                    <label for="cadera-actual">Cadera (cm) *</label>
+                    <input type="number" id="cadera-actual" name="cadera-actual" step="0.5" placeholder="Ej: 89" required>
+                    <small>Medida inicial: 90 cm</small>
+                </div>
+                <div class="field">
+                    <label for="pecho-actual">Pecho (cm) *</label>
+                    <input type="number" id="pecho-actual" name="pecho-actual" step="0.5" placeholder="Ej: 95" required>
+                    <small>Medida inicial: 94 cm</small>
+                </div>
+                <div class="field">
+                    <label for="brazo-actual">Brazo derecho (cm) *</label>
+                    <input type="number" id="brazo-actual" name="brazo-actual" step="0.5" placeholder="Ej: 28" required>
+                    <small>Medida inicial: 27 cm</small>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="nuevo-inbody">¿Te hiciste alguna medición de composición corporal este mes (InBody, pesa, similar)? *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="nuevo-inbody" value="Sí, tengo resultado nuevo"> Sí, tengo resultado nuevo</label>
+                    <label><input type="radio" name="nuevo-inbody" value="No, solo las medidas de cinta"> No, solo las medidas de cinta</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="resultado-inbody">Si te hiciste la medición, ¿cuál fue el resultado de porcentaje de grasa? ¿Y en qué condiciones (hora, en ayunas, post ejercicio)?</label>
+                <textarea id="resultado-inbody" name="resultado-inbody" placeholder="Ej: 20.1% de grasa, medición a las 7am en ayunas. O: No me la hice."></textarea>
+                <small>Si la medición fue en condiciones diferentes al mes pasado (22.6% en pesa), lo tomamos como referencia relativa, no comparación directa.</small>
+            </div>
+
+            <div class="field">
+                <label for="percepcion-cuerpo">¿Cómo percibes vos mismo tu cuerpo comparado con hace un mes? *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="percepcion-cuerpo" value="Noto cambio claro: menos panza, más definición"> Noto un cambio claro: menos panza, más definición</label>
+                    <label><input type="radio" name="percepcion-cuerpo" value="Noto algo de cambio pero sutil"> Noto algo de cambio pero es sutil</label>
+                    <label><input type="radio" name="percepcion-cuerpo" value="No noto diferencia visible aún"> No noto diferencia visible aún</label>
+                    <label><input type="radio" name="percepcion-cuerpo" value="Me siento peor que el mes pasado"> Me siento peor que el mes pasado</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="ropa-cambio">¿Notás diferencia en cómo te queda la ropa (licra, camisas, pantalones)? *</label>
+                <textarea id="ropa-cambio" name="ropa-cambio" placeholder="Ej: La licra me queda más suelta en la cintura. Las camisas igual. O: No he notado cambio en la ropa." required></textarea>
+                <small>Este es uno de los indicadores más honestos de cambio real en composición corporal.</small>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 2: CUMPLIMIENTO DEL PLAN -->
+        <div class="section">
+            <h2>2. Cumplimiento del Plan — Autoevaluación</h2>
+
+            <div class="info-box">
+                <p>Valorá del 1 al 10 cada área. El 10 significa que lo cumpliste perfectamente todas las semanas. El 1 significa que no lo hiciste casi nada. Sé honesto, esto no es un examen — es la herramienta con la que ajustamos el plan del mes que viene.</p>
+            </div>
+
+            <h3>Fondos y Ciclismo</h3>
+
+            <div class="field">
+                <label>¿Qué tan consistente fuiste con los fondos del domingo? *</label>
+                <div class="scale-group">
+                    <label><input type="radio" name="cumplimiento-fondos" value="1" required><span class="num">1</span></label>
+                    <label><input type="radio" name="cumplimiento-fondos" value="2"><span class="num">2</span></label>
+                    <label><input type="radio" name="cumplimiento-fondos" value="3"><span class="num">3</span></label>
+                    <label><input type="radio" name="cumplimiento-fondos" value="4"><span class="num">4</span></label>
+                    <label><input type="radio" name="cumplimiento-fondos" value="5"><span class="num">5</span></label>
+                    <label><input type="radio" name="cumplimiento-fondos" value="6"><span class="num">6</span></label>
+                    <label><input type="radio" name="cumplimiento-fondos" value="7"><span class="num">7</span></label>
+                    <label><input type="radio" name="cumplimiento-fondos" value="8"><span class="num">8</span></label>
+                    <label><input type="radio" name="cumplimiento-fondos" value="9"><span class="num">9</span></label>
+                    <label><input type="radio" name="cumplimiento-fondos" value="10"><span class="num">10</span></label>
+                </div>
+                <div class="scale-labels"><span>No hice casi ninguno</span><span>Perfectos, todos completos</span></div>
+            </div>
+
+            <div class="field">
+                <label for="detalle-fondos">Contame cómo fueron los fondos: ¿cuántos hiciste, qué distancias, cómo te sentiste en cada uno? *</label>
+                <textarea id="detalle-fondos" name="detalle-fondos" placeholder="Ej: Hice 4 de los 4 domingos. El primero fue difícil pero los otros bien. Distancias: 80, 95, 110 y 300km (este fin de semana). Me sentí con más energía que antes." required></textarea>
+            </div>
+
+            <div class="field">
+                <label>¿Qué tan consistente fuiste con los entrenamientos entre semana (martes, miércoles, viernes)? *</label>
+                <div class="scale-group">
+                    <label><input type="radio" name="cumplimiento-entrenos-semana" value="1" required><span class="num">1</span></label>
+                    <label><input type="radio" name="cumplimiento-entrenos-semana" value="2"><span class="num">2</span></label>
+                    <label><input type="radio" name="cumplimiento-entrenos-semana" value="3"><span class="num">3</span></label>
+                    <label><input type="radio" name="cumplimiento-entrenos-semana" value="4"><span class="num">4</span></label>
+                    <label><input type="radio" name="cumplimiento-entrenos-semana" value="5"><span class="num">5</span></label>
+                    <label><input type="radio" name="cumplimiento-entrenos-semana" value="6"><span class="num">6</span></label>
+                    <label><input type="radio" name="cumplimiento-entrenos-semana" value="7"><span class="num">7</span></label>
+                    <label><input type="radio" name="cumplimiento-entrenos-semana" value="8"><span class="num">8</span></label>
+                    <label><input type="radio" name="cumplimiento-entrenos-semana" value="9"><span class="num">9</span></label>
+                    <label><input type="radio" name="cumplimiento-entrenos-semana" value="10"><span class="num">10</span></label>
+                </div>
+                <div class="scale-labels"><span>No hice casi ninguno</span><span>Perfectos, todos completos</span></div>
+            </div>
+
+            <div class="field">
+                <label for="detalle-entrenos-semana">¿Qué tan seguido pudiste entrenar entre semana y en qué tipo de sesiones? *</label>
+                <textarea id="detalle-entrenos-semana" name="detalle-entrenos-semana" placeholder="Ej: Los martes y viernes casi siempre. Los miércoles me costó por el trabajo. Hice más Z2 que intervalos porque me sentía cansado. O: No entrené casi entre semana." required></textarea>
+            </div>
+
+            <h3>Acondicionamiento Físico</h3>
+
+            <div class="field">
+                <label>¿Qué tan consistente fuiste con las sesiones de acondicionamiento (Sesión A martes y Sesión B jueves)? *</label>
+                <div class="scale-group">
+                    <label><input type="radio" name="cumplimiento-acondicionamiento" value="1" required><span class="num">1</span></label>
+                    <label><input type="radio" name="cumplimiento-acondicionamiento" value="2"><span class="num">2</span></label>
+                    <label><input type="radio" name="cumplimiento-acondicionamiento" value="3"><span class="num">3</span></label>
+                    <label><input type="radio" name="cumplimiento-acondicionamiento" value="4"><span class="num">4</span></label>
+                    <label><input type="radio" name="cumplimiento-acondicionamiento" value="5"><span class="num">5</span></label>
+                    <label><input type="radio" name="cumplimiento-acondicionamiento" value="6"><span class="num">6</span></label>
+                    <label><input type="radio" name="cumplimiento-acondicionamiento" value="7"><span class="num">7</span></label>
+                    <label><input type="radio" name="cumplimiento-acondicionamiento" value="8"><span class="num">8</span></label>
+                    <label><input type="radio" name="cumplimiento-acondicionamiento" value="9"><span class="num">9</span></label>
+                    <label><input type="radio" name="cumplimiento-acondicionamiento" value="10"><span class="num">10</span></label>
+                </div>
+                <div class="scale-labels"><span>No hice casi nada</span><span>Perfectas, todas completas</span></div>
+            </div>
+
+            <div class="field">
+                <label for="detalle-acondicionamiento">¿Cómo te fue con el acondicionamiento? ¿Qué ejercicios se te hicieron más difíciles o más fáciles? ¿Algún problema con el hombro izquierdo? *</label>
+                <textarea id="detalle-acondicionamiento" name="detalle-acondicionamiento" placeholder="Ej: Hice la Sesión A casi siempre, la B la dejé más. Las planchas se me hacen fáciles. Las sentadillas con peso me costaron al inicio. El hombro bien en los ejercicios modificados." required></textarea>
+            </div>
+
+            <h3>Alimentación Diaria</h3>
+
+            <div class="field">
+                <label>¿Qué tan consistente fuiste con el día de cocina semanal (arroz+quinoa, leguminosa, pollo, verduras)? *</label>
+                <div class="scale-group">
+                    <label><input type="radio" name="cumplimiento-cocina" value="1" required><span class="num">1</span></label>
+                    <label><input type="radio" name="cumplimiento-cocina" value="2"><span class="num">2</span></label>
+                    <label><input type="radio" name="cumplimiento-cocina" value="3"><span class="num">3</span></label>
+                    <label><input type="radio" name="cumplimiento-cocina" value="4"><span class="num">4</span></label>
+                    <label><input type="radio" name="cumplimiento-cocina" value="5"><span class="num">5</span></label>
+                    <label><input type="radio" name="cumplimiento-cocina" value="6"><span class="num">6</span></label>
+                    <label><input type="radio" name="cumplimiento-cocina" value="7"><span class="num">7</span></label>
+                    <label><input type="radio" name="cumplimiento-cocina" value="8"><span class="num">8</span></label>
+                    <label><input type="radio" name="cumplimiento-cocina" value="9"><span class="num">9</span></label>
+                    <label><input type="radio" name="cumplimiento-cocina" value="10"><span class="num">10</span></label>
+                </div>
+                <div class="scale-labels"><span>No lo hice casi nunca</span><span>Todos los fines de semana</span></div>
+            </div>
+
+            <div class="field">
+                <label>¿Qué tan seguido lograste desayunar en casa en lugar de en soda? *</label>
+                <div class="scale-group">
+                    <label><input type="radio" name="cumplimiento-desayuno" value="1" required><span class="num">1</span></label>
+                    <label><input type="radio" name="cumplimiento-desayuno" value="2"><span class="num">2</span></label>
+                    <label><input type="radio" name="cumplimiento-desayuno" value="3"><span class="num">3</span></label>
+                    <label><input type="radio" name="cumplimiento-desayuno" value="4"><span class="num">4</span></label>
+                    <label><input type="radio" name="cumplimiento-desayuno" value="5"><span class="num">5</span></label>
+                    <label><input type="radio" name="cumplimiento-desayuno" value="6"><span class="num">6</span></label>
+                    <label><input type="radio" name="cumplimiento-desayuno" value="7"><span class="num">7</span></label>
+                    <label><input type="radio" name="cumplimiento-desayuno" value="8"><span class="num">8</span></label>
+                    <label><input type="radio" name="cumplimiento-desayuno" value="9"><span class="num">9</span></label>
+                    <label><input type="radio" name="cumplimiento-desayuno" value="10"><span class="num">10</span></label>
+                </div>
+                <div class="scale-labels"><span>Casi siempre en soda</span><span>Siempre en casa</span></div>
+            </div>
+
+            <div class="field">
+                <label>¿Qué tan seguido pudiste comer el almuerzo preparado en casa en lugar de soda o restaurante? *</label>
+                <div class="scale-group">
+                    <label><input type="radio" name="cumplimiento-almuerzo" value="1" required><span class="num">1</span></label>
+                    <label><input type="radio" name="cumplimiento-almuerzo" value="2"><span class="num">2</span></label>
+                    <label><input type="radio" name="cumplimiento-almuerzo" value="3"><span class="num">3</span></label>
+                    <label><input type="radio" name="cumplimiento-almuerzo" value="4"><span class="num">4</span></label>
+                    <label><input type="radio" name="cumplimiento-almuerzo" value="5"><span class="num">5</span></label>
+                    <label><input type="radio" name="cumplimiento-almuerzo" value="6"><span class="num">6</span></label>
+                    <label><input type="radio" name="cumplimiento-almuerzo" value="7"><span class="num">7</span></label>
+                    <label><input type="radio" name="cumplimiento-almuerzo" value="8"><span class="num">8</span></label>
+                    <label><input type="radio" name="cumplimiento-almuerzo" value="9"><span class="num">9</span></label>
+                    <label><input type="radio" name="cumplimiento-almuerzo" value="10"><span class="num">10</span></label>
+                </div>
+                <div class="scale-labels"><span>Casi siempre afuera</span><span>Siempre preparado en casa</span></div>
+            </div>
+
+            <div class="field">
+                <label>¿Qué tan consistente fuiste con las meriendas (media mañana y tarde)? *</label>
+                <div class="scale-group">
+                    <label><input type="radio" name="cumplimiento-meriendas" value="1" required><span class="num">1</span></label>
+                    <label><input type="radio" name="cumplimiento-meriendas" value="2"><span class="num">2</span></label>
+                    <label><input type="radio" name="cumplimiento-meriendas" value="3"><span class="num">3</span></label>
+                    <label><input type="radio" name="cumplimiento-meriendas" value="4"><span class="num">4</span></label>
+                    <label><input type="radio" name="cumplimiento-meriendas" value="5"><span class="num">5</span></label>
+                    <label><input type="radio" name="cumplimiento-meriendas" value="6"><span class="num">6</span></label>
+                    <label><input type="radio" name="cumplimiento-meriendas" value="7"><span class="num">7</span></label>
+                    <label><input type="radio" name="cumplimiento-meriendas" value="8"><span class="num">8</span></label>
+                    <label><input type="radio" name="cumplimiento-meriendas" value="9"><span class="num">9</span></label>
+                    <label><input type="radio" name="cumplimiento-meriendas" value="10"><span class="num">10</span></label>
+                </div>
+                <div class="scale-labels"><span>No las hice casi nunca</span><span>Todos los días, sin falta</span></div>
+            </div>
+
+            <div class="field">
+                <label>¿Qué tan consistente fuiste con el pre entreno (tostada con miel/maní antes de salir)? *</label>
+                <div class="scale-group">
+                    <label><input type="radio" name="cumplimiento-pre-entreno" value="1" required><span class="num">1</span></label>
+                    <label><input type="radio" name="cumplimiento-pre-entreno" value="2"><span class="num">2</span></label>
+                    <label><input type="radio" name="cumplimiento-pre-entreno" value="3"><span class="num">3</span></label>
+                    <label><input type="radio" name="cumplimiento-pre-entreno" value="4"><span class="num">4</span></label>
+                    <label><input type="radio" name="cumplimiento-pre-entreno" value="5"><span class="num">5</span></label>
+                    <label><input type="radio" name="cumplimiento-pre-entreno" value="6"><span class="num">6</span></label>
+                    <label><input type="radio" name="cumplimiento-pre-entreno" value="7"><span class="num">7</span></label>
+                    <label><input type="radio" name="cumplimiento-pre-entreno" value="8"><span class="num">8</span></label>
+                    <label><input type="radio" name="cumplimiento-pre-entreno" value="9"><span class="num">9</span></label>
+                    <label><input type="radio" name="cumplimiento-pre-entreno" value="10"><span class="num">10</span></label>
+                </div>
+                <div class="scale-labels"><span>Casi nunca lo hice</span><span>Siempre antes de entrenar</span></div>
+            </div>
+
+            <div class="field">
+                <label>¿Qué tan consistente fuiste con el post entreno (proteína dentro de 30 min)? *</label>
+                <div class="scale-group">
+                    <label><input type="radio" name="cumplimiento-post-entreno" value="1" required><span class="num">1</span></label>
+                    <label><input type="radio" name="cumplimiento-post-entreno" value="2"><span class="num">2</span></label>
+                    <label><input type="radio" name="cumplimiento-post-entreno" value="3"><span class="num">3</span></label>
+                    <label><input type="radio" name="cumplimiento-post-entreno" value="4"><span class="num">4</span></label>
+                    <label><input type="radio" name="cumplimiento-post-entreno" value="5"><span class="num">5</span></label>
+                    <label><input type="radio" name="cumplimiento-post-entreno" value="6"><span class="num">6</span></label>
+                    <label><input type="radio" name="cumplimiento-post-entreno" value="7"><span class="num">7</span></label>
+                    <label><input type="radio" name="cumplimiento-post-entreno" value="8"><span class="num">8</span></label>
+                    <label><input type="radio" name="cumplimiento-post-entreno" value="9"><span class="num">9</span></label>
+                    <label><input type="radio" name="cumplimiento-post-entreno" value="10"><span class="num">10</span></label>
+                </div>
+                <div class="scale-labels"><span>Casi nunca lo hice</span><span>Siempre dentro de 30 min</span></div>
+            </div>
+
+            <h3>Fueling en Ruta</h3>
+
+            <div class="field">
+                <label>¿Qué tan bien aplicaste el protocolo de fueling en los fondos (alarmas, comer cada 45 min, Tailwind cada 30 min)? *</label>
+                <div class="scale-group">
+                    <label><input type="radio" name="cumplimiento-fueling" value="1" required><span class="num">1</span></label>
+                    <label><input type="radio" name="cumplimiento-fueling" value="2"><span class="num">2</span></label>
+                    <label><input type="radio" name="cumplimiento-fueling" value="3"><span class="num">3</span></label>
+                    <label><input type="radio" name="cumplimiento-fueling" value="4"><span class="num">4</span></label>
+                    <label><input type="radio" name="cumplimiento-fueling" value="5"><span class="num">5</span></label>
+                    <label><input type="radio" name="cumplimiento-fueling" value="6"><span class="num">6</span></label>
+                    <label><input type="radio" name="cumplimiento-fueling" value="7"><span class="num">7</span></label>
+                    <label><input type="radio" name="cumplimiento-fueling" value="8"><span class="num">8</span></label>
+                    <label><input type="radio" name="cumplimiento-fueling" value="9"><span class="num">9</span></label>
+                    <label><input type="radio" name="cumplimiento-fueling" value="10"><span class="num">10</span></label>
+                </div>
+                <div class="scale-labels"><span>No lo apliqué</span><span>Al pie de la letra</span></div>
+            </div>
+
+            <div class="field">
+                <label for="detalle-fueling">¿Tuviste crisis energéticas o malestares en alguno de los fondos este mes? *</label>
+                <textarea id="detalle-fueling" name="detalle-fueling" placeholder="Ej: No, ninguna crisis. Me quedé sin energía a las 5h del fondo grande pero pude recuperarme. O: Sí, a las 3h del segundo fondo me bajó muchísimo." required></textarea>
+            </div>
+
+            <h3>Suplementos</h3>
+
+            <div class="field">
+                <label>¿Qué tan consistente fuiste tomando los suplementos diarios (creatina, colágeno, omega 3, vitamina D)? *</label>
+                <div class="scale-group">
+                    <label><input type="radio" name="cumplimiento-suplementos" value="1" required><span class="num">1</span></label>
+                    <label><input type="radio" name="cumplimiento-suplementos" value="2"><span class="num">2</span></label>
+                    <label><input type="radio" name="cumplimiento-suplementos" value="3"><span class="num">3</span></label>
+                    <label><input type="radio" name="cumplimiento-suplementos" value="4"><span class="num">4</span></label>
+                    <label><input type="radio" name="cumplimiento-suplementos" value="5"><span class="num">5</span></label>
+                    <label><input type="radio" name="cumplimiento-suplementos" value="6"><span class="num">6</span></label>
+                    <label><input type="radio" name="cumplimiento-suplementos" value="7"><span class="num">7</span></label>
+                    <label><input type="radio" name="cumplimiento-suplementos" value="8"><span class="num">8</span></label>
+                    <label><input type="radio" name="cumplimiento-suplementos" value="9"><span class="num">9</span></label>
+                    <label><input type="radio" name="cumplimiento-suplementos" value="10"><span class="num">10</span></label>
+                </div>
+                <div class="scale-labels"><span>Casi no los tomé</span><span>Todos los días sin falta</span></div>
+            </div>
+
+            <div class="field">
+                <label for="suplementos-que-compro">¿Cuáles suplementos compraste y cuáles no has podido conseguir todavía? *</label>
+                <textarea id="suplementos-que-compro" name="suplementos-que-compro" placeholder="Ej: Tengo la whey y la creatina. El colágeno aún no lo he comprado. El omega 3 lo consigo esta semana." required></textarea>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 3: ALIMENTACIÓN Y RECETAS -->
+        <div class="section">
+            <h2>3. Alimentación: Recetas y Experiencia</h2>
+
+            <div class="field">
+                <label for="recetas-probadas">¿Cuáles recetas del plan has podido hacer? *</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="recetas-probadas" value="Arroz integral con quinoa en olla arrocera"> Arroz integral con quinoa en olla arrocera</label>
+                    <label><input type="checkbox" name="recetas-probadas" value="Pollo desmenuzado con batidora"> Pollo desmenuzado con batidora</label>
+                    <label><input type="checkbox" name="recetas-probadas" value="Leguminosa de la semana (frijoles/garbanzos/lentejas)"> Leguminosa semanal (frijoles, garbanzos o lentejas)</label>
+                    <label><input type="checkbox" name="recetas-probadas" value="Verduras al vapor porcionadas"> Verduras al vapor porcionadas</label>
+                    <label><input type="checkbox" name="recetas-probadas" value="Overnight oats (avena nocturna)"> Overnight oats (avena nocturna)</label>
+                    <label><input type="checkbox" name="recetas-probadas" value="Mantequilla de maní casera"> Mantequilla de maní casera</label>
+                    <label><input type="checkbox" name="recetas-probadas" value="Yogurt griego natural casero"> Yogurt griego natural casero</label>
+                    <label><input type="checkbox" name="recetas-probadas" value="Ninguna, no he cocinado según el plan"> Ninguna, no he cocinado según el plan</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="receta-favorita">¿Cuál receta o preparación te ha funcionado mejor y por qué? *</label>
+                <textarea id="receta-favorita" name="receta-favorita" placeholder="Ej: El pollo desmenuzado es lo que más uso, me facilita mucho la semana. La avena nocturna me gusta pero se me olvida prepararla." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="receta-problema">¿Hay alguna receta o preparación que no te funcionó, que no te gustó o que no has podido hacer? *</label>
+                <textarea id="receta-problema" name="receta-problema" placeholder="Ej: La mantequilla de maní no la he hecho porque no tengo procesadora. La leguminosa no me quedó bien la primera vez. O: Ninguna, todo bien." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="malestar-alimentos">¿Has tenido algún malestar digestivo o intolerancia a algún alimento del plan? *</label>
+                <textarea id="malestar-alimentos" name="malestar-alimentos" placeholder="Ej: Los garbanzos me generan mucho gas, prefiero los frijoles. El arroz integral me cuesta más digirirlo que el blanco. O: Ningún problema, todo me cae bien." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="comida-fuera-frecuencia">¿Cuántas veces por semana terminaste comiendo en soda o restaurante en promedio este mes? *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="comida-fuera-frecuencia" value="0-1 veces, casi siempre en casa"> 0-1 veces — casi siempre comí en casa</label>
+                    <label><input type="radio" name="comida-fuera-frecuencia" value="2-3 veces por semana"> 2-3 veces por semana</label>
+                    <label><input type="radio" name="comida-fuera-frecuencia" value="4-5 veces por semana"> 4-5 veces por semana</label>
+                    <label><input type="radio" name="comida-fuera-frecuencia" value="Más de 5 veces, todavía dependo mucho de afuera"> Más de 5 veces — sigo dependiendo mucho de afuera</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="hidratacion-diaria-mes">¿Llegaste a tomar los 3 litros de agua al día que establecimos? *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="hidratacion-diaria-mes" value="Sí, casi todos los días"> Sí, casi todos los días</label>
+                    <label><input type="radio" name="hidratacion-diaria-mes" value="A veces, pero no consistentemente"> A veces, pero no de forma consistente</label>
+                    <label><input type="radio" name="hidratacion-diaria-mes" value="No, sigo tomando poco"> No, sigo tomando poco — menos de 2 litros</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 4: RENDIMIENTO Y PERCEPCIÓN -->
+        <div class="section">
+            <h2>4. Rendimiento y Percepción General</h2>
+
+            <div class="field">
+                <label for="energia-general">¿Cómo está tu nivel de energía general en comparación con hace un mes? *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="energia-general" value="Mucho mejor, claramente más energía durante el día"> Mucho mejor, claramente más energía durante el día</label>
+                    <label><input type="radio" name="energia-general" value="Un poco mejor"> Un poco mejor</label>
+                    <label><input type="radio" name="energia-general" value="Igual que antes"> Igual que antes</label>
+                    <label><input type="radio" name="energia-general" value="Más cansado que antes"> Más cansado que antes</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="rendimiento-bici">¿Cómo percibes tu rendimiento en la bicicleta comparado con hace un mes? *</label>
+                <textarea id="rendimiento-bici" name="rendimiento-bici" placeholder="Ej: Me siento más potente en las subidas. Llego menos cansado al final de los fondos. O: No noto mucha diferencia todavía. O: Las piernas me duelen menos después." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="recuperacion-percibida">¿Cómo está tu recuperación post esfuerzo? ¿Cuánto tardás en sentirte bien después de un fondo largo? *</label>
+                <textarea id="recuperacion-percibida" name="recuperacion-percibida" placeholder="Ej: Antes tardaba 2 días en recuperarme, ahora al día siguiente ya me siento bien. O: La recuperación sigue siendo lenta." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="calidad-sueno-mes">¿Cómo ha sido tu sueño este mes? *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="calidad-sueno-mes" value="Bien, 7-8h sin problema"> Bien, 7-8h sin problema</label>
+                    <label><input type="radio" name="calidad-sueno-mes" value="Regular, algunos días bien otros mal"> Regular, algunos días bien otros mal</label>
+                    <label><input type="radio" name="calidad-sueno-mes" value="Mal, duermo poco o me desvelo seguido"> Mal, duermo poco o me desvelo seguido</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="hombro-estado">¿Cómo está el hombro izquierdo? ¿Te ha molestado en los entrenamientos o en la bicicleta? *</label>
+                <textarea id="hombro-estado" name="hombro-estado" placeholder="Ej: Igual que siempre, no ha mejorado ni empeorado. En los ejercicios de hombro siento molestia leve pero manejable. O: Me duele más desde que empecé el acondicionamiento." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="descarga-muscular">¿Pudiste hacerte una descarga muscular (fisioterapia o masaje deportivo) este mes? *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="descarga-muscular" value="Sí, me la hice"> Sí, me la hice</label>
+                    <label><input type="radio" name="descarga-muscular" value="No, pero lo voy a agendar"> No, pero lo voy a agendar para agosto</label>
+                    <label><input type="radio" name="descarga-muscular" value="No y no he buscado donde hacerla"> No y no he buscado dónde hacerla</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 5: COMPETENCIAS Y OBJETIVOS AGOSTO -->
+        <div class="section">
+            <h2>5. Competencias y Objetivos — Agosto y Resto del Año</h2>
+
+            <h3>Agosto 2026</h3>
+
+            <div class="field">
+                <label for="competencia-agosto">¿Tenés alguna competencia o evento confirmado en agosto? *</label>
+                <textarea id="competencia-agosto" name="competencia-agosto" placeholder="Ej: La carrera de 12 horas en septiembre ya la tengo confirmada. En agosto no hay competencia pero quiero hacer un fondo de 200km el 17. O: Nada confirmado todavía." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="objetivo-agosto-bici">¿Qué querés lograr específicamente en la bicicleta durante agosto? *</label>
+                <textarea id="objetivo-agosto-bici" name="objetivo-agosto-bici" placeholder="Ej: Quiero llegar a los 90g de CHO por hora en el fueling. Quiero hacer un fondo de 150km sin crisis energéticas. Quiero mejorar el ritmo promedio en las salidas entre semana." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="objetivo-agosto-cuerpo">¿Qué objetivo de composición corporal querés para agosto? *</label>
+                <textarea id="objetivo-agosto-cuerpo" name="objetivo-agosto-cuerpo" placeholder="Ej: Quiero ver la cintura en 84cm. Quiero seguir bajando grasa sin perder músculo. Quiero ganar fuerza en piernas." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="fondo-planeado-agosto">¿Tenés algún ride o fondo específico planeado para agosto que debamos preparar con un protocolo especial? *</label>
+                <textarea id="fondo-planeado-agosto" name="fondo-planeado-agosto" placeholder="Ej: El 10 de agosto voy a hacer 180km con grupo. Quiero que me ayudés con el fueling para ese día específico. O: Solo los fondos normales del domingo." required></textarea>
+            </div>
+
+            <h3>Resto del Año 2026 y 2027</h3>
+
+            <div class="field">
+                <label for="competencias-resto-anio">¿Cuáles competencias o eventos tenés confirmados o en mente para el resto del año y el 2027? *</label>
+                <textarea id="competencias-resto-anio" name="competencias-resto-anio" placeholder="Ej: Septiembre: carrera 12 horas. 2027: Camino de las Mulas (630km) y Pura Vida Ultra (500km). Y lo que se me atraviese." required></textarea>
+                <small>Esta información me ayuda a planificar la progresión del entrenamiento y la nutrición con suficiente anticipación para que llegués a cada evento en punta.</small>
+            </div>
+
+            <div class="field">
+                <label for="evento-prioritario">De todos esos eventos, ¿cuál es el más importante para vos este año y el próximo? *</label>
+                <textarea id="evento-prioritario" name="evento-prioritario" placeholder="Ej: La de septiembre es importante para ver cómo estoy. Pero el gran objetivo es Mulas 2027, quiero ir a defenderla más preparado que nunca." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="cambio-entreno-agosto">¿Hay algún cambio en tu disponibilidad de tiempo para entrenar en agosto comparado con julio? *</label>
+                <textarea id="cambio-entreno-agosto" name="cambio-entreno-agosto" placeholder="Ej: En agosto el trabajo se pone más tranquilo así que puedo entrenar más entre semana. O: Igual que julio. O: Voy a tener menos tiempo por un proyecto grande." required></textarea>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 6: CIERRE -->
+        <div class="section">
+            <h2>6. Lo Más Importante que Necesito Saber</h2>
+
+            <div class="field">
+                <label for="mayor-logro">¿Cuál fue el mayor logro de este primer mes, por pequeño que sea? *</label>
+                <textarea id="mayor-logro" name="mayor-logro" placeholder="Ej: Dejé de depender de la comida china en la noche. Hice el fondo de 300km este fin de semana sin crisis energéticas. Empecé a cocinar los domingos." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="mayor-obstaculo">¿Cuál fue el mayor obstáculo o lo que más te costó este mes? *</label>
+                <textarea id="mayor-obstaculo" name="mayor-obstaculo" placeholder="Ej: El trabajo me impidió entrenar entre semana más de lo que quería. Las meriendas se me olvidan. Cocinar el día de semana no siempre pude." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="pregunta-agosto">¿Hay algo específico que querés aprender o mejorar en agosto que no estaba en el plan de julio? *</label>
+                <textarea id="pregunta-agosto" name="pregunta-agosto" placeholder="Ej: Quiero entender mejor cómo manejar el fueling en rutas de 24 horas. Quiero saber si debo cambiar algo del acondicionamiento. Quiero aprender a leer mejor mi cuerpo durante el esfuerzo." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="info-adicional-mes2">¿Algo más que quieras que sepa antes de construir el plan de agosto?</label>
+                <textarea id="info-adicional-mes2" name="info-adicional-mes2" placeholder="Lo que sea: algo que pasó este mes, una lesión nueva, un cambio en la vida personal o laboral, algo que quieras probar..."></textarea>
+            </div>
+        </div>
+
+        <!-- Submit -->
+        <div class="submit-section">
+            <h2>Listo, Warner</h2>
+            <p>Con este check-in construyo el plan de agosto.</p>
+            <p>Revisá que respondiste todas las secciones antes de enviar.</p>
+            <p style="margin-top: 12px;"><strong>Próximos pasos:</strong></p>
+            <p>1. Revisión de tus respuestas (48 horas)</p>
+            <p>2. Plan de agosto listo con ajustes basados en tu mes 1</p>
+            <p>3. Check-in lunes 4 de agosto a las 9 AM</p>
+            <button type="submit" class="submit-btn">Enviar Check-in</button>
+        </div>
+
+    </form>
+
+    <div class="footer">
+        <p><strong>eat&flow</strong> | Nutrición Deportiva</p>
+        <p>Asesoramiento nutricional: Isa Herra | @isaherra.13</p>
+        <p>Consultas por WhatsApp</p>
+    </div>
+
+</div>
+</body>
+</html>
