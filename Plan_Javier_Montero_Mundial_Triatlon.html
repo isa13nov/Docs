@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan Full Nutrición | Javier Montero | eat&flow</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #F5F9F7 0%, #E8F3EF 100%);
+            color: #2D4A3E;
+            line-height: 1.8;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 920px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 30px rgba(45,74,62,0.12);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1a5945 0%, #2D4A3E 100%);
+            color: white;
+            padding: 44px 30px;
+            text-align: center;
+            border-bottom: 4px solid #8bc34a;
+        }
+
+        .header .brand {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            opacity: 0.9;
+            margin-bottom: 18px;
+            text-transform: uppercase;
+        }
+
+        .header h1 { font-size: 30px; font-weight: 700; margin-bottom: 6px; }
+        .header .cliente { font-size: 22px; font-weight: 600; margin-top: 12px; }
+
+        .badge {
+            display: inline-block;
+            background: #ff9800;
+            color: white;
+            padding: 7px 22px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-top: 14px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .tabs {
+            display: flex;
+            overflow-x: auto;
+            background: white;
+            border-bottom: 2px solid #E8F3EF;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(45,74,62,0.06);
+        }
+
+        .tab {
+            padding: 15px 20px;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            font-size: 13px;
+            font-weight: 600;
+            color: #6c757d;
+            white-space: nowrap;
+            transition: all 0.3s;
+            flex-shrink: 0;
+        }
+
+        .tab:hover { background: #F5F9F7; color: #2D4A3E; }
+        .tab.active { color: #1a5945; border-bottom: 3px solid #1a5945; background: #F5F9F7; }
+
+        .content { padding: 40px 32px; }
+
+        .section { display: none; }
+        .section.active { display: block; animation: fadeIn 0.3s; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            font-size: 26px;
+            color: #1a5945;
+            margin-bottom: 28px;
+            padding-bottom: 14px;
+            border-bottom: 3px solid #8bc34a;
+        }
+
+        .subsection-title {
+            font-size: 20px;
+            color: #2D4A3E;
+            margin: 36px 0 18px;
+            font-weight: 700;
+        }
+
+        .card {
+            background: #F5FAF8;
+            border-left: 4px solid #8bc34a;
+            padding: 20px 22px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
+        .card h3 { color: #1a5945; font-size: 17px; margin-bottom: 12px; }
+        .card p { margin-bottom: 8px; font-size: 14.5px; }
+        .card ul { margin-left: 18px; margin-bottom: 8px; font-size: 14.5px; }
+
+        .card.highlight {
+            background: linear-gradient(135deg, #fff8f0, #fff3e6);
+            border-left: 4px solid #ff9800;
+        }
+
+        .card.success {
+            background: #e8f5e9;
+            border-left: 4px solid #43a047;
+        }
+
+        .card.warning {
+            background: #fffde7;
+            border-left: 4px solid #fdd835;
+        }
+
+        .card.critical {
+            background: #fce4ec;
+            border-left: 4px solid #e53935;
+        }
+
+        .card.dark {
+            background: #e8f0ee;
+            border-left: 4px solid #1a5945;
+        }
+
+        .orange-box {
+            background: linear-gradient(135deg, #fff8f0, #fff3e6);
+            border-left: 4px solid #ff9800;
+            padding: 20px 22px;
+            margin: 22px 0;
+            border-radius: 8px;
+        }
+
+        .orange-box p { margin-bottom: 8px; font-size: 14.5px; }
+
+        .info-box {
+            background: linear-gradient(135deg, #e8f5e9, #d4edda);
+            border-left: 4px solid #43a047;
+            padding: 20px 22px;
+            margin: 22px 0;
+            border-radius: 8px;
+        }
+
+        .warning-box {
+            background: #fffde7;
+            border-left: 4px solid #fdd835;
+            padding: 20px 22px;
+            margin: 22px 0;
+            border-radius: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+
+        table th {
+            background: #1a5945;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 700;
+        }
+
+        table td {
+            border-bottom: 1px solid #E8F3EF;
+            padding: 12px;
+        }
+
+        table tr:hover { background: #F5FAF8; }
+
+        .meal-plan {
+            background: #F5FAF8;
+            border-left: 4px solid #8bc34a;
+            padding: 18px 20px;
+            margin: 18px 0;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .meal-plan strong { color: #1a5945; }
+        .meal-plan p { margin-bottom: 6px; }
+
+        .recipe-card {
+            background: #F5FAF8;
+            border-left: 4px solid #ff9800;
+            padding: 18px 20px;
+            margin: 18px 0;
+            border-radius: 8px;
+        }
+
+        .recipe-card h4 { color: #1a5945; margin-bottom: 10px; }
+        .recipe-card p { margin-bottom: 6px; font-size: 14px; }
+        .recipe-card ul { margin-left: 18px; margin-bottom: 8px; font-size: 14px; }
+
+        .timeline { margin: 20px 0; }
+
+        .timeline-item {
+            background: #F5FAF8;
+            border-left: 4px solid #8bc34a;
+            padding: 18px 20px;
+            margin-bottom: 16px;
+            border-radius: 8px;
+        }
+
+        .timeline-item h4 { color: #1a5945; margin-bottom: 8px; font-size: 15px; font-weight: 700; }
+        .timeline-item p { margin-bottom: 6px; font-size: 14px; }
+        .timeline-item ul { margin-left: 18px; font-size: 14px; }
+
+        .footer {
+            background: #1a5945;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        .footer p { margin-bottom: 6px; }
+
+        .key-point {
+            background: linear-gradient(135deg, #fff8f0, #fff3e6);
+            border-left: 4px solid #ff9800;
+            padding: 15px 18px;
+            margin: 15px 0;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        strong { color: #1a5945; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <div class="brand">eat&flow</div>
+        <h1>Plan Full Nutrición</h1>
+        <p style="font-size: 14px; opacity: 0.95; margin-top: 10px;">Asesoría Nutricional: Isa Herra</p>
+        <div class="cliente">Javier Montero Villalobos</div>
+        <span class="badge">Mundial de Triatlón Sprint - Pontevedra, España</span>
+    </div>
+
+    <div class="tabs">
+        <button class="tab active" onclick="showSection('analisis')">Análisis</button>
+        <button class="tab" onclick="showSection('estrategia')">Estrategia</button>
+        <button class="tab" onclick="showSection('nutricion-diaria')">Nutrición Diaria</button>
+        <button class="tab" onclick="showSection('competencia')">Protocolo de Competencia</button>
+        <button class="tab" onclick="showSection('semana-competencia')">Semana de Competencia y Hotel</button>
+        <button class="tab" onclick="showSection('suplementos')">Suplementos</button>
+        <button class="tab" onclick="showSection('recetas')">Recetas Rápidas</button>
+        <button class="tab" onclick="showSection('cronograma')">Cronograma</button>
+        <button class="tab" onclick="showSection('metricas')">Métricas</button>
+    </div>
+
+    <div class="content">
+
+        <!-- ======= ANALISIS ======= -->
+        <div id="analisis" class="section active">
+            <h2 class="section-title">Análisis Inicial</h2>
+
+            <h3 class="subsection-title">Tu Situación Actual</h3>
+
+            <div class="card dark">
+                <h3>Perfil Biométrico Actual (agosto 2026)</h3>
+                <table>
+                    <tr>
+                        <th>Métrica</th>
+                        <th>Valor</th>
+                        <th>Nota</th>
+                    </tr>
+                    <tr>
+                        <td>Edad</td>
+                        <td>43 años</td>
+                        <td>Buen momento fisiológico para triatlón sprint si la nutrición acompaña</td>
+                    </tr>
+                    <tr>
+                        <td>Peso actual</td>
+                        <td>81 kg</td>
+                        <td>IMC 26.4</td>
+                    </tr>
+                    <tr>
+                        <td>Estatura</td>
+                        <td>175 cm</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td>Cintura / Abdomen</td>
+                        <td>94 cm / 96 cm</td>
+                        <td>Punto principal a monitorear para la meta de composición</td>
+                    </tr>
+                    <tr>
+                        <td>Cadera / Pecho</td>
+                        <td>94 cm / 102 cm</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td>Brazo relajado / contraído</td>
+                        <td>30 cm / 36 cm</td>
+                        <td>Referencia para monitorear masa muscular en brazo</td>
+                    </tr>
+                    <tr>
+                        <td>Muslo / Pantorrilla</td>
+                        <td>53 cm / 37 cm</td>
+                        <td>Referencia para monitorear masa muscular en pierna</td>
+                    </tr>
+                    <tr>
+                        <td>Meta de composición</td>
+                        <td>Bajar 3 kg de grasa</td>
+                        <td>Ahora sí con línea base de circunferencias para comparar en cada control</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3 class="subsection-title">Referencia: Tu Último InBody (noviembre 2025)</h3>
+
+            <div class="card">
+                <h3>Contexto Histórico</h3>
+                <p>Tengo tus InBody de abril, mayo, junio y noviembre 2025. En ese período tu peso osciló entre 82-83 kg (abril-junio) y bajó a 77.8 kg en noviembre, con el porcentaje de grasa moviéndose entre 17.8% y 19.4% según el mes, cerrando en 18.6% en la última medición.</p>
+                <p style="margin-top: 8px;">Hoy pesás 81 kg, es decir, casi 3.2 kg más que en noviembre. Ya pasaron 9 meses desde ese InBody y tu peso cambió, así que no lo voy a usar como línea base actual — para eso están tus circunferencias de esta semana, que sí reflejan tu punto de partida real hoy. Igual te recomiendo agendar un InBody nuevo en las próximas semanas para tener el dato de porcentaje de grasa y masa muscular actualizado y comparar contra estas circunferencias.</p>
+            </div>
+
+            <div class="orange-box">
+                <p><strong>Punto clave:</strong> vos mismo me contás que "adelgazás muy fácil" y tu mayor dificultad es comer el volumen que necesitás. Con esa información, y viendo que tu peso ya subió y bajó varias veces en el último año sin una estrategia nutricional consistente detrás, tu objetivo real no es bajar peso en la báscula — es mejorar tu composición corporal: perder grasa sin perder el músculo que te cuesta mantener. Por eso el seguimiento de este plan se basa en tus circunferencias, no solo en el peso.</p>
+            </div>
+
+            <h3 class="subsection-title">El Mareo Post-Natación</h3>
+
+            <div class="card critical">
+                <h3>Por Qué Es Importante Trabajar Esto Antes del Mundial</h3>
+                <p>Me contás que en tu último triatlón saliste "súper mareado" de la natación y te costó mucho recuperarte. En Pontevedra vas a nadar en agua notablemente más fría que la que conocés en Costa Rica, así que esto es una alerta real que hay que atender con tiempo, no dejarlo para la semana de la carrera.</p>
+                <p style="margin-top: 10px;">Desde nutrición hay dos factores que sí puedo controlar: disponibilidad de glucosa (si salís del agua con las reservas bajas, el cuerpo se siente mareado y débil) y tu estado de hidratación previo. Pero también hay factores que no son puramente nutricionales: el agua fría genera un reflejo de "choque de frío" que acelera la respiración y puede generar hiperventilación, y el cambio brusco de posición horizontal a vertical al salir del agua puede causar una caída momentánea de presión arterial. Esto es más de fisiología y técnica que de nutrición pura.</p>
+                <p style="margin-top: 10px;"><strong>Mi recomendación:</strong> practicá con tu entrenador salidas de aguas abiertas o agua fría (si tenés acceso a algo así) antes del Mundial, con foco en respiración controlada al entrar y salir del agua. Y si el mareo es intenso o recurrente, vale la pena comentarlo con un médico para descartar otras causas, sobre todo porque vas a estar en agua bastante más fría de lo que tu cuerpo conoce. De mi lado, voy a asegurar que entrés al agua con buena disponibilidad de glucosa y bien hidratado, que es lo que sí puedo garantizar.</p>
+            </div>
+
+            <h3 class="subsection-title">Los Calambres Recientes</h3>
+
+            <div class="card critical">
+                <h3>Qué Está Pasando</h3>
+                <p>Me contás que has tenido "muchos calambres últimamente". Al revisar tu protocolo actual, encuentro el patrón: usás sales solo en entrenos largos, tu hidratación diaria es de apenas 1.5 litros (bajo para tu volumen de entrenamiento, que incluye dobles casi todos los días), y tenés varias sesiones de alta intensidad entre semana sin ningún tipo de electrolito.</p>
+                <p style="margin-top: 10px;"><strong>El problema no es un solo entreno, es la acumulación.</strong> Con pesas + bici o pesas + running casi todos los días entre semana, tu cuerpo está perdiendo sodio de forma constante sin reposición diaria suficiente. No hace falta que tu sesión sea "larga" para necesitar sodio si ya venís acumulando déficit toda la semana.</p>
+            </div>
+
+            <h3 class="subsection-title">Tu Entrenamiento: Volumen Alto, Alimentación Insuficiente</h3>
+
+            <div class="card success">
+                <h3>Lo Que Ya Estás Haciendo Bien</h3>
+                <p>Entrenás seis días a la semana con varias sesiones dobles, incluyendo natación, pesas, atletismo en pista y bici. Eso es un volumen serio para alguien con trabajo de oficina de tiempo completo. Ya tenés experiencia en triatlón sprint y ya sabés lo que es dosificar geles cada 30 minutos en fondos largos — cuando priorizás carbohidratos (mínimo 40g entre geles y gomitas) te ha ido bien.</p>
+            </div>
+
+            <div class="card warning">
+                <h3>El Problema Real: No Comés Suficiente Para Sostener Esto</h3>
+                <p>Vos mismo me dijiste: si pudieras cambiar una sola cosa, sería "comer más". Entre semana no comés nada antes de entrenar (tu almuerzo es a las 2pm y entrenás después de las 6pm, así que llegás a la sesión con 4+ horas sin comida). Después de entrenar, cenás casi una hora después de terminar. Y tu día tiene comidas correctas en concepto (arroz, frijoles, huevo, proteína) pero probablemente no en cantidad suficiente para sostener seis días de entrenamiento, varios con doble sesión.</p>
+                <p style="margin-top: 10px;">Esto explica por qué "adelgazás muy fácil": no es que tengas un metabolismo especial, es que tu gasto energético semanal es alto y tu ingesta no lo está compensando. Bajar grasa en este contexto no se logra comiendo menos — se logra comiendo lo suficiente para sostener el entrenamiento, con la proteína y el timing correcto para que lo que se pierda sea grasa y no músculo.</p>
+            </div>
+
+        </div>
+
+        <!-- ======= ESTRATEGIA ======= -->
+        <div id="estrategia" class="section">
+            <h2 class="section-title">Estrategia Global del Plan</h2>
+
+            <div class="orange-box">
+                <p><strong>Este plan tiene una filosofía clara:</strong> vas a comer más, no menos. Voy a redistribuir y aumentar tu ingesta para que sostenga tu volumen de entrenamiento, proteger tu masa muscular con proteína bien timeada, y usar el sodio y la hidratación de forma constante — no solo en los entrenos largos — para eliminar los calambres. La pérdida de grasa va a ser una consecuencia de comer bien y entrenar bien, no de restringir.</p>
+            </div>
+
+            <h3 class="subsection-title">Pilares de la Estrategia</h3>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>1. Circunferencias Como Referencia y un InBody Nuevo</h4>
+                    <p>Ya tengo tu línea base de circunferencias de esta semana. En las próximas semanas te voy a pedir que agendés un InBody actualizado para tener también el dato de porcentaje de grasa y masa muscular, y comparar contra estas medidas.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>2. Comer Más, No Menos — Densidad Antes que Volumen</h4>
+                    <p>Dado que te cuesta comer el volumen que necesitás y tenés poco tiempo, voy a priorizar alimentos y bebidas de alta densidad calórica y proteica (batidos con leche y avena, mantequilla de maní) en lugar de pedirte que comas platos enormes. Es más fácil tomarte un batido con base de leche que comer un plato gigante con prisa antes de salir a trabajar.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>3. Pre-Entreno Todos los Días, No Solo Fines de Semana</h4>
+                    <p>Actualmente entrenás en ayunas entre semana porque tu almuerzo fue a las 2pm. Voy a introducir un snack ligero antes de cada sesión de tarde/noche, especialmente en tus días de doble sesión (miércoles, jueves, domingo), para que no llegues a la segunda sesión sin combustible.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>4. Sodio Diario, No Solo en Entrenos Largos</h4>
+                    <p>Voy a construir una estrategia de sodio que cubra toda tu semana de entrenamiento, no solo los fondos de bici del domingo. Esto es lo que va a resolver los calambres recientes.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>5. Recuperación Inmediata Post-Entreno</h4>
+                    <p>Voy a mover tu ventana de recuperación de "una hora después" a "dentro de los primeros 30 minutos", especialmente en tus días de doble sesión. Esto protege tu masa muscular y mejora tu recuperación para el día siguiente.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>6. Preparar el Sistema Digestivo para la Carrera</h4>
+                    <p>Ya sé por tu experiencia en la maratón que el gel número seis de una misma marca dejó de pasarte. Voy a rotar texturas y sabores en tus entrenos largos para que en Pontevedra tengas 2-3 opciones probadas, no una sola que puede fallarte.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>7. Resolver el Reto Logístico del Hotel</h4>
+                    <p>Me preguntaste específicamente por la alimentación en los días previos cuando estés en un hotel sin poder cocinar. Le dedico una sección completa a esto — es una de tus prioridades y la voy a resolver con anticipación, no improvisando en España.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>8. Adaptarme a tu Realidad de Tiempo y Presupuesto</h4>
+                    <p>Sé que tu mamá cocina la mayoría de tus comidas, que vos solo preparás tu desayuno, y que tu presupuesto es limitado. Todo lo que te voy a pedir es realista dentro de esas condiciones — nada de listas de compras imposibles ni preparaciones de una hora.</p>
+                </div>
+            </div>
+
+            <h3 class="subsection-title">Objetivos del Plan</h3>
+
+            <div class="card highlight">
+                <h3>Lo Que Vamos a Lograr de Aquí al 24 de Septiembre</h3>
+                <table>
+                    <tr>
+                        <th>Objetivo</th>
+                        <th>Métrica</th>
+                        <th>Timeline</th>
+                    </tr>
+                    <tr>
+                        <td>Actualizar composición corporal</td>
+                        <td>InBody nuevo para comparar contra circunferencias base</td>
+                        <td>Semana 1-2</td>
+                    </tr>
+                    <tr>
+                        <td>Eliminar los calambres recientes</td>
+                        <td>Sin calambres en entrenos de intensidad ni en fondos</td>
+                        <td>Semana 2-3</td>
+                    </tr>
+                    <tr>
+                        <td>Mejorar composición corporal</td>
+                        <td>Reducción de grasa manteniendo o ganando masa muscular (verificado con mediciones)</td>
+                        <td>Semana 2 en adelante</td>
+                    </tr>
+                    <tr>
+                        <td>Protocolo de competencia probado</td>
+                        <td>2-3 productos de fueling confirmados que toleres bien, incluyendo la prueba de cafeína</td>
+                        <td>Semana 5-6</td>
+                    </tr>
+                    <tr>
+                        <td>Plan de hotel resuelto</td>
+                        <td>Lista de comidas y snacks sin cocina lista y probada antes del viaje</td>
+                        <td>Semana 6-7</td>
+                    </tr>
+                    <tr>
+                        <td>Llegar a Pontevedra sin sorpresas</td>
+                        <td>Rutina de comida de la semana de competencia ensayada al menos una vez en casa</td>
+                        <td>Semana 7</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3 class="subsection-title">Tu Compromiso</h3>
+
+            <div class="card success">
+                <h3>Lo Que Necesito de Vos</h3>
+                <p><strong>Esta semana:</strong> agendá tu InBody, y avisale a tu mamá que va a llegar un menú semanal simple para que sea más fácil cocinar para vos.</p>
+                <p style="margin-top: 10px;"><strong>Cada entreno:</strong> vas a probar el pre-entreno ligero aunque sientas que "no tenés hambre" a esa hora. Es parte del protocolo, no opcional.</p>
+                <p style="margin-top: 10px;"><strong>Check-in cada 2 semanas:</strong> me mandás tus medidas actualizadas y cómo te sentiste en los entrenos, especialmente en los fondos largos de domingo.</p>
+                <p style="margin-top: 10px;"><strong>Con tu entrenador:</strong> comentale lo del mareo post-natación para que lo trabajen juntos en los próximos entrenos de agua abierta o agua fría si tenés acceso.</p>
+            </div>
+
+        </div>
+
+        <!-- ======= NUTRICION DIARIA ======= -->
+        <div id="nutricion-diaria" class="section">
+            <h2 class="section-title">Nutrición Diaria: Tu Plan Base</h2>
+
+            <div class="orange-box">
+                <p><strong>Antes de empezar:</strong> este plan está armado sobre tu calendario real de entrenamiento (oficina 7am-5pm, entrenás después de las 6pm, con dobles los miércoles, jueves, sábado y domingo). No voy a tocar tu entrenamiento — eso lo maneja tu entrenador. Solo estoy poniendo la comida en el lugar correcto alrededor de él.</p>
+            </div>
+
+            <h3 class="subsection-title">Estructura de un Día Entre Semana con Una Sesión (Lunes, Martes, Viernes)</h3>
+
+            <div class="meal-plan">
+                <strong>Desayuno (antes de salir a la oficina, ~6:30 am)</strong>
+                <p>Este es el único momento que preparás vos mismo, así que lo hacemos simple y rápido: 3 huevos revueltos o en pinto con 1 taza de arroz/frijoles + 1 banano + café.</p>
+                <p style="margin-top: 8px; color: #666;"><em>Por qué:</em> ya lo estás haciendo bien. Solo voy a pedirte que sea consistente todos los días, incluso cuando el tiempo apriete.</p>
+            </div>
+
+            <div class="meal-plan">
+                <strong>Merienda Media Mañana (~9:30-10 am, en la oficina)</strong>
+                <p>1 yogurt o 1 fruta + un puño de almendras o maní, o 2 tortillas con queso blanco bajo en grasa.</p>
+                <p style="margin-top: 8px; color: #666;"><em>Por qué:</em> esta comida no existe hoy en tu día. La agrego porque tu almuerzo es tarde (2pm) y necesitás sostener energía hasta ahí sin que se te acumule el hambre.</p>
+            </div>
+
+            <div class="meal-plan">
+                <strong>Almuerzo (2:00 pm)</strong>
+                <p>1 palma de mano grande de proteína (pollo, pescado o atún) + 1 taza y media de arroz con frijoles + 2 puños de verdura al vapor con limón y sal.</p>
+                <p style="margin-top: 8px; color: #666;"><em>Por qué:</em> este es tu almuerzo principal del día. La porción de carbohidrato es más grande de lo normal porque tenés entreno en 4+ horas y esta comida tiene que sostenerte hasta entonces.</p>
+            </div>
+
+            <div class="meal-plan">
+                <strong>Pre-Entreno (45-60 min antes de entrenar, ~5:00-5:15 pm)</strong>
+                <p>1 banano + 1 cucharada de miel, o 2 tortillas con miel, o un vaso de leche con banano.</p>
+                <p style="margin-top: 8px; color: #666;"><em>Por qué:</em> esta es la comida que falta hoy en tu rutina. Con 4+ horas desde el almuerzo, llegás al entreno con las reservas bajas. Este snack pequeño no te va a caer pesado, pero sí te da glucosa disponible para entrenar mejor.</p>
+            </div>
+
+            <div class="meal-plan">
+                <strong>Post-Entreno Inmediato (dentro de los primeros 30 min al terminar)</strong>
+                <p>La forma más práctica es con comida normal: 1 vaso grande de leche con 1 banano y 2-3 cucharadas de avena integral licuados, o un sándwich pequeño de pan integral con queso blanco bajo en grasa y miel. Si en algún momento querés algo más rápido de preparar, un batido con 1 scoop de proteína en polvo + banano + agua también funciona, pero no es indispensable si preferís resolverlo con comida.</p>
+                <p style="margin-top: 8px; color: #666;"><em>Por qué:</em> hoy estás llegando a cenar casi una hora después de terminar. Ese tiempo es músculo y recuperación que estás dejando en la mesa. Este snack cierra esa ventana de inmediato, y la cena la comés con calma cuando llegue a la casa.</p>
+            </div>
+
+            <div class="meal-plan">
+                <strong>Cena (con la familia, cuando llegues a casa)</strong>
+                <p>Tu cena habitual: 1 palma de proteína + 1 taza de arroz + verduras. Mantené esto igual, tu mamá ya lo prepara bien.</p>
+            </div>
+
+            <h3 class="subsection-title">Días de Doble Sesión (Miércoles, Jueves, Sábado, Domingo)</h3>
+
+            <div class="card highlight">
+                <h3>La Diferencia Clave</h3>
+                <p>En estos días, entre tu primera y segunda sesión, necesitás un snack de transición — no es opcional. Ya usás geles, barritas o gomitas entre sesiones, lo cual está bien. Voy a ser más específica con la cantidad: apuntá a 20-30 g de carbohidrato entre sesiones (medio gel, una barrita pequeña, o un puño de gomitas), y agregá agua con electrolitos en ese mismo momento, no solo agua sola.</p>
+            </div>
+
+            <div class="card dark">
+                <h3>Sábado: Atletismo 6am + Natación 1pm (con 6 horas de diferencia)</h3>
+                <p><strong>Antes de atletismo (5:30 am):</strong> algo pequeño y rápido — media banana o un par de galletas integrales con miel. No necesitás mucho para una sesión de pista de 1 hora.</p>
+                <p style="margin-top: 8px;"><strong>Entre sesiones:</strong> con 6 horas de diferencia, esto ya es una comida completa, no un snack. Almuerzo normal (proteína + carbohidrato + verdura) 2-3 horas antes de la natación de la 1pm.</p>
+                <p style="margin-top: 8px;"><strong>Post-natación:</strong> snack de recuperación con proteína (ver opciones en Post-Entreno Inmediato arriba).</p>
+            </div>
+
+            <div class="card dark">
+                <h3>Domingo: Fondo de Bici (~3h) + Running (30 min) Seguido</h3>
+                <p><strong>Desayuno (1 hora antes de salir, ~5:00 am si salís a las 6am):</strong> pan blanco o tortillas + huevo + café + banano. Este es tu día de mayor gasto energético de la semana, no escatimés en esta comida. Con 1 hora de por medio no necesitás una porción enorme, pero sí completa.</p>
+                <p style="margin-top: 8px;"><strong>Durante la bici (ver Protocolo de Competencia para el detalle de productos):</strong> apuntá a 40-60 g de carbohidrato por hora, con sodio incluido desde el inicio, no cuando ya sientas el calambre.</p>
+                <p style="margin-top: 8px;"><strong>Transición a running:</strong> si el running es inmediatamente después de la bici, no necesitás comer de nuevo justo ahí, pero sí seguí tomando agua con electrolitos.</p>
+                <p style="margin-top: 8px;"><strong>Post-entreno (dentro de 30 min):</strong> esta es tu comida de recuperación más importante de la semana. Snack o batido con proteína y carbohidrato, seguido de un almuerzo completo cuando tengas hambre real.</p>
+            </div>
+
+            <h3 class="subsection-title">Sodio Diario: La Solución a los Calambres</h3>
+
+            <div class="card critical">
+                <h3>Protocolo de Sodio de Toda la Semana</h3>
+                <p><strong>Días de una sesión:</strong> agregá sal a tus comidas con normalidad (no restrinjas la sal en la cocina de tu mamá) y sumá electrolitos en el agua que tomás durante el entreno, no solo agua pura.</p>
+                <p style="margin-top: 8px;"><strong>Días de doble sesión o fondo largo:</strong> apuntá a un objetivo de sodio de aproximadamente 300 mg por hora de entrenamiento intenso, usando tu bebida hidratante actual más una sal si la sesión pasa de los 90 minutos. Esto no es solo para el domingo — tu miércoles y jueves con pesas + cardio también cuentan.</p>
+                <p style="margin-top: 8px;"><strong>Hidratación diaria general:</strong> vas a subir de 1.5 litros a 2.5-3 litros al día. Con seis días de entrenamiento y varios dobles, 1.5 litros es insuficiente incluso sin contar el entreno. Este es probablemente el factor más grande detrás de tus calambres recientes.</p>
+            </div>
+
+            <div class="warning-box">
+                <p><strong>Señal de que el protocolo está funcionando:</strong> tu orina debe verse clara o amarillo pálido durante el día. Si la ves oscura, especialmente después de entrenar, es señal de que necesitás más líquido. Y si los calambres no bajan en las primeras 2 semanas con este ajuste, me escribís de inmediato para revisar juntos.</p>
+            </div>
+
+        </div>
+
+        <!-- ======= PROTOCOLO DE COMPETENCIA ======= -->
+        <div id="competencia" class="section">
+            <h2 class="section-title">Protocolo de Competencia: Mundial Sprint Pontevedra</h2>
+
+            <div class="orange-box">
+                <p><strong>Contexto clave para este protocolo:</strong> tu carrera dura aproximadamente 1h25 en total (natación 18 min, T1 2 min, bici 40 min, T2 40 seg, running 25 min), con salida programada de tarde-noche (~6:30 pm) — te recomiendo reconfirmar tu horario exacto con la organización 3-4 semanas antes. Es una prueba corta pero de alta intensidad continua, así que el protocolo tiene dos partes: llegar con el tanque lleno y el sodio precargado, y sí consumir algo de carbohidrato durante la bici y posiblemente el arranque del running, porque 85 minutos de esfuerzo intenso es tiempo suficiente para que la disponibilidad de carbohidrato en sangre marque diferencia en tu rendimiento.</p>
+            </div>
+
+            <h3 class="subsection-title">¿Carbohidrato Durante la Carrera o Solo Antes? Lo Que Dice la Evidencia</h3>
+
+            <div class="card dark">
+                <h3>Por Qué Sí Vale la Pena Consumir Algo en Carrera</h3>
+                <p>La guía deportiva estándar (basada en el trabajo de investigadores como Asker Jeukendrup) indica que para esfuerzos de 1 a 2.5 horas, consumir entre 30 y 60 g de carbohidrato por hora durante el ejercicio mejora el rendimiento, no solo la carga previa. Tu carrera de 85 minutos cae justo en ese rango. Depender únicamente del gel de antes de salir dejaría 65 minutos de bici y running sin ningún aporte adicional, lo cual es quedarse corto según la evidencia actual, sobre todo tratándose de un Mundial donde vas a exigirte al máximo.</p>
+                <p style="margin-top: 10px;">La buena noticia es que no necesitás mucho: con 1 gel o toma de carbohidrato concentrado durante la bici (fácil de tomar con una mano, aunque sea en pelotón) alcanza para cubrir esa ventana. El running de 25 minutos es demasiado corto e intenso para intentar comer algo sólido ahí, así que el aporte de esa parte ya viene cubierto por lo que tomaste antes y en la bici.</p>
+            </div>
+
+            <h3 class="subsection-title">Los Tres Días Antes: Carga de Glucógeno y Sodio</h3>
+
+            <div class="card dark">
+                <h3>Martes 22 y Miércoles 23 de Septiembre</h3>
+                <p>No necesitás una carga masiva de carbohidratos como en un Ironman, pero sí querés llegar con el glucógeno muscular al tope. Aumentá levemente la porción de arroz/carbohidrato en almuerzo y cena estos dos días, manteniendo las comidas simples y ya conocidas por tu cuerpo — nada nuevo, nada que no hayas comido antes en Costa Rica.</p>
+                <p style="margin-top: 8px;"><strong>Sodio:</strong> empezá a salar un poco más tus comidas desde el martes. Esto ayuda a que tu cuerpo retenga más líquido y llegues bien hidratado al jueves, reduciendo el riesgo de calambres desde el arranque.</p>
+                <p style="margin-top: 8px;"><strong>Miércoles 23 (Ceremonia de Apertura):</strong> es un día largo y con actividad social. Priorizá tu cena temprano y liviana, evitá alcohol, y acostate temprano si podés — al día siguiente es la carrera.</p>
+            </div>
+
+            <h3 class="subsection-title">Jueves 24 de Septiembre: Día de Carrera (Salida ~6:30 pm)</h3>
+
+            <div class="card highlight">
+                <h3>Con una salida de tarde-noche, tu día se ve muy distinto a una carrera de mañana</h3>
+                <p>Tenés todo el día para comer con normalidad. Esto es una ventaja: no vas a correr con un desayuno de las 4am digiriéndose mal. Lo vamos a tratar como un día normal con una comida pre-competencia bien timeada.</p>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>Desayuno normal (mañana)</h4>
+                    <p>Tu desayuno habitual: huevos, arroz o pan, fruta, café. Comé con tranquilidad, es un día largo por delante.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Almuerzo-Comida Principal Pre-Competencia (aprox. 1:00-1:30 pm, 5 horas antes de la salida)</h4>
+                    <p>Arroz con huevo — vos mismo me contaste que esto es lo que ya usás antes de tus entrenos largos y te funciona bien. No cambiés algo que ya sabés que tu estómago tolera. Sumá una porción moderada de proteína magra y evitá exceso de grasa o fibra en esta comida.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Snack Pre-Carrera (2-2.5 horas antes, ~4:00-4:30 pm)</h4>
+                    <p>Banano + un poco de miel, o pan blanco con miel. Carbohidrato simple, de fácil digestión, cantidad moderada.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Carga de Sodio Final (2-1 hora antes)</h4>
+                    <p>Tomá tu bebida electrolítica en este bloque, en vez de solo agua. El objetivo es entrar al agua ya bien cargado de sodio, porque durante la natación no vas a poder tomar nada.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>15-20 minutos antes de la salida</h4>
+                    <p>Un gel (15-20 g de carbohidrato de rápida absorción). Ver la sección de cafeína más abajo para la decisión de si este gel lleva cafeína o no. Esto asegura que entrés al agua con glucosa disponible, lo cual también puede ayudar con la sensación de mareo que tuviste la última vez.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Natación (18 min) + T1 (2 min)</h4>
+                    <p>No hay nutrición posible acá. Enfocate en respiración controlada al entrar al agua fría — coordinalo con tu entrenador antes del viaje.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Bici (40 min, draft legal)</h4>
+                    <p>A mitad de la bici (minuto 15-20 aproximadamente), tomá medio gel o un par de gomitas (15-20 g de carbohidrato) si tu bici tiene portabidón accesible, junto con un par de sorbos de tu bebida electrolítica. Con pelotón permitido la intensidad va a ser alta e intermitente, así que aprovechá un tramo más estable del pelotón para hacerlo.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>T2 (40 seg) + Running (25 min)</h4>
+                    <p>No hace falta comer nada sólido acá — es demasiado corto e intenso. Si en algún punto sentís que te falta energía, normalmente es señal de que la carga previa fue insuficiente, no de que necesites comer en plena carrera.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Post-Carrera</h4>
+                    <p>Apenas cruces la meta, hidratación con electrolitos y algo de carbohidrato + proteína en los siguientes 30-60 minutos (fruta + lo que haya disponible en zona de meta, y una comida completa cuando puedas).</p>
+                </div>
+            </div>
+
+            <h3 class="subsection-title">Protocolo de Prueba de Cafeína</h3>
+
+            <div class="card warning">
+                <h3>Por Qué Probarla Con Cuidado</h3>
+                <p>La cafeína tiene evidencia sólida como ayuda ergogénica en resistencia: mejora la percepción de esfuerzo, la alerta mental y puede darte ese impulso extra que buscás para un Mundial. Pero vos nunca la has usado, y eso significa dos cosas: probablemente vas a notar el efecto de forma más marcada que alguien acostumbrado, pero también sos más propenso a efectos secundarios (taquicardia, ansiedad, molestia digestiva) si la dosis es alta o si es la primera vez que la usás justo el día de la carrera. Por eso, nada de cafeína nueva el día del Mundial — se prueba antes, en entrenamiento.</p>
+            </div>
+
+            <div class="card dark">
+                <h3>Cómo Probarla</h3>
+                <p><strong>Dosis inicial:</strong> entre 1.5 y 2 mg por kg de tu peso corporal, es decir, aproximadamente 120-160 mg para vos. Esto es una dosis conservadora, suficiente para notar el efecto sin exponerte a los efectos secundarios de dosis más altas.</p>
+                <p style="margin-top: 8px;"><strong>Cuándo:</strong> tomala 45-60 minutos antes de empezar una sesión de intensidad (no en el fondo largo tranquilo del domingo, sino en un entreno de pista o de ritmo de carrera entre semana, para simular mejor la exigencia del Mundial).</p>
+                <p style="margin-top: 8px;"><strong>Cuántas veces probarla:</strong> al menos 2-3 sesiones distintas antes de decidir, para confirmar que la respuesta es consistente y no una casualidad de un día bueno o malo.</p>
+                <p style="margin-top: 8px;"><strong>Qué observar:</strong> frecuencia cardíaca elevada de forma incómoda, ansiedad o nerviosismo, molestia estomacal, y muy importante — cómo dormís esa noche, porque el Mundial es de noche y la cafeína puede afectarte el sueño después de la carrera.</p>
+            </div>
+
+            <div class="card success">
+                <h3>Regla de Decisión</h3>
+                <p><strong>Si la tolerás bien</strong> (sin efectos secundarios molestos, sensación de más alerta y esfuerzo percibido más liviano): usá un gel con cafeína en la dosis que probaste como tu gel pre-salida de los 15-20 minutos antes de la carrera. Es la forma más simple de combinar carbohidrato y cafeína en una sola toma.</p>
+                <p style="margin-top: 8px;"><strong>Si te genera cualquier efecto negativo</strong> (taquicardia incómoda, ansiedad, molestia digestiva, o mal sueño post-entreno): no la uses el día de la carrera. Te quedás con el protocolo sin cafeína que ya está detallado arriba, que funciona igual de bien sin ese riesgo.</p>
+                <p style="margin-top: 8px;"><strong>Importante:</strong> si tomás café en el desayuno del día de la carrera, contá esa cafeína dentro del total del día — no sumes la dosis de prueba encima del café sin pensarlo.</p>
+            </div>
+
+            <h3 class="subsection-title">Por Qué No Vamos a Depender de un Solo Producto</h3>
+
+            <div class="card warning">
+                <h3>La Lección del Gel Número Seis</h3>
+                <p>En tu maratón del año pasado, el sexto gel de la misma marca (226ers de 56g) dejó de pasarte por la garganta. Eso es fatiga de sabor y textura, algo muy común cuando se depende de un solo producto en dosis repetidas. Para el Mundial, dado que la carrera es corta, vamos a usar máximo 2-3 tomas de carbohidrato concentrado, así que este riesgo es mucho menor — pero de todas formas voy a pedirte que pruebes en los próximos entrenos largos qué gel o textura te cae mejor antes de decidir cuál llevás a España.</p>
+            </div>
+
+        </div>
+
+        <!-- ======= SEMANA DE COMPETENCIA Y HOTEL ======= -->
+        <div id="semana-competencia" class="section">
+            <h2 class="section-title">Semana de Competencia y Logística de Hotel</h2>
+
+            <div class="orange-box">
+                <p><strong>Tu pregunta principal era esta:</strong> "me preocupan los días previos la alimentación ya que voy a estar en un hotel y no puedo preparar mi comida". Es una preocupación válida y la voy a resolver con anticipación, no improvisando allá.</p>
+            </div>
+
+            <h3 class="subsection-title">Estrategia General para Comer Bien Sin Cocina</h3>
+
+            <div class="card success">
+                <h3>Tres Reglas Simples para la Semana en España</h3>
+                <p><strong>1. Restaurante con proteína + carbohidrato + verdura, siempre que puedas.</strong> España tiene una cocina muy compatible con lo que necesitás: arroz, pescado, pollo, papa, pasta. Buscá menús con opciones a la plancha o al horno, evitando frituras pesadas los días previos a la carrera.</p>
+                <p style="margin-top: 8px;"><strong>2. Llevá contigo snacks de respaldo desde Costa Rica.</strong> Esto te da control total en los momentos donde no hay buena opción cerca (traslados, después de la ceremonia de apertura, madrugadas).</p>
+                <p style="margin-top: 8px;"><strong>3. Supermercado local para lo básico.</strong> Un supermercado cerca del hotel te resuelve fruta, yogurt, pan, agua y bebida electrolítica sin necesidad de cocinar nada.</p>
+            </div>
+
+            <h3 class="subsection-title">Lista de Empaque: Qué Llevar Desde Costa Rica</h3>
+
+            <div class="card dark">
+                <h3>Productos que No Vas a Poder Comprar Igual en España</h3>
+                <table>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Cantidad sugerida</th>
+                        <th>Uso</th>
+                    </tr>
+                    <tr>
+                        <td>Geles ya probados en entreno (con y sin cafeína)</td>
+                        <td>4-6 unidades</td>
+                        <td>Pre-competencia, durante la bici y entrenos de activación en España</td>
+                    </tr>
+                    <tr>
+                        <td>Sales / electrolitos en cápsula</td>
+                        <td>Para toda la semana + carrera</td>
+                        <td>Uso diario si entrenás allá, más carga pre-carrera</td>
+                    </tr>
+                    <tr>
+                        <td>Sobres de bebida electrolítica</td>
+                        <td>Suficiente para 5-7 días</td>
+                        <td>Hidratación diaria y pre-carrera</td>
+                    </tr>
+                    <tr>
+                        <td>Barritas o snacks conocidos</td>
+                        <td>6-8 unidades</td>
+                        <td>Respaldo entre comidas si no hay buena opción cerca</td>
+                    </tr>
+                    <tr>
+                        <td>Proteína en polvo (opcional, si te resulta cómodo)</td>
+                        <td>Dosis individuales o bolsa pequeña</td>
+                        <td>Recuperación post-entreno en el hotel si no tenés fácil acceso a leche/avena</td>
+                    </tr>
+                </table>
+                <p style="margin-top: 12px;">Todo esto se puede llevar en equipaje de mano sin problema. Empacalo por separado en una bolsa clara desde antes de viajar, así no se te olvida ni se mezcla con el resto del equipaje de triatlón.</p>
+            </div>
+
+            <h3 class="subsection-title">Qué Pedir en Restaurante Cuando No Sabés el Menú</h3>
+
+            <div class="card">
+                <h3>Frases y Pedidos Que Funcionan en Cualquier Restaurante Español</h3>
+                <p><strong>Base de proteína:</strong> pollo a la plancha, pescado a la plancha o al horno, tortilla española (huevo y papa), jamón cocido.</p>
+                <p style="margin-top: 8px;"><strong>Base de carbohidrato:</strong> arroz (paella sin exceso de mariscos si preferís), papas al horno o cocidas, pasta, pan.</p>
+                <p style="margin-top: 8px;"><strong>Evitá los días antes de la carrera:</strong> frituras pesadas, salsas muy cremosas, exceso de picante o condimentos nuevos que tu estómago no conozca, y mariscos crudos.</p>
+            </div>
+
+            <h3 class="subsection-title">Cronograma de Comidas en la Semana de Competencia</h3>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>Días de llegada y aclimatación (previos al miércoles 23)</h4>
+                    <p>Comé con normalidad, priorizando horarios similares a los tuyos en Costa Rica en la medida de lo posible para ayudar con el cambio de horario. Hidratación constante, el viaje largo en avión deshidrata más de lo que parece.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Miércoles 23 (Ceremonia de Apertura)</h4>
+                    <p>Cena temprana y liviana, con carbohidrato de calidad. Nada de alcohol. Acostate lo más temprano posible.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Jueves 24 (Día de Carrera)</h4>
+                    <p>Seguí el protocolo detallado en la pestaña de Protocolo de Competencia. Si tu hotel tiene desayuno incluido, usalo — es una ventaja para no depender de comprar nada esa mañana.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Después de la Carrera</h4>
+                    <p>Ya podés relajar el protocolo. Disfrutá la comida española sin tanta restricción — te lo ganaste. Seguí hidratándote bien los días siguientes para recuperarte del esfuerzo y del viaje.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ======= SUPLEMENTOS ======= -->
+        <div id="suplementos" class="section">
+            <h2 class="section-title">Suplementos y Productos</h2>
+
+            <h3 class="subsection-title">Revisión de lo que Usás Actualmente</h3>
+
+            <div class="card dark">
+                <h3>Tu Protocolo Actual</h3>
+                <table>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Uso actual</th>
+                        <th>Mi observación</th>
+                    </tr>
+                    <tr>
+                        <td>Geles de miel sin cafeína</td>
+                        <td>En entrenos largos</td>
+                        <td>Buena base. Voy a sumar 1-2 opciones de textura distinta (gomita, barrita) para tener variedad probada antes de la carrera</td>
+                    </tr>
+                    <tr>
+                        <td>Sales (cápsulas)</td>
+                        <td>1 antes de salir + 1 cada 30 min, solo en entrenos largos</td>
+                        <td>El "solo en entrenos largos" es el punto a ajustar — necesitás sodio distribuido en más días de tu semana, no solo el fondo del domingo</td>
+                    </tr>
+                    <tr>
+                        <td>Bebida electrolítica en sobres</td>
+                        <td>Cambiaste recientemente de una marca en pastilla a sobres</td>
+                        <td>Bien, mientras tengas el dato de sodio por sobre. Cuando puedas, revisá la etiqueta y contame cuántos mg de sodio trae cada sobre para calcular tu dosis exacta</td>
+                    </tr>
+                    <tr>
+                        <td>Pan con jalea</td>
+                        <td>A veces como fuente de carbohidrato</td>
+                        <td>Funciona como opción de respaldo, pero priorizá los productos deportivos para las sesiones más exigentes por su digestión más predecible durante el esfuerzo</td>
+                    </tr>
+                    <tr>
+                        <td>Creatina</td>
+                        <td>Uso regular</td>
+                        <td>Bien, mantené la dosis estándar de 3-5 g diarios, todos los días incluyendo días de descanso</td>
+                    </tr>
+                    <tr>
+                        <td>Omega 3</td>
+                        <td>Uso regular</td>
+                        <td>Bien, mantenelo</td>
+                    </tr>
+                    <tr>
+                        <td>Arginina</td>
+                        <td>Se te acabó</td>
+                        <td>No es prioritario recomprarla — la evidencia de beneficio real en rendimiento de resistencia es débil. Mejor invertir ese presupuesto en electrolitos, que sí tienen impacto directo en tus calambres</td>
+                    </tr>
+                    <tr>
+                        <td>Cafeína</td>
+                        <td>No usás</td>
+                        <td>Ver el protocolo de prueba detallado en la pestaña de Protocolo de Competencia. Se prueba únicamente en entrenamiento, nunca por primera vez el día de competencia</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3 class="subsection-title">Lo que Voy a Agregar</h3>
+
+            <div class="card highlight">
+                <h3>Recuperación Post-Entreno: Comida Primero, Proteína en Polvo Como Opción</h3>
+                <p>Sé que no usás proteína en polvo hoy, y no hace falta que empieces si no querés. Para tu ventana de recuperación inmediata, la primera opción es resolverlo con comida real: un vaso grande de leche con banano y avena integral licuados, o un sándwich pequeño con queso blanco bajo en grasa. Estas opciones te dan proteína y carbohidrato de forma rápida sin necesidad de comprar nada nuevo.</p>
+                <p style="margin-top: 8px;">Dicho esto, si en algún momento el tiempo te aprieta demasiado para preparar algo (por ejemplo en la semana de competencia en el hotel), un scoop de proteína en polvo disuelto en agua es la opción más rápida que existe. Te dejo la puerta abierta para usarla como recurso puntual, no como obligación.</p>
+            </div>
+
+            <div class="card highlight">
+                <h3>Magnesio</h3>
+                <p>Con tu volumen de entrenamiento y el historial reciente de calambres, un suplemento de magnesio (idealmente antes de dormir) puede ayudar a la función muscular y a la calidad del sueño, que a su vez apoya tu recuperación general.</p>
+            </div>
+
+        </div>
+
+        <!-- ======= RECETAS RAPIDAS ======= -->
+        <div id="recetas" class="section">
+            <h2 class="section-title">Recetas y Opciones Rápidas</h2>
+
+            <div class="orange-box">
+                <p><strong>Sé que tu mamá cocina la mayoría de tus comidas y que vos solo preparás el desayuno.</strong> Estas recetas están pensadas para ser simples de pedirle a ella o de armar vos mismo en menos de 10 minutos.</p>
+            </div>
+
+            <h3 class="subsection-title">Para Vos: Desayuno y Snacks Rápidos</h3>
+
+            <div class="recipe-card">
+                <h4>Pinto Reforzado (tu desayuno actual, con un ajuste)</h4>
+                <p>1 taza de arroz con frijoles + 3 huevos revueltos + 1 banano aparte.</p>
+                <p style="margin-top: 6px;">Ya lo hacés bien. Solo asegurate de no saltártelo ni reducirlo en días de prisa — es tu comida más importante del día porque es la única que controlás 100%.</p>
+            </div>
+
+            <div class="recipe-card">
+                <h4>Snack Pre-Entreno de Oficina a Casa</h4>
+                <p>1 banano + 1 cucharada de miel, o 2 tortillas de maíz con miel.</p>
+                <p style="margin-top: 6px;">Se prepara en 2 minutos antes de salir de la oficina o apenas llegás a la casa antes de entrenar.</p>
+            </div>
+
+            <div class="recipe-card">
+                <h4>Batido de Recuperación con Leche y Avena (sin proteína en polvo)</h4>
+                <p>1 banano + 3 cucharadas de avena integral + 1 taza de leche + hielo si querés.</p>
+                <p style="margin-top: 6px;">Licuar y listo. La avena y la leche juntas dan una buena combinación de carbohidrato y proteína sin necesidad de ningún suplemento. Ideal para tomar apenas termines de entrenar, antes de llegar a cenar con la familia.</p>
+            </div>
+
+            <div class="recipe-card">
+                <h4>Versión Rápida con Proteína en Polvo (opcional)</h4>
+                <p>1 banano + 1 scoop de proteína en polvo + agua o leche.</p>
+                <p style="margin-top: 6px;">Para los días donde de verdad no tenés ni 5 minutos, esta es la opción más rápida. Totalmente opcional, no reemplaza a la de arriba si preferís resolverlo con comida.</p>
+            </div>
+
+            <h3 class="subsection-title">Para Pedirle a tu Mamá: Menú Semanal Simple</h3>
+
+            <div class="recipe-card">
+                <h4>Base de la Semana (batch cooking sencillo)</h4>
+                <p>Arroz y frijoles en cantidad para 3-4 días (se guarda bien en refrigerador). Proteína variada: pollo, pescado o atún, preparados a la plancha o al horno, nunca fritos.</p>
+                <p style="margin-top: 6px;">Verduras al vapor con limón y sal, sin aceite, variando entre lo que haya disponible: vainica, zanahoria, brócoli, chayote.</p>
+                <p style="margin-top: 6px;">Con esta base, tu mamá solo necesita variar la proteína del día, y vos tenés almuerzo y cena resueltos toda la semana.</p>
+            </div>
+
+            <div class="recipe-card">
+                <h4>Porción de Almuerzo Pre-Entreno (días entre semana)</h4>
+                <p>1 palma de mano grande de proteína + 1 taza y media de arroz con frijoles + verdura al vapor.</p>
+                <p style="margin-top: 6px;">La porción de arroz es un poco más grande de lo habitual porque esta comida tiene que sostenerte hasta el entreno de la noche.</p>
+            </div>
+
+            <h3 class="subsection-title">Opciones de Respaldo en Pricemart</h3>
+
+            <div class="card success">
+                <h3>Para Cuando No Hay Tiempo de Cocinar Nada</h3>
+                <p>Ya comprás ahí tus electrolitos, así que aprovechá para tener siempre a mano: yogurt griego, frutas fáciles de pelar (banano, mandarina), pan integral, atún en lata, avena integral y frutos secos. Ninguno de estos requiere cocina y todos te dan una base rápida de proteína o carbohidrato cuando el día se complica.</p>
+            </div>
+
+        </div>
+
+        <!-- ======= CRONOGRAMA ======= -->
+        <div id="cronograma" class="section">
+            <h2 class="section-title">Cronograma: De Hoy al 24 de Septiembre</h2>
+
+            <div class="orange-box">
+                <p><strong>Tenés aproximadamente 7 semanas hasta la carrera.</strong> Es un tiempo corto pero suficiente para resolver los calambres, mejorar tu composición corporal de forma real, y probar tu protocolo de competencia con calma antes de viajar.</p>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>Semana 1-2 (3 al 16 de agosto): Fundamentos</h4>
+                    <p><strong>Nutrición:</strong> agendás tu InBody. Introducís el pre-entreno diario y el snack post-entreno. Empezás a subir la hidratación de 1.5 a 2.5 litros diarios.</p>
+                    <p style="margin-top: 8px;"><strong>Sodio:</strong> ampliás el uso de electrolitos a todos los días de entreno, no solo el fondo largo.</p>
+                    <p style="margin-top: 8px;"><strong>Con tu mamá:</strong> le compartís el menú semanal simple de la sección de Recetas.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Semana 3-4 (17 al 30 de agosto): Ajuste de Composición</h4>
+                    <p><strong>Nutrición:</strong> segunda medición de circunferencias/InBody, comparamos contra la línea base y ajustamos porciones si es necesario.</p>
+                    <p style="margin-top: 8px;"><strong>Calambres:</strong> evaluamos si el nuevo protocolo de sodio e hidratación los redujo. Si persisten, me escribís por WhatsApp para revisar juntos.</p>
+                    <p style="margin-top: 8px;"><strong>Competencia:</strong> empezás a probar en tus fondos largos de domingo distintas texturas de producto (gel, gomita, barrita) y arrancás las pruebas de cafeína en tus entrenos de intensidad entre semana.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Semana 5-6 (31 de agosto al 13 de septiembre): Simulacro de Competencia</h4>
+                    <p><strong>Nutrición:</strong> tercera medición de composición corporal.</p>
+                    <p style="margin-top: 8px;"><strong>Protocolo de carrera:</strong> hacés un ensayo completo del protocolo de día de competencia (arroz con huevo, snack pre-carrera, carga de sodio, gel en bici, cafeína si la tolerás) en un entreno de intensidad similar a la carrera, para confirmar que tu cuerpo lo tolera bien bajo esfuerzo.</p>
+                    <p style="margin-top: 8px;"><strong>Hotel:</strong> armás la lista de empaque de productos para llevar a España.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Semana 7 (14 al 20 de septiembre): Afinamiento Final</h4>
+                    <p><strong>Nutrición:</strong> sin cambios grandes. Confirmás que el protocolo de competencia está resuelto y probado, incluyendo la decisión final sobre la cafeína.</p>
+                    <p style="margin-top: 8px;"><strong>Preparación de viaje:</strong> empacás los productos de respaldo, confirmás tu horario exacto de salida con la organización.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Semana de Competencia (21 al 27 de septiembre)</h4>
+                    <p>Seguís el cronograma detallado en la pestaña de Semana de Competencia y Hotel. Jueves 24: día de carrera.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ======= METRICAS ======= -->
+        <div id="metricas" class="section">
+            <h2 class="section-title">Métricas de Seguimiento</h2>
+
+            <div class="card dark">
+                <h3>Cómo Saber Que el Plan Está Funcionando</h3>
+                <table>
+                    <tr>
+                        <th>Métrica</th>
+                        <th>Qué mide</th>
+                        <th>Señal de éxito</th>
+                    </tr>
+                    <tr>
+                        <td>Circunferencias y % de grasa</td>
+                        <td>Composición corporal real</td>
+                        <td>Reducción gradual de cintura/abdomen manteniendo o subiendo masa muscular</td>
+                    </tr>
+                    <tr>
+                        <td>Calambres</td>
+                        <td>Efectividad del protocolo de sodio</td>
+                        <td>Reducción notable en 2 semanas, ausencia en 4 semanas</td>
+                    </tr>
+                    <tr>
+                        <td>Energía en entrenos</td>
+                        <td>Suficiencia calórica diaria</td>
+                        <td>Ya no sentís que "te falta comer" para sostener la semana</td>
+                    </tr>
+                    <tr>
+                        <td>Tolerancia digestiva a productos de carrera</td>
+                        <td>Preparación del protocolo de competencia</td>
+                        <td>2-3 opciones confirmadas sin molestias antes de la Semana 6</td>
+                    </tr>
+                    <tr>
+                        <td>Respuesta a la cafeína</td>
+                        <td>Decisión de usarla o no el día de carrera</td>
+                        <td>Al menos 2-3 pruebas consistentes en entreno antes de la Semana 6</td>
+                    </tr>
+                    <tr>
+                        <td>Mareo post-natación</td>
+                        <td>Trabajo conjunto con tu entrenador</td>
+                        <td>Mejora en simulacros de agua fría/abierta antes del viaje</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3 class="subsection-title">Si Algo No Sale Como Esperamos</h3>
+
+            <div class="warning-box">
+                <p><strong>Escenario 1: Los calambres no bajan después de 2 semanas.</strong></p>
+                <p style="margin-top: 6px;">Acción: reviso con vos tu ingesta real de sodio y agua día por día. Es posible que necesitemos subir la dosis o agregar sodio en más momentos del día.</p>
+                <p style="margin-top: 10px;"><strong>Escenario 2: Seguís sintiendo que no podés comer suficiente.</strong></p>
+                <p style="margin-top: 6px;">Acción: aumento la densidad calórica de tus snacks (más avena, más leche, porciones líquidas más grandes) en vez de pedirte más volumen de comida sólida.</p>
+                <p style="margin-top: 10px;"><strong>Escenario 3: El mareo post-natación persiste en los simulacros de agua fría.</strong></p>
+                <p style="margin-top: 6px;">Acción: te recomiendo consultarlo con un médico antes del viaje, para descartar causas no nutricionales y llegar tranquilo a Pontevedra.</p>
+                <p style="margin-top: 10px;"><strong>Escenario 4: La cafeína te genera algún efecto negativo en las pruebas.</strong></p>
+                <p style="margin-top: 6px;">Acción: descartamos la cafeína para el día de la carrera sin problema. El protocolo sin cafeína ya está diseñado para funcionar igual de bien.</p>
+                <p style="margin-top: 10px;"><strong>Escenario 5: Tu presupuesto no alcanza para todos los productos sugeridos.</strong></p>
+                <p style="margin-top: 6px;">Acción: priorizamos. Electrolitos y sodio primero (resuelven los calambres), todo lo demás es opcional.</p>
+            </div>
+
+        </div>
+
+    </div><!-- /content -->
+
+    <div class="footer">
+        <p>Asesoría Nutricional: Isa Herra | eat&flow Nutrición Deportiva</p>
+        <p style="margin-top: 6px; opacity: 0.9;">@eatandflow.cr | @isaherra.13</p>
+        <p style="margin-top: 8px; font-size: 12px; opacity: 0.8;">Este plan es personalizado y confidencial. Está diseñado específicamente para Javier Montero Villalobos basado en sus objetivos, historial y respuesta al entrenamiento.</p>
+    </div>
+
+</div><!-- /container -->
+
+<script>
+    function showSection(id) {
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        event.target.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>
+</body>
+</html>
