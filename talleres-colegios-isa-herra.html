@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Propuesta de Talleres — Isabel Herra Arroyo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F1EEE0;
+    --paper-line:#DCD5B8;
+    --card-bg:#FBF9F0;
+    --ink:#212B22;
+    --ink-soft:#57624F;
+    --gold:#E0A233;
+    --gold-dark:#B5791C;
+    --green:#2F6B4F;
+    --green-bg:#E6EEE7;
+    --blue:#2A5C79;
+    --blue-bg:#E4ECF0;
+    --plum:#7A3A5C;
+    --plum-bg:#F0E4EA;
+    --red-pen:#B8412C;
+    --radius:14px;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Serif 4', Georgia, serif;
+    line-height:1.55;
+    padding-bottom:110px;
+  }
+
+  a{color:inherit;}
+
+  .display{
+    font-family:'League Spartan', sans-serif;
+    font-weight:800;
+    letter-spacing:-0.01em;
+  }
+  .mono{
+    font-family:'IBM Plex Mono', monospace;
+  }
+
+  /* ---------- HERO / COVER ---------- */
+  header.cover{
+    background:var(--ink);
+    color:var(--paper);
+    padding:56px 24px 44px;
+    position:relative;
+    overflow:hidden;
+    background-image:
+      repeating-linear-gradient(135deg, rgba(224,162,51,0.06) 0 2px, transparent 2px 26px);
+  }
+  .cover-inner{
+    max-width:920px;
+    margin:0 auto;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:14px;
+  }
+  h1.title{
+    font-size:clamp(30px, 5vw, 48px);
+    line-height:1.05;
+    margin-bottom:10px;
+  }
+  .subtitle{
+    font-size:18px;
+    color:#D9D4C0;
+    max-width:560px;
+    margin-bottom:30px;
+  }
+  .for-line{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--gold);
+    border-top:1px solid rgba(255,255,255,0.18);
+    padding-top:18px;
+    margin-bottom:26px;
+    letter-spacing:0.02em;
+  }
+  .for-line strong{color:var(--paper); font-weight:600;}
+
+  .creds{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(230px,1fr));
+    gap:6px 28px;
+    font-size:14.5px;
+    color:#CFC9B4;
+  }
+  .creds li{list-style:none; display:flex; gap:8px;}
+  .creds li::before{content:"—"; color:var(--gold); flex:none;}
+
+  /* ---------- INTRO NOTE ---------- */
+  .intro{
+    max-width:760px;
+    margin:38px auto 8px;
+    padding:0 24px;
+    font-size:16px;
+    color:var(--ink-soft);
+  }
+  .intro p{margin-bottom:14px;}
+  .intro strong{color:var(--ink);}
+
+  /* ---------- CATEGORY NAV (folder tabs) ---------- */
+  nav.tabs{
+    max-width:960px;
+    margin:34px auto 0;
+    padding:0 24px;
+    display:flex;
+    gap:6px;
+    flex-wrap:wrap;
+  }
+  .tab-btn{
+    font-family:'League Spartan', sans-serif;
+    font-weight:700;
+    font-size:14px;
+    border:none;
+    cursor:pointer;
+    padding:12px 20px 10px;
+    border-radius:10px 10px 0 0;
+    background:var(--card-bg);
+    color:var(--ink-soft);
+    border:1px solid var(--paper-line);
+    border-bottom:none;
+    position:relative;
+    top:1px;
+    transition:transform .15s ease;
+  }
+  .tab-btn:hover{transform:translateY(-2px);}
+  .tab-btn.active{color:#fff;}
+  .tab-btn[data-cat="todos"].active{background:var(--ink); color:var(--paper);}
+  .tab-btn[data-cat="ciencia"].active{background:var(--green); color:#fff;}
+  .tab-btn[data-cat="nutricion"].active{background:var(--blue); color:#fff;}
+  .tab-btn[data-cat="humano"].active{background:var(--plum); color:#fff;}
+
+  /* ---------- GRID ---------- */
+  main{
+    max-width:960px;
+    margin:0 auto;
+    padding:22px 24px 10px;
+    border-top:1px solid var(--paper-line);
+  }
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(300px, 1fr));
+    gap:22px;
+    padding-top:24px;
+  }
+
+  .card{
+    background:var(--card-bg);
+    border-radius:var(--radius);
+    box-shadow:0 1px 0 var(--paper-line), 0 8px 20px -14px rgba(33,43,34,0.35);
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    transition:opacity .2s ease;
+  }
+  .card.hidden{display:none;}
+
+  .card-tab{
+    padding:12px 18px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:#fff;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+  .card[data-cat="ciencia"] .card-tab{background:var(--green);}
+  .card[data-cat="nutricion"] .card-tab{background:var(--blue);}
+  .card[data-cat="humano"] .card-tab{background:var(--plum);}
+
+  .card-body{padding:18px 20px 20px; flex:1; display:flex; flex-direction:column;}
+  .card h3{
+    font-family:'League Spartan', sans-serif;
+    font-size:19px;
+    font-weight:700;
+    margin-bottom:4px;
+    line-height:1.2;
+  }
+  .card .publico{
+    font-size:13px;
+    color:var(--ink-soft);
+    font-style:italic;
+    margin-bottom:14px;
+  }
+
+  .fields{
+    display:grid;
+    grid-template-columns:auto 1fr;
+    row-gap:7px;
+    column-gap:10px;
+    font-size:13.5px;
+    padding-top:12px;
+    margin-top:auto;
+    border-top:1px dashed var(--paper-line);
+  }
+  .fields dt{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    padding-top:2px;
+    white-space:nowrap;
+  }
+  .fields dd{color:var(--ink);}
+
+  .price-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:16px;
+    padding-top:14px;
+    border-top:1px solid var(--paper-line);
+  }
+  .price{
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:600;
+    font-size:17px;
+    color:var(--gold-dark);
+  }
+  .price small{
+    display:block;
+    font-family:'Source Serif 4', serif;
+    font-weight:400;
+    font-size:11.5px;
+    color:var(--ink-soft);
+    margin-top:2px;
+  }
+
+  /* stamp checkbox */
+  .stamp-check{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    cursor:pointer;
+    user-select:none;
+    font-family:'League Spartan', sans-serif;
+    font-weight:700;
+    font-size:12.5px;
+  }
+  .stamp-check input{display:none;}
+  .stamp{
+    width:26px; height:26px;
+    border-radius:50%;
+    border:2px solid var(--ink-soft);
+    display:flex; align-items:center; justify-content:center;
+    color:transparent;
+    transition:all .15s ease;
+    flex:none;
+  }
+  .stamp-check input:checked + .stamp{
+    background:var(--red-pen);
+    border-color:var(--red-pen);
+    color:#fff;
+    transform:rotate(-8deg) scale(1.05);
+  }
+  .stamp-check .label-text{color:var(--ink-soft);}
+  .stamp-check input:checked ~ .label-text{color:var(--red-pen);}
+
+  /* ---------- CLOSING / CONTACT ---------- */
+  .closing{
+    max-width:760px;
+    margin:60px auto 0;
+    padding:34px 24px;
+    border-top:1px solid var(--paper-line);
+  }
+  .closing h2{
+    font-family:'League Spartan', sans-serif;
+    font-size:22px;
+    margin-bottom:12px;
+  }
+  .closing p{color:var(--ink-soft); margin-bottom:10px; font-size:15px;}
+  .contact-line{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13.5px;
+    margin-top:16px;
+    color:var(--ink);
+  }
+  .note-box{
+    background:var(--card-bg);
+    border:1px solid var(--paper-line);
+    border-left:4px solid var(--gold);
+    border-radius:8px;
+    padding:14px 16px;
+    font-size:13.5px;
+    color:var(--ink-soft);
+    margin-top:22px;
+  }
+
+  /* ---------- STICKY SUMMARY ---------- */
+  .summary-bar{
+    position:fixed;
+    left:0; right:0; bottom:0;
+    background:var(--ink);
+    color:var(--paper);
+    padding:14px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+    box-shadow:0 -8px 24px rgba(0,0,0,0.18);
+    z-index:20;
+  }
+  .summary-left{font-size:14px;}
+  .summary-left .count{
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--gold);
+    font-weight:600;
+  }
+  .summary-left .total{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:16px;
+    margin-left:14px;
+  }
+  .send-btn{
+    font-family:'League Spartan', sans-serif;
+    font-weight:700;
+    font-size:14px;
+    background:var(--gold);
+    color:var(--ink);
+    border:none;
+    padding:12px 22px;
+    border-radius:8px;
+    cursor:pointer;
+    transition:transform .15s ease;
+  }
+  .send-btn:hover{transform:translateY(-2px);}
+  .send-btn:disabled{
+    opacity:0.4;
+    cursor:not-allowed;
+    transform:none;
+  }
+
+  @media (max-width:560px){
+    .summary-bar{flex-direction:column; align-items:stretch; text-align:center;}
+    .send-btn{width:100%;}
+  }
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="cover-inner">
+    <div class="eyebrow">Propuesta de servicios · 2026</div>
+    <h1 class="title display">Talleres educativos<br>para colegios</h1>
+    <p class="subtitle">Ciencia aplicada, nutrición y desarrollo humano, en sesiones diseñadas para el aula — dictadas por una profesional con doble formación: docencia y nutrición deportiva.</p>
+
+    <div class="for-line">Preparado para <strong>Colegio Claretiano</strong> · Presenta: <strong>Isabel Herra Arroyo</strong></div>
+
+    <ul class="creds">
+      <li>Lic. en Enseñanza de las Ciencias</li>
+      <li>Máster en Dirección de Empresas</li>
+      <li>Nutricionista deportiva — Eat&amp;Flow</li>
+      <li>Catequista graduada, Arquidiócesis de San José</li>
+      <li>10 años de experiencia como docente</li>
+      <li>5 años como directora de Pastoral Juvenil</li>
+    </ul>
+  </div>
+</header>
+
+<div class="intro">
+  <p>Selecciona los talleres que le interesan al colegio, al final de la página vas a ver un resumen con la cantidad seleccionada y el total estimado, listo para enviarme por WhatsApp.</p>
+  <p><strong>Todos los precios son de referencia</strong> y se ajustan según cantidad de grupos, niveles y sesiones — lo conversamos con gusto antes de confirmar.</p>
+</div>
+
+<nav class="tabs">
+  <button class="tab-btn active" data-cat="todos">Todos</button>
+  <button class="tab-btn" data-cat="ciencia">Ciencia aplicada</button>
+  <button class="tab-btn" data-cat="nutricion">Nutrición</button>
+  <button class="tab-btn" data-cat="humano">Desarrollo humano</button>
+</nav>
+
+<main>
+  <div class="grid" id="grid">
+
+    <!-- CIENCIA 1 -->
+    <article class="card" data-cat="ciencia">
+      <div class="card-tab"><span>Ciencia aplicada</span></div>
+      <div class="card-body">
+        <h3>Refuerzo de Química, Física o Biología</h3>
+        <div class="publico">Tercer ciclo y Educación Diversificada (7.º–11.º)</div>
+        <dl class="fields">
+          <dt>Sesión</dt><dd>60 minutos</dd>
+          <dt>Duración total</dt><dd>Paquete de 4 sesiones (semanal o quincenal)</dd>
+          <dt>Materiales</dt><dd>Guía de ejercicios impresa, marcadores, proyector (lo aporta el colegio)</dd>
+          <dt>Cupo máximo</dt><dd>35 estudiantes por grupo</dd>
+        </dl>
+        <div class="price-row">
+          <div class="price">₡38.000<small>por sesión · ₡140.000 el paquete de 4</small></div>
+          <label class="stamp-check">
+            <input type="checkbox" data-price="140000" data-name="Refuerzo de Química/Física/Biología (paquete 4 sesiones)">
+            <span class="stamp">✓</span>
+            <span class="label-text">Agregar</span>
+          </label>
+        </div>
+      </div>
+    </article>
+
+    <!-- CIENCIA 2 -->
+    <article class="card" data-cat="ciencia">
+      <div class="card-tab"><span>Ciencia aplicada</span></div>
+      <div class="card-body">
+        <h3>Preparación pre-universitaria</h3>
+        <div class="publico">Undécimo año — razonamiento científico y resolución de problemas</div>
+        <dl class="fields">
+          <dt>Sesión</dt><dd>90 minutos</dd>
+          <dt>Duración total</dt><dd>Paquete de 4 sesiones</dd>
+          <dt>Materiales</dt><dd>Cuadernillo de práctica, calculadora científica (cada estudiante)</dd>
+          <dt>Cupo máximo</dt><dd>30 estudiantes</dd>
+        </dl>
+        <div class="price-row">
+          <div class="price">₡45.000<small>por sesión · ₡165.000 el paquete de 4</small></div>
+          <label class="stamp-check">
+            <input type="checkbox" data-price="165000" data-name="Preparación pre-universitaria (paquete 4 sesiones)">
+            <span class="stamp">✓</span>
+            <span class="label-text">Agregar</span>
+          </label>
+        </div>
+      </div>
+    </article>
+
+    <!-- CIENCIA 3 -->
+    <article class="card" data-cat="ciencia">
+      <div class="card-tab"><span>Ciencia aplicada</span></div>
+      <div class="card-body">
+        <h3>Acompañamiento de Feria Científica</h3>
+        <div class="publico">Grupos participantes, cualquier nivel — de la idea a la defensa</div>
+        <dl class="fields">
+          <dt>Sesión</dt><dd>90 minutos</dd>
+          <dt>Duración total</dt><dd>Paquete de 5 sesiones (planteamiento → ensayo de defensa)</dd>
+          <dt>Materiales</dt><dd>Bitácora de proyecto; materiales del experimento se definen por grupo</dd>
+          <dt>Cupo máximo</dt><dd>8 proyectos por ciclo de acompañamiento</dd>
+        </dl>
+        <div class="price-row">
+          <div class="price">₡190.000<small>paquete completo de 5 sesiones</small></div>
+          <label class="stamp-check">
+            <input type="checkbox" data-price="190000" data-name="Acompañamiento Feria Científica (paquete 5 sesiones)">
+            <span class="stamp">✓</span>
+            <span class="label-text">Agregar</span>
+          </label>
+        </div>
+      </div>
+    </article>
+
+    <!-- CIENCIA 4 (nueva) -->
+    <article class="card" data-cat="ciencia">
+      <div class="card-tab"><span>Ciencia aplicada</span></div>
+      <div class="card-body">
+        <h3>Método científico y pensamiento crítico</h3>
+        <div class="publico">Sétimo y octavo año</div>
+        <dl class="fields">
+          <dt>Sesión</dt><dd>60 minutos</dd>
+          <dt>Duración total</dt><dd>Sesión única o paquete de 2</dd>
+          <dt>Materiales</dt><dd>Hojas de trabajo, materiales sencillos de laboratorio casero</dd>
+          <dt>Cupo máximo</dt><dd>35 estudiantes</dd>
+        </dl>
+        <div class="price-row">
+          <div class="price">₡35.000<small>sesión única</small></div>
+          <label class="stamp-check">
+            <input type="checkbox" data-price="35000" data-name="Método científico y pensamiento crítico">
+            <span class="stamp">✓</span>
+            <span class="label-text">Agregar</span>
+          </label>
+        </div>
+      </div>
+    </article>
+
+    <!-- NUTRICION 1 -->
+    <article class="card" data-cat="nutricion">
+      <div class="card-tab"><span>Nutrición</span></div>
+      <div class="card-body">
+        <h3>Nutrición general para adolescentes</h3>
+        <div class="publico">Sétimo a noveno año</div>
+        <dl class="fields">
+          <dt>Sesión</dt><dd>60 minutos</dd>
+          <dt>Duración total</dt><dd>Sesión única</dd>
+          <dt>Materiales</dt><dd>Presentación, muestras de etiquetas nutricionales, ejemplos de porciones</dd>
+          <dt>Cupo máximo</dt><dd>35 estudiantes</dd>
+        </dl>
+        <div class="price-row">
+          <div class="price">₡35.000<small>sesión única</small></div>
+          <label class="stamp-check">
+            <input type="checkbox" data-price="35000" data-name="Nutrición general para adolescentes">
+            <span class="stamp">✓</span>
+            <span class="label-text">Agregar</span>
+          </label>
+        </div>
+      </div>
+    </article>
+
+    <!-- NUTRICION 2 -->
+    <article class="card" data-cat="nutricion">
+      <div class="card-tab"><span>Nutrición</span></div>
+      <div class="card-body">
+        <h3>Nutrición deportiva para estudiantes-atletas</h3>
+        <div class="publico">Estudiantes de equipos y selecciones del colegio</div>
+        <dl class="fields">
+          <dt>Sesión</dt><dd>75 minutos</dd>
+          <dt>Duración total</dt><dd>Sesión única o paquete de 2 (pre-temporada / en temporada)</dd>
+          <dt>Materiales</dt><dd>Presentación, ejemplos de hidratación y colaciones, bitácora de seguimiento</dd>
+          <dt>Cupo máximo</dt><dd>25 estudiantes</dd>
+        </dl>
+        <div class="price-row">
+          <div class="price">₡40.000<small>por sesión · ₡72.000 el paquete de 2</small></div>
+          <label class="stamp-check">
+            <input type="checkbox" data-price="72000" data-name="Nutrición deportiva para estudiantes-atletas (paquete 2 sesiones)">
+            <span class="stamp">✓</span>
+            <span class="label-text">Agregar</span>
+          </label>
+        </div>
+      </div>
+    </article>
+
+    <!-- NUTRICION 3 (nueva) -->
+    <article class="card" data-cat="nutricion">
+      <div class="card-tab"><span>Nutrición</span></div>
+      <div class="card-body">
+        <h3>"Comiendo bien en la soda del cole"</h3>
+        <div class="publico">Cuarto a sexto año — decisiones prácticas en el comedor</div>
+        <dl class="fields">
+          <dt>Sesión</dt><dd>45 minutos</dd>
+          <dt>Duración total</dt><dd>Sesión única</dd>
+          <dt>Materiales</dt><dd>Fotos/ejemplos del menú del comedor, ficha de autoevaluación</dd>
+          <dt>Cupo máximo</dt><dd>35 estudiantes</dd>
+        </dl>
+        <div class="price-row">
+          <div class="price">₡30.000<small>sesión única</small></div>
+          <label class="stamp-check">
+            <input type="checkbox" data-price="30000" data-name='"Comiendo bien en la soda del cole"'>
+            <span class="stamp">✓</span>
+            <span class="label-text">Agregar</span>
+          </label>
+        </div>
+      </div>
+    </article>
+
+    <!-- NUTRICION 4 (nueva, para familias) -->
+    <article class="card" data-cat="nutricion">
+      <div class="card-tab"><span>Nutrición</span></div>
+      <div class="card-body">
+        <h3>Lonchera saludable — Taller para familias</h3>
+        <div class="publico">Padres, madres y encargados</div>
+        <dl class="fields">
+          <dt>Sesión</dt><dd>90 minutos</dd>
+          <dt>Duración total</dt><dd>Sesión única (ideal en reunión de padres)</dd>
+          <dt>Materiales</dt><dd>Guía impresa de loncheras, ejemplos armados</dd>
+          <dt>Cupo máximo</dt><dd>60 familias (formato auditorio)</dd>
+        </dl>
+        <div class="price-row">
+          <div class="price">₡50.000<small>sesión única</small></div>
+          <label class="stamp-check">
+            <input type="checkbox" data-price="50000" data-name="Lonchera saludable (taller para familias)">
+            <span class="stamp">✓</span>
+            <span class="label-text">Agregar</span>
+          </label>
+        </div>
+      </div>
+    </article>
+
+    <!-- HUMANO 1 -->
+    <article class="card" data-cat="humano">
+      <div class="card-tab"><span>Desarrollo humano</span></div>
+      <div class="card-body">
+        <h3>Afectividad y sexualidad integral</h3>
+        <div class="publico">Ajustado por nivel (7.º–11.º)</div>
+        <dl class="fields">
+          <dt>Sesión</dt><dd>60 minutos</dd>
+          <dt>Duración total</dt><dd>Paquete de 3 sesiones por nivel (progresión recomendada)</dd>
+          <dt>Materiales</dt><dd>Guía de facilitación, dinámicas grupales, material impreso</dd>
+          <dt>Cupo máximo</dt><dd>30 estudiantes</dd>
+        </dl>
+        <div class="price-row">
+          <div class="price">₡40.000<small>por sesión · ₡110.000 el paquete de 3</small></div>
+          <label class="stamp-check">
+            <input type="checkbox" data-price="110000" data-name="Afectividad y sexualidad integral (paquete 3 sesiones)">
+            <span class="stamp">✓</span>
+            <span class="label-text">Agregar</span>
+          </label>
+        </div>
+      </div>
+    </article>
+
+    <!-- HUMANO 2 (nueva) -->
+    <article class="card" data-cat="humano">
+      <div class="card-tab"><span>Desarrollo humano</span></div>
+      <div class="card-body">
+        <h3>Autoestima, límites y relaciones sanas</h3>
+        <div class="publico">Octavo y noveno año</div>
+        <dl class="fields">
+          <dt>Sesión</dt><dd>60 minutos</dd>
+          <dt>Duración total</dt><dd>Sesión única o paquete de 2</dd>
+          <dt>Materiales</dt><dd>Dinámicas grupales, hojas de trabajo</dd>
+          <dt>Cupo máximo</dt><dd>30 estudiantes</dd>
+        </dl>
+        <div class="price-row">
+          <div class="price">₡35.000<small>por sesión · ₡64.000 el paquete de 2</small></div>
+          <label class="stamp-check">
+            <input type="checkbox" data-price="64000" data-name="Autoestima, límites y relaciones sanas (paquete 2 sesiones)">
+            <span class="stamp">✓</span>
+            <span class="label-text">Agregar</span>
+          </label>
+        </div>
+      </div>
+    </article>
+
+    <!-- HUMANO 3 (nueva, crossover) -->
+    <article class="card" data-cat="humano">
+      <div class="card-tab"><span>Desarrollo humano</span></div>
+      <div class="card-body">
+        <h3>Redes sociales, autoimagen y alimentación</h3>
+        <div class="publico">Noveno a undécimo año</div>
+        <dl class="fields">
+          <dt>Sesión</dt><dd>60 minutos</dd>
+          <dt>Duración total</dt><dd>Sesión única</dd>
+          <dt>Materiales</dt><dd>Presentación, casos reales anonimizados</dd>
+          <dt>Cupo máximo</dt><dd>35 estudiantes</dd>
+        </dl>
+        <div class="price-row">
+          <div class="price">₡38.000<small>sesión única</small></div>
+          <label class="stamp-check">
+            <input type="checkbox" data-price="38000" data-name="Redes sociales, autoimagen y alimentación">
+            <span class="stamp">✓</span>
+            <span class="label-text">Agregar</span>
+          </label>
+        </div>
+      </div>
+    </article>
+
+    <!-- HUMANO 4 (nueva, para familias) -->
+    <article class="card" data-cat="humano">
+      <div class="card-tab"><span>Desarrollo humano</span></div>
+      <div class="card-body">
+        <h3>Acompañando la pubertad — Taller para familias</h3>
+        <div class="publico">Padres y encargados de sétimo y octavo</div>
+        <dl class="fields">
+          <dt>Sesión</dt><dd>90 minutos</dd>
+          <dt>Duración total</dt><dd>Sesión única</dd>
+          <dt>Materiales</dt><dd>Guía impresa, espacio para preguntas anónimas</dd>
+          <dt>Cupo máximo</dt><dd>60 familias</dd>
+        </dl>
+        <div class="price-row">
+          <div class="price">₡50.000<small>sesión única</small></div>
+          <label class="stamp-check">
+            <input type="checkbox" data-price="50000" data-name="Acompañando la pubertad (taller para familias)">
+            <span class="stamp">✓</span>
+            <span class="label-text">Agregar</span>
+          </label>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</main>
+
+<div class="closing">
+  <h2 class="display">Sobre esta propuesta</h2>
+  <p>Todos los talleres se pueden ajustar en duración, cantidad de sesiones y contenido según lo que el colegio necesite — esta lista es un punto de partida para que valoremos juntas qué tiene más sentido para el Claretiano este año.</p>
+  <p>Los talleres de ciencia aplicada pueden coordinarse con los docentes de la materia para reforzar exactamente los temas que el grupo necesita.</p>
+  <div class="note-box">Los precios son de referencia y pueden variar según cantidad de grupos, niveles atendidos y logística (transporte, materiales especiales, etc.).</div>
+  <div class="contact-line">Isabel Herra Arroyo · WhatsApp 8312-9092 · Instagram @isaherra.13</div>
+</div>
+
+<div class="summary-bar">
+  <div class="summary-left">
+    <span class="count" id="count">0 talleres seleccionados</span>
+    <span class="total" id="total">₡0</span>
+  </div>
+  <button class="send-btn" id="sendBtn" disabled>Enviar selección por WhatsApp</button>
+</div>
+
+<script>
+  const checkboxes = document.querySelectorAll('.stamp-check input[type="checkbox"]');
+  const countEl = document.getElementById('count');
+  const totalEl = document.getElementById('total');
+  const sendBtn = document.getElementById('sendBtn');
+
+  function formatCRC(n){
+    return '₡' + n.toLocaleString('es-CR');
+  }
+
+  function updateSummary(){
+    const selected = Array.from(checkboxes).filter(c => c.checked);
+    const total = selected.reduce((sum, c) => sum + Number(c.dataset.price), 0);
+    countEl.textContent = selected.length + (selected.length === 1 ? ' taller seleccionado' : ' talleres seleccionados');
+    totalEl.textContent = formatCRC(total);
+    sendBtn.disabled = selected.length === 0;
+  }
+
+  checkboxes.forEach(cb => cb.addEventListener('change', updateSummary));
+
+  sendBtn.addEventListener('click', () => {
+    const selected = Array.from(checkboxes).filter(c => c.checked);
+    if (selected.length === 0) return;
+    const total = selected.reduce((sum, c) => sum + Number(c.dataset.price), 0);
+    let msg = 'Hola Isa, para el Colegio Claretiano me interesan estos talleres:\n\n';
+    selected.forEach(c => {
+      msg += '- ' + c.dataset.name + ' (' + formatCRC(Number(c.dataset.price)) + ')\n';
+    });
+    msg += '\nTotal estimado: ' + formatCRC(total) + '\n¿Hablamos de fechas?';
+    const url = 'https://wa.me/50683129092?text=' + encodeURIComponent(msg);
+    window.open(url, '_blank');
+  });
+
+  // Category filter
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const cards = document.querySelectorAll('.card');
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const cat = btn.dataset.cat;
+      cards.forEach(card => {
+        if (cat === 'todos' || card.dataset.cat === cat){
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    });
+  });
+
+  updateSummary();
+</script>
+
+</body>
+</html>
