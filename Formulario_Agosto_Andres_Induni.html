@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Agosto | Andrés Induni | eat&flow</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #F5F9F7;
+            color: #2D4A3E;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container { max-width: 700px; margin: 0 auto; }
+
+        .header {
+            background: linear-gradient(135deg, #1a5945 0%, #2D4A3E 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+
+        .header .brand {
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            opacity: 0.9;
+            text-transform: uppercase;
+        }
+
+        .header h1 {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .header .subtitulo {
+            font-size: 15px;
+            opacity: 0.9;
+            margin-top: 8px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #ff9800;
+            color: white;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 5px 18px;
+            border-radius: 50px;
+            margin-top: 14px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .intro-box {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border-left: 4px solid #ff9800;
+        }
+
+        .intro-box h2 {
+            color: #ff9800;
+            font-size: 18px;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .intro-box p {
+            color: #555;
+            line-height: 1.75;
+            margin-bottom: 8px;
+            font-size: 14.5px;
+        }
+
+        .intro-box p:last-child { margin-bottom: 0; }
+
+        .section {
+            background: white;
+            padding: 30px 25px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .section h2 {
+            color: #1a5945;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #8bc34a;
+        }
+
+        .section h3 {
+            color: #2D4A3E;
+            font-size: 15px;
+            font-weight: 700;
+            margin: 28px 0 14px 0;
+            padding: 8px 14px;
+            background: #f0f7f4;
+            border-radius: 6px;
+            border-left: 3px solid #8bc34a;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .field { margin-bottom: 22px; }
+
+        .field label {
+            display: block;
+            font-weight: 600;
+            color: #2D4A3E;
+            margin-bottom: 8px;
+            font-size: 14.5px;
+            line-height: 1.4;
+        }
+
+        .field input,
+        .field textarea,
+        .field select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #E0EDE8;
+            border-radius: 8px;
+            font-size: 14.5px;
+            font-family: inherit;
+            background: #F5FAF8;
+            color: #2D4A3E;
+            transition: border-color 0.25s, background 0.25s;
+        }
+
+        .field input:focus,
+        .field textarea:focus,
+        .field select:focus {
+            outline: none;
+            border-color: #8bc34a;
+            background: white;
+        }
+
+        .field textarea { min-height: 100px; resize: vertical; }
+
+        .field small {
+            display: block;
+            color: #7a9a8e;
+            font-size: 12.5px;
+            margin-top: 6px;
+            font-style: italic;
+            line-height: 1.4;
+        }
+
+        .radio-group,
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .radio-group label,
+        .checkbox-group label {
+            display: flex;
+            align-items: flex-start;
+            padding: 11px 14px;
+            background: #F5FAF8;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-weight: normal;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .radio-group label:hover,
+        .checkbox-group label:hover { background: #e6f2ec; }
+
+        .radio-group input[type="radio"],
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            margin-right: 10px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .campos-dobles {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .alerta-box {
+            background: #fff8f0;
+            border: 2px solid #ff9800;
+            border-radius: 10px;
+            padding: 18px 20px;
+            margin-bottom: 22px;
+        }
+
+        .alerta-box p {
+            color: #7a4800;
+            font-size: 13.5px;
+            line-height: 1.6;
+        }
+
+        .alerta-box strong { color: #e67e00; }
+
+        .numero-pregunta {
+            display: inline-block;
+            background: #1a5945;
+            color: white;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-right: 6px;
+            vertical-align: middle;
+        }
+
+        .escala-group {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+        }
+
+        .escala-group label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px 6px;
+            background: #F5FAF8;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-weight: normal;
+            font-size: 13px;
+            text-align: center;
+            gap: 6px;
+        }
+
+        .escala-group label:hover { background: #e6f2ec; }
+        .escala-group input[type="radio"] { width: auto; margin: 0; }
+
+        .submit-section {
+            background: linear-gradient(135deg, #1a5945, #2D4A3E);
+            color: white;
+            padding: 35px 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .submit-section h2 { font-size: 22px; margin-bottom: 12px; }
+        .submit-section p { opacity: 0.9; font-size: 14.5px; margin-bottom: 8px; }
+
+        .submit-btn {
+            background: #ff9800;
+            color: white;
+            padding: 16px 44px;
+            border: none;
+            border-radius: 50px;
+            font-size: 17px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(255,152,0,0.35);
+            transition: transform 0.25s, box-shadow 0.25s;
+            letter-spacing: 0.5px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 22px rgba(255,152,0,0.45);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #8a9e98;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            .header { padding: 28px 20px; }
+            .header h1 { font-size: 22px; }
+            .section { padding: 22px 16px; }
+            .campos-dobles { grid-template-columns: 1fr; }
+            .submit-section { padding: 28px 20px; }
+            .escala-group { grid-template-columns: repeat(5, 1fr); }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="header">
+        <div class="brand">eat&flow</div>
+        <h1>Formulario de Reincorporación</h1>
+        <p class="subtitulo">Asesoría Nutricional: Isa Herra</p>
+        <div class="badge">Andrés Induni — Agosto 2026</div>
+    </div>
+
+    <div class="intro-box">
+        <h2>Bienvenido de vuelta</h2>
+        <p>Las vacaciones son parte de la vida y no significan que perdiste todo lo que construiste. Lo que hiciste antes de salir no desaparece en unas semanas.</p>
+        <p>Este formulario me ayuda a entender exactamente dónde estás ahora para que el plan de agosto arranque desde la realidad, no desde suposiciones. Respondé con honestidad total, sin filtros. Eso es lo que me permite ayudarte mejor.</p>
+        <p><strong>Tiempo estimado:</strong> 15 minutos.</p>
+    </div>
+
+    <form action="https://formspree.io/f/mzzodpje" method="POST">
+
+        <!-- SECCIÓN 1: ESTADO ACTUAL -->
+        <div class="section">
+            <h2>1. Estado Actual</h2>
+
+            <div class="alerta-box">
+                <p><strong>Recordá:</strong> Para que estas medidas nos sirvan de referencia confiable, tomalas en ayunas, en la mañana, antes de hacer cualquier ejercicio. Si podés pesarte en las mismas condiciones en que lo hiciste antes, mejor.</p>
+            </div>
+
+            <div class="campos-dobles">
+                <div class="field">
+                    <label for="peso-actual">Peso actual (kg) *</label>
+                    <input type="number" id="peso-actual" name="peso-actual" step="0.1" placeholder="Ej: 96.5" required>
+                </div>
+                <div class="field">
+                    <label for="peso-antes-vacaciones">Peso antes de salir de vacaciones (kg)</label>
+                    <input type="number" id="peso-antes-vacaciones" name="peso-antes-vacaciones" step="0.1" placeholder="Si lo recordás">
+                </div>
+            </div>
+
+            <h3>Medidas corporales</h3>
+            <small style="display:block; margin-bottom:14px; color:#7a9a8e; font-style:italic;">Con cinta métrica, en la mañana, relajado. Si no tenés cinta, dejá en blanco.</small>
+
+            <div class="campos-dobles">
+                <div class="field">
+                    <label for="cintura">Circunferencia cintura (cm)</label>
+                    <input type="number" id="cintura" name="cintura" step="0.5" placeholder="Ej: 100">
+                </div>
+                <div class="field">
+                    <label for="cadera">Circunferencia cadera (cm)</label>
+                    <input type="number" id="cadera" name="cadera" step="0.5" placeholder="Ej: 107">
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="cambio-percibido">¿Notás algún cambio físico respecto a antes de las vacaciones? *</label>
+                <textarea id="cambio-percibido" name="cambio-percibido" placeholder="Ej: Siento la barriga más grande, la ropa me aprieta un poco más en la cintura. O: Honestamente no noto gran diferencia. O: Subí pero no tanto como pensaba." required></textarea>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">1</span>¿Cómo te sentís físicamente en este momento? *</label>
+                <div class="escala-group">
+                    <label><input type="radio" name="estado-fisico" value="1"> 1<br>Muy mal</label>
+                    <label><input type="radio" name="estado-fisico" value="2"> 2<br>Mal</label>
+                    <label><input type="radio" name="estado-fisico" value="3"> 3<br>Regular</label>
+                    <label><input type="radio" name="estado-fisico" value="4"> 4<br>Bien</label>
+                    <label><input type="radio" name="estado-fisico" value="5"> 5<br>Muy bien</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 2: LAS VACACIONES -->
+        <div class="section">
+            <h2>2. Las Vacaciones</h2>
+
+            <div class="field">
+                <label><span class="numero-pregunta">2</span>¿Cuándo terminaron las vacaciones exactamente? *</label>
+                <input type="date" id="fin-vacaciones" name="fin-vacaciones" required>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">3</span>¿Cuánto tiempo estuviste fuera de tu rutina normal? *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="duracion-vacaciones" value="1 semana"> 1 semana</label>
+                    <label><input type="radio" name="duracion-vacaciones" value="2 semanas"> 2 semanas</label>
+                    <label><input type="radio" name="duracion-vacaciones" value="3 semanas"> 3 semanas</label>
+                    <label><input type="radio" name="duracion-vacaciones" value="Mas de 3 semanas"> Más de 3 semanas</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">4</span>¿Qué actividad física hiciste durante las vacaciones? Marcá todo lo que aplique *</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="actividad-vacaciones" value="Caminatas turisticas o paseos"> Caminatas turísticas o paseos (aunque sea casual)</label>
+                    <label><input type="checkbox" name="actividad-vacaciones" value="Natacion o playa"> Natación o playa</label>
+                    <label><input type="checkbox" name="actividad-vacaciones" value="Bici aunque sea un dia"> Bici aunque sea un día</label>
+                    <label><input type="checkbox" name="actividad-vacaciones" value="Funcionales o gimnasio"> Funcionales o gimnasio</label>
+                    <label><input type="checkbox" name="actividad-vacaciones" value="Tour deportivo o aventura"> Tour deportivo o de aventura (senderismo, kayak, surf, etc.)</label>
+                    <label><input type="checkbox" name="actividad-vacaciones" value="Nada, descanso total"> Nada, descanso total</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">5</span>Describí un poco más lo que hiciste en términos de movimiento durante las vacaciones *</label>
+                <textarea id="detalle-actividad" name="detalle-actividad" placeholder="Ej: Caminé bastante todos los días por el centro histórico, unos 6-8 km diarios. Un día fui a la playa y nadé como 30 minutos. Nada de entreno estructurado. O: Fui a un tour de senderismo de 4 horas un día, lo demás fue solo caminar normal." required></textarea>
+                <small>Esto me ayuda a saber cuál es tu punto de partida real para arrancar el entrenamiento de agosto.</small>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">6</span>¿Cómo fue la alimentación durante las vacaciones? *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="alimentacion-vacaciones" value="Muy mal, comi todo lo que no debia"> Muy mal, comí todo lo que no debía y en exceso</label>
+                    <label><input type="radio" name="alimentacion-vacaciones" value="Mal pero controlado"> Mal pero controlado, me dejé llevar pero sin excesos grandes</label>
+                    <label><input type="radio" name="alimentacion-vacaciones" value="Mitad y mitad"> Mitad y mitad, algunos días bien y otros no tanto</label>
+                    <label><input type="radio" name="alimentacion-vacaciones" value="Relativamente bien"> Relativamente bien, intenté mantener algunos hábitos del plan</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">7</span>¿Qué fue lo que más "desastre" hizo durante las vacaciones? *</label>
+                <textarea id="desastre-vacaciones" name="desastre-vacaciones" placeholder="Ej: Tomé alcohol todos los días, comí mucho frito y dulce, dormí hasta las 10am y no hice nada de ejercicio. O: El problema fue más el alcohol que la comida. O: Comí muchos postres y frituras pero no tomé." required></textarea>
+                <small>Sin juicio. Solo necesito saberlo para ajustar el plan correctamente.</small>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 3: REINCORPORACIÓN -->
+        <div class="section">
+            <h2>3. Reincorporación</h2>
+
+            <div class="field">
+                <label><span class="numero-pregunta">8</span>Cuando terminaron las vacaciones, ¿volviste a comer según el plan anterior? *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="vuelta-plan-nutricion" value="Si, desde el primer dia"> Sí, desde el primer día</label>
+                    <label><input type="radio" name="vuelta-plan-nutricion" value="Si, pero me tardo unos dias"> Sí, pero me tardé unos días en acomodarme</label>
+                    <label><input type="radio" name="vuelta-plan-nutricion" value="A medias, algunos habitos si y otros no"> A medias, algunos hábitos sí y otros no</label>
+                    <label><input type="radio" name="vuelta-plan-nutricion" value="No, aun no he vuelto del todo"> No, aún no he vuelto del todo</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">9</span>¿Has vuelto a entrenar desde que llegaste de vacaciones? *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="vuelta-entreno" value="Si, ya retome la rutina completa"> Sí, ya retomé la rutina completa</label>
+                    <label><input type="radio" name="vuelta-entreno" value="Si, algo pero no todo"> Sí, algo pero no la rutina completa</label>
+                    <label><input type="radio" name="vuelta-entreno" value="Solo una o dos sesiones"> Solo una o dos sesiones sueltas</label>
+                    <label><input type="radio" name="vuelta-entreno" value="No, nada todavia"> No, nada todavía</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">10</span>Si ya entrenaste, describí qué hiciste *</label>
+                <textarea id="entreno-post-vacaciones" name="entreno-post-vacaciones" placeholder="Ej: Salí dos veces en bici, pero corto, como 40 minutos. Todavía no he hecho funcionales. O: No he hecho nada todavía. O: Volví a la rutina completa desde el lunes." required></textarea>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">11</span>¿Cómo te sentís de energía desde que volviste? *</label>
+                <div class="escala-group">
+                    <label><input type="radio" name="energia-vuelta" value="1"> 1<br>Sin energía</label>
+                    <label><input type="radio" name="energia-vuelta" value="2"> 2<br>Baja</label>
+                    <label><input type="radio" name="energia-vuelta" value="3"> 3<br>Regular</label>
+                    <label><input type="radio" name="energia-vuelta" value="4"> 4<br>Buena</label>
+                    <label><input type="radio" name="energia-vuelta" value="5"> 5<br>Excelente</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 4: RUTINA Y HORARIOS -->
+        <div class="section">
+            <h2>4. Rutina y Horarios</h2>
+
+            <div class="field">
+                <label><span class="numero-pregunta">12</span>¿Cambió algo en tu rutina diaria desde las vacaciones? (trabajo, horarios, compromisos) *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="cambio-rutina" value="No, todo igual"> No, todo igual que antes</label>
+                    <label><input type="radio" name="cambio-rutina" value="Algunos cambios menores"> Algunos cambios menores</label>
+                    <label><input type="radio" name="cambio-rutina" value="Si, cambios importantes"> Sí, cambios importantes en mi horario</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">13</span>Si hubo cambios en tu rutina, describí cuáles *</label>
+                <textarea id="cambios-rutina" name="cambios-rutina" placeholder="Ej: Ahora entro más temprano al trabajo así que no puedo entrenar en la mañana. O: Todo igual, mismo horario de siempre. O: Tengo un proyecto nuevo que me tiene más ocupado en las tardes."></textarea>
+                <small>Si no hubo cambios, escribí 'Todo igual'.</small>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">14</span>¿A qué hora del día podés entrenar actualmente? *</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="horario-entreno" value="Manana temprano antes del trabajo"> Mañana temprano, antes del trabajo</label>
+                    <label><input type="checkbox" name="horario-entreno" value="Medio dia"> Medio día</label>
+                    <label><input type="checkbox" name="horario-entreno" value="Tarde despues del trabajo"> Tarde, después del trabajo</label>
+                    <label><input type="checkbox" name="horario-entreno" value="Noche"> Noche</label>
+                    <label><input type="checkbox" name="horario-entreno" value="Fines de semana"> Fines de semana (sábado o domingo)</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">15</span>¿Cambió algo en tu sueño? *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="cambio-sueno" value="No, sigo durmiendo igual de bien"> No, sigo durmiendo igual de bien</label>
+                    <label><input type="radio" name="cambio-sueno" value="Tuve problemas durante las vacaciones pero ya mejoro"> Tuve problemas durante las vacaciones pero ya mejoró</label>
+                    <label><input type="radio" name="cambio-sueno" value="Ahora duermo peor que antes"> Ahora duermo peor que antes de las vacaciones</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 5: OBJETIVOS -->
+        <div class="section">
+            <h2>5. Objetivos</h2>
+
+            <div class="field">
+                <label><span class="numero-pregunta">16</span>¿Ya está confirmada tu participación en La Ruta de los Conquistadores este año? *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="la-ruta-confirmada" value="Si, ya estoy inscrito"> Sí, ya estoy inscrito</label>
+                    <label><input type="radio" name="la-ruta-confirmada" value="Casi seguro pero no me he inscrito"> Casi seguro pero no me he inscrito todavía</label>
+                    <label><input type="radio" name="la-ruta-confirmada" value="Lo estoy evaluando"> Lo estoy evaluando, depende de varios factores</label>
+                    <label><input type="radio" name="la-ruta-confirmada" value="No, descarte la idea por ahora"> No, descarté la idea por ahora</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">17</span>Aparte de La Ruta, ¿tenés algún otro objetivo o competencia para los próximos meses? *</label>
+                <textarea id="otros-objetivos" name="otros-objetivos" placeholder="Ej: Quiero hacer el Volcán 100 en septiembre. O: Estoy pensando en hacer una ruta de 150 km con unos amigos en octubre. O: Por ahora solo La Ruta, nada más confirmado." required></textarea>
+                <small>Cualquier evento, competencia o ruta que estés considerando, aunque no esté confirmado todavía.</small>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">18</span>¿Cómo está tu motivación para retomar el plan ahora mismo? *</label>
+                <div class="escala-group">
+                    <label><input type="radio" name="motivacion" value="1"> 1<br>Muy baja</label>
+                    <label><input type="radio" name="motivacion" value="2"> 2<br>Baja</label>
+                    <label><input type="radio" name="motivacion" value="3"> 3<br>Regular</label>
+                    <label><input type="radio" name="motivacion" value="4"> 4<br>Alta</label>
+                    <label><input type="radio" name="motivacion" value="5"> 5<br>Muy alta</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">19</span>¿Hay algo que querás cambiar o mejorar de cómo estaba organizado el plan anterior? *</label>
+                <textarea id="mejoras-plan" name="mejoras-plan" placeholder="Ej: Me costó mucho lo de los vegetales, necesito opciones más rápidas. O: Los horarios de entrenamiento no me calzaron bien. O: El plan estuvo bien, no cambiaría nada." required></textarea>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">20</span>¿Algo más que quieras contarme antes de arrancar el plan de agosto? *</label>
+                <textarea id="mensaje-libre" name="mensaje-libre" placeholder="Espacio libre. Cualquier cosa que sientas que es importante que yo sepa para diseñar el mejor plan posible para este mes." required></textarea>
+            </div>
+        </div>
+
+        <!-- SUBMIT -->
+        <div class="submit-section">
+            <h2>Listo para arrancar</h2>
+            <p>Revisá que tus respuestas estén completas antes de enviar.</p>
+            <p>Cuando reciba el formulario construyo el plan de agosto y te lo envío.</p>
+            <button type="submit" class="submit-btn">Enviar Formulario</button>
+        </div>
+
+    </form>
+
+    <div class="footer">
+        <p>eat&flow | Asesoría Nutricional: Isa Herra</p>
+        <p>@eatandflow.cr | @isaherra.13</p>
+        <p>WhatsApp: +506 8312 9092</p>
+    </div>
+
+</div>
+</body>
+</html>
