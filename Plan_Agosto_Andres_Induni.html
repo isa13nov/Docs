@@ -1,0 +1,1585 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan Agosto 2026 | Andrés Induni | eat&flow</title>
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #F5F9F7 0%, #E8F3EF 100%);
+            color: #2D4A3E;
+            line-height: 1.8;
+            padding: 20px;
+        }
+        .container { max-width:920px; margin:0 auto; background:white; border-radius:20px; box-shadow:0 4px 30px rgba(45,74,62,0.12); overflow:hidden; }
+
+        .header { background:linear-gradient(135deg,#1a5945 0%,#2D4A3E 100%); color:white; padding:44px 30px; text-align:center; border-bottom:4px solid #8bc34a; }
+        .header .brand { font-size:22px; font-weight:700; letter-spacing:4px; opacity:0.9; margin-bottom:16px; text-transform:uppercase; }
+        .header h1 { font-size:27px; font-weight:700; margin-bottom:6px; }
+        .header .asesoria { font-size:14px; opacity:0.95; margin-top:8px; }
+        .header .cliente { font-size:21px; font-weight:600; margin-top:10px; }
+        .badge { display:inline-block; background:#ff9800; color:white; padding:7px 22px; border-radius:20px; font-size:13px; font-weight:700; margin-top:14px; letter-spacing:1px; text-transform:uppercase; }
+
+        .tabs-wrapper { position:sticky; top:0; z-index:100; background:white; box-shadow:0 2px 10px rgba(45,74,62,0.08); }
+        .tabs { display:flex; overflow-x:auto; border-bottom:2px solid #E8F3EF; }
+        .tabs::-webkit-scrollbar { height:4px; }
+        .tabs::-webkit-scrollbar-thumb { background:#8bc34a; border-radius:2px; }
+        .tab { padding:13px 20px; cursor:pointer; border:none; background:transparent; font-size:13px; font-weight:600; color:#6c757d; white-space:nowrap; transition:all 0.3s; flex-shrink:0; line-height:1.4; text-align:center; }
+        .tab:hover { background:#F5F9F7; color:#2D4A3E; }
+        .tab.active { color:#1a5945; border-bottom:3px solid #1a5945; background:#F5F9F7; }
+
+        .content { padding:30px 28px; }
+        .section { display:none; }
+        .section.active { display:block; animation:fadeIn 0.3s; }
+        @keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+        .section-title { font-size:23px; color:#1a5945; margin-bottom:8px; padding-bottom:12px; border-bottom:3px solid #8bc34a; }
+        .contexto-semana { font-size:14px; color:#666; font-style:italic; margin-bottom:22px; }
+        .subsection-title { font-size:17px; color:#2D4A3E; margin:24px 0 14px; font-weight:700; }
+
+        .dia-card { margin-bottom:26px; border-radius:12px; overflow:hidden; box-shadow:0 2px 12px rgba(45,74,62,0.10); }
+        .dia-header { padding:15px 22px; color:white; }
+        .dia-fecha { font-size:17px; font-weight:700; }
+        .dia-tipo { font-size:11px; font-weight:600; opacity:0.9; margin-top:4px; letter-spacing:1px; text-transform:uppercase; }
+        .dia-body { padding:20px 22px; background:white; }
+
+        .bloque { margin-bottom:16px; padding:15px 18px; border-radius:8px; font-size:14px; }
+        .bloque-titulo { font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:11px; padding-bottom:8px; border-bottom:2px solid; }
+        .comidas-bloque { background:#F5FAF8; border-left:4px solid #8bc34a; }
+        .comidas-bloque .bloque-titulo { color:#1a5945; border-color:#8bc34a; }
+        .entreno-bloque { background:#e8f5e9; border-left:4px solid #43a047; }
+        .entreno-bloque .bloque-titulo { color:#2e7d32; border-color:#43a047; }
+        .fondo-bloque { background:#e8f0ee; border-left:4px solid #1a5945; }
+        .fondo-bloque .bloque-titulo { color:#1a5945; border-color:#1a5945; }
+        .agua-bloque { background:#e3f2fd; border-left:4px solid #1976d2; }
+        .agua-bloque .bloque-titulo { color:#1565c0; border-color:#1976d2; }
+        .recuperacion-bloque { background:#fff8f0; border-left:4px solid #ff9800; }
+        .recuperacion-bloque .bloque-titulo { color:#e65100; border-color:#ff9800; }
+        .descanso-bloque { background:#f3f4f6; border-left:4px solid #9ca3af; }
+        .descanso-bloque .bloque-titulo { color:#4b5563; border-color:#9ca3af; }
+
+        .comida { margin-bottom:11px; padding-bottom:11px; border-bottom:1px solid #E0EDE8; }
+        .comida:last-child { border-bottom:none; margin-bottom:0; padding-bottom:0; }
+        .comida-nombre { font-weight:700; color:#1a5945; margin-bottom:4px; font-size:13px; }
+        .comida p { margin-bottom:4px; line-height:1.65; }
+        .nota-comida { font-size:12px; color:#666; font-style:italic; margin-top:5px; background:#fffde7; padding:6px 10px; border-radius:4px; border-left:3px solid #fdd835; }
+
+        .card { background:#F5FAF8; border-left:4px solid #8bc34a; padding:18px 20px; margin-bottom:16px; border-radius:8px; font-size:14px; }
+        .card h3 { color:#1a5945; font-size:16px; margin-bottom:10px; }
+        .card p { margin-bottom:7px; line-height:1.7; }
+        .card.orange { background:#fff8f0; border-left-color:#ff9800; }
+        .card.orange h3 { color:#e65100; }
+        .card.green { background:#e8f5e9; border-left-color:#43a047; }
+        .card.green h3 { color:#2e7d32; }
+        .card.ruta { background:linear-gradient(135deg,#1a5945,#2D4A3E); border-left:4px solid #8bc34a; color:white; }
+        .card.ruta h3 { color:#8bc34a; font-size:17px; }
+        .card.ruta p { color:rgba(255,255,255,0.9); }
+        .card.ruta strong { color:#ff9800; }
+
+        table { width:100%; border-collapse:collapse; margin:12px 0; font-size:13.5px; }
+        table th { background:#1a5945; color:white; padding:10px 12px; text-align:left; font-weight:700; }
+        table td { border-bottom:1px solid #E8F3EF; padding:10px 12px; }
+        table tr:nth-child(even) { background:#F5FAF8; }
+        .cho-alto { color:#1a5945; font-weight:700; }
+
+        .footer { background:#1a5945; color:white; padding:20px; text-align:center; font-size:13px; }
+        .footer p { margin-bottom:5px; opacity:0.9; }
+
+        @media (max-width:640px) {
+            body { padding:10px; }
+            .content { padding:16px 12px; }
+            .dia-body { padding:14px; }
+            .header { padding:28px 18px; }
+            .header h1 { font-size:21px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="header">
+        <div class="brand">eat&flow</div>
+        <h1>Plan Agosto 2026 — Calendario Diario</h1>
+        <p class="asesoria">Asesoría Nutricional: Isa Herra</p>
+        <div class="cliente">Andrés Induni</div>
+        <span class="badge">11 — 31 de agosto 2026</span>
+    </div>
+
+    <div class="tabs-wrapper">
+        <div class="tabs">
+            <button class="tab active" onclick="showSection('resumen', this)">Resumen<br><span style="font-size:11px;font-weight:400;opacity:0.8;">Leer primero</span></button>
+            <button class="tab" onclick="showSection('dulces', this)">Ansiedad<br><span style="font-size:11px;font-weight:400;opacity:0.8;">por el dulce</span></button>
+            <button class="tab" onclick="showSection('laruta', this)">La Ruta<br><span style="font-size:11px;font-weight:400;opacity:0.8;">29-31 oct</span></button>
+            <button class="tab active" onclick="showSection('semana1', this)">Semana 1<br><span style="font-size:11px;font-weight:400;opacity:0.8;">11 - 17 de agosto</span></button>
+<button class="tab " onclick="showSection('semana2', this)">Semana 2<br><span style="font-size:11px;font-weight:400;opacity:0.8;">18 - 24 de agosto</span></button>
+<button class="tab " onclick="showSection('semana3', this)">Semana 3<br><span style="font-size:11px;font-weight:400;opacity:0.8;">25 - 31 de agosto</span></button>
+
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- RESUMEN -->
+        <div id="resumen" class="section active">
+            <h2 class="section-title">Dónde estás y hacia dónde vamos</h2>
+
+            <div class="card orange">
+                <h3>La realidad de las vacaciones</h3>
+                <p>Subiste de 94 a 97 kg. La cintura subió a 110 cm. El VO2max bajó de 42 a 39. La cuesta de Pilas que antes hacías en Z2 ahora te lleva a Z3. Lo sabés, lo sentís, y es normal que te preocupe.</p>
+                <p>Pero hay algo importante que entender: <strong>tres semanas no borran meses de trabajo.</strong> Lo que construiste antes de las vacaciones sigue ahí, dormido. El músculo que ganaste no desapareció. La memoria cardiovascular no se borra. Lo que perdiste es adaptación reciente, y esa vuelve mucho más rápido de lo que tardó en construirse, siempre y cuando el entrenamiento y la nutrición sean consistentes.</p>
+                <p>El hecho de que este sábado ya hiciste un fondo de 6.5 horas dice mucho de vos. Eso no lo hace alguien que perdió todo.</p>
+            </div>
+
+            <div class="card green">
+                <h3>Lo que sí hiciste bien durante y después de las vacaciones</h3>
+                <p>16.000 pasos diarios durante las vacaciones no es "no hice nada". Eso es actividad real que mantiene el sistema cardiovascular activo. Muchas personas en vacaciones se mueven mucho menos.</p>
+                <p>Ya retomaste funcionales, salidas en bici y un fondo largo. Tu energía está en 4 de 5. Tu sueño ya mejoró. Eso es un punto de partida mucho mejor de lo que creés.</p>
+            </div>
+
+            <div class="card">
+                <h3>Qué cambia este mes respecto al plan anterior</h3>
+                <p><strong>Semana 1:</strong> Arrancamos más suave de lo que estabas antes de vacaciones. El fondo es de 60 km, no 80. Los funcionales son sin cardio intenso todavía. El cuerpo necesita reaclimatarse, no ser castigado.</p>
+                <p><strong>Semana 2 y 3:</strong> Progresión gradual. Recuperamos la estructura completa de martes a domingo con los cuatro tipos de sesión.</p>
+                <p><strong>Fondos:</strong> 60 km → 75 km → 90 km. Si al final del mes estos fondos los terminás bien y con el fueling correcto, en setiembre empezamos a preparar específicamente La Ruta.</p>
+                <p><strong>Nutrición:</strong> El énfasis de este mes está en volver a cocinar, recuperar la estructura de comidas y manejar la ansiedad por el dulce con estrategias que funcionan. Mirá la pestaña de Ansiedad por el dulce.</p>
+                <p><strong>Condición para subir el fondo:</strong> cumpliste los entrenamientos de la semana Y seguiste el fueling. Si no, repetís la distancia.</p>
+            </div>
+
+            <div class="card orange">
+                <h3>El VO2max y la cuesta de Pilas</h3>
+                <p>Un VO2max de 39 después de tres semanas de vacaciones con alimentación libre es completamente esperable y reversible. El cuerpo pierde adaptación cardiovascular rápido cuando para, pero la recupera aún más rápido cuando retoma con consistencia y buena nutrición.</p>
+                <p>La cuesta de Pilas en Z2 vuelve. No este mes. Probablemente en setiembre, si este mes entrenás bien. La medida real del progreso no es si podés subir Pilas en Z2 hoy, sino si podés hacerlo mejor que hace dos semanas. Mirá hacia adelante, no hacia atrás.</p>
+            </div>
+        </div>
+
+        <!-- ANSIEDAD POR EL DULCE -->
+        <div id="dulces" class="section">
+            <h2 class="section-title">Ansiedad por el Dulce: Cómo Manejarla</h2>
+
+            <div class="card">
+                <h3>Por qué tenés más ansiedad por el dulce ahora</h3>
+                <p>Tres semanas de pizza diaria, helado diario y alimentación libre le enseñaron a tu cerebro que el azúcar está disponible todo el tiempo. Tu sistema de recompensa se recalibró hacia arriba. Cuando ahora no llega, el cerebro lo pide con más fuerza de lo normal. Esto no es falta de voluntad, es biología.</p>
+                <p>La solución no es resistir con fuerza de voluntad porque eso no funciona a largo plazo. La solución es reemplazar con opciones que satisfagan el mismo circuito de recompensa sin el impacto en grasa corporal e insulina.</p>
+            </div>
+
+            <h3 class="subsection-title">Receta 1: Helado de Yogurt Griego (todos los días si querés)</h3>
+            <div class="card green">
+                <h3>Helado Casero de Yogurt Griego</h3>
+                <p><strong>Ingredientes:</strong> 150 g de yogurt griego natural sin azúcar + 100 g de fruta congelada (fresa, mango, arándanos o mezcla) + 1 cucharadita de miel (opcional).</p>
+                <p><strong>Preparación:</strong> Poner todo en la trituradora o licuadora hasta que quede con consistencia cremosa de helado. Verter en un recipiente con tapa y llevar al congelador. Comer cuando querás, directamente del recipiente.</p>
+                <p><strong>Por qué funciona:</strong> Tiene proteína real del yogurt (sacia), azúcar natural de la fruta (satisface el circuito del dulce), y no tiene azúcar industrial que dispara la insulina y genera más ansia. Podés comerlo todos los días después de la cena sin culpa.</p>
+            </div>
+
+            <h3 class="subsection-title">Receta 2: Dátiles con Mantequilla de Maní (merienda diaria)</h3>
+            <div class="card green">
+                <h3>Dátiles + Mantequilla de Maní Natural</h3>
+                <p><strong>Ingredientes:</strong> 2 dátiles Medjool (los grandes y carnosos) + 1 cucharada de mantequilla de maní natural sin azúcar añadida.</p>
+                <p><strong>Preparación:</strong> Abrís el dátil por la mitad, sacás el hueso, y untás o mojás en la mantequilla de maní. Comés así.</p>
+                <p><strong>Por qué funciona:</strong> El dátil da dulce natural e inmediato. La mantequilla de maní aporta proteína y grasa saludable que ralentiza la absorción del azúcar del dátil, evitando el pico de insulina. La combinación sacia mucho más que un dulce procesado y el efecto dura más tiempo.</p>
+                <p><strong>Dónde conseguir:</strong> Mantequilla de maní natural en Pricemart o supermercados. Fijate que el único ingrediente sea maní (y sal si acaso). Si tiene azúcar añadida o aceite de palma, no es la indicada.</p>
+            </div>
+
+            <h3 class="subsection-title">Receta 3: Bolas de Energía con Dátiles (para preparar en batch)</h3>
+            <div class="card green">
+                <h3>Bolas de Energía sin Horno</h3>
+                <p><strong>Ingredientes (para 15-20 bolas):</strong> 200 g de dátiles sin hueso + 100 g de avena en hojuelas + 3 cucharadas de mantequilla de maní natural + 1 cucharada de cacao en polvo sin azúcar (opcional) + 1 cucharadita de miel.</p>
+                <p><strong>Preparación:</strong> Procesá los dátiles en la trituradora hasta que formen una pasta. Agregá la avena, la mantequilla de maní, el cacao y la miel. Mezclá con las manos hasta integrar todo. Formá bolitas del tamaño de una nuez grande. Guardá en el refrigerador en un recipiente con tapa. Duran hasta 2 semanas.</p>
+                <p><strong>Por qué funcionan:</strong> Tienen fibra, proteína, grasa saludable y dulce natural. Dos bolas satisfacen el antojo sin disparar la insulina. También podés llevarlas en el bolso para cuando el antojo aparezca lejos de casa.</p>
+            </div>
+
+            <div class="card orange">
+                <h3>Lo que hay que seguir alejando</h3>
+                <p>Pizza, helado industrial, pan en exceso y dulces procesados no son el enemigo eterno, pero en este mes de reincorporación, mientras el cuerpo se estabiliza, cuanto más lejos mejor. Cada vez que comés azúcar industrial el cerebro pide más. Cada vez que reemplazás con una de estas opciones, el ciclo se debilita.</p>
+                <p>No es para siempre. Es para este mes. En setiembre, cuando estés de vuelta en forma, hay más flexibilidad.</p>
+            </div>
+        </div>
+
+        <!-- LA RUTA -->
+        <div id="laruta" class="section">
+            <h2 class="section-title">La Ruta — 29 al 31 de octubre 2026</h2>
+
+            <div class="card ruta">
+                <h3>Lo que es La Ruta</h3>
+                <p>La Ruta de los Conquistadores es una carrera por etapas de MTB de 3 días que atraviesa Costa Rica. Este año es la edición del 30 aniversario, del 29 al 31 de octubre. No es solo física: es mental. Levantarte el día 2 y el día 3 a pedalear cuando el cuerpo ya acusa el día anterior es la parte más difícil.</p>
+                <p>La buena noticia: <strong>la carrera tiene asistencia.</strong> No estás solo en ruta. Hay soporte, hay comida, hay avituallamiento. Eso cambia mucho la ecuación logística.</p>
+                <p>Tenés <strong>79 días</strong> desde hoy hasta la largada del 29 de octubre.</p>
+            </div>
+
+            <div class="card orange">
+                <h3>Sobre el miedo que mencionás</h3>
+                <p>"Tengo miedo, no estoy seguro de lograrlo, ya vi las rutas en Instagram y están de terror."</p>
+                <p>Ese miedo es completamente normal y en realidad es una buena señal: significa que entendés el tamaño del reto. Los que no le tienen respeto son los que llegan sin preparación.</p>
+                <p>Lo que sí te puedo decir: un deportista que hace fondos de 6.5 horas el primer fin de semana después de tres semanas de vacaciones tiene capacidad para La Ruta. La pregunta no es si podés físicamente. La pregunta es si llegás bien preparado. Y eso depende de lo que hagamos en agosto y setiembre.</p>
+                <p><strong>Este mes no es de La Ruta. Este mes es de volver a estar en forma.</strong> Si al final de agosto te sentís bien, en setiembre hacemos el bloque específico de preparación. La decisión de inscribirse la tomás vos cuando te sintás listo.</p>
+            </div>
+
+            <div class="card">
+                <h3>Línea de tiempo hacia La Ruta</h3>
+                <table>
+                    <tr><th>Mes</th><th>Foco</th><th>Fondos</th></tr>
+                    <tr><td>Agosto</td><td>Reincorporación y recuperar base</td><td>60 / 75 / 90 km</td></tr>
+                    <tr><td>Setiembre</td><td>Preparación específica La Ruta</td><td>Fondos de 3 días consecutivos (11-12-13 set)</td></tr>
+                    <tr><td>Octubre 1-24</td><td>Tapering y afinamiento</td><td>Reducción de volumen, mantener intensidad</td></tr>
+                    <tr><td>29-31 oct</td><td>LA RUTA</td><td>Competencia</td></tr>
+                </table>
+                <p style="margin-top:10px; font-size:13px; color:#666;">El bloque de setiembre lo diseñamos juntos a final de agosto, cuando veamos cómo respondiste este mes.</p>
+            </div>
+        </div>
+
+        <!-- SEMANAS -->
+        
+<div id="semana1" class="section active">
+  <h2 class="section-title">Semana 1 — 11 - 17 de agosto</h2>
+  <div class="contexto-semana">Reactivación suave — el cuerpo vuelve al ritmo</div>
+  
+<div class="dia-card">
+  <div class="dia-header" style="background:#2D4A3E;">
+    <div class="dia-fecha">Martes 11 de agosto</div>
+    <div class="dia-tipo">CICLISMO SUAVE — Z2</div>
+  </div>
+  <div class="dia-body">
+    
+<div class="bloque comidas-bloque">
+  <div class="bloque-titulo">Nutrición del día (día de entrenamiento)</div>
+  <div class="comida">
+    <div class="comida-nombre">Al levantarte</div>
+    <p>1 vaso de agua (250 ml).</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Desayuno</div>
+    <p>1 huevo entero + 2 claras + 1 rebanada de pan cuadrado tostado + queso blanco bajo en grasa + café sin azúcar.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Media mañana</div>
+    <p>1 yogurt griego natural (150 g) + 1 puño de almendras + 1 fruta (naranja, mandarina o manzana).</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Pre-entrenamiento (si entrenás en la tarde con +3h desde el almuerzo)</div>
+    <p>1 rebanada de pan cuadrado blanco con 1 cucharadita de miel, 20 minutos antes. Si entrenás de mañana o cerca del almuerzo, no necesitás nada extra.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Almuerzo</div>
+    <p>1 palma de mano de proteína + 5-6 cucharadas de arroz + 2 puños de vegetales al vapor con limón y sal.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Post-entrenamiento (dentro de 30 minutos)</div>
+    <p>30 g de proteína whey con agua + 1 fruta (naranja, mandarina o manzana). O: yogurt griego con granola y fruta. O: arroz con huevo y vegetales. No dejés pasar esta ventana.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Merienda tarde</div>
+    <p>2 dátiles + 1 cucharada de mantequilla de maní natural. Para la ansiedad por el dulce.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Cena</div>
+    <p>1 palma de mano de proteína + 5-6 cucharadas de arroz o camote + 2 puños de vegetales al vapor.</p>
+  </div>
+</div>
+    
+<div class="bloque entreno-bloque">
+  <div class="bloque-titulo">Ciclismo suave Z2 — 60 min</div>
+  <p><strong>Toda la sesión en Zona 2:</strong> FC 110-130 bpm. Podés conversar sin que te falte el aire. Si subís a Z3 en una cuesta, bajás el ritmo en la bajada.</p>
+  <p style="margin-top:8px;">Esta semana no forzés. El objetivo es reactivar las piernas y el sistema cardiovascular, no demostrar nada. El VO2max vuelve más rápido de lo que bajó si el entrenamiento es consistente y la nutrición acompaña.</p>
+  <p style='margin-top:8px;'>En rodillo o en calle plana. Sin subidas importantes esta semana.</p>
+  <p style="margin-top:8px; font-style:italic; color:#555;">Hidratante con electrolitos cada 20-25 minutos durante la sesión.</p>
+</div>
+    
+<div class="bloque agua-bloque">
+  <div class="bloque-titulo">Agua e hidratación</div>
+  <p>Mínimo 2.5 litros durante el día. Recordá el vaso al levantarte.</p>
+  <p style="margin-top:6px;">En la sesión de entrenamiento: 300-500 ml de hidratante con electrolitos.</p>
+</div>
+    
+<div class="bloque recuperacion-bloque">
+  <div class="bloque-titulo">Sueño y recuperación</div>
+  <p><strong>Magnesio:</strong> 300-400 mg antes de dormir todos los días.</p>
+  <p style="margin-top:6px;"><strong>Sueño:</strong> A las 9 PM. Tu horario de levantarte temprano es inamovible, así que la hora de dormir también lo es.</p>
+</div>
+  </div>
+</div>
+<div class="dia-card">
+  <div class="dia-header" style="background:#6a1b9a;">
+    <div class="dia-fecha">Miércoles 12 de agosto</div>
+    <div class="dia-tipo">ACONDICIONAMIENTO FUNCIONAL</div>
+  </div>
+  <div class="dia-body">
+    
+<div class="bloque comidas-bloque">
+  <div class="bloque-titulo">Nutrición del día (día de entrenamiento)</div>
+  <div class="comida">
+    <div class="comida-nombre">Al levantarte</div>
+    <p>1 vaso de agua (250 ml).</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Desayuno</div>
+    <p>1 huevo entero + 2 claras + 1 rebanada de pan cuadrado tostado + queso blanco bajo en grasa + café sin azúcar.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Media mañana</div>
+    <p>1 yogurt griego natural (150 g) + 1 puño de almendras + 1 fruta (naranja, mandarina o manzana).</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Pre-entrenamiento (si entrenás en la tarde con +3h desde el almuerzo)</div>
+    <p>1 rebanada de pan cuadrado blanco con 1 cucharadita de miel, 20 minutos antes. Si entrenás de mañana o cerca del almuerzo, no necesitás nada extra.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Almuerzo</div>
+    <p>1 palma de mano de proteína + 5-6 cucharadas de arroz + 2 puños de vegetales al vapor con limón y sal.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Post-entrenamiento (dentro de 30 minutos)</div>
+    <p>30 g de proteína whey con agua + 1 fruta (naranja, mandarina o manzana). O: yogurt griego con granola y fruta. O: arroz con huevo y vegetales. No dejés pasar esta ventana.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Merienda tarde</div>
+    <p>2 dátiles + 1 cucharada de mantequilla de maní natural. Para la ansiedad por el dulce.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Cena</div>
+    <p>1 palma de mano de proteína + 5-6 cucharadas de arroz o camote + 2 puños de vegetales al vapor.</p>
+  </div>
+</div>
+    
+<div class="bloque entreno-bloque">
+  <div class="bloque-titulo">Acondicionamiento funcional — 45 min</div>
+  
+  <p><strong>Bloque 1 — Movilidad y activación (10 min):</strong> Círculos de cadera, sentadillas lentas sin peso, estocadas lentas. Sin saltos todavía.</p>
+  <p style="margin-top:8px;"><strong>Bloque 2 — Fuerza básica (20 min):</strong> 3 series de 10 sentadillas + 8 estocadas por pierna + 10 step ups. Descanso 60 seg entre series. Sin apuro.</p>
+  <p style="margin-top:8px;"><strong>Bloque 3 — Core (10 min):</strong> 3 series de 15 crunches + 20 seg plancha + 10 leg raises. Descanso 45 seg.</p>
+  <p style="margin-top:8px; font-style:italic; color:#555;">Semana 1: sin cardio intenso todavía. El cuerpo vuelve de vacaciones, no de un descanso de un día.</p>
+</div>
+    
+<div class="bloque agua-bloque">
+  <div class="bloque-titulo">Agua e hidratación</div>
+  <p>Mínimo 2.5 litros durante el día. Recordá el vaso al levantarte.</p>
+  <p style="margin-top:6px;">En la sesión de entrenamiento: 300-500 ml de hidratante con electrolitos.</p>
+</div>
+    
+<div class="bloque recuperacion-bloque">
+  <div class="bloque-titulo">Sueño y recuperación</div>
+  <p><strong>Magnesio:</strong> 300-400 mg antes de dormir todos los días.</p>
+  <p style="margin-top:6px;"><strong>Sueño:</strong> A las 9 PM. Tu horario de levantarte temprano es inamovible, así que la hora de dormir también lo es.</p>
+</div>
+  </div>
+</div>
+<div class="dia-card">
+  <div class="dia-header" style="background:#2D4A3E;">
+    <div class="dia-fecha">Jueves 13 de agosto</div>
+    <div class="dia-tipo">CICLISMO SUAVE — Z2</div>
+  </div>
+  <div class="dia-body">
+    
+<div class="bloque comidas-bloque">
+  <div class="bloque-titulo">Nutrición del día (día de entrenamiento)</div>
+  <div class="comida">
+    <div class="comida-nombre">Al levantarte</div>
+    <p>1 vaso de agua (250 ml).</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Desayuno</div>
+    <p>1 huevo entero + 2 claras + 1 rebanada de pan cuadrado tostado + queso blanco bajo en grasa + café sin azúcar.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Media mañana</div>
+    <p>1 yogurt griego natural (150 g) + 1 puño de almendras + 1 fruta (naranja, mandarina o manzana).</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Pre-entrenamiento (si entrenás en la tarde con +3h desde el almuerzo)</div>
+    <p>1 rebanada de pan cuadrado blanco con 1 cucharadita de miel, 20 minutos antes. Si entrenás de mañana o cerca del almuerzo, no necesitás nada extra.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Almuerzo</div>
+    <p>1 palma de mano de proteína + 5-6 cucharadas de arroz + 2 puños de vegetales al vapor con limón y sal.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Post-entrenamiento (dentro de 30 minutos)</div>
+    <p>30 g de proteína whey con agua + 1 fruta (naranja, mandarina o manzana). O: yogurt griego con granola y fruta. O: arroz con huevo y vegetales. No dejés pasar esta ventana.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Merienda tarde</div>
+    <p>2 dátiles + 1 cucharada de mantequilla de maní natural. Para la ansiedad por el dulce.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Cena</div>
+    <p>1 palma de mano de proteína + 5-6 cucharadas de arroz o camote + 2 puños de vegetales al vapor.</p>
+  </div>
+</div>
+    
+<div class="bloque entreno-bloque">
+  <div class="bloque-titulo">Ciclismo suave Z2 — 60 min</div>
+  <p><strong>Toda la sesión en Zona 2:</strong> FC 110-130 bpm. Podés conversar sin que te falte el aire. Si subís a Z3 en una cuesta, bajás el ritmo en la bajada.</p>
+  <p style="margin-top:8px;">Esta semana no forzés. El objetivo es reactivar las piernas y el sistema cardiovascular, no demostrar nada. El VO2max vuelve más rápido de lo que bajó si el entrenamiento es consistente y la nutrición acompaña.</p>
+  <p style='margin-top:8px;'>En rodillo o en calle plana. Sin subidas importantes esta semana.</p>
+  <p style="margin-top:8px; font-style:italic; color:#555;">Hidratante con electrolitos cada 20-25 minutos durante la sesión.</p>
+</div>
+    
+<div class="bloque agua-bloque">
+  <div class="bloque-titulo">Agua e hidratación</div>
+  <p>Mínimo 2.5 litros durante el día. Recordá el vaso al levantarte.</p>
+  <p style="margin-top:6px;">En la sesión de entrenamiento: 300-500 ml de hidratante con electrolitos.</p>
+</div>
+    
+<div class="bloque recuperacion-bloque">
+  <div class="bloque-titulo">Sueño y recuperación</div>
+  <p><strong>Magnesio:</strong> 300-400 mg antes de dormir todos los días.</p>
+  <p style="margin-top:6px;"><strong>Sueño:</strong> A las 9 PM. Tu horario de levantarte temprano es inamovible, así que la hora de dormir también lo es.</p>
+</div>
+  </div>
+</div>
+<div class="dia-card">
+  <div class="dia-header" style="background:#546e7a;">
+    <div class="dia-fecha">Viernes 14 de agosto</div>
+    <div class="dia-tipo">DESCANSO — Preparación fondo</div>
+  </div>
+  <div class="dia-body">
+    
+<div class="bloque comidas-bloque">
+  <div class="bloque-titulo">Nutrición del día</div>
+  <div class="comida">
+    <div class="comida-nombre">Al levantarte</div>
+    <p>1 vaso de agua (250 ml).</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Desayuno</div>
+    <p>1 huevo entero + 2 claras + 1 rebanada de pan cuadrado tostado + queso blanco bajo en grasa + café sin azúcar.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Media mañana</div>
+    <p>1 yogurt griego natural (150 g) + 1 puño de almendras + 1 fruta (naranja, mandarina o manzana).</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Almuerzo</div>
+    <p>1 palma de mano de proteína magra + 5-6 cucharadas de arroz + 2 puños de vegetales al vapor con limón y sal.</p>
+    <p class="nota-comida">En días de descanso el arroz no baja. Tu cuerpo sigue recuperando del entrenamiento anterior.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Merienda tarde</div>
+    <p>2 dátiles + 1 cucharada de mantequilla de maní natural.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Cena</div>
+    <p>1 palma de mano de proteína + 5-6 cucharadas de arroz o camote + 2 puños de vegetales al vapor.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Postre (opcional)</div>
+    <p>Helado casero de yogurt griego + fruta congelada triturada.</p>
+  </div>
+</div>
+    
+<div class="bloque descanso-bloque">
+  <div class="bloque-titulo">Descanso completo — Preparación para el fondo</div>
+  <p>No hay entrenamiento hoy. La adaptación ocurre en reposo.</p>
+  <p style="margin-top:8px;"><strong>Prepará hoy el kit del fondo de mañana:</strong> revisá la bici, cargá el Garmin y el celular, prepará los emparedados con miel en una bolsita, contá los geles y barritas, llenás la mochila hidratante, dejás la ropa lista.</p>
+</div>
+    
+<div class="bloque agua-bloque">
+  <div class="bloque-titulo">Agua e hidratación</div>
+  <p>Mínimo 2.5 litros durante el día. Recordá el vaso al levantarte.</p>
+  <p style="margin-top:6px;">En la sesión de entrenamiento: 300-500 ml de hidratante con electrolitos.</p>
+</div>
+    
+<div class="bloque recuperacion-bloque">
+  <div class="bloque-titulo">Sueño y recuperación</div>
+  <p><strong>Magnesio:</strong> 300-400 mg antes de dormir todos los días.</p>
+  <p style="margin-top:6px;"><strong>Sueño:</strong> A las 9 PM. Tu horario de levantarte temprano es inamovible, así que la hora de dormir también lo es.</p>
+</div>
+  </div>
+</div>
+<div class="dia-card">
+  <div class="dia-header" style="background:#546e7a;">
+    <div class="dia-fecha">Sábado 15 de agosto</div>
+    <div class="dia-tipo">DESCANSO — Preparación fondo</div>
+  </div>
+  <div class="dia-body">
+    
+<div class="bloque comidas-bloque">
+  <div class="bloque-titulo">Nutrición del día</div>
+  <div class="comida">
+    <div class="comida-nombre">Al levantarte</div>
+    <p>1 vaso de agua (250 ml).</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Desayuno</div>
+    <p>1 huevo entero + 2 claras + 1 rebanada de pan cuadrado tostado + queso blanco bajo en grasa + café sin azúcar.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Media mañana</div>
+    <p>1 yogurt griego natural (150 g) + 1 puño de almendras + 1 fruta (naranja, mandarina o manzana).</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Almuerzo</div>
+    <p>1 palma de mano de proteína magra + 5-6 cucharadas de arroz + 2 puños de vegetales al vapor con limón y sal.</p>
+    <p class="nota-comida">En días de descanso el arroz no baja. Tu cuerpo sigue recuperando del entrenamiento anterior.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Merienda tarde</div>
+    <p>2 dátiles + 1 cucharada de mantequilla de maní natural.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Cena</div>
+    <p>1 palma de mano de proteína + 5-6 cucharadas de arroz o camote + 2 puños de vegetales al vapor.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Postre (opcional)</div>
+    <p>Helado casero de yogurt griego + fruta congelada triturada.</p>
+  </div>
+</div>
+    
+<div class="bloque descanso-bloque">
+  <div class="bloque-titulo">Descanso completo — Preparación para el fondo</div>
+  <p>No hay entrenamiento hoy. La adaptación ocurre en reposo.</p>
+  <p style="margin-top:8px;"><strong>Prepará hoy el kit del fondo de mañana:</strong> revisá la bici, cargá el Garmin y el celular, prepará los emparedados con miel en una bolsita, contá los geles y barritas, llenás la mochila hidratante, dejás la ropa lista.</p>
+</div>
+    
+<div class="bloque agua-bloque">
+  <div class="bloque-titulo">Agua e hidratación</div>
+  <p>Mínimo 2.5 litros durante el día. Recordá el vaso al levantarte.</p>
+  <p style="margin-top:6px;">En la sesión de entrenamiento: 300-500 ml de hidratante con electrolitos.</p>
+</div>
+    
+<div class="bloque recuperacion-bloque">
+  <div class="bloque-titulo">Sueño y recuperación</div>
+  <p><strong>Magnesio:</strong> 300-400 mg antes de dormir todos los días.</p>
+  <p style="margin-top:6px;"><strong>Sueño:</strong> A las 9 PM. Tu horario de levantarte temprano es inamovible, así que la hora de dormir también lo es.</p>
+</div>
+  </div>
+</div>
+<div class="dia-card">
+  <div class="dia-header" style="background:#1a5945;">
+    <div class="dia-fecha">Domingo 16 de agosto</div>
+    <div class="dia-tipo">FONDO LARGO — 60 km</div>
+  </div>
+  <div class="dia-body">
+    
+<div class="bloque comidas-bloque">
+  <div class="bloque-titulo">Nutrición del día (día de fondo)</div>
+  <div class="comida">
+    <div class="comida-nombre">Al levantarte</div>
+    <p>1 vaso de agua (250 ml) inmediatamente.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Desayuno (2 horas antes de salir)</div>
+    <p>2 tostadas de pan cuadrado blanco + 2 huevos a la plancha + café. Sin grasa extra, sin experimentar. Liviano y fácil de digerir.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">En ruta</div>
+    <p>Ver el bloque de entrenamiento de hoy para el protocolo completo.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Post-fondo (dentro de 30 minutos de llegar)</div>
+    <p>Comida real, no helados. Opciones: arroz con pollo y vegetales / batido de proteína whey + fruta + leche + avena / sandwich de pan blanco con pollo y aguacate. El cuerpo necesita proteína y carbohidratos, no un postre.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Almuerzo o cena post-fondo</div>
+    <p>1 palma de mano de proteína + 7-8 cucharadas de arroz (hoy podés comer más, el cuerpo lo va a usar para recuperarse) + 2 puños de vegetales al vapor.</p>
+  </div>
+</div>
+    
+<div class="bloque fondo-bloque">
+  <div class="bloque-titulo">Fondo largo — 60 km (estimado 3-3.5 horas)</div>
+  <p><strong>Intensidad:</strong> Toda la ruta en Z2. Si en subidas subís de zona, recuperás en la bajada. Sin forzar.</p>
+  <p style="margin-top:8px;"><strong>Desayuno 2 horas antes:</strong> 2 tostadas de pan blanco + 2 huevos + café. Liviano y consistente.</p>
+  <div style="margin-top:12px; background:#e8f5e9; padding:14px 16px; border-radius:6px; border-left:3px solid #43a047; font-size:13.5px;">
+    
+    <p><strong>Fueling cada 45 minutos (objetivo 35-45 g CHO/hora):</strong></p>
+    <p style="margin-top:6px;">— Min 45: Emparedado de pan blanco con miel (media porción) + 250 ml hidratante con CHO.</p>
+    <p>— Min 90: 1 gel de alta densidad (226ERS High Fructose 55g o IBSports Power Boost 60g) + 200 ml agua.</p>
+    <p>— Min 135: Emparedado de pan blanco con miel + 250 ml hidratante.</p>
+    
+    <p style="margin-top:8px;"><strong>Hidratante:</strong> Con carbohidratos (IBSports Isocarbs o 226ERS Isotonic). El GLU cero para agua, no para el bidón del fondo.</p>
+  </div>
+  <p style="margin-top:12px;"><strong>Alarmas en el Garmin:</strong> cada 45 min para comer, cada 30 min para hidratante.</p>
+  <p style="margin-top:10px; background:#fff8f0; padding:10px 12px; border-radius:6px; border-left:3px solid #ff9800; font-size:13px;">Este fondo es más corto que los que hacías antes de las vacaciones. Es intencional. El objetivo hoy no es distancia, es practicar el fueling, ver cómo responden las piernas y terminar sin llegar muerto. Si llegás bien, el próximo fondo sube.</p>
+</div>
+    
+<div class="bloque agua-bloque">
+  <div class="bloque-titulo">Agua e hidratación en ruta</div>
+  <p>Para 3-3.5 horas: entre 1.5 y 2.5 litros entre agua e hidratante.</p>
+  <p style="margin-top:6px;">Mochila hidratante de espalda (1-2 litros) + bidón en la bici (500 ml). Recargá en pulperías.</p>
+</div>
+    
+<div class="bloque recuperacion-bloque">
+  <div class="bloque-titulo">Recuperación post-fondo</div>
+  <p><strong>Magnesio:</strong> 300-400 mg (citrato o glicinato) esta noche antes de dormir.</p>
+  <p style="margin-top:6px;"><strong>Mañana:</strong> Descanso activo. Aunque te sintás bien, no entrenés. La adaptación ocurre en reposo.</p>
+  <p style="margin-top:6px;"><strong>Sueño:</strong> A las 9 PM. Ya tenés ese hábito formado.</p>
+</div>
+  </div>
+</div>
+<div class="dia-card">
+  <div class="dia-header" style="background:#546e7a;">
+    <div class="dia-fecha">Lunes 17 de agosto</div>
+    <div class="dia-tipo">DESCANSO ACTIVO — Recuperación</div>
+  </div>
+  <div class="dia-body">
+    
+<div class="bloque comidas-bloque">
+  <div class="bloque-titulo">Nutrición del día</div>
+  <div class="comida">
+    <div class="comida-nombre">Al levantarte</div>
+    <p>1 vaso de agua (250 ml).</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Desayuno</div>
+    <p>1 huevo entero + 2 claras + 1 rebanada de pan cuadrado tostado + queso blanco bajo en grasa + café sin azúcar.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Media mañana</div>
+    <p>1 yogurt griego natural (150 g) + 1 puño de almendras + 1 fruta (naranja, mandarina o manzana).</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Almuerzo</div>
+    <p>1 palma de mano de proteína magra + 5-6 cucharadas de arroz + 2 puños de vegetales al vapor con limón y sal.</p>
+    <p class="nota-comida">En días de descanso el arroz no baja. Tu cuerpo sigue recuperando del entrenamiento anterior.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Merienda tarde</div>
+    <p>2 dátiles + 1 cucharada de mantequilla de maní natural.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Cena</div>
+    <p>1 palma de mano de proteína + 5-6 cucharadas de arroz o camote + 2 puños de vegetales al vapor.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Postre (opcional)</div>
+    <p>Helado casero de yogurt griego + fruta congelada triturada.</p>
+  </div>
+</div>
+    
+<div class="bloque descanso-bloque">
+  <div class="bloque-titulo">Descanso activo — Recuperación post-fondo</div>
+  <p>No hay entrenamiento estructurado. Si querés moverte, una caminata suave de 20-30 minutos está bien. Nada más.</p>
+  <p style="margin-top:8px;"><strong>Aprovechá para:</strong> preparar comidas de los próximos días, comprar las bolsas de vegetales picados, organizar la semana.</p>
+</div>
+    
+<div class="bloque agua-bloque">
+  <div class="bloque-titulo">Agua e hidratación</div>
+  <p>Mínimo 2.5 litros durante el día. Recordá el vaso al levantarte.</p>
+  <p style="margin-top:6px;">En la sesión de entrenamiento: 300-500 ml de hidratante con electrolitos.</p>
+</div>
+    
+<div class="bloque recuperacion-bloque">
+  <div class="bloque-titulo">Sueño y recuperación</div>
+  <p><strong>Magnesio:</strong> 300-400 mg antes de dormir. Ayuda con la recuperación muscular.</p>
+  <p style="margin-top:6px;"><strong>Sueño:</strong> A las 9 PM. Mañana arranca la semana de entrenamiento.</p>
+</div>
+  </div>
+</div>
+</div>
+<div id="semana2" class="section ">
+  <h2 class="section-title">Semana 2 — 18 - 24 de agosto</h2>
+  <div class="contexto-semana">Consolidación — recuperar la base aeróbica</div>
+  
+<div class="dia-card">
+  <div class="dia-header" style="background:#2D4A3E;">
+    <div class="dia-fecha">Martes 18 de agosto</div>
+    <div class="dia-tipo">CICLISMO SUAVE — Z2</div>
+  </div>
+  <div class="dia-body">
+    
+<div class="bloque comidas-bloque">
+  <div class="bloque-titulo">Nutrición del día (día de entrenamiento)</div>
+  <div class="comida">
+    <div class="comida-nombre">Al levantarte</div>
+    <p>1 vaso de agua (250 ml).</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Desayuno</div>
+    <p>1 huevo entero + 2 claras + 1 rebanada de pan cuadrado tostado + queso blanco bajo en grasa + café sin azúcar.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Media mañana</div>
+    <p>1 yogurt griego natural (150 g) + 1 puño de almendras + 1 fruta (naranja, mandarina o manzana).</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Pre-entrenamiento (si entrenás en la tarde con +3h desde el almuerzo)</div>
+    <p>1 rebanada de pan cuadrado blanco con 1 cucharadita de miel, 20 minutos antes. Si entrenás de mañana o cerca del almuerzo, no necesitás nada extra.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Almuerzo</div>
+    <p>1 palma de mano de proteína + 5-6 cucharadas de arroz + 2 puños de vegetales al vapor con limón y sal.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Post-entrenamiento (dentro de 30 minutos)</div>
+    <p>30 g de proteína whey con agua + 1 fruta (naranja, mandarina o manzana). O: yogurt griego con granola y fruta. O: arroz con huevo y vegetales. No dejés pasar esta ventana.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Merienda tarde</div>
+    <p>2 dátiles + 1 cucharada de mantequilla de maní natural. Para la ansiedad por el dulce.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Cena</div>
+    <p>1 palma de mano de proteína + 5-6 cucharadas de arroz o camote + 2 puños de vegetales al vapor.</p>
+  </div>
+</div>
+    
+<div class="bloque entreno-bloque">
+  <div class="bloque-titulo">Ciclismo suave Z2 — 70 min</div>
+  <p><strong>Toda la sesión en Zona 2:</strong> FC 110-130 bpm. Podés conversar sin que te falte el aire. Si subís a Z3 en una cuesta, bajás el ritmo en la bajada.</p>
+  <p style="margin-top:8px;">Esta semana no forzés. El objetivo es reactivar las piernas y el sistema cardiovascular, no demostrar nada. El VO2max vuelve más rápido de lo que bajó si el entrenamiento es consistente y la nutrición acompaña.</p>
+  <p style='margin-top:8px;'>Podés buscar algo con algo más de variación de terreno que la semana anterior.</p>
+  <p style="margin-top:8px; font-style:italic; color:#555;">Hidratante con electrolitos cada 20-25 minutos durante la sesión.</p>
+</div>
+    
+<div class="bloque agua-bloque">
+  <div class="bloque-titulo">Agua e hidratación</div>
+  <p>Mínimo 2.5 litros durante el día. Recordá el vaso al levantarte.</p>
+  <p style="margin-top:6px;">En la sesión de entrenamiento: 300-500 ml de hidratante con electrolitos.</p>
+</div>
+    
+<div class="bloque recuperacion-bloque">
+  <div class="bloque-titulo">Sueño y recuperación</div>
+  <p><strong>Magnesio:</strong> 300-400 mg antes de dormir todos los días.</p>
+  <p style="margin-top:6px;"><strong>Sueño:</strong> A las 9 PM. Tu horario de levantarte temprano es inamovible, así que la hora de dormir también lo es.</p>
+</div>
+  </div>
+</div>
+<div class="dia-card">
+  <div class="dia-header" style="background:#1565c0;">
+    <div class="dia-fecha">Miércoles 19 de agosto</div>
+    <div class="dia-tipo">BICI Z2 + ACONDICIONAMIENTO</div>
+  </div>
+  <div class="dia-body">
+    
+<div class="bloque comidas-bloque">
+  <div class="bloque-titulo">Nutrición del día (día de entrenamiento)</div>
+  <div class="comida">
+    <div class="comida-nombre">Al levantarte</div>
+    <p>1 vaso de agua (250 ml).</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Desayuno</div>
+    <p>1 huevo entero + 2 claras + 1 rebanada de pan cuadrado tostado + queso blanco bajo en grasa + café sin azúcar.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Media mañana</div>
+    <p>1 yogurt griego natural (150 g) + 1 puño de almendras + 1 fruta (naranja, mandarina o manzana).</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Pre-entrenamiento (si entrenás en la tarde con +3h desde el almuerzo)</div>
+    <p>1 rebanada de pan cuadrado blanco con 1 cucharadita de miel, 20 minutos antes. Si entrenás de mañana o cerca del almuerzo, no necesitás nada extra.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Almuerzo</div>
+    <p>1 palma de mano de proteína + 5-6 cucharadas de arroz + 2 puños de vegetales al vapor con limón y sal.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Post-entrenamiento (dentro de 30 minutos)</div>
+    <p>30 g de proteína whey con agua + 1 fruta (naranja, mandarina o manzana). O: yogurt griego con granola y fruta. O: arroz con huevo y vegetales. No dejés pasar esta ventana.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Merienda tarde</div>
+    <p>2 dátiles + 1 cucharada de mantequilla de maní natural. Para la ansiedad por el dulce.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Cena</div>
+    <p>1 palma de mano de proteína + 5-6 cucharadas de arroz o camote + 2 puños de vegetales al vapor.</p>
+  </div>
+</div>
+    
+<div class="bloque entreno-bloque">
+  <div class="bloque-titulo">Bici Z2 (60 min) + Acondicionamiento (30 min) — Sesión continua</div>
+  <p><strong>Primera parte — Bici Z2 (60 min):</strong> Zona 2 durante toda la hora. FC 110-130 bpm. La bici actúa como calentamiento para el acondicionamiento que viene después.</p>
+  <p style="margin-top:8px;"><strong>Transición:</strong> Al terminar la bici, bajás y arrancás el acondicionamiento sin pausa larga.</p>
+  <p style="margin-top:8px;"><strong>Segunda parte — Acondicionamiento (30 min):</strong></p>
+  <p>Bloque 1 (12 min): 3 series de 10 sentadillas + 10 estocadas por pierna + 15 saltos de step. Descanso 40 seg.</p>
+  <p style="margin-top:4px;">Bloque 2 (12 min): 4 rondas de 30 seg mountain climbers + 30 seg descanso + 30 seg plancha.</p>
+  <p style="margin-top:4px;">Enfriamiento (6 min): Estiramientos de cuádriceps, isquiotibiales y cadera.</p>
+  <p style="margin-top:8px; font-style:italic; color:#555;">Llevá hidratante durante toda la sesión. Post-entrenamiento dentro de 30 minutos.</p>
+</div>
+    
+<div class="bloque agua-bloque">
+  <div class="bloque-titulo">Agua e hidratación</div>
+  <p>500-600 ml de hidratante con electrolitos durante la sesión. Los intervalos generan más sudor, no te quedés corto.</p>
+  <p style="margin-top:6px;">Durante el día: mínimo 2.5 litros. El vaso al levantarte es el primero.</p>
+</div>
+    
+<div class="bloque recuperacion-bloque">
+  <div class="bloque-titulo">Sueño y recuperación</div>
+  <p><strong>Magnesio:</strong> 300-400 mg antes de dormir todos los días.</p>
+  <p style="margin-top:6px;"><strong>Sueño:</strong> A las 9 PM. Tu horario de levantarte temprano es inamovible, así que la hora de dormir también lo es.</p>
+</div>
+  </div>
+</div>
+<div class="dia-card">
+  <div class="dia-header" style="background:#e65100;">
+    <div class="dia-fecha">Jueves 20 de agosto</div>
+    <div class="dia-tipo">CICLISMO CON INTERVALOS</div>
+  </div>
+  <div class="dia-body">
+    
+<div class="bloque comidas-bloque">
+  <div class="bloque-titulo">Nutrición del día (día de entrenamiento)</div>
+  <div class="comida">
+    <div class="comida-nombre">Al levantarte</div>
+    <p>1 vaso de agua (250 ml).</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Desayuno</div>
+    <p>1 huevo entero + 2 claras + 1 rebanada de pan cuadrado tostado + queso blanco bajo en grasa + café sin azúcar.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Media mañana</div>
+    <p>1 yogurt griego natural (150 g) + 1 puño de almendras + 1 fruta (naranja, mandarina o manzana).</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Pre-entrenamiento (si entrenás en la tarde con +3h desde el almuerzo)</div>
+    <p>1 rebanada de pan cuadrado blanco con 1 cucharadita de miel, 20 minutos antes. Si entrenás de mañana o cerca del almuerzo, no necesitás nada extra.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Almuerzo</div>
+    <p>1 palma de mano de proteína + 5-6 cucharadas de arroz + 2 puños de vegetales al vapor con limón y sal.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Post-entrenamiento (dentro de 30 minutos)</div>
+    <p>30 g de proteína whey con agua + 1 fruta (naranja, mandarina o manzana). O: yogurt griego con granola y fruta. O: arroz con huevo y vegetales. No dejés pasar esta ventana.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Merienda tarde</div>
+    <p>2 dátiles + 1 cucharada de mantequilla de maní natural. Para la ansiedad por el dulce.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Cena</div>
+    <p>1 palma de mano de proteína + 5-6 cucharadas de arroz o camote + 2 puños de vegetales al vapor.</p>
+  </div>
+</div>
+    
+<div class="bloque entreno-bloque">
+  <div class="bloque-titulo">Ciclismo con intervalos — 75 min</div>
+  <p><strong>Calentamiento (10 min):</strong> Z2 suave, incrementando gradualmente.</p>
+  <p style="margin-top:8px;"><strong>Bloque de intervalos (3 repeticiones):</strong></p>
+  <p>— 5 minutos en Z4: FC 146-157 bpm. Sensación de 7-8 de 10. Casi no podés hablar.</p>
+  <p>— 4 minutos en Z2: FC baja a 120 bpm. Recuperás el aliento completamente.</p>
+  <p style="margin-top:8px;"><strong>Enfriamiento (10 min):</strong> Z2 muy suave hasta bajar la FC por debajo de 110 bpm.</p>
+  <p style="margin-top:8px;"><strong>Restante:</strong> Z2 libre hasta completar los 75 minutos.</p>
+  <p style="margin-top:8px; font-style:italic; color:#555;">Sobre el VO2max: el hecho de que ahora la cuesta de Pilas te saque de Z2 es esperable después de 3 semanas sin entreno estructurado. Con 2-3 semanas de trabajo consistente y buena nutrición, ese número vuelve. No te medís con lo que eras antes de las vacaciones. Te medís con lo que sos hoy y mirás hacia adelante.</p>
+</div>
+    
+<div class="bloque agua-bloque">
+  <div class="bloque-titulo">Agua e hidratación</div>
+  <p>500-600 ml de hidratante con electrolitos durante la sesión. Los intervalos generan más sudor, no te quedés corto.</p>
+  <p style="margin-top:6px;">Durante el día: mínimo 2.5 litros. El vaso al levantarte es el primero.</p>
+</div>
+    
+<div class="bloque recuperacion-bloque">
+  <div class="bloque-titulo">Sueño y recuperación</div>
+  <p><strong>Magnesio:</strong> 300-400 mg antes de dormir todos los días.</p>
+  <p style="margin-top:6px;"><strong>Sueño:</strong> A las 9 PM. Tu horario de levantarte temprano es inamovible, así que la hora de dormir también lo es.</p>
+</div>
+  </div>
+</div>
+<div class="dia-card">
+  <div class="dia-header" style="background:#6a1b9a;">
+    <div class="dia-fecha">Viernes 21 de agosto</div>
+    <div class="dia-tipo">ACONDICIONAMIENTO FUNCIONAL</div>
+  </div>
+  <div class="dia-body">
+    
+<div class="bloque comidas-bloque">
+  <div class="bloque-titulo">Nutrición del día (día de entrenamiento)</div>
+  <div class="comida">
+    <div class="comida-nombre">Al levantarte</div>
+    <p>1 vaso de agua (250 ml).</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Desayuno</div>
+    <p>1 huevo entero + 2 claras + 1 rebanada de pan cuadrado tostado + queso blanco bajo en grasa + café sin azúcar.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Media mañana</div>
+    <p>1 yogurt griego natural (150 g) + 1 puño de almendras + 1 fruta (naranja, mandarina o manzana).</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Pre-entrenamiento (si entrenás en la tarde con +3h desde el almuerzo)</div>
+    <p>1 rebanada de pan cuadrado blanco con 1 cucharadita de miel, 20 minutos antes. Si entrenás de mañana o cerca del almuerzo, no necesitás nada extra.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Almuerzo</div>
+    <p>1 palma de mano de proteína + 5-6 cucharadas de arroz + 2 puños de vegetales al vapor con limón y sal.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Post-entrenamiento (dentro de 30 minutos)</div>
+    <p>30 g de proteína whey con agua + 1 fruta (naranja, mandarina o manzana). O: yogurt griego con granola y fruta. O: arroz con huevo y vegetales. No dejés pasar esta ventana.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Merienda tarde</div>
+    <p>2 dátiles + 1 cucharada de mantequilla de maní natural. Para la ansiedad por el dulce.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Cena</div>
+    <p>1 palma de mano de proteína + 5-6 cucharadas de arroz o camote + 2 puños de vegetales al vapor.</p>
+  </div>
+</div>
+    
+<div class="bloque entreno-bloque">
+  <div class="bloque-titulo">Acondicionamiento funcional — 45 min</div>
+  
+  <p><strong>Calentamiento (5 min):</strong> Trote suave y movimientos dinámicos.</p>
+  <p style="margin-top:8px;"><strong>Bloque 1 — Fuerza tren inferior (15 min):</strong> 3 series de 10 sentadillas profundas + 10 estocadas por pierna + 15 saltos de step. Descanso 45 seg.</p>
+  <p style="margin-top:8px;"><strong>Bloque 2 — Cardio de intensidad (15 min):</strong> 5 rondas: 30 seg burpees o mountain climbers + 30 seg trote + 30 seg descanso.</p>
+  <p style="margin-top:8px;"><strong>Bloque 3 — Core (10 min):</strong> 3 series: 20 crunches + 30 seg plancha + 15 leg raises.</p>
+</div>
+    
+<div class="bloque agua-bloque">
+  <div class="bloque-titulo">Agua e hidratación</div>
+  <p>Mínimo 2.5 litros durante el día. Recordá el vaso al levantarte.</p>
+  <p style="margin-top:6px;">En la sesión de entrenamiento: 300-500 ml de hidratante con electrolitos.</p>
+</div>
+    
+<div class="bloque recuperacion-bloque">
+  <div class="bloque-titulo">Sueño y recuperación</div>
+  <p><strong>Magnesio:</strong> 300-400 mg antes de dormir todos los días.</p>
+  <p style="margin-top:6px;"><strong>Sueño:</strong> A las 9 PM. Tu horario de levantarte temprano es inamovible, así que la hora de dormir también lo es.</p>
+</div>
+  </div>
+</div>
+<div class="dia-card">
+  <div class="dia-header" style="background:#546e7a;">
+    <div class="dia-fecha">Sábado 22 de agosto</div>
+    <div class="dia-tipo">DESCANSO — Preparación fondo</div>
+  </div>
+  <div class="dia-body">
+    
+<div class="bloque comidas-bloque">
+  <div class="bloque-titulo">Nutrición del día</div>
+  <div class="comida">
+    <div class="comida-nombre">Al levantarte</div>
+    <p>1 vaso de agua (250 ml).</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Desayuno</div>
+    <p>1 huevo entero + 2 claras + 1 rebanada de pan cuadrado tostado + queso blanco bajo en grasa + café sin azúcar.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Media mañana</div>
+    <p>1 yogurt griego natural (150 g) + 1 puño de almendras + 1 fruta (naranja, mandarina o manzana).</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Almuerzo</div>
+    <p>1 palma de mano de proteína magra + 5-6 cucharadas de arroz + 2 puños de vegetales al vapor con limón y sal.</p>
+    <p class="nota-comida">En días de descanso el arroz no baja. Tu cuerpo sigue recuperando del entrenamiento anterior.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Merienda tarde</div>
+    <p>2 dátiles + 1 cucharada de mantequilla de maní natural.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Cena</div>
+    <p>1 palma de mano de proteína + 5-6 cucharadas de arroz o camote + 2 puños de vegetales al vapor.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Postre (opcional)</div>
+    <p>Helado casero de yogurt griego + fruta congelada triturada.</p>
+  </div>
+</div>
+    
+<div class="bloque descanso-bloque">
+  <div class="bloque-titulo">Descanso completo — Preparación para el fondo</div>
+  <p>No hay entrenamiento hoy. La adaptación ocurre en reposo.</p>
+  <p style="margin-top:8px;"><strong>Prepará hoy el kit del fondo de mañana:</strong> revisá la bici, cargá el Garmin y el celular, prepará los emparedados con miel en una bolsita, contá los geles y barritas, llenás la mochila hidratante, dejás la ropa lista.</p>
+</div>
+    
+<div class="bloque agua-bloque">
+  <div class="bloque-titulo">Agua e hidratación</div>
+  <p>Mínimo 2.5 litros durante el día. Recordá el vaso al levantarte.</p>
+  <p style="margin-top:6px;">En la sesión de entrenamiento: 300-500 ml de hidratante con electrolitos.</p>
+</div>
+    
+<div class="bloque recuperacion-bloque">
+  <div class="bloque-titulo">Sueño y recuperación</div>
+  <p><strong>Magnesio:</strong> 300-400 mg antes de dormir todos los días.</p>
+  <p style="margin-top:6px;"><strong>Sueño:</strong> A las 9 PM. Tu horario de levantarte temprano es inamovible, así que la hora de dormir también lo es.</p>
+</div>
+  </div>
+</div>
+<div class="dia-card">
+  <div class="dia-header" style="background:#1a5945;">
+    <div class="dia-fecha">Domingo 23 de agosto</div>
+    <div class="dia-tipo">FONDO LARGO — 75 km</div>
+  </div>
+  <div class="dia-body">
+    
+<div class="bloque comidas-bloque">
+  <div class="bloque-titulo">Nutrición del día (día de fondo)</div>
+  <div class="comida">
+    <div class="comida-nombre">Al levantarte</div>
+    <p>1 vaso de agua (250 ml) inmediatamente.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Desayuno (2 horas antes de salir)</div>
+    <p>2 tostadas de pan cuadrado blanco + 2 huevos a la plancha + café. Sin grasa extra, sin experimentar. Liviano y fácil de digerir.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">En ruta</div>
+    <p>Ver el bloque de entrenamiento de hoy para el protocolo completo.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Post-fondo (dentro de 30 minutos de llegar)</div>
+    <p>Comida real, no helados. Opciones: arroz con pollo y vegetales / batido de proteína whey + fruta + leche + avena / sandwich de pan blanco con pollo y aguacate. El cuerpo necesita proteína y carbohidratos, no un postre.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Almuerzo o cena post-fondo</div>
+    <p>1 palma de mano de proteína + 7-8 cucharadas de arroz (hoy podés comer más, el cuerpo lo va a usar para recuperarse) + 2 puños de vegetales al vapor.</p>
+  </div>
+</div>
+    
+<div class="bloque fondo-bloque">
+  <div class="bloque-titulo">Fondo largo — 75 km (estimado 3.5-4 horas)</div>
+  <p><strong>Intensidad:</strong> Toda la ruta en Z2. Si en subidas subís de zona, recuperás en la bajada. Sin forzar.</p>
+  <p style="margin-top:8px;"><strong>Desayuno 2 horas antes:</strong> 2 tostadas de pan blanco + 2 huevos + café. Liviano y consistente.</p>
+  <div style="margin-top:12px; background:#e8f5e9; padding:14px 16px; border-radius:6px; border-left:3px solid #43a047; font-size:13.5px;">
+    
+    <p><strong>Fueling cada 45 minutos (objetivo 35-45 g CHO/hora):</strong></p>
+    <p style="margin-top:6px;">— Min 45: Emparedado de pan blanco con miel (media porción) + 250 ml hidratante con CHO.</p>
+    <p>— Min 90: 1 gel de alta densidad (226ERS High Fructose 55g o IBSports Power Boost 60g) + 200 ml agua.</p>
+    <p>— Min 135: Emparedado de pan blanco con miel + 250 ml hidratante.</p>
+    <p>— Min 180: 1 gel alta densidad + 200 ml agua.</p>
+    <p style="margin-top:8px;"><strong>Hidratante:</strong> Con carbohidratos (IBSports Isocarbs o 226ERS Isotonic). El GLU cero para agua, no para el bidón del fondo.</p>
+  </div>
+  <p style="margin-top:12px;"><strong>Alarmas en el Garmin:</strong> cada 45 min para comer, cada 30 min para hidratante.</p>
+  
+</div>
+    
+<div class="bloque agua-bloque">
+  <div class="bloque-titulo">Agua e hidratación en ruta</div>
+  <p>Para 3.5-4 horas: entre 1.5 y 2.5 litros entre agua e hidratante.</p>
+  <p style="margin-top:6px;">Mochila hidratante de espalda (1-2 litros) + bidón en la bici (500 ml). Recargá en pulperías.</p>
+</div>
+    
+<div class="bloque recuperacion-bloque">
+  <div class="bloque-titulo">Recuperación post-fondo</div>
+  <p><strong>Magnesio:</strong> 300-400 mg (citrato o glicinato) esta noche antes de dormir.</p>
+  <p style="margin-top:6px;"><strong>Mañana:</strong> Descanso activo. Aunque te sintás bien, no entrenés. La adaptación ocurre en reposo.</p>
+  <p style="margin-top:6px;"><strong>Sueño:</strong> A las 9 PM. Ya tenés ese hábito formado.</p>
+</div>
+  </div>
+</div>
+<div class="dia-card">
+  <div class="dia-header" style="background:#546e7a;">
+    <div class="dia-fecha">Lunes 24 de agosto</div>
+    <div class="dia-tipo">DESCANSO ACTIVO — Recuperación</div>
+  </div>
+  <div class="dia-body">
+    
+<div class="bloque comidas-bloque">
+  <div class="bloque-titulo">Nutrición del día</div>
+  <div class="comida">
+    <div class="comida-nombre">Al levantarte</div>
+    <p>1 vaso de agua (250 ml).</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Desayuno</div>
+    <p>1 huevo entero + 2 claras + 1 rebanada de pan cuadrado tostado + queso blanco bajo en grasa + café sin azúcar.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Media mañana</div>
+    <p>1 yogurt griego natural (150 g) + 1 puño de almendras + 1 fruta (naranja, mandarina o manzana).</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Almuerzo</div>
+    <p>1 palma de mano de proteína magra + 5-6 cucharadas de arroz + 2 puños de vegetales al vapor con limón y sal.</p>
+    <p class="nota-comida">En días de descanso el arroz no baja. Tu cuerpo sigue recuperando del entrenamiento anterior.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Merienda tarde</div>
+    <p>2 dátiles + 1 cucharada de mantequilla de maní natural.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Cena</div>
+    <p>1 palma de mano de proteína + 5-6 cucharadas de arroz o camote + 2 puños de vegetales al vapor.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Postre (opcional)</div>
+    <p>Helado casero de yogurt griego + fruta congelada triturada.</p>
+  </div>
+</div>
+    
+<div class="bloque descanso-bloque">
+  <div class="bloque-titulo">Descanso activo — Recuperación post-fondo</div>
+  <p>No hay entrenamiento estructurado. Si querés moverte, una caminata suave de 20-30 minutos está bien. Nada más.</p>
+  <p style="margin-top:8px;"><strong>Aprovechá para:</strong> preparar comidas de los próximos días, comprar las bolsas de vegetales picados, organizar la semana.</p>
+</div>
+    
+<div class="bloque agua-bloque">
+  <div class="bloque-titulo">Agua e hidratación</div>
+  <p>Mínimo 2.5 litros durante el día. Recordá el vaso al levantarte.</p>
+  <p style="margin-top:6px;">En la sesión de entrenamiento: 300-500 ml de hidratante con electrolitos.</p>
+</div>
+    
+<div class="bloque recuperacion-bloque">
+  <div class="bloque-titulo">Sueño y recuperación</div>
+  <p><strong>Magnesio:</strong> 300-400 mg antes de dormir. Ayuda con la recuperación muscular.</p>
+  <p style="margin-top:6px;"><strong>Sueño:</strong> A las 9 PM. Mañana arranca la semana de entrenamiento.</p>
+</div>
+  </div>
+</div>
+</div>
+<div id="semana3" class="section ">
+  <h2 class="section-title">Semana 3 — 25 - 31 de agosto</h2>
+  <div class="contexto-semana">Progresión — recuperar el nivel anterior</div>
+  
+<div class="dia-card">
+  <div class="dia-header" style="background:#2D4A3E;">
+    <div class="dia-fecha">Martes 25 de agosto</div>
+    <div class="dia-tipo">CICLISMO SUAVE — Z2</div>
+  </div>
+  <div class="dia-body">
+    
+<div class="bloque comidas-bloque">
+  <div class="bloque-titulo">Nutrición del día (día de entrenamiento)</div>
+  <div class="comida">
+    <div class="comida-nombre">Al levantarte</div>
+    <p>1 vaso de agua (250 ml).</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Desayuno</div>
+    <p>1 huevo entero + 2 claras + 1 rebanada de pan cuadrado tostado + queso blanco bajo en grasa + café sin azúcar.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Media mañana</div>
+    <p>1 yogurt griego natural (150 g) + 1 puño de almendras + 1 fruta (naranja, mandarina o manzana).</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Pre-entrenamiento (si entrenás en la tarde con +3h desde el almuerzo)</div>
+    <p>1 rebanada de pan cuadrado blanco con 1 cucharadita de miel, 20 minutos antes. Si entrenás de mañana o cerca del almuerzo, no necesitás nada extra.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Almuerzo</div>
+    <p>1 palma de mano de proteína + 5-6 cucharadas de arroz + 2 puños de vegetales al vapor con limón y sal.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Post-entrenamiento (dentro de 30 minutos)</div>
+    <p>30 g de proteína whey con agua + 1 fruta (naranja, mandarina o manzana). O: yogurt griego con granola y fruta. O: arroz con huevo y vegetales. No dejés pasar esta ventana.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Merienda tarde</div>
+    <p>2 dátiles + 1 cucharada de mantequilla de maní natural. Para la ansiedad por el dulce.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Cena</div>
+    <p>1 palma de mano de proteína + 5-6 cucharadas de arroz o camote + 2 puños de vegetales al vapor.</p>
+  </div>
+</div>
+    
+<div class="bloque entreno-bloque">
+  <div class="bloque-titulo">Ciclismo suave Z2 — 70 min</div>
+  <p><strong>Toda la sesión en Zona 2:</strong> FC 110-130 bpm. Podés conversar sin que te falte el aire. Si subís a Z3 en una cuesta, bajás el ritmo en la bajada.</p>
+  <p style="margin-top:8px;">Esta semana no forzés. El objetivo es reactivar las piernas y el sistema cardiovascular, no demostrar nada. El VO2max vuelve más rápido de lo que bajó si el entrenamiento es consistente y la nutrición acompaña.</p>
+  <p style='margin-top:8px;'>Podés buscar algo con algo más de variación de terreno que la semana anterior.</p>
+  <p style="margin-top:8px; font-style:italic; color:#555;">Hidratante con electrolitos cada 20-25 minutos durante la sesión.</p>
+</div>
+    
+<div class="bloque agua-bloque">
+  <div class="bloque-titulo">Agua e hidratación</div>
+  <p>Mínimo 2.5 litros durante el día. Recordá el vaso al levantarte.</p>
+  <p style="margin-top:6px;">En la sesión de entrenamiento: 300-500 ml de hidratante con electrolitos.</p>
+</div>
+    
+<div class="bloque recuperacion-bloque">
+  <div class="bloque-titulo">Sueño y recuperación</div>
+  <p><strong>Magnesio:</strong> 300-400 mg antes de dormir todos los días.</p>
+  <p style="margin-top:6px;"><strong>Sueño:</strong> A las 9 PM. Tu horario de levantarte temprano es inamovible, así que la hora de dormir también lo es.</p>
+</div>
+  </div>
+</div>
+<div class="dia-card">
+  <div class="dia-header" style="background:#1565c0;">
+    <div class="dia-fecha">Miércoles 26 de agosto</div>
+    <div class="dia-tipo">BICI Z2 + ACONDICIONAMIENTO</div>
+  </div>
+  <div class="dia-body">
+    
+<div class="bloque comidas-bloque">
+  <div class="bloque-titulo">Nutrición del día (día de entrenamiento)</div>
+  <div class="comida">
+    <div class="comida-nombre">Al levantarte</div>
+    <p>1 vaso de agua (250 ml).</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Desayuno</div>
+    <p>1 huevo entero + 2 claras + 1 rebanada de pan cuadrado tostado + queso blanco bajo en grasa + café sin azúcar.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Media mañana</div>
+    <p>1 yogurt griego natural (150 g) + 1 puño de almendras + 1 fruta (naranja, mandarina o manzana).</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Pre-entrenamiento (si entrenás en la tarde con +3h desde el almuerzo)</div>
+    <p>1 rebanada de pan cuadrado blanco con 1 cucharadita de miel, 20 minutos antes. Si entrenás de mañana o cerca del almuerzo, no necesitás nada extra.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Almuerzo</div>
+    <p>1 palma de mano de proteína + 5-6 cucharadas de arroz + 2 puños de vegetales al vapor con limón y sal.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Post-entrenamiento (dentro de 30 minutos)</div>
+    <p>30 g de proteína whey con agua + 1 fruta (naranja, mandarina o manzana). O: yogurt griego con granola y fruta. O: arroz con huevo y vegetales. No dejés pasar esta ventana.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Merienda tarde</div>
+    <p>2 dátiles + 1 cucharada de mantequilla de maní natural. Para la ansiedad por el dulce.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Cena</div>
+    <p>1 palma de mano de proteína + 5-6 cucharadas de arroz o camote + 2 puños de vegetales al vapor.</p>
+  </div>
+</div>
+    
+<div class="bloque entreno-bloque">
+  <div class="bloque-titulo">Bici Z2 (60 min) + Acondicionamiento (30 min) — Sesión continua</div>
+  <p><strong>Primera parte — Bici Z2 (60 min):</strong> Zona 2 durante toda la hora. FC 110-130 bpm. La bici actúa como calentamiento para el acondicionamiento que viene después.</p>
+  <p style="margin-top:8px;"><strong>Transición:</strong> Al terminar la bici, bajás y arrancás el acondicionamiento sin pausa larga.</p>
+  <p style="margin-top:8px;"><strong>Segunda parte — Acondicionamiento (30 min):</strong></p>
+  <p>Bloque 1 (12 min): 3 series de 10 sentadillas + 10 estocadas por pierna + 15 saltos de step. Descanso 40 seg.</p>
+  <p style="margin-top:4px;">Bloque 2 (12 min): 4 rondas de 30 seg mountain climbers + 30 seg descanso + 30 seg plancha.</p>
+  <p style="margin-top:4px;">Enfriamiento (6 min): Estiramientos de cuádriceps, isquiotibiales y cadera.</p>
+  <p style="margin-top:8px; font-style:italic; color:#555;">Llevá hidratante durante toda la sesión. Post-entrenamiento dentro de 30 minutos.</p>
+</div>
+    
+<div class="bloque agua-bloque">
+  <div class="bloque-titulo">Agua e hidratación</div>
+  <p>500-600 ml de hidratante con electrolitos durante la sesión. Los intervalos generan más sudor, no te quedés corto.</p>
+  <p style="margin-top:6px;">Durante el día: mínimo 2.5 litros. El vaso al levantarte es el primero.</p>
+</div>
+    
+<div class="bloque recuperacion-bloque">
+  <div class="bloque-titulo">Sueño y recuperación</div>
+  <p><strong>Magnesio:</strong> 300-400 mg antes de dormir todos los días.</p>
+  <p style="margin-top:6px;"><strong>Sueño:</strong> A las 9 PM. Tu horario de levantarte temprano es inamovible, así que la hora de dormir también lo es.</p>
+</div>
+  </div>
+</div>
+<div class="dia-card">
+  <div class="dia-header" style="background:#e65100;">
+    <div class="dia-fecha">Jueves 27 de agosto</div>
+    <div class="dia-tipo">CICLISMO CON INTERVALOS</div>
+  </div>
+  <div class="dia-body">
+    
+<div class="bloque comidas-bloque">
+  <div class="bloque-titulo">Nutrición del día (día de entrenamiento)</div>
+  <div class="comida">
+    <div class="comida-nombre">Al levantarte</div>
+    <p>1 vaso de agua (250 ml).</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Desayuno</div>
+    <p>1 huevo entero + 2 claras + 1 rebanada de pan cuadrado tostado + queso blanco bajo en grasa + café sin azúcar.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Media mañana</div>
+    <p>1 yogurt griego natural (150 g) + 1 puño de almendras + 1 fruta (naranja, mandarina o manzana).</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Pre-entrenamiento (si entrenás en la tarde con +3h desde el almuerzo)</div>
+    <p>1 rebanada de pan cuadrado blanco con 1 cucharadita de miel, 20 minutos antes. Si entrenás de mañana o cerca del almuerzo, no necesitás nada extra.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Almuerzo</div>
+    <p>1 palma de mano de proteína + 5-6 cucharadas de arroz + 2 puños de vegetales al vapor con limón y sal.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Post-entrenamiento (dentro de 30 minutos)</div>
+    <p>30 g de proteína whey con agua + 1 fruta (naranja, mandarina o manzana). O: yogurt griego con granola y fruta. O: arroz con huevo y vegetales. No dejés pasar esta ventana.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Merienda tarde</div>
+    <p>2 dátiles + 1 cucharada de mantequilla de maní natural. Para la ansiedad por el dulce.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Cena</div>
+    <p>1 palma de mano de proteína + 5-6 cucharadas de arroz o camote + 2 puños de vegetales al vapor.</p>
+  </div>
+</div>
+    
+<div class="bloque entreno-bloque">
+  <div class="bloque-titulo">Ciclismo con intervalos — 75 min</div>
+  <p><strong>Calentamiento (10 min):</strong> Z2 suave, incrementando gradualmente.</p>
+  <p style="margin-top:8px;"><strong>Bloque de intervalos (4 repeticiones):</strong></p>
+  <p>— 5 minutos en Z4: FC 146-157 bpm. Sensación de 7-8 de 10. Casi no podés hablar.</p>
+  <p>— 4 minutos en Z2: FC baja a 120 bpm. Recuperás el aliento completamente.</p>
+  <p style="margin-top:8px;"><strong>Enfriamiento (10 min):</strong> Z2 muy suave hasta bajar la FC por debajo de 110 bpm.</p>
+  <p style="margin-top:8px;"><strong>Restante:</strong> Z2 libre hasta completar los 75 minutos.</p>
+  <p style="margin-top:8px; font-style:italic; color:#555;">Sobre el VO2max: el hecho de que ahora la cuesta de Pilas te saque de Z2 es esperable después de 3 semanas sin entreno estructurado. Con 2-3 semanas de trabajo consistente y buena nutrición, ese número vuelve. No te medís con lo que eras antes de las vacaciones. Te medís con lo que sos hoy y mirás hacia adelante.</p>
+</div>
+    
+<div class="bloque agua-bloque">
+  <div class="bloque-titulo">Agua e hidratación</div>
+  <p>500-600 ml de hidratante con electrolitos durante la sesión. Los intervalos generan más sudor, no te quedés corto.</p>
+  <p style="margin-top:6px;">Durante el día: mínimo 2.5 litros. El vaso al levantarte es el primero.</p>
+</div>
+    
+<div class="bloque recuperacion-bloque">
+  <div class="bloque-titulo">Sueño y recuperación</div>
+  <p><strong>Magnesio:</strong> 300-400 mg antes de dormir todos los días.</p>
+  <p style="margin-top:6px;"><strong>Sueño:</strong> A las 9 PM. Tu horario de levantarte temprano es inamovible, así que la hora de dormir también lo es.</p>
+</div>
+  </div>
+</div>
+<div class="dia-card">
+  <div class="dia-header" style="background:#6a1b9a;">
+    <div class="dia-fecha">Viernes 28 de agosto</div>
+    <div class="dia-tipo">ACONDICIONAMIENTO FUNCIONAL</div>
+  </div>
+  <div class="dia-body">
+    
+<div class="bloque comidas-bloque">
+  <div class="bloque-titulo">Nutrición del día (día de entrenamiento)</div>
+  <div class="comida">
+    <div class="comida-nombre">Al levantarte</div>
+    <p>1 vaso de agua (250 ml).</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Desayuno</div>
+    <p>1 huevo entero + 2 claras + 1 rebanada de pan cuadrado tostado + queso blanco bajo en grasa + café sin azúcar.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Media mañana</div>
+    <p>1 yogurt griego natural (150 g) + 1 puño de almendras + 1 fruta (naranja, mandarina o manzana).</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Pre-entrenamiento (si entrenás en la tarde con +3h desde el almuerzo)</div>
+    <p>1 rebanada de pan cuadrado blanco con 1 cucharadita de miel, 20 minutos antes. Si entrenás de mañana o cerca del almuerzo, no necesitás nada extra.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Almuerzo</div>
+    <p>1 palma de mano de proteína + 5-6 cucharadas de arroz + 2 puños de vegetales al vapor con limón y sal.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Post-entrenamiento (dentro de 30 minutos)</div>
+    <p>30 g de proteína whey con agua + 1 fruta (naranja, mandarina o manzana). O: yogurt griego con granola y fruta. O: arroz con huevo y vegetales. No dejés pasar esta ventana.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Merienda tarde</div>
+    <p>2 dátiles + 1 cucharada de mantequilla de maní natural. Para la ansiedad por el dulce.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Cena</div>
+    <p>1 palma de mano de proteína + 5-6 cucharadas de arroz o camote + 2 puños de vegetales al vapor.</p>
+  </div>
+</div>
+    
+<div class="bloque entreno-bloque">
+  <div class="bloque-titulo">Acondicionamiento funcional — 45 min</div>
+  
+  <p><strong>Calentamiento (5 min):</strong> Trote suave y movimientos dinámicos.</p>
+  <p style="margin-top:8px;"><strong>Bloque 1 — Fuerza tren inferior (15 min):</strong> 3 series de 10 sentadillas profundas + 10 estocadas por pierna + 15 saltos de step. Descanso 45 seg.</p>
+  <p style="margin-top:8px;"><strong>Bloque 2 — Cardio de intensidad (15 min):</strong> 5 rondas: 30 seg burpees o mountain climbers + 30 seg trote + 30 seg descanso.</p>
+  <p style="margin-top:8px;"><strong>Bloque 3 — Core (10 min):</strong> 3 series: 20 crunches + 30 seg plancha + 15 leg raises.</p>
+</div>
+    
+<div class="bloque agua-bloque">
+  <div class="bloque-titulo">Agua e hidratación</div>
+  <p>Mínimo 2.5 litros durante el día. Recordá el vaso al levantarte.</p>
+  <p style="margin-top:6px;">En la sesión de entrenamiento: 300-500 ml de hidratante con electrolitos.</p>
+</div>
+    
+<div class="bloque recuperacion-bloque">
+  <div class="bloque-titulo">Sueño y recuperación</div>
+  <p><strong>Magnesio:</strong> 300-400 mg antes de dormir todos los días.</p>
+  <p style="margin-top:6px;"><strong>Sueño:</strong> A las 9 PM. Tu horario de levantarte temprano es inamovible, así que la hora de dormir también lo es.</p>
+</div>
+  </div>
+</div>
+<div class="dia-card">
+  <div class="dia-header" style="background:#546e7a;">
+    <div class="dia-fecha">Sábado 29 de agosto</div>
+    <div class="dia-tipo">DESCANSO — Preparación fondo</div>
+  </div>
+  <div class="dia-body">
+    
+<div class="bloque comidas-bloque">
+  <div class="bloque-titulo">Nutrición del día</div>
+  <div class="comida">
+    <div class="comida-nombre">Al levantarte</div>
+    <p>1 vaso de agua (250 ml).</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Desayuno</div>
+    <p>1 huevo entero + 2 claras + 1 rebanada de pan cuadrado tostado + queso blanco bajo en grasa + café sin azúcar.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Media mañana</div>
+    <p>1 yogurt griego natural (150 g) + 1 puño de almendras + 1 fruta (naranja, mandarina o manzana).</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Almuerzo</div>
+    <p>1 palma de mano de proteína magra + 5-6 cucharadas de arroz + 2 puños de vegetales al vapor con limón y sal.</p>
+    <p class="nota-comida">En días de descanso el arroz no baja. Tu cuerpo sigue recuperando del entrenamiento anterior.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Merienda tarde</div>
+    <p>2 dátiles + 1 cucharada de mantequilla de maní natural.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Cena</div>
+    <p>1 palma de mano de proteína + 5-6 cucharadas de arroz o camote + 2 puños de vegetales al vapor.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Postre (opcional)</div>
+    <p>Helado casero de yogurt griego + fruta congelada triturada.</p>
+  </div>
+</div>
+    
+<div class="bloque descanso-bloque">
+  <div class="bloque-titulo">Descanso completo — Preparación para el fondo</div>
+  <p>No hay entrenamiento hoy. La adaptación ocurre en reposo.</p>
+  <p style="margin-top:8px;"><strong>Prepará hoy el kit del fondo de mañana:</strong> revisá la bici, cargá el Garmin y el celular, prepará los emparedados con miel en una bolsita, contá los geles y barritas, llenás la mochila hidratante, dejás la ropa lista.</p>
+</div>
+    
+<div class="bloque agua-bloque">
+  <div class="bloque-titulo">Agua e hidratación</div>
+  <p>Mínimo 2.5 litros durante el día. Recordá el vaso al levantarte.</p>
+  <p style="margin-top:6px;">En la sesión de entrenamiento: 300-500 ml de hidratante con electrolitos.</p>
+</div>
+    
+<div class="bloque recuperacion-bloque">
+  <div class="bloque-titulo">Sueño y recuperación</div>
+  <p><strong>Magnesio:</strong> 300-400 mg antes de dormir todos los días.</p>
+  <p style="margin-top:6px;"><strong>Sueño:</strong> A las 9 PM. Tu horario de levantarte temprano es inamovible, así que la hora de dormir también lo es.</p>
+</div>
+  </div>
+</div>
+<div class="dia-card">
+  <div class="dia-header" style="background:#1a5945;">
+    <div class="dia-fecha">Domingo 30 de agosto</div>
+    <div class="dia-tipo">FONDO LARGO — 90 km</div>
+  </div>
+  <div class="dia-body">
+    
+<div class="bloque comidas-bloque">
+  <div class="bloque-titulo">Nutrición del día (día de fondo)</div>
+  <div class="comida">
+    <div class="comida-nombre">Al levantarte</div>
+    <p>1 vaso de agua (250 ml) inmediatamente.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Desayuno (2 horas antes de salir)</div>
+    <p>2 tostadas de pan cuadrado blanco + 2 huevos a la plancha + café. Sin grasa extra, sin experimentar. Liviano y fácil de digerir.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">En ruta</div>
+    <p>Ver el bloque de entrenamiento de hoy para el protocolo completo.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Post-fondo (dentro de 30 minutos de llegar)</div>
+    <p>Comida real, no helados. Opciones: arroz con pollo y vegetales / batido de proteína whey + fruta + leche + avena / sandwich de pan blanco con pollo y aguacate. El cuerpo necesita proteína y carbohidratos, no un postre.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Almuerzo o cena post-fondo</div>
+    <p>1 palma de mano de proteína + 7-8 cucharadas de arroz (hoy podés comer más, el cuerpo lo va a usar para recuperarse) + 2 puños de vegetales al vapor.</p>
+  </div>
+</div>
+    
+<div class="bloque fondo-bloque">
+  <div class="bloque-titulo">Fondo largo — 90 km (estimado 4-4.5 horas)</div>
+  <p><strong>Intensidad:</strong> Toda la ruta en Z2. Si en subidas subís de zona, recuperás en la bajada. Sin forzar.</p>
+  <p style="margin-top:8px;"><strong>Desayuno 2 horas antes:</strong> 2 tostadas de pan blanco + 2 huevos + café. Liviano y consistente.</p>
+  <div style="margin-top:12px; background:#e8f5e9; padding:14px 16px; border-radius:6px; border-left:3px solid #43a047; font-size:13.5px;">
+    
+    <p><strong>Fueling cada 45 minutos (objetivo 35-45 g CHO/hora):</strong></p>
+    <p style="margin-top:6px;">— Min 45: Emparedado de pan blanco con miel (media porción) + 250 ml hidratante con CHO.</p>
+    <p>— Min 90: 1 gel de alta densidad (226ERS High Fructose 55g o IBSports Power Boost 60g) + 200 ml agua.</p>
+    <p>— Min 135: Emparedado de pan blanco con miel + 250 ml hidratante.</p>
+    <p>— Min 180: 1 gel alta densidad + 200 ml agua.</p>
+    <p style="margin-top:8px;"><strong>Hidratante:</strong> Con carbohidratos (IBSports Isocarbs o 226ERS Isotonic). El GLU cero para agua, no para el bidón del fondo.</p>
+  </div>
+  <p style="margin-top:12px;"><strong>Alarmas en el Garmin:</strong> cada 45 min para comer, cada 30 min para hidratante.</p>
+  
+</div>
+    
+<div class="bloque agua-bloque">
+  <div class="bloque-titulo">Agua e hidratación en ruta</div>
+  <p>Para 4-4.5 horas: entre 1.5 y 2.5 litros entre agua e hidratante.</p>
+  <p style="margin-top:6px;">Mochila hidratante de espalda (1-2 litros) + bidón en la bici (500 ml). Recargá en pulperías.</p>
+</div>
+    
+<div class="bloque recuperacion-bloque">
+  <div class="bloque-titulo">Recuperación post-fondo</div>
+  <p><strong>Magnesio:</strong> 300-400 mg (citrato o glicinato) esta noche antes de dormir.</p>
+  <p style="margin-top:6px;"><strong>Mañana:</strong> Descanso activo. Aunque te sintás bien, no entrenés. La adaptación ocurre en reposo.</p>
+  <p style="margin-top:6px;"><strong>Sueño:</strong> A las 9 PM. Ya tenés ese hábito formado.</p>
+</div>
+  </div>
+</div>
+<div class="dia-card">
+  <div class="dia-header" style="background:#546e7a;">
+    <div class="dia-fecha">Lunes 31 de agosto</div>
+    <div class="dia-tipo">DESCANSO ACTIVO — Recuperación</div>
+  </div>
+  <div class="dia-body">
+    
+<div class="bloque comidas-bloque">
+  <div class="bloque-titulo">Nutrición del día</div>
+  <div class="comida">
+    <div class="comida-nombre">Al levantarte</div>
+    <p>1 vaso de agua (250 ml).</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Desayuno</div>
+    <p>1 huevo entero + 2 claras + 1 rebanada de pan cuadrado tostado + queso blanco bajo en grasa + café sin azúcar.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Media mañana</div>
+    <p>1 yogurt griego natural (150 g) + 1 puño de almendras + 1 fruta (naranja, mandarina o manzana).</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Almuerzo</div>
+    <p>1 palma de mano de proteína magra + 5-6 cucharadas de arroz + 2 puños de vegetales al vapor con limón y sal.</p>
+    <p class="nota-comida">En días de descanso el arroz no baja. Tu cuerpo sigue recuperando del entrenamiento anterior.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Merienda tarde</div>
+    <p>2 dátiles + 1 cucharada de mantequilla de maní natural.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Cena</div>
+    <p>1 palma de mano de proteína + 5-6 cucharadas de arroz o camote + 2 puños de vegetales al vapor.</p>
+  </div>
+  <div class="comida">
+    <div class="comida-nombre">Postre (opcional)</div>
+    <p>Helado casero de yogurt griego + fruta congelada triturada.</p>
+  </div>
+</div>
+    
+<div class="bloque descanso-bloque">
+  <div class="bloque-titulo">Descanso activo — Recuperación post-fondo</div>
+  <p>No hay entrenamiento estructurado. Si querés moverte, una caminata suave de 20-30 minutos está bien. Nada más.</p>
+  <p style="margin-top:8px;"><strong>Aprovechá para:</strong> preparar comidas de los próximos días, comprar las bolsas de vegetales picados, organizar la semana.</p>
+</div>
+    
+<div class="bloque agua-bloque">
+  <div class="bloque-titulo">Agua e hidratación</div>
+  <p>Mínimo 2.5 litros durante el día. Recordá el vaso al levantarte.</p>
+  <p style="margin-top:6px;">En la sesión de entrenamiento: 300-500 ml de hidratante con electrolitos.</p>
+</div>
+    
+<div class="bloque recuperacion-bloque">
+  <div class="bloque-titulo">Sueño y recuperación</div>
+  <p><strong>Magnesio:</strong> 300-400 mg antes de dormir. Ayuda con la recuperación muscular.</p>
+  <p style="margin-top:6px;"><strong>Sueño:</strong> A las 9 PM. Mañana arranca la semana de entrenamiento.</p>
+</div>
+  </div>
+</div>
+</div>
+
+    </div>
+
+    <div class="footer">
+        <p>Asesoría Nutricional: Isa Herra | eat&flow Nutrición Deportiva</p>
+        <p>@eatandflow.cr | @isaherra.13</p>
+        <p style="font-size:12px; opacity:0.7; margin-top:6px;">Plan personalizado y confidencial para Andrés Induni — Agosto 2026</p>
+    </div>
+
+</div>
+<script>
+    function showSection(id, btn) {
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        btn.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>
+</body>
+</html>
