@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Mes 5 | eat&flow | Tania</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #F5F9F7;
+            color: #2D4A3E;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container { max-width: 700px; margin: 0 auto; }
+
+        .header {
+            background: linear-gradient(135deg, #1a5945 0%, #2D4A3E 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-bottom: 4px solid #8bc34a;
+        }
+
+        .header .brand { font-size: 20px; font-weight: 700; letter-spacing: 3px; margin-bottom: 14px; opacity: 0.9; text-transform: uppercase; }
+        .header h1 { font-size: 25px; font-weight: 700; margin-bottom: 6px; line-height: 1.3; }
+        .header .subtitulo { font-size: 14px; opacity: 0.85; margin-top: 6px; }
+        .header .asesoria { font-size: 12.5px; opacity: 0.75; margin-top: 5px; letter-spacing: 1px; }
+
+        .badge {
+            display: inline-block;
+            background: #ff9800;
+            color: white;
+            font-size: 12.5px;
+            font-weight: 700;
+            padding: 5px 18px;
+            border-radius: 50px;
+            margin-top: 14px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .intro-box {
+            background: white;
+            padding: 22px;
+            border-radius: 12px;
+            margin-bottom: 22px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+            border-left: 4px solid #ff9800;
+        }
+
+        .intro-box h2 { color: #ff9800; font-size: 16px; margin-bottom: 9px; font-weight: 700; }
+        .intro-box p { color: #555; line-height: 1.75; font-size: 14px; margin-bottom: 6px; }
+        .intro-box p:last-child { margin-bottom: 0; }
+
+        .section {
+            background: white;
+            padding: 28px 24px;
+            margin-bottom: 18px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+        }
+
+        .section h2 {
+            color: #1a5945;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 18px;
+            padding-bottom: 11px;
+            border-bottom: 3px solid #8bc34a;
+        }
+
+        .section h3 {
+            color: #2D4A3E;
+            font-size: 13.5px;
+            font-weight: 700;
+            margin: 24px 0 12px;
+            padding: 6px 12px;
+            background: #f0f7f4;
+            border-radius: 6px;
+            border-left: 3px solid #8bc34a;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .field { margin-bottom: 20px; }
+
+        .field label {
+            display: block;
+            font-weight: 600;
+            color: #2D4A3E;
+            margin-bottom: 7px;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .field input,
+        .field textarea,
+        .field select {
+            width: 100%;
+            padding: 11px 14px;
+            border: 2px solid #E0EDE8;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: inherit;
+            background: #F5FAF8;
+            color: #2D4A3E;
+            transition: border-color 0.25s, background 0.25s;
+        }
+
+        .field input:focus,
+        .field textarea:focus,
+        .field select:focus {
+            outline: none;
+            border-color: #8bc34a;
+            background: white;
+        }
+
+        .field textarea { min-height: 90px; resize: vertical; }
+
+        .field small {
+            display: block;
+            color: #7a9a8e;
+            font-size: 12px;
+            margin-top: 5px;
+            font-style: italic;
+            line-height: 1.4;
+        }
+
+        .radio-group, .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .radio-group label,
+        .checkbox-group label {
+            display: flex;
+            align-items: flex-start;
+            padding: 10px 13px;
+            background: #F5FAF8;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-weight: normal;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .radio-group label:hover,
+        .checkbox-group label:hover { background: #e6f2ec; }
+
+        .radio-group input[type="radio"],
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            margin-right: 10px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .campos-dobles {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .dia-horario {
+            background: #F5FAF8;
+            border-radius: 8px;
+            padding: 14px 16px;
+            margin-bottom: 10px;
+            border: 1px solid #E0EDE8;
+        }
+
+        .dia-horario .dia-nombre {
+            font-weight: 700;
+            color: #1a5945;
+            font-size: 13.5px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .medida-nota {
+            background: #e8f5e9;
+            border-left: 3px solid #43a047;
+            padding: 12px 14px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+            font-size: 13px;
+            color: #2e7d32;
+            line-height: 1.6;
+        }
+
+        .alerta-box {
+            background: #fff8f0;
+            border: 2px solid #ff9800;
+            border-radius: 10px;
+            padding: 16px 18px;
+            margin-bottom: 20px;
+        }
+
+        .alerta-box p { color: #7a4800; font-size: 13.5px; line-height: 1.6; }
+
+        .submit-section {
+            background: linear-gradient(135deg, #1a5945, #2D4A3E);
+            color: white;
+            padding: 32px 28px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .submit-section h2 { font-size: 20px; margin-bottom: 10px; }
+        .submit-section p { opacity: 0.9; font-size: 14px; margin-bottom: 5px; }
+
+        .submit-btn {
+            background: #ff9800;
+            color: white;
+            padding: 14px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 16px;
+            box-shadow: 0 4px 15px rgba(255,152,0,0.35);
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 22px rgba(255,152,0,0.45);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 18px;
+            color: #8a9e98;
+            font-size: 12.5px;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            .header { padding: 26px 16px; }
+            .section { padding: 20px 14px; }
+            .campos-dobles { grid-template-columns: 1fr; }
+            .submit-section { padding: 24px 16px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="header">
+        <div class="brand">eat&flow</div>
+        <h1>Check-in Mes 5<br>Plan Full Endurance</h1>
+        <p class="subtitulo">Agosto — Septiembre 2026</p>
+        <p class="asesoria">Asesoría Nutricional — Isa Herra</p>
+        <div class="badge">Tania Sun Cheong</div>
+    </div>
+
+    <div class="intro-box">
+        <h2>¡Hola Tania!</h2>
+        <p>Este formulario es el puente entre el Mes 4 y el Mes 5. Necesito entender tu tiempo real disponible, cómo te fue con los cambios que veníamos trabajando, tus medidas actuales, y hacia dónde querés apuntar este mes.</p>
+        <p><strong>Tiempo estimado:</strong> 15-20 minutos.</p>
+    </div>
+
+    <form action="https://formspree.io/f/mzzodpje" method="POST">
+
+        <input type="hidden" name="formulario" value="Check-in Mes 5 — Tania Sun Cheong — Agosto 2026">
+
+        <!-- SECCIÓN 1 — TIEMPO DISPONIBLE REAL -->
+        <div class="section">
+            <h2>1. Tu Tiempo Real Disponible</h2>
+
+            <div class="alerta-box">
+                <p>Igual que el mes pasado, necesito tu horario exacto para que el plan sea algo que realmente puedas cumplir.</p>
+            </div>
+
+            <h3>Entre semana</h3>
+
+            <div class="dia-horario">
+                <div class="dia-nombre">Lunes</div>
+                <div class="campos-dobles">
+                    <div class="field">
+                        <label>¿Tenés tiempo disponible para deporte? *</label>
+                        <select name="lunes-disponible" required>
+                            <option value="">Seleccionar</option>
+                            <option>Sí</option>
+                            <option>No</option>
+                            <option>A veces</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label>¿A qué hora y cuánto tiempo?</label>
+                        <input type="text" name="lunes-horario" placeholder="Ej: 7:00am, 1.5 horas">
+                    </div>
+                </div>
+            </div>
+
+            <div class="dia-horario">
+                <div class="dia-nombre">Martes</div>
+                <div class="campos-dobles">
+                    <div class="field">
+                        <label>¿Tenés tiempo disponible para deporte? *</label>
+                        <select name="martes-disponible" required>
+                            <option value="">Seleccionar</option>
+                            <option>Sí</option>
+                            <option>No</option>
+                            <option>A veces</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label>¿A qué hora y cuánto tiempo?</label>
+                        <input type="text" name="martes-horario" placeholder="Ej: 7:00am, 1.5 horas">
+                    </div>
+                </div>
+            </div>
+
+            <div class="dia-horario">
+                <div class="dia-nombre">Miércoles</div>
+                <div class="campos-dobles">
+                    <div class="field">
+                        <label>¿Tenés tiempo disponible para deporte? *</label>
+                        <select name="miercoles-disponible" required>
+                            <option value="">Seleccionar</option>
+                            <option>Sí</option>
+                            <option>No</option>
+                            <option>A veces</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label>¿A qué hora y cuánto tiempo?</label>
+                        <input type="text" name="miercoles-horario" placeholder="Ej: 7:00am, 1.5 horas">
+                    </div>
+                </div>
+            </div>
+
+            <div class="dia-horario">
+                <div class="dia-nombre">Jueves</div>
+                <div class="campos-dobles">
+                    <div class="field">
+                        <label>¿Tenés tiempo disponible para deporte? *</label>
+                        <select name="jueves-disponible" required>
+                            <option value="">Seleccionar</option>
+                            <option>Sí</option>
+                            <option>No</option>
+                            <option>A veces</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label>¿A qué hora y cuánto tiempo?</label>
+                        <input type="text" name="jueves-horario" placeholder="Ej: 7:00am, 1.5 horas">
+                    </div>
+                </div>
+            </div>
+
+            <div class="dia-horario">
+                <div class="dia-nombre">Viernes</div>
+                <div class="campos-dobles">
+                    <div class="field">
+                        <label>¿Tenés tiempo disponible para deporte? *</label>
+                        <select name="viernes-disponible" required>
+                            <option value="">Seleccionar</option>
+                            <option>Sí</option>
+                            <option>No</option>
+                            <option>A veces</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label>¿A qué hora y cuánto tiempo?</label>
+                        <input type="text" name="viernes-horario" placeholder="Ej: 7:00am, 1.5 horas">
+                    </div>
+                </div>
+            </div>
+
+            <h3>Fin de semana</h3>
+
+            <div class="dia-horario">
+                <div class="dia-nombre">Sábado</div>
+                <div class="campos-dobles">
+                    <div class="field">
+                        <label>¿Tenés tiempo disponible para deporte? *</label>
+                        <select name="sabado-disponible" required>
+                            <option value="">Seleccionar</option>
+                            <option>Sí</option>
+                            <option>No, trabajo en la feria</option>
+                            <option>A veces</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label>¿A qué hora y cuánto tiempo?</label>
+                        <input type="text" name="sabado-horario" placeholder="Ej: Feria 5am-8:30am">
+                    </div>
+                </div>
+            </div>
+
+            <div class="dia-horario">
+                <div class="dia-nombre">Domingo</div>
+                <div class="campos-dobles">
+                    <div class="field">
+                        <label>¿Tenés tiempo disponible para deporte? *</label>
+                        <select name="domingo-disponible" required>
+                            <option value="">Seleccionar</option>
+                            <option>Sí</option>
+                            <option>No</option>
+                            <option>A veces</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label>¿A qué hora y cuánto tiempo?</label>
+                        <input type="text" name="domingo-horario" placeholder="Ej: 6am, hasta 3 horas">
+                    </div>
+                </div>
+            </div>
+
+            <div class="field">
+                <label>¿Cambió algo en tu horario de trabajo (restaurante o tatuajes) que afecte tu disponibilidad? *</label>
+                <textarea name="cambios-horario-trabajo" placeholder="Ej: Ya no tengo que ir tan temprano por las compras. O: Todo sigue igual." required></textarea>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 2 — SEGUIMIENTO DE CAMBIOS -->
+        <div class="section">
+            <h2>2. Seguimiento del Mes 4</h2>
+
+            <h3>Acondicionamiento</h3>
+
+            <div class="field">
+                <label>¿Pudiste retomar el acondicionamiento después de bici este mes? *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="acondicionamiento-mes5" value="Sí, lo hice regularmente"> Sí, lo hice regularmente</label>
+                    <label><input type="radio" name="acondicionamiento-mes5" value="A veces, no todas las sesiones"> A veces, no todas las sesiones</label>
+                    <label><input type="radio" name="acondicionamiento-mes5" value="Casi no lo hice"> Casi no lo hice</label>
+                    <label><input type="radio" name="acondicionamiento-mes5" value="No lo hice"> No lo hice</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label>¿Cómo estuvo el trabajo de salonera este mes? ¿Sentís que te exige físicamente de forma parecida a la feria?</label>
+                <textarea name="salonera-detalle" placeholder="Ej: Camino mucho pero no siento que sea lo mismo que la fuerza de los ejercicios. O: Ya no estoy saloneando tanto. Contame cómo ha sido."></textarea>
+            </div>
+
+            <div class="field">
+                <label>Si no pudiste hacer el acondicionamiento, ¿qué fue lo que más lo dificultó? *</label>
+                <textarea name="dificultad-acondicionamiento" placeholder="Ej: El tiempo no me alcanzaba después de la bici. O: Llegaba muy cansada del trabajo. O: Sí lo pude hacer, no aplica." required></textarea>
+            </div>
+
+            <h3>Yogur griego casero</h3>
+
+            <div class="field">
+                <label>¿Ya probaste hacer el yogur griego casero? *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="yogur-casero-mes5" value="Sí, y me fue bien"> Sí, y me fue bien</label>
+                    <label><input type="radio" name="yogur-casero-mes5" value="Sí, pero no me convenció"> Sí, pero no me convenció</label>
+                    <label><input type="radio" name="yogur-casero-mes5" value="Todavía no lo he intentado"> Todavía no lo he intentado</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label>Contame cómo fue esa experiencia, aunque sea que todavía no te animaste</label>
+                <textarea name="yogur-casero-detalle" placeholder="Espacio libre para contarme sin ninguna presión."></textarea>
+            </div>
+
+            <h3>Huevo pochado</h3>
+
+            <div class="field">
+                <label>¿Seguís comiendo huevo pochado? *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="huevo-pochado-mes5" value="Sí, regularmente"> Sí, regularmente</label>
+                    <label><input type="radio" name="huevo-pochado-mes5" value="A veces"> A veces</label>
+                    <label><input type="radio" name="huevo-pochado-mes5" value="Ya no"> Ya no</label>
+                </div>
+            </div>
+
+            <h3>Probióticos y suplementos</h3>
+
+            <div class="field">
+                <label>¿Cómo te ha ido con el nuevo probiótico (Nature's Truth, 2 cápsulas)? *</label>
+                <textarea name="probiotico-seguimiento" placeholder="Ej: Bien, sin cambios notables. O: Siento que me ha caído mejor que el anterior. O: Igual que siempre." required></textarea>
+            </div>
+
+            <div class="field">
+                <label>¿Cambió algún otro suplemento que estés tomando (marca, dosis, frecuencia)?</label>
+                <textarea name="cambios-suplementos-mes5" placeholder="Ej: Dejé de tomar la vitamina D porque se me acabó. O: Todo sigue igual."></textarea>
+            </div>
+
+            <h3>Dulces y frituras</h3>
+
+            <div class="field">
+                <label>¿Cómo ha estado el tema de dulces, frituras o snacks como galletas? *</label>
+                <textarea name="dulces-frituras-mes5" placeholder="Ej: He comido algunas galletas de vez en cuando. O: Ya casi no como frito. Contame con honestidad, sin querer quedar bien." required></textarea>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 3 — MEDIDAS CORPORALES -->
+        <div class="section">
+            <h2>3. Medidas Corporales</h2>
+
+            <div class="medida-nota">
+                Igual que los meses anteriores, medite en la mañana, en ayunas, antes de entrenar, con cinta métrica flexible sin apretar ni aflojar de más.
+            </div>
+
+            <div class="campos-dobles">
+                <div class="field">
+                    <label>Peso actual (kg) *</label>
+                    <input type="number" name="peso-mes5" step="0.1" placeholder="Ej: 48.5" required>
+                </div>
+                <div class="field">
+                    <label>Fecha en que te mediste *</label>
+                    <input type="date" name="fecha-medicion-mes5" required>
+                </div>
+            </div>
+
+            <div class="campos-dobles">
+                <div class="field">
+                    <label>Cintura *</label>
+                    <input type="number" name="cintura-mes5" step="0.5" placeholder="cm" required>
+                </div>
+                <div class="field">
+                    <label>Cadera *</label>
+                    <input type="number" name="cadera-mes5" step="0.5" placeholder="cm" required>
+                </div>
+            </div>
+
+            <div class="campos-dobles">
+                <div class="field">
+                    <label>Muslo derecho *</label>
+                    <input type="number" name="muslo-derecho-mes5" step="0.5" placeholder="cm" required>
+                </div>
+                <div class="field">
+                    <label>Pantorrilla derecha *</label>
+                    <input type="number" name="pantorrilla-derecha-mes5" step="0.5" placeholder="cm" required>
+                </div>
+            </div>
+
+            <div class="campos-dobles">
+                <div class="field">
+                    <label>Brazo derecho</label>
+                    <input type="number" name="brazo-derecho-mes5" step="0.5" placeholder="cm">
+                </div>
+                <div class="field">
+                    <label>Pecho</label>
+                    <input type="number" name="pecho-mes5" step="0.5" placeholder="cm">
+                </div>
+            </div>
+
+            <div class="field">
+                <label>¿Notaste algún cambio físico este mes que quieras contarme, más allá de los números?</label>
+                <textarea name="cambios-fisicos-mes5" placeholder="Ej: Siento las piernas más fuertes en las subidas. O: No noto diferencia este mes."></textarea>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 4 — OBJETIVO DEL MES -->
+        <div class="section">
+            <h2>4. Objetivo del Mes 5</h2>
+
+            <div class="field">
+                <label>¿Tenés algún objetivo especial para este mes? *</label>
+                <textarea name="objetivo-mes5" placeholder="Ej: Quiero lograr hacer el acondicionamiento sin excusas. O: Solo mantener la constancia." required></textarea>
+            </div>
+
+            <div class="field">
+                <label>¿Hay alguna competencia, ride o evento que tengas en mente para los próximos meses?</label>
+                <textarea name="eventos-futuros-mes5" placeholder="Ej: Sigo pensando en el PC1 pero sin fecha aún. O: Nada confirmado por ahora."></textarea>
+            </div>
+
+            <div class="field">
+                <label>¿Hay algo que quieras que ajustemos del plan de entrenamiento, acondicionamiento o nutrición del mes pasado?</label>
+                <textarea name="ajustes-solicitados-mes5" placeholder="Ej: Necesito una versión más corta del acondicionamiento. O: Todo estuvo bien, seguir igual."></textarea>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 5 — ESPACIO LIBRE -->
+        <div class="section">
+            <h2>5. Lo que Quieras Agregar</h2>
+
+            <div class="field">
+                <label>¿Hay algo más que sea importante que yo sepa para armar el plan de este mes?</label>
+                <textarea name="info-adicional-mes5" style="min-height:100px;" placeholder="Cualquier cosa — algo que te sorprendió, algo que te costó, una meta nueva, lo que sea."></textarea>
+            </div>
+        </div>
+
+        <!-- SUBMIT -->
+        <div class="submit-section">
+            <h2>Listo</h2>
+            <p>Gracias por tomarte el tiempo.</p>
+            <p>Con esto armo el plan del Mes 5 y te escribo por WhatsApp para coordinar.</p>
+            <button type="submit" class="submit-btn">Enviar Formulario</button>
+        </div>
+
+    </form>
+
+    <div class="footer">
+        <p><strong>eat&flow</strong> | Asesoría Nutricional Isa Herra | @eatandflow.cr</p>
+        <p>Si tenés algún problema con el formulario, escribime por WhatsApp</p>
+    </div>
+
+</div>
+</body>
+</html>
