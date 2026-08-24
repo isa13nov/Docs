@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Consulta Inicial | eat&flow | Mateo</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #F5F9F7;
+            color: #2D4A3E;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container { max-width: 700px; margin: 0 auto; }
+
+        .header {
+            background: linear-gradient(135deg, #1a5945 0%, #2D4A3E 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+
+        .header .brand {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 4px;
+            margin-bottom: 14px;
+            opacity: 0.8;
+            text-transform: uppercase;
+            color: #8bc34a;
+        }
+
+        .header h1 {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .header .subtitulo {
+            font-size: 14px;
+            opacity: 0.85;
+            margin-top: 8px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #ff9800;
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 5px 18px;
+            border-radius: 50px;
+            margin-top: 14px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .intro-box {
+            background: white;
+            padding: 24px 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+            border-left: 4px solid #8bc34a;
+        }
+
+        .intro-box h2 { color: #1a5945; font-size: 17px; margin-bottom: 10px; font-weight: 700; }
+        .intro-box p { color: #555; line-height: 1.75; margin-bottom: 8px; font-size: 14px; }
+        .intro-box p:last-child { margin-bottom: 0; }
+
+        .section {
+            background: white;
+            padding: 30px 25px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+        }
+
+        .section h2 {
+            color: #1a5945;
+            font-size: 19px;
+            font-weight: 700;
+            margin-bottom: 22px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #8bc34a;
+        }
+
+        .section h3 {
+            color: #2D4A3E;
+            font-size: 13px;
+            font-weight: 700;
+            margin: 28px 0 16px;
+            padding: 8px 14px;
+            background: #f0f7f4;
+            border-radius: 6px;
+            border-left: 3px solid #8bc34a;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        .field { margin-bottom: 22px; }
+
+        .field label {
+            display: block;
+            font-weight: 600;
+            color: #2D4A3E;
+            margin-bottom: 8px;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .field input,
+        .field textarea,
+        .field select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #E0EDE8;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: inherit;
+            background: #F5FAF8;
+            color: #2D4A3E;
+            transition: border-color 0.25s, background 0.25s;
+        }
+
+        .field input:focus,
+        .field textarea:focus,
+        .field select:focus {
+            outline: none;
+            border-color: #8bc34a;
+            background: white;
+        }
+
+        .field textarea { min-height: 90px; resize: vertical; }
+
+        .field small {
+            display: block;
+            color: #7a9a8e;
+            font-size: 12px;
+            margin-top: 6px;
+            font-style: italic;
+            line-height: 1.4;
+        }
+
+        .radio-group, .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .radio-group label,
+        .checkbox-group label {
+            display: flex;
+            align-items: flex-start;
+            padding: 11px 14px;
+            background: #F5FAF8;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-weight: normal;
+            font-size: 14px;
+            line-height: 1.5;
+            border: 1.5px solid transparent;
+        }
+
+        .radio-group label:hover,
+        .checkbox-group label:hover { background: #e6f2ec; border-color: #8bc34a; }
+
+        .radio-group input[type="radio"],
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            margin-right: 10px;
+            margin-top: 2px;
+            flex-shrink: 0;
+            accent-color: #1a5945;
+        }
+
+        .campos-dobles {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .campos-tres {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 12px;
+        }
+
+        @media (max-width: 500px) {
+            .campos-dobles { grid-template-columns: 1fr; }
+            .campos-tres { grid-template-columns: 1fr 1fr; }
+        }
+
+        .alerta-box {
+            background: #fff8f0;
+            border: 2px solid #ff9800;
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin-bottom: 22px;
+        }
+
+        .alerta-box p { color: #7a4800; font-size: 13px; line-height: 1.6; }
+        .alerta-box strong { color: #e67e00; }
+
+        .nota-box {
+            background: #f0f7f4;
+            border: 1.5px solid #8bc34a;
+            border-radius: 10px;
+            padding: 14px 18px;
+            margin-bottom: 22px;
+        }
+
+        .nota-box p { color: #2D4A3E; font-size: 13px; line-height: 1.6; }
+
+        .numero-pregunta {
+            display: inline-block;
+            background: #1a5945;
+            color: white;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-right: 6px;
+            vertical-align: middle;
+        }
+
+        .pliegue-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        @media (max-width: 500px) { .pliegue-grid { grid-template-columns: 1fr; } }
+
+        .pliegue-item {
+            background: #F5FAF8;
+            border: 2px solid #E0EDE8;
+            border-radius: 8px;
+            padding: 12px 14px;
+        }
+
+        .pliegue-item label {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            color: #1a5945;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .pliegue-item input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1.5px solid #E0EDE8;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: inherit;
+            background: white;
+            color: #2D4A3E;
+        }
+
+        .pliegue-item input:focus {
+            outline: none;
+            border-color: #8bc34a;
+        }
+
+        .pliegue-item small {
+            display: block;
+            color: #aaa;
+            font-size: 11px;
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        .compromiso-card {
+            border: 2px solid #E0EDE8;
+            border-radius: 10px;
+            padding: 16px 18px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: border-color 0.2s, background 0.2s;
+            background: #F5FAF8;
+        }
+
+        .compromiso-card:hover { border-color: #8bc34a; background: #edf7f1; }
+        .compromiso-card input[type="radio"] { margin-right: 10px; accent-color: #1a5945; }
+        .compromiso-card strong { color: #1a5945; font-size: 14px; }
+        .compromiso-card p { color: #666; font-size: 13px; margin-top: 4px; margin-left: 22px; }
+
+        .submit-section {
+            background: linear-gradient(135deg, #1a5945, #2D4A3E);
+            color: white;
+            padding: 35px 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .submit-section h2 { font-size: 21px; margin-bottom: 12px; }
+        .submit-section p { opacity: 0.88; font-size: 14px; margin-bottom: 6px; }
+
+        .submit-btn {
+            background: #ff9800;
+            color: white;
+            padding: 16px 44px;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(255,152,0,0.35);
+            transition: transform 0.25s, box-shadow 0.25s;
+            letter-spacing: 0.5px;
+        }
+
+        .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 22px rgba(255,152,0,0.45); }
+
+        .separador { height: 1px; background: #E0EDE8; margin: 20px 0; }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #8a9e98;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .success-msg {
+            display: none;
+            background: #EDF7F1;
+            border: 2px solid #28a745;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .success-msg h3 { color: #1a5945; font-size: 20px; margin-bottom: 10px; }
+        .success-msg p { color: #555; font-size: 14px; }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="header">
+        <div class="brand">eat&amp;flow — Nutrición Deportiva</div>
+        <h1>Formulario de Consulta Inicial</h1>
+        <p class="subtitulo">Asesoría Nutricional: Isa Herra</p>
+        <div class="badge">Plan Nutricional General — Agosto 2026</div>
+    </div>
+
+    <div class="intro-box">
+        <h2>Bienvenido, Mateo</h2>
+        <p>Este formulario me permite conocer tu situación actual, tus hábitos, tus objetivos y lo que necesito saber para diseñar un plan nutricional que funcione en tu vida real, tanto en casa como cuando estás de viaje.</p>
+        <p>Respondé con la mayor honestidad posible. No hay respuestas correctas o incorrectas. Entre más preciso seas, mejor puedo trabajar para vos.</p>
+    </div>
+
+    <form id="formulario-mateo">
+
+        <!-- SECCION 1: DATOS GENERALES -->
+        <div class="section">
+            <h2>1. Datos Generales</h2>
+
+            <div class="campos-dobles">
+                <div class="field">
+                    <label><span class="numero-pregunta">1</span> Nombre completo</label>
+                    <input type="text" name="nombre" placeholder="Mateo...">
+                </div>
+                <div class="field">
+                    <label><span class="numero-pregunta">2</span> Fecha de nacimiento</label>
+                    <input type="date" name="fecha_nacimiento">
+                </div>
+            </div>
+
+            <div class="campos-dobles">
+                <div class="field">
+                    <label><span class="numero-pregunta">3</span> Ocupación</label>
+                    <input type="text" name="ocupacion" placeholder="¿A qué te dedicás?">
+                </div>
+                <div class="field">
+                    <label><span class="numero-pregunta">4</span> WhatsApp</label>
+                    <input type="tel" name="whatsapp" placeholder="+506...">
+                </div>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">5</span> ¿Cuántos días al mes aproximadamente viajás por trabajo u otras razones?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="dias_viaje" value="0-4"> 0 a 4 días al mes — viajo poco</label>
+                    <label><input type="radio" name="dias_viaje" value="5-10"> 5 a 10 días al mes — viajo con cierta frecuencia</label>
+                    <label><input type="radio" name="dias_viaje" value="11-15"> 11 a 15 días al mes — viajo frecuentemente</label>
+                    <label><input type="radio" name="dias_viaje" value="mas15"> Más de 15 días — paso más tiempo viajando que en casa</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">6</span> Cuando viajás, ¿cómo es tu situación de alimentación generalmente?</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="viaje_alim" value="restaurantes"> Como principalmente en restaurantes o sodas</label>
+                    <label><input type="checkbox" name="viaje_alim" value="hotel"> Tengo acceso a desayuno de hotel</label>
+                    <label><input type="checkbox" name="viaje_alim" value="aeropuerto"> Como mucho en aeropuertos</label>
+                    <label><input type="checkbox" name="viaje_alim" value="reunion"> Como en reuniones de trabajo, banquetes o eventos</label>
+                    <label><input type="checkbox" name="viaje_alim" value="snacks"> Snackeo todo el día sin comidas estructuradas</label>
+                    <label><input type="checkbox" name="viaje_alim" value="cocino"> A veces tengo cocina y puedo preparar algo</label>
+                    <label><input type="checkbox" name="viaje_alim" value="entrega"> Pido comida a domicilio</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">7</span> ¿En qué países o ciudades viajás con mayor frecuencia?</label>
+                <textarea name="destinos_viaje" placeholder="Ej: Miami, Ciudad de México, Bogotá..."></textarea>
+                <small>Esto me permite darte opciones de alimentación específicas para esos destinos.</small>
+            </div>
+        </div>
+
+        <!-- SECCION 2: MEDIDAS ANTROPOMETRICAS -->
+        <div class="section">
+            <h2>2. Medidas Antropométricas</h2>
+            <p style="font-size:13.5px; color:#555; margin-bottom:20px">Estas medidas las tomo yo en consulta. Si ya las tenés de una medición reciente, podés anotarlas aquí. Si no, las dejamos en blanco y las completamos juntos.</p>
+
+            <h3>Medidas generales</h3>
+            <div class="campos-dobles">
+                <div class="field">
+                    <label><span class="numero-pregunta">8</span> Peso (kg)</label>
+                    <input type="number" step="0.1" name="peso" placeholder="Ej: 82.5">
+                </div>
+                <div class="field">
+                    <label><span class="numero-pregunta">9</span> Talla (cm)</label>
+                    <input type="number" step="0.1" name="talla" placeholder="Ej: 175">
+                </div>
+            </div>
+
+            <div class="campos-tres">
+                <div class="field">
+                    <label><span class="numero-pregunta">10</span> Cintura (cm)</label>
+                    <input type="number" step="0.1" name="cintura" placeholder="cm">
+                    <small>A nivel del ombligo</small>
+                </div>
+                <div class="field">
+                    <label><span class="numero-pregunta">11</span> Cadera (cm)</label>
+                    <input type="number" step="0.1" name="cadera" placeholder="cm">
+                    <small>Parte más ancha</small>
+                </div>
+                <div class="field">
+                    <label><span class="numero-pregunta">12</span> Cuello (cm)</label>
+                    <input type="number" step="0.1" name="cuello" placeholder="cm">
+                </div>
+            </div>
+
+            <div class="campos-tres">
+                <div class="field">
+                    <label>Brazo relajado (cm)</label>
+                    <input type="number" step="0.1" name="brazo_relajado" placeholder="cm">
+                </div>
+                <div class="field">
+                    <label>Brazo contraído (cm)</label>
+                    <input type="number" step="0.1" name="brazo_contraido" placeholder="cm">
+                </div>
+                <div class="field">
+                    <label>Muslo (cm)</label>
+                    <input type="number" step="0.1" name="muslo" placeholder="cm">
+                </div>
+            </div>
+
+            <h3>Pliegues cutáneos (Durnin-Womersley 7 pliegues)</h3>
+
+            <div class="nota-box">
+                <p>Los pliegues se miden con un plicómetro en el lado derecho del cuerpo. Cada valor es el grosor del pliegue en milímetros. Si no tenés el instrumento, dejá estos campos en blanco y los medimos en consulta.</p>
+            </div>
+
+            <div class="pliegue-grid">
+                <div class="pliegue-item">
+                    <label>Pectoral (mm)</label>
+                    <input type="number" step="0.1" name="pliegue_pectoral" placeholder="mm">
+                    <small>Diagonal entre axila y pezón</small>
+                </div>
+                <div class="pliegue-item">
+                    <label>Axilar medio (mm)</label>
+                    <input type="number" step="0.1" name="pliegue_axilar" placeholder="mm">
+                    <small>Línea axilar media a nivel xifoides</small>
+                </div>
+                <div class="pliegue-item">
+                    <label>Tricipital (mm)</label>
+                    <input type="number" step="0.1" name="pliegue_triceps" placeholder="mm">
+                    <small>Parte posterior del brazo, punto medio</small>
+                </div>
+                <div class="pliegue-item">
+                    <label>Subescapular (mm)</label>
+                    <input type="number" step="0.1" name="pliegue_subescapular" placeholder="mm">
+                    <small>Ángulo inferior de la escápula</small>
+                </div>
+                <div class="pliegue-item">
+                    <label>Abdominal (mm)</label>
+                    <input type="number" step="0.1" name="pliegue_abdominal" placeholder="mm">
+                    <small>2 cm a la derecha del ombligo</small>
+                </div>
+                <div class="pliegue-item">
+                    <label>Suprailíaco (mm)</label>
+                    <input type="number" step="0.1" name="pliegue_suprailiaco" placeholder="mm">
+                    <small>Por encima de la cresta ilíaca</small>
+                </div>
+                <div class="pliegue-item">
+                    <label>Muslo anterior (mm)</label>
+                    <input type="number" step="0.1" name="pliegue_muslo" placeholder="mm">
+                    <small>Punto medio entre cadera y rodilla</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCION 3: HISTORIAL DE SALUD -->
+        <div class="section">
+            <h2>3. Historial de Salud</h2>
+
+            <div class="field">
+                <label><span class="numero-pregunta">13</span> ¿Tenés alguna condición médica diagnosticada?</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="condicion" value="ninguna"> Ninguna</label>
+                    <label><input type="checkbox" name="condicion" value="hipertension"> Hipertensión</label>
+                    <label><input type="checkbox" name="condicion" value="diabetes"> Diabetes tipo 2 o prediabetes</label>
+                    <label><input type="checkbox" name="condicion" value="colesterol"> Colesterol o triglicéridos elevados</label>
+                    <label><input type="checkbox" name="condicion" value="tiroides"> Problema de tiroides</label>
+                    <label><input type="checkbox" name="condicion" value="gastro"> Problema gastrointestinal (reflujo, colon irritable, gastritis)</label>
+                    <label><input type="checkbox" name="condicion" value="articular"> Problema articular o lesión crónica</label>
+                    <label><input type="checkbox" name="condicion" value="otra"> Otra</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">14</span> Si marcaste "Otra" o querés dar más detalle, describí aquí</label>
+                <textarea name="condicion_detalle" placeholder="Describe tu condición o lesión si aplica..."></textarea>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">15</span> ¿Tenés exámenes de laboratorio recientes? (últimos 6 meses)</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="laboratorio" value="si_comparto"> Sí, los puedo compartir</label>
+                    <label><input type="radio" name="laboratorio" value="si_no_comparto"> Sí, pero no los tengo a mano</label>
+                    <label><input type="radio" name="laboratorio" value="no"> No tengo exámenes recientes</label>
+                    <label><input type="radio" name="laboratorio" value="nunca"> Nunca me he hecho exámenes de rutina</label>
+                </div>
+                <small>Perfil lipídico, glicemia, hemograma y función renal/hepática son los más útiles para el plan.</small>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">16</span> ¿Tenés alguna alergia o intolerancia alimentaria?</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="alergia" value="ninguna"> Ninguna</label>
+                    <label><input type="checkbox" name="alergia" value="lactosa"> Intolerancia a la lactosa</label>
+                    <label><input type="checkbox" name="alergia" value="gluten"> Sensibilidad al gluten o celiaquía</label>
+                    <label><input type="checkbox" name="alergia" value="mariscos"> Alergia a mariscos</label>
+                    <label><input type="checkbox" name="alergia" value="nueces"> Alergia a frutos secos</label>
+                    <label><input type="checkbox" name="alergia" value="huevo"> Alergia al huevo</label>
+                    <label><input type="checkbox" name="alergia" value="otra"> Otra</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">17</span> ¿Hay algún alimento que simplemente no comes, ya sea por gusto, textura o por alguna razón?</label>
+                <textarea name="no_come" placeholder="Ej: no como mariscos, no tolero el brócoli, no me gusta el yogurt..."></textarea>
+            </div>
+        </div>
+
+        <!-- SECCION 4: HABITOS ALIMENTARIOS -->
+        <div class="section">
+            <h2>4. Hábitos Alimentarios Actuales</h2>
+
+            <div class="field">
+                <label><span class="numero-pregunta">18</span> ¿Cuántas veces al día comés actualmente?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="veces_dia" value="1-2"> 1 a 2 veces — como muy poco durante el día</label>
+                    <label><input type="radio" name="veces_dia" value="3"> 3 veces — desayuno, almuerzo y cena</label>
+                    <label><input type="radio" name="veces_dia" value="4-5"> 4 a 5 veces — incluyo meriendas</label>
+                    <label><input type="radio" name="veces_dia" value="picoteo"> Picoteo todo el día sin estructura fija</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">19</span> Describí un día de comidas típico en casa (lo más real posible)</label>
+                <textarea name="dia_tipico" placeholder="Ej: Desayuno: café con leche y pan. Almuerzo: arroz, frijoles y pollo. Tarde: galletas o fruta. Cena: lo que sobró..."></textarea>
+                <small>No escribas lo que creés que deberías comer, sino lo que realmente comés.</small>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">20</span> En casa, ¿vos preparás tu propia comida o alguien más la cocina?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="quien_cocina" value="yo"> Yo mismo la preparo</label>
+                    <label><input type="radio" name="quien_cocina" value="familiar"> Un familiar la prepara (mamá, pareja, etc.)</label>
+                    <label><input type="radio" name="quien_cocina" value="compartido"> Compartido entre varias personas</label>
+                    <label><input type="radio" name="quien_cocina" value="servicio"> Tengo servicio doméstico o empleada</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">21</span> ¿Con qué frecuencia coméS fuera de casa en días normales (sin viaje)?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="come_fuera" value="raramente"> Raramente, casi siempre como en casa</label>
+                    <label><input type="radio" name="come_fuera" value="1-2-semana"> 1 a 2 veces por semana</label>
+                    <label><input type="radio" name="come_fuera" value="3-4-semana"> 3 a 4 veces por semana</label>
+                    <label><input type="radio" name="come_fuera" value="casi-siempre"> Casi siempre, rara vez como en casa</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">22</span> ¿Qué tipo de restaurantes o lugares frecuentás cuando comés fuera?</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="tipo_restaurante" value="soda"> Sodas o restaurantes caseros</label>
+                    <label><input type="checkbox" name="tipo_restaurante" value="fast_food"> Comida rápida (McDonald's, Subway, Burger King, etc.)</label>
+                    <label><input type="checkbox" name="tipo_restaurante" value="cafeteria"> Cafetería de la oficina o lugar de trabajo</label>
+                    <label><input type="checkbox" name="tipo_restaurante" value="restaurante_formal"> Restaurantes formales o de negocio</label>
+                    <label><input type="checkbox" name="tipo_restaurante" value="internacional"> Restaurantes internacionales (sushi, árabe, italiano, etc.)</label>
+                    <label><input type="checkbox" name="tipo_restaurante" value="delivery"> Pido delivery (Uber Eats, Rappi, etc.)</label>
+                </div>
+            </div>
+
+            <div class="separador"></div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">23</span> ¿Qué tan seguido tomás bebidas alcohólicas?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="alcohol" value="nunca"> No tomo alcohol</label>
+                    <label><input type="radio" name="alcohol" value="ocasional"> Ocasionalmente (1-2 veces al mes)</label>
+                    <label><input type="radio" name="alcohol" value="semanal"> Los fines de semana generalmente</label>
+                    <label><input type="radio" name="alcohol" value="frecuente"> Varias veces a la semana</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">24</span> ¿Cuánta agua tomás al día aproximadamente?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="agua" value="menos1"> Menos de 1 litro — tomo muy poca agua</label>
+                    <label><input type="radio" name="agua" value="1-2"> Entre 1 y 2 litros</label>
+                    <label><input type="radio" name="agua" value="2-3"> Entre 2 y 3 litros</label>
+                    <label><input type="radio" name="agua" value="mas3"> Más de 3 litros</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">25</span> ¿Tomás café? ¿Cuántas tazas al día y cómo lo tomás?</label>
+                <textarea name="cafe" placeholder="Ej: 2 tazas al día, con azúcar y leche. O: negro sin azúcar. O: no tomo café..."></textarea>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">26</span> ¿Hay algún alimento que sientas que comes en exceso o que te cuesta controlar?</label>
+                <textarea name="exceso" placeholder="Ej: no puedo parar de comer pan, me cuesta controlar el dulce en la noche, como mucho cuando estoy estresado..."></textarea>
+            </div>
+        </div>
+
+        <!-- SECCION 5: ACTIVIDAD FISICA -->
+        <div class="section">
+            <h2>5. Actividad Física</h2>
+
+            <div class="nota-box">
+                <p>Sabemos que acabás de retomar la actividad física después de un período de viajes. Esta sección nos ayuda a entender dónde estás hoy y hacia dónde vamos.</p>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">27</span> ¿Cuánto tiempo llevás caminando 45 minutos diarios?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="caminar_tiempo" value="menos1sem"> Menos de 1 semana</label>
+                    <label><input type="radio" name="caminar_tiempo" value="1-2sem"> 1 a 2 semanas</label>
+                    <label><input type="radio" name="caminar_tiempo" value="2-4sem"> 2 a 4 semanas</label>
+                    <label><input type="radio" name="caminar_tiempo" value="mas1mes"> Más de 1 mes</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">28</span> ¿Cuántos días por semana vas al gym actualmente?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="dias_gym_actual" value="1"> 1 día por semana — estoy apenas empezando</label>
+                    <label><input type="radio" name="dias_gym_actual" value="2"> 2 días por semana</label>
+                    <label><input type="radio" name="dias_gym_actual" value="3"> 3 días por semana</label>
+                    <label><input type="radio" name="dias_gym_actual" value="4+"> 4 o más días por semana</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">29</span> ¿Qué tipo de entrenamiento hacés o planeás hacer en el gym?</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="tipo_gym" value="pesas"> Pesas y máquinas (fuerza)</label>
+                    <label><input type="checkbox" name="tipo_gym" value="cardio_maquina"> Cardio en máquina (bicicleta, elíptica, caminadora)</label>
+                    <label><input type="checkbox" name="tipo_gym" value="funcional"> Entrenamiento funcional o circuito</label>
+                    <label><input type="checkbox" name="tipo_gym" value="clases"> Clases grupales (spinning, pilates, yoga, etc.)</label>
+                    <label><input type="checkbox" name="tipo_gym" value="no_se"> Aún no sé qué voy a hacer, estoy explorando</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">30</span> Cuando estás de viaje, ¿qué tan probable es que mantengas actividad física?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="ejercicio_viaje" value="siempre"> Casi siempre — uso el gym del hotel o salgo a caminar</label>
+                    <label><input type="radio" name="ejercicio_viaje" value="a_veces"> A veces — depende de la agenda y el hotel</label>
+                    <label><input type="radio" name="ejercicio_viaje" value="raramente"> Raramente — cuando viajo es muy difícil</label>
+                    <label><input type="radio" name="ejercicio_viaje" value="nunca"> Nunca — el viaje me lo impide completamente</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">31</span> Antes de este período alejado, ¿practicabas algún deporte o actividad física con regularidad?</label>
+                <textarea name="hist_deporte" placeholder="Ej: fui al gym durante 3 años, jugaba fútbol los sábados, hacía ciclismo de montaña..."></textarea>
+            </div>
+        </div>
+
+        <!-- SECCION 6: COMPROMISO -->
+        <div class="section">
+            <h2>6. Compromiso y Expectativas</h2>
+
+            <p style="font-size:13.5px; color:#555; margin-bottom:20px">Esta sección es muy importante. La honestidad aquí vale más que cualquier número. Un plan que se cumple al 80% supera siempre a uno "perfecto" que no se cumple.</p>
+
+            <div class="field">
+                <label><span class="numero-pregunta">32</span> ¿Cuál es tu objetivo principal con este proceso?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="objetivo_principal" value="perder_grasa"> Perder grasa corporal y mejorar mi composición</label>
+                    <label><input type="radio" name="objetivo_principal" value="ganar_musculo"> Ganar masa muscular</label>
+                    <label><input type="radio" name="objetivo_principal" value="ambos"> Ambos: perder grasa y ganar músculo</label>
+                    <label><input type="radio" name="objetivo_principal" value="energia"> Mejorar mi energía y rendimiento diario</label>
+                    <label><input type="radio" name="objetivo_principal" value="habitos"> Establecer hábitos saludables sostenibles</label>
+                    <label><input type="radio" name="objetivo_principal" value="salud"> Mejorar mis marcadores de salud (colesterol, glucosa, etc.)</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">33</span> ¿Cuántas horas semanales podés comprometerte realmente a la actividad física? (plan ideal)</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="horas_ideal" value="1-2"> 1 a 2 horas — tengo muy poco tiempo disponible</label>
+                    <label><input type="radio" name="horas_ideal" value="3-4"> 3 a 4 horas — puedo entrenar 3 días cortos</label>
+                    <label><input type="radio" name="horas_ideal" value="5-6"> 5 a 6 horas — puedo entrenar 4-5 días</label>
+                    <label><input type="radio" name="horas_ideal" value="mas7"> 7 o más horas — el entrenamiento es una prioridad real</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">34</span> Siendo completamente honesto, ¿cuántas horas creés que vas a cumplir en semanas normales?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="horas_realista" value="1-2"> 1 a 2 horas — siendo realista, es lo que voy a lograr</label>
+                    <label><input type="radio" name="horas_realista" value="3-4"> 3 a 4 horas — eso sí lo puedo cumplir con consistencia</label>
+                    <label><input type="radio" name="horas_realista" value="5-6"> 5 a 6 horas — me comprometo con eso</label>
+                    <label><input type="radio" name="horas_realista" value="mas7"> 7 o más horas — lo voy a cumplir sin problema</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">35</span> ¿Cuál de estos describe mejor tu disposición actual a cambiar hábitos de alimentación?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="disposicion" value="total"> Estoy listo para hacer cambios grandes. Quiero resultados y voy a seguir el plan.</label>
+                    <label><input type="radio" name="disposicion" value="gradual"> Prefiero cambios graduales y sostenibles. No quiero sentirme restringido.</label>
+                    <label><input type="radio" name="disposicion" value="viaje"> Mi mayor reto es el viaje. En casa puedo, pero viajando es donde fallo.</label>
+                    <label><input type="radio" name="disposicion" value="aprender"> Más que seguir un plan, quiero aprender a tomar decisiones yo solo.</label>
+                    <label><input type="radio" name="disposicion" value="mixto"> Una mezcla de todo lo anterior.</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">36</span> ¿Cuál es tu mayor obstáculo para mantener una alimentación ordenada?</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="obstaculos" value="viaje"> Los viajes y el desorden de horarios</label>
+                    <label><input type="checkbox" name="obstaculos" value="tiempo"> No tengo tiempo para planear ni preparar comida</label>
+                    <label><input type="checkbox" name="obstaculos" value="social"> Las situaciones sociales (reuniones, cenas, eventos)</label>
+                    <label><input type="checkbox" name="obstaculos" value="ansiedad"> Como por ansiedad o estrés, no por hambre</label>
+                    <label><input type="checkbox" name="obstaculos" value="dulce"> El antojo de dulce o comida chatarra</label>
+                    <label><input type="checkbox" name="obstaculos" value="noche"> Como bien todo el día pero me desordeno en la noche</label>
+                    <label><input type="checkbox" name="obstaculos" value="consistencia"> Empiezo bien pero no soy consistente a largo plazo</label>
+                    <label><input type="checkbox" name="obstaculos" value="alcohol"> El alcohol los fines de semana o en eventos</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">37</span> ¿Qué tan dispuesto estás a aprender a leer menús y hacer elecciones inteligentes en restaurantes?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="menu_restaurante" value="muy"> Muy dispuesto, es justo lo que necesito aprender</label>
+                    <label><input type="radio" name="menu_restaurante" value="moderado"> Moderadamente, si no es muy complicado</label>
+                    <label><input type="radio" name="menu_restaurante" value="poco"> Poco, prefiero que me den un plan y seguirlo sin pensar mucho</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCION 7: SUPLEMENTOS -->
+        <div class="section">
+            <h2>7. Suplementos Actuales</h2>
+
+            <div class="alerta-box">
+                <p><strong>Importante:</strong> Necesito saber exactamente qué estás tomando. Muchos suplementos tienen interacciones entre sí, dosis incorrectas o simplemente no tienen evidencia que los justifique. No hay juicio en esta sección, solo necesito la información completa para hacer una evaluación honesta.</p>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">38</span> ¿Tomás actualmente algún suplemento o producto nutricional? Marcá todos los que aplican</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="suplemento" value="proteina_polvo"> Proteína en polvo (whey, caseína, vegetal)</label>
+                    <label><input type="checkbox" name="suplemento" value="creatina"> Creatina</label>
+                    <label><input type="checkbox" name="suplemento" value="preworkout"> Pre-entreno / estimulante (con cafeína u otros)</label>
+                    <label><input type="checkbox" name="suplemento" value="bcaa"> BCAA o aminoácidos ramificados</label>
+                    <label><input type="checkbox" name="suplemento" value="omega3"> Omega-3 (aceite de pescado)</label>
+                    <label><input type="checkbox" name="suplemento" value="vitamina_d"> Vitamina D</label>
+                    <label><input type="checkbox" name="suplemento" value="magnesio"> Magnesio</label>
+                    <label><input type="checkbox" name="suplemento" value="multivitaminico"> Multivitamínico</label>
+                    <label><input type="checkbox" name="suplemento" value="colageno"> Colágeno</label>
+                    <label><input type="checkbox" name="suplemento" value="quemador"> Quemador de grasa o termogénico</label>
+                    <label><input type="checkbox" name="suplemento" value="probiotico"> Probiótico</label>
+                    <label><input type="checkbox" name="suplemento" value="zinc"> Zinc</label>
+                    <label><input type="checkbox" name="suplemento" value="hierro"> Hierro</label>
+                    <label><input type="checkbox" name="suplemento" value="melatonina"> Melatonina</label>
+                    <label><input type="checkbox" name="suplemento" value="otro"> Otro (especificá abajo)</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">39</span> Para cada suplemento que marcaste: ¿cuál es la marca, qué dosis tomás y en qué momento del día?</label>
+                <textarea name="suplemento_detalle" placeholder="Ej: Proteína whey Gold Standard, 1 scoop de 30g después del gym. Creatina sin marca, 5g en la mañana. Pre-entreno C4, 1 scoop 30 min antes de entrenar..."></textarea>
+                <small>Entre más detalle, mejor. Si tenés el producto a mano, podés revisar la etiqueta y anotarlo aquí.</small>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">40</span> ¿Quién te recomendó los suplementos que estás tomando?</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="quien_recomienda" value="yo_mismo"> Yo mismo los investigue o los elegí</label>
+                    <label><input type="checkbox" name="quien_recomienda" value="amigo"> Un amigo o conocido que también entrena</label>
+                    <label><input type="checkbox" name="quien_recomienda" value="entrenador"> Mi entrenador del gym</label>
+                    <label><input type="checkbox" name="quien_recomienda" value="medico"> Un médico o nutricionista</label>
+                    <label><input type="checkbox" name="quien_recomienda" value="redes"> Redes sociales o influencer de fitness</label>
+                    <label><input type="checkbox" name="quien_recomienda" value="tienda"> El vendedor de la tienda de suplementos</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">41</span> ¿Sentís que los suplementos que tomás actualmente te están dando resultados visibles o perceptibles?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="suplemento_resultado" value="si_claro"> Sí, noto diferencia clara cuando los tomo</label>
+                    <label><input type="radio" name="suplemento_resultado" value="quizas"> Quizás, no estoy seguro si es el suplemento o el entrenamiento</label>
+                    <label><input type="radio" name="suplemento_resultado" value="no"> No he notado diferencia significativa</label>
+                    <label><input type="radio" name="suplemento_resultado" value="no_se"> No sé cómo evaluarlo</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">42</span> ¿Tomás actualmente algún medicamento recetado por un médico?</label>
+                <textarea name="medicamentos" placeholder="Si sí, indicá cuál y para qué condición. Si no, escribí 'No'."></textarea>
+                <small>Algunos medicamentos tienen interacciones con suplementos que es importante conocer.</small>
+            </div>
+        </div>
+
+        <!-- SECCION 8: SUEÑO Y ESTRES -->
+        <div class="section">
+            <h2>8. Sueño y Bienestar General</h2>
+
+            <div class="field">
+                <label><span class="numero-pregunta">43</span> ¿Cuántas horas dormís en promedio por noche?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="sueno" value="menos5"> Menos de 5 horas — duermo muy poco</label>
+                    <label><input type="radio" name="sueno" value="5-6"> 5 a 6 horas</label>
+                    <label><input type="radio" name="sueno" value="6-7"> 6 a 7 horas</label>
+                    <label><input type="radio" name="sueno" value="7-8"> 7 a 8 horas</label>
+                    <label><input type="radio" name="sueno" value="mas8"> Más de 8 horas</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">44</span> ¿Cómo calificarías la calidad de tu sueño en general?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="calidad_sueno" value="excelente"> Excelente — me despierto descansado y con energía</label>
+                    <label><input type="radio" name="calidad_sueno" value="buena"> Buena — generalmente duermo bien</label>
+                    <label><input type="radio" name="calidad_sueno" value="irregular"> Irregular — depende mucho del día o de si hay viaje</label>
+                    <label><input type="radio" name="calidad_sueno" value="mala"> Mala — me cuesta dormir o me despierto durante la noche</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">45</span> ¿Cómo describirías tu nivel de estrés en el día a día?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="estres" value="bajo"> Bajo — me manejo bien con la presión</label>
+                    <label><input type="radio" name="estres" value="moderado"> Moderado — hay días difíciles pero lo manejo</label>
+                    <label><input type="radio" name="estres" value="alto"> Alto — hay mucha presión laboral o personal frecuentemente</label>
+                    <label><input type="radio" name="estres" value="muy_alto"> Muy alto — el estrés es constante y afecta mi vida diaria</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">46</span> ¿El estrés o el cansancio afectan tus decisiones de alimentación?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="estres_comida" value="no"> No — como igual independientemente de cómo me sienta</label>
+                    <label><input type="radio" name="estres_comida" value="si_mas"> Sí — cuando estoy estresado como más y peor</label>
+                    <label><input type="radio" name="estres_comida" value="si_menos"> Sí — cuando estoy estresado no tengo hambre y como menos</label>
+                    <label><input type="radio" name="estres_comida" value="variable"> Variable — a veces como más, a veces menos</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCION 9: VIAJES - ESPECIFICA -->
+        <div class="section">
+            <h2>9. Alimentación en Viaje — Situaciones Concretas</h2>
+
+            <p style="font-size:13.5px; color:#555; margin-bottom:20px">Esta sección es clave para diseñar la parte del plan que más necesitás. Quiero entender exactamente en qué situaciones te encontrás cuando viajás.</p>
+
+            <div class="field">
+                <label><span class="numero-pregunta">47</span> En el aeropuerto, ¿qué solés comer o tomar mientras esperás?</label>
+                <textarea name="aeropuerto" placeholder="Ej: un café con croissant, lo que encuentro en el duty free, agua y nada más, hamburguesa rápida..."></textarea>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">48</span> ¿Llevás comida o snacks propios cuando viajás?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="snacks_viaje" value="siempre"> Sí, siempre preparo algo para llevar</label>
+                    <label><input type="radio" name="snacks_viaje" value="a_veces"> A veces, si tengo tiempo</label>
+                    <label><input type="radio" name="snacks_viaje" value="nunca"> Nunca, confío en lo que encuentro</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">49</span> Cuando estás en una reunión de negocios con comida incluida o en un evento social, ¿cómo manejás la situación?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="reunion_comida" value="como_todo"> Como todo lo que se sirve sin pensar mucho</label>
+                    <label><input type="radio" name="reunion_comida" value="intento"> Intento elegir opciones más saludables pero no siempre puedo</label>
+                    <label><input type="radio" name="reunion_comida" value="controlo"> Generalmente me controlo bien en esas situaciones</label>
+                    <label><input type="radio" name="reunion_comida" value="alcohol"> El alcohol en esas situaciones es el mayor problema</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">50</span> ¿Tenés acceso a supermercado o tienda cuando viajás para comprar snacks o ingredientes?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="supermercado_viaje" value="siempre"> Casi siempre — es algo que hago o puedo hacer</label>
+                    <label><input type="radio" name="supermercado_viaje" value="a_veces"> A veces — depende del destino y la agenda</label>
+                    <label><input type="radio" name="supermercado_viaje" value="raramente"> Raramente — la agenda no me lo permite</label>
+                    <label><input type="radio" name="supermercado_viaje" value="nunca"> Nunca — dependiendo del hotel y restaurantes</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">51</span> ¿Qué tipo de hotel o alojamiento tenés generalmente cuando viajás?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="tipo_hotel" value="hotel_gym"> Hotel de cadena con gym y desayuno bufet incluido</label>
+                    <label><input type="radio" name="tipo_hotel" value="hotel_sin_gym"> Hotel sin gym ni cocina</label>
+                    <label><input type="radio" name="tipo_hotel" value="airbnb"> Airbnb o apartamento con cocina</label>
+                    <label><input type="radio" name="tipo_hotel" value="variable"> Variable, depende del viaje</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCION 10: CIERRE -->
+        <div class="section">
+            <h2>10. Para Cerrar</h2>
+
+            <div class="field">
+                <label><span class="numero-pregunta">52</span> ¿Hubo algún momento en tu vida en que tu alimentación y tu condición física fueron las mejores? ¿Cómo era eso?</label>
+                <textarea name="mejor_momento" placeholder="Ej: a los 28 años entrenaba 4 veces por semana y me sentía con mucha energía. O: nunca he tenido una muy buena relación con la comida..."></textarea>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">53</span> ¿Qué es lo que más querés lograr en los próximos 3 meses con este proceso?</label>
+                <textarea name="meta_3meses" placeholder="Puede ser algo físico, de energía, de hábitos, de cómo te sentís... lo que sea más importante para vos."></textarea>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">54</span> ¿Hay algo más que sientas que es importante que yo sepa para poder ayudarte mejor?</label>
+                <textarea name="comentario_final" placeholder="Cualquier información adicional que considerés relevante..."></textarea>
+            </div>
+        </div>
+
+        <!-- ENVÍO -->
+        <div class="submit-section">
+            <h2>Listo, Mateo</h2>
+            <p>Con esta información voy a diseñar tu plan nutricional personalizado.</p>
+            <p>Una vez que enviés el formulario, me pondré en contacto para coordinar la primera consulta y las medidas.</p>
+            <button type="submit" class="submit-btn">Enviar formulario</button>
+        </div>
+
+    </form>
+
+    <div class="success-msg" id="success-msg">
+        <h3>Formulario recibido</h3>
+        <p>Gracias, Mateo. Recibí tu información y me pondré en contacto pronto para coordinar los próximos pasos.</p>
+    </div>
+
+    <div class="footer">
+        <p>Nutricionista Isabel Herra &nbsp;|&nbsp; @isaherra.13</p>
+        <p>eat&amp;flow Nutrición Deportiva</p>
+    </div>
+
+</div>
+
+<script>
+document.getElementById('formulario-mateo').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const data = new FormData(this);
+    fetch('https://formspree.io/f/mzzodpje', {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+    })
+    .then(res => {
+        if (res.ok) {
+            document.getElementById('formulario-mateo').style.display = 'none';
+            document.getElementById('success-msg').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+            alert('Hubo un problema al enviar el formulario. Por favor intentá de nuevo o escribime directamente por WhatsApp.');
+        }
+    })
+    .catch(() => {
+        alert('Hubo un problema al enviar el formulario. Por favor intentá de nuevo o escribime directamente por WhatsApp.');
+    });
+});
+</script>
+</body>
+</html>
