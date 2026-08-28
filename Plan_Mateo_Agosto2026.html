@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plan Nutricional — Mateo | eat&flow</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+  :root {
+    --verde: #1a5945;
+    --verde-c: #8bc34a;
+    --naranja: #ff9800;
+    --azul: #0288d1;
+    --texto: #1a1a1a;
+    --texto-s: #666;
+    --rojo: #e53935;
+    --nuevo: #e8f5e9;
+    --nuevo-borde: #66bb6a;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: #f0f0f0;
+    color: var(--texto);
+    line-height: 1.6;
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--verde);
+    padding: 32px 32px 24px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .header-left .logo {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--verde-c);
+    margin-bottom: 8px;
+  }
+
+  .header-left h1 {
+    font-size: clamp(20px, 4vw, 28px);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 4px;
+  }
+
+  .header-left .sub { font-size: 12px; color: rgba(255,255,255,0.55); }
+
+  .badge {
+    background: var(--naranja);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 6px 16px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  /* TABS */
+  .tabs {
+    background: white;
+    display: flex;
+    overflow-x: auto;
+    border-bottom: 2px solid #eee;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    padding: 0 8px;
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+
+  .tab {
+    flex-shrink: 0;
+    padding: 14px 22px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #aaa;
+    border: none;
+    background: none;
+    cursor: pointer;
+    white-space: nowrap;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+    font-family: 'Inter', sans-serif;
+  }
+  .tab:hover { color: var(--verde); }
+  .tab.active { color: var(--verde); border-bottom-color: var(--verde-c); }
+
+  /* CONTENT — ancho completo */
+  .content {
+    padding: 28px 32px 60px;
+  }
+
+  @media (max-width: 600px) {
+    .header { padding: 24px 20px; }
+    .content { padding: 20px 16px 60px; }
+  }
+
+  .section { display: none; }
+  .section.active { display: block; animation: fadein 0.25s ease; }
+  @keyframes fadein { from { opacity:0; transform: translateY(6px); } to { opacity:1; transform: translateY(0); } }
+
+  /* TÍTULOS */
+  .stitle { font-size: 22px; font-weight: 800; color: var(--verde); margin-bottom: 5px; letter-spacing: -0.3px; }
+  .sdesc { font-size: 14px; color: var(--texto-s); margin-bottom: 24px; line-height: 1.7; }
+
+  /* CARDS */
+  .card {
+    background: white;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 12px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+  }
+  .card-title {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--verde-c);
+    margin-bottom: 10px;
+  }
+  .card.accent { border-left: 4px solid var(--verde-c); }
+  .card.warn { border-left: 4px solid var(--naranja); background: #fffaf3; }
+  .card.danger { border-left: 4px solid var(--rojo); background: #fff5f5; }
+  .card.dark { background: var(--verde); color: white; }
+  .card.dark .card-title { color: var(--verde-c); }
+  .card.dark p { color: rgba(255,255,255,0.85); }
+  .card.dark strong { color: var(--verde-c); }
+
+  /* MÉTRICAS */
+  .metric-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .metric {
+    background: white;
+    border-radius: 12px;
+    padding: 16px 14px;
+    text-align: center;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+  }
+  .metric-val { font-size: 26px; font-weight: 800; color: var(--verde); line-height: 1; margin-bottom: 4px; }
+  .metric-val.naranja { color: var(--naranja); }
+  .metric-val.rojo { color: var(--rojo); }
+  .metric-lbl { font-size: 10px; font-weight: 600; color: #aaa; text-transform: uppercase; letter-spacing: 0.5px; }
+  .metric-sub { font-size: 11px; color: #bbb; margin-top: 3px; }
+
+  /* GYM TOGGLE */
+  .version-toggle {
+    display: flex;
+    background: #eee;
+    border-radius: 10px;
+    padding: 4px;
+    margin-bottom: 20px;
+    width: fit-content;
+    gap: 4px;
+  }
+  .vbtn {
+    padding: 8px 20px;
+    border-radius: 8px;
+    border: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    background: transparent;
+    color: #aaa;
+    transition: all 0.2s;
+  }
+  .vbtn.active { background: var(--verde); color: white; }
+
+  /* DAY CARDS */
+  .day-grid { display: grid; grid-template-columns: 1fr; gap: 8px; }
+
+  .day-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+    display: grid;
+    grid-template-columns: 72px 1fr;
+  }
+  .day-label {
+    background: var(--verde);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 6px;
+    font-weight: 800;
+    font-size: 12px;
+    text-align: center;
+    gap: 2px;
+  }
+  .day-label .dia-num { font-size: 20px; font-weight: 800; line-height: 1; }
+  .day-label.rest { background: #e0e0e0; color: #999; }
+  .day-content { padding: 12px 16px; }
+  .day-tipo { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--verde-c); margin-bottom: 4px; }
+  .day-tipo.gris { color: #bbb; }
+  .day-ejercicios { font-size: 13px; color: var(--texto-s); line-height: 1.7; }
+  .day-ejercicios strong { color: var(--texto); font-weight: 600; }
+
+  /* COMIDA TABLE */
+  .comida-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+    margin-bottom: 14px;
+    font-size: 13.5px;
+  }
+  .comida-table th { background: var(--verde); color: white; padding: 11px 16px; text-align: left; font-weight: 600; font-size: 12px; }
+  .comida-table td { padding: 12px 16px; border-bottom: 1px solid #f0f0f0; vertical-align: top; line-height: 1.6; }
+  .comida-table tr:last-child td { border-bottom: none; }
+  .comida-table tr:hover td { background: #fafffe; }
+  .momento { font-weight: 700; color: var(--verde); white-space: nowrap; font-size: 12px; width: 120px; }
+  .nuevo-tag {
+    display: inline-block;
+    background: var(--nuevo);
+    border: 1.5px solid var(--nuevo-borde);
+    color: #2e7d32;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 1px 7px;
+    border-radius: 6px;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* SUPLEMENTOS */
+  .sup-card {
+    background: white;
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .sup-badge {
+    flex-shrink: 0;
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+  }
+  .sup-badge.ok { background: #e8f5e9; }
+  .sup-badge.warn { background: #fff8e1; }
+  .sup-badge.add { background: #ffebee; }
+  .sup-info { flex: 1; }
+  .sup-name { font-size: 14px; font-weight: 700; color: var(--texto); margin-bottom: 2px; }
+  .sup-status { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 5px; }
+  .sup-status.ok { color: #2e7d32; }
+  .sup-status.warn { color: #e65100; }
+  .sup-status.add { color: var(--rojo); }
+  .sup-desc { font-size: 13px; color: var(--texto-s); line-height: 1.6; }
+
+  /* VIAJE */
+  .viaje-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .viaje-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+    overflow: hidden;
+  }
+  .viaje-card-header {
+    background: var(--verde);
+    color: white;
+    padding: 12px 16px;
+    font-size: 13px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .viaje-icon { font-size: 18px; }
+  .viaje-card-body { padding: 14px 16px; }
+  .viaje-item {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+    font-size: 13px;
+    line-height: 1.5;
+    align-items: flex-start;
+  }
+  .viaje-item:last-child { margin-bottom: 0; }
+  .viaje-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--verde-c);
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+  .viaje-dot.naranja { background: var(--naranja); }
+  .viaje-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #aaa;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  /* SUB TITLES */
+  .sub-title { font-size: 13px; font-weight: 700; color: var(--verde); margin: 20px 0 10px; padding-left: 10px; border-left: 3px solid var(--verde-c); }
+
+  /* PILLS */
+  .pill { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; }
+  .pill-verde { background: #e8f5e9; color: #2e7d32; }
+  .pill-naranja { background: #fff3e0; color: #e65100; }
+  .pill-rojo { background: #ffebee; color: var(--rojo); }
+
+  .divider { height: 1px; background: #f0f0f0; margin: 18px 0; }
+
+  /* FOOTER */
+  .footer { background: var(--verde); color: white; text-align: center; padding: 24px 32px; font-size: 13px; }
+  .footer a { color: var(--verde-c); text-decoration: none; font-weight: 700; }
+
+  @media (max-width: 600px) {
+    .header { padding: 20px 16px; flex-direction: column; gap: 10px; text-align: center; }
+    .content { padding: 16px 14px 60px; }
+    .metric-row { grid-template-columns: repeat(2, 1fr); }
+    .viaje-grid { grid-template-columns: 1fr; }
+    .sup-card { flex-direction: column; gap: 8px; }
+    /* Tablas de comida — scroll horizontal en mobile */
+    .comida-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; font-size: 12.5px; }
+    /* Gym grid horizontal — scroll en mobile */
+    .gym-week { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .gym-week-inner { min-width: 480px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <div class="logo">eat&amp;flow — Nutrición Deportiva</div>
+    <h1>Plan Nutricional — Mateo</h1>
+    <p class="sub">Isa Herra &nbsp;|&nbsp; Agosto 2026</p>
+  </div>
+  <div class="badge">Pérdida de grasa</div>
+</div>
+
+<div class="tabs">
+  <button class="tab active" onclick="show('cuerpo',this)">Tu punto de partida</button>
+  <button class="tab" onclick="show('gym',this)">Gym</button>
+  <button class="tab" onclick="show('comida',this)">Comida</button>
+  <button class="tab" onclick="show('viaje',this)">Viaje</button>
+  <button class="tab" onclick="show('suplementos',this)">Suplementos</button>
+</div>
+
+<div class="content">
+
+  <!-- PUNTO DE PARTIDA -->
+  <div id="tab-cuerpo" class="section active">
+    <div class="stitle">Tu punto de partida</div>
+    <p class="sdesc">Agosto 2026. Estas son las medidas reales con las que arrancamos.</p>
+
+    <div class="metric-row">
+      <div class="metric">
+        <div class="metric-val">77.4</div>
+        <div class="metric-lbl">Peso kg</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val naranja">35.2</div>
+        <div class="metric-lbl">% Grasa</div>
+        <div class="metric-sub">27.3 kg de grasa</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val">50.1</div>
+        <div class="metric-lbl">Masa magra kg</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val rojo">88</div>
+        <div class="metric-lbl">Cintura cm</div>
+        <div class="metric-sub">Meta: &lt;82 cm</div>
+      </div>
+    </div>
+
+    <div class="card warn">
+      <div class="card-title">Relación cintura/cadera</div>
+      <p style="font-size:14px;color:#555">Cintura 88 cm, cadera 88 cm → ratio 1.0. En hombres el límite de riesgo cardiovascular es 0.95. <strong style="color:#e65100">Reducir la cintura es la prioridad número uno.</strong></p>
+    </div>
+
+    <div class="sub-title">Objetivos</div>
+    <div class="metric-row">
+      <div class="metric" style="border-top:3px solid var(--naranja)">
+        <div class="metric-val" style="font-size:18px">~71 kg</div>
+        <div class="metric-lbl">Meta 3 meses</div>
+        <div class="metric-sub">~28% grasa</div>
+      </div>
+      <div class="metric" style="border-top:3px solid var(--verde-c)">
+        <div class="metric-val" style="font-size:18px">~63 kg</div>
+        <div class="metric-lbl">Meta largo plazo</div>
+        <div class="metric-sub">~20% grasa</div>
+      </div>
+      <div class="metric" style="border-top:3px solid var(--verde-c)">
+        <div class="metric-val" style="font-size:18px">&lt;82 cm</div>
+        <div class="metric-lbl">Cintura meta</div>
+        <div class="metric-sub">Largo plazo &lt;80</div>
+      </div>
+    </div>
+
+    <div class="sub-title">Lo que hay que ajustar</div>
+    <div class="card danger">
+      <div class="card-title" style="color:var(--rojo)">Agua — el cambio más urgente</div>
+      <p style="font-size:14px;color:#555;line-height:1.7">Menos de 1 litro al día. La meta es <strong>4 botellas de 600 ml</strong> antes de las 5 pm, de ahí en adelante solo el té de la cena.</p>
+      <p style="font-size:13px;color:#777;margin-top:10px;line-height:1.8">
+        <strong>Botella 1:</strong> mitad al despertar, la otra mitad mientras preparás el desayuno.<br>
+        <strong>Botella 2:</strong> vacía antes de las 10 am.<br>
+        <strong>Botella 3:</strong> vacía antes del mediodía.<br>
+        <strong>Botella 4:</strong> vacía antes de las 5 pm.
+      </p>
+    </div>
+    <div class="card warn">
+      <div class="card-title">Café — máximo 2 al día</div>
+      <p style="font-size:14px;color:#555;line-height:1.7">El primero en la mañana, el segundo antes de las 4 pm. La cafeína tiene una vida media de 5-6 horas, así que un café a las 4 pm sigue activo parcialmente a las 10 pm y afecta la calidad del sueño aunque no se sienta el efecto.</p>
+    </div>
+    <div class="card warn">
+      <div class="card-title">Sueño irregular</div>
+      <p style="font-size:14px;color:#555;line-height:1.7">El sueño insuficiente o de mala calidad es uno de los principales acumuladores de grasa abdominal vía cortisol. El magnesio citrato ayuda, pero también: pantallas apagadas 30 minutos antes de dormir, misma hora de acostarse todos los días, habitación fresca. El café después de las 2 pm es el factor que más afecta la calidad del sueño en tu caso.</p>
+    </div>
+    <div class="card accent">
+      <div class="card-title">Recomendación — laboratorio</div>
+      <p style="font-size:14px;color:#444;line-height:1.7">Tenés una operación de hígado en el historial y los últimos exámenes fueron a los 40 años. En los próximos exámenes de rutina vale la pena incluir un perfil hepático básico (AST, ALT, GGT) para tener una línea de base actual. No es urgente ni alarmante, es simplemente tener el panorama completo.</p>
+    </div>
+  </div>
+
+  <!-- GYM -->
+  <div id="tab-gym" class="section">
+    <div class="stitle">Gym</div>
+    <p class="sdesc">Seguí con el plan que ya tenés. El único ajuste es agregar cardio al final de cada sesión. Sin cardio, las pesas construyen músculo pero la panza no baja.</p>
+
+    <div class="card dark">
+      <div class="card-title">Cada día de gym</div>
+      <p>Los <strong>20 minutos de banda caminadora al inicio</strong> que ya hacés sirven de calentamiento, mantenelos. Al <strong>final de las pesas</strong>, agregar <strong>20-30 minutos de bicicleta estática o elíptica</strong> a intensidad moderada (te cuesta respirar pero podés hablar). Eso es lo que quema la grasa acumulada. La bicicleta y la elíptica son las opciones correctas porque no generan carga en la columna cervical.</p>
+    </div>
+
+    <div class="sub-title">Semana de 3 días</div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:6px;">
+      <div class="card accent" style="margin-bottom:0">
+        <div class="card-title">Gym</div>
+        <p style="font-size:14px;color:#1a1a1a;font-weight:600">Lunes · Miércoles · Viernes</p>
+      </div>
+      <div class="card" style="margin-bottom:0; border-left:4px solid #ccc; background:#f5f5f5;">
+        <div class="card-title" style="color:#aaa">Descanso</div>
+        <p style="font-size:14px;color:#888;font-weight:600">Martes · Jueves · Sábado · Domingo</p>
+      </div>
+    </div>
+
+    <div class="card accent" style="margin-top:14px">
+      <div class="card-title">Por qué este orden importa</div>
+      <p style="font-size:13.5px;color:#444;line-height:1.7">Un día de gym, un día de descanso, un día de gym — así cada grupo muscular tiene al menos 48 horas de recuperación entre sesiones. <strong>No hacer dos días seguidos de pesas.</strong></p>
+    </div>
+
+    <div class="card" style="border-left:4px solid var(--verde-c); background:#f0f7f0; margin-top:0">
+      <div class="card-title">Sábado o domingo — caminata al aire libre</div>
+      <p style="font-size:13.5px;color:#444;line-height:1.7">Una caminata de 45-60 minutos en un parque, sendero o cualquier entorno de naturaleza el fin de semana suma actividad física sin el estrés del gym, reduce el cortisol, mejora el sueño y el estado de ánimo. No es obligatoria pero sí muy recomendada. Es diferente al gym y eso es precisamente lo que la hace valiosa.</p>
+    </div>
+  </div>
+  </div>
+
+  <!-- COMIDA -->
+  <div id="tab-comida" class="section">
+    <div class="stitle">Comida</div>
+    <p class="sdesc">Qué comer y cuándo. Los cambios están marcados en verde.</p>
+
+    <div class="metric-row">
+      <div class="metric">
+        <div class="metric-val" style="font-size:18px">~1,780</div>
+        <div class="metric-lbl">kcal día con gym</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val naranja" style="font-size:18px">~1,670</div>
+        <div class="metric-lbl">kcal día sin gym</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val" style="font-size:18px">~600</div>
+        <div class="metric-lbl">Déficit promedio/día</div>
+      </div>
+    </div>
+
+    <div class="sub-title">Día con gym</div>
+    <table class="comida-table">
+      <thead><tr><th style="width:130px">Momento</th><th>Qué comer</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="momento">En ayunas</td>
+          <td>
+            <div class="nuevo-tag">Nuevo</div><br>
+            Mitad de la primera botella de agua (300 ml). La otra mitad mientras preparás el desayuno. Meta: 4 botellas de 600 ml antes de las 5 pm.
+          </td>
+        </tr>
+        <tr>
+          <td class="momento">Desayuno</td>
+          <td>2 tortillas de masa + 1 huevo + 2 claras + ½ aguacate + café negro.</td>
+        </tr>
+        <tr>
+          <td class="momento">Merienda mañana</td>
+          <td>Capuchino con leche proteica + 1 pancito de almendra con ½ cdita de miel y 1 cdita de mantequilla de maní.</td>
+        </tr>
+        <tr>
+          <td class="momento">Pre-gym</td>
+          <td>
+            <div class="nuevo-tag">Nuevo</div><br>
+            ½ banano o 1 tostada de pan integral. 30 minutos antes de entrar al gym.
+          </td>
+        </tr>
+        <tr>
+          <td class="momento">Almuerzo<br><span style="font-size:10px;color:#aaa">post-gym</span></td>
+          <td>
+            <div class="nuevo-tag">Ajuste</div><br>
+            4 cucharadas de arroz integral + 3 cucharadas de frijoles tiernos + proteína tamaño palma (~120g) + ensalada o vegetales sin límite + fruta con yogurt griego al final.
+          </td>
+        </tr>
+        <tr>
+          <td class="momento">Merienda tarde</td>
+          <td>Según el hambre que tengás: si tenés más hambre, emparedado de huevo + jamón de pavo + tomate. Si tenés hambre moderada, tostada con queso cottage y aceitunas. Si tenés poco hambre, 1 pancito de almendra.</td>
+        </tr>
+        <tr>
+          <td class="momento">Cena</td>
+          <td>Burritos de pollo o carne con yogurt griego encima + aguacate o aceitunas o chile + vegetales sin límite.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="sub-title">Día sin gym — qué cambia</div>
+    <table class="comida-table">
+      <thead><tr><th style="width:130px">Momento</th><th>Ajuste</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="momento">Pre-gym</td>
+          <td>No aplica.</td>
+        </tr>
+        <tr>
+          <td class="momento">Almuerzo</td>
+          <td>3 cucharadas de arroz integral (en lugar de 4) + todo lo demás igual.</td>
+        </tr>
+        <tr>
+          <td class="momento">Todo lo demás</td>
+          <td>Igual al día con gym.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- VIAJE -->
+  <div id="tab-viaje" class="section">
+    <div class="stitle">Qué comer viajando</div>
+    <p class="sdesc">No tenés que comer perfecto. Solo no arruinar lo que hacés el resto de la semana. Una regla para cada situación.</p>
+
+    <div class="viaje-grid">
+
+      <div class="viaje-card">
+        <div class="viaje-card-header">Aeropuerto (VIP)</div>
+        <div class="viaje-card-body">
+          <div class="viaje-item">
+            <div class="viaje-dot"></div>
+            <div><span class="viaje-label">Elegir</span>Huevos o proteína, ensalada, fruta. Si hay arroz o pasta: plato pequeño con proteína.</div>
+          </div>
+          <div class="viaje-item">
+            <div class="viaje-dot naranja"></div>
+            <div><span class="viaje-label">Evitar</span>Repostería, sándwiches de pan blanco, jugos de caja.</div>
+          </div>
+          <div class="viaje-item">
+            <div class="viaje-dot"></div>
+            <div><span class="viaje-label">Siempre</span>Acompañado por agua.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="viaje-card">
+        <div class="viaje-card-header">Desayuno de hotel</div>
+        <div class="viaje-card-body">
+          <div class="viaje-item">
+            <div class="viaje-dot"></div>
+            <div><span class="viaje-label">El plato ideal</span>Huevos + proteína (jamón, salmón, queso) + fruta + café negro.</div>
+          </div>
+          <div class="viaje-item">
+            <div class="viaje-dot naranja"></div>
+            <div><span class="viaje-label">Saltar</span>Cereales, pancakes, pan blanco.</div>
+          </div>
+          <div class="viaje-item">
+            <div class="viaje-dot"></div>
+            <div><span class="viaje-label">Siempre</span>Acompañado por agua.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="viaje-card">
+        <div class="viaje-card-header">Reunión con comida</div>
+        <div class="viaje-card-body">
+          <div class="viaje-item">
+            <div class="viaje-dot"></div>
+            <div><span class="viaje-label">Estrategia</span>Proteína primero, la mitad del carbohidrato, tomar agua antes y durante.</div>
+          </div>
+          <div class="viaje-item">
+            <div class="viaje-dot"></div>
+            <div><span class="viaje-label">Si hay postre</span>Si podés controlarte, mejor. Si no, elegís uno pequeño.</div>
+          </div>
+          <div class="viaje-item">
+            <div class="viaje-dot"></div>
+            <div><span class="viaje-label">Siempre</span>Acompañado por agua.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="viaje-card">
+        <div class="viaje-card-header">Restaurante con menú</div>
+        <div class="viaje-card-body">
+          <div class="viaje-item">
+            <div class="viaje-dot"></div>
+            <div><span class="viaje-label">La regla</span>El plato que tenga proteína como protagonista: pollo, pescado, carne magra, legumbres.</div>
+          </div>
+          <div class="viaje-item">
+            <div class="viaje-dot"></div>
+            <div><span class="viaje-label">Si podés</span>Pedir vegetales o ensalada en lugar de papas o arroz blanco.</div>
+          </div>
+          <div class="viaje-item">
+            <div class="viaje-dot"></div>
+            <div><span class="viaje-label">Siempre</span>Acompañado por agua.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="viaje-card">
+        <div class="viaje-card-header">Supermercado en el destino</div>
+        <div class="viaje-card-body">
+          <div class="viaje-item">
+            <div class="viaje-dot"></div>
+            <div><span class="viaje-label">Llevar al hotel</span>Yogurt griego, frutos secos, fruta fresca, queso cottage.</div>
+          </div>
+          <div class="viaje-item">
+            <div class="viaje-dot"></div>
+            <div><span class="viaje-label">Resultado</span>Desayuno y merienda resueltos sin depender del hotel.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="card accent">
+      <div class="card-title">Gym del hotel</div>
+      <p style="font-size:14px;color:#444;line-height:1.7">Cuando viajás no tenés que replicar la rutina completa. Con 30-40 minutos de cardio en bicicleta estática o elíptica es suficiente para mantener el avance. Si el hotel no tiene gym, una caminata de 30 minutos a buen paso cumple la misma función. Algo siempre es mejor que nada.</p>
+    </div>
+
+  </div>
+
+  <!-- SUPLEMENTOS -->
+  <div id="tab-suplementos" class="section">
+    <div class="stitle">Suplementos</div>
+    <p class="sdesc">Evaluación de todo lo que tomás actualmente.</p>
+
+    <div class="sup-card">
+      <div class="sup-badge ok">✓</div>
+      <div class="sup-info">
+        <div class="sup-name">Magnesio citrato</div>
+        <div class="sup-status ok">Mantener</div>
+        <div class="sup-desc">El citrato tiene excelente absorción. Apoya el sueño (irregular según lo que reportás), la relajación muscular y el control del cortisol. 200-400 mg antes de dormir.</div>
+      </div>
+    </div>
+
+    <div class="sup-card">
+      <div class="sup-badge ok">✓</div>
+      <div class="sup-info">
+        <div class="sup-name">Tripleflex (glucosamina + condroitina + MSM)</div>
+        <div class="sup-status ok">Mantener mientras trabajás con el neurólogo</div>
+        <div class="sup-desc">Tiene evidencia moderada para el soporte articular y del cartílago. Tiene sentido dado el historial de hernias y el trabajo con el especialista. No cura, pero apoya. Continuar siguiendo la indicación.</div>
+      </div>
+    </div>
+
+    <div class="sup-card">
+      <div class="sup-badge warn">?</div>
+      <div class="sup-info">
+        <div class="sup-name">Boro</div>
+        <div class="sup-status warn">No es prioritario pero no hace daño</div>
+        <div class="sup-desc">Tiene alguna evidencia en regulación hormonal y salud ósea. No hay razón urgente para tomarlo ni para dejarlo si lo tolerás bien y estás dentro del rango de dosis indicado (3-6 mg/día).</div>
+      </div>
+    </div>
+
+    <div class="sup-card">
+      <div class="sup-badge ok">✓</div>
+      <div class="sup-info">
+        <div class="sup-name">Colágeno</div>
+        <div class="sup-status ok">Sí tiene sentido para tu caso</div>
+        <div class="sup-desc">Con hernias discales y una hernia cervical en tratamiento, el colágeno hidrolizado (tipo I y III) tiene evidencia creciente en el soporte del tejido conectivo, tendones, cartílago y discos intervertebrales. No es un suplemento de rendimiento deportivo, pero en tu caso específico es uno de los más justificados. Dosis: 10-15 g al día en ayunas o con vitamina C para mejorar la absorción. Vale la pena incorporarlo.</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="sub-title">Lo que falta y sí tiene evidencia</div>
+
+    <div class="sup-card">
+      <div class="sup-badge add">+</div>
+      <div class="sup-info">
+        <div class="sup-name">Omega-3 (EPA + DHA)</div>
+        <div class="sup-status add">Agregar — prioritario</div>
+        <div class="sup-desc">No lo estás tomando y es el más importante para tu objetivo. Con grasa abdominal elevada y ratio cintura/cadera en zona de riesgo, el omega-3 tiene efecto antiinflamatorio directo, reduce triglicéridos y mejora la sensibilidad insulínica. 1-2 g de EPA+DHA al día, con una comida con grasa.</div>
+      </div>
+    </div>
+
+    <div class="sup-card">
+      <div class="sup-badge warn">+</div>
+      <div class="sup-info">
+        <div class="sup-name">Proteína en polvo</div>
+        <div class="sup-status warn">Considerar si no llegás a 90g de proteína al día</div>
+        <div class="sup-desc">Con la dieta actual probablemente llegás a 70-80g. Un scoop después del gym (25-30g) resuelve esa diferencia. No es obligatorio si llegás con comida real, pero facilita el proceso.</div>
+      </div>
+    </div>
+
+    <div class="sup-card">
+      <div class="sup-badge warn">+</div>
+      <div class="sup-info">
+        <div class="sup-name">Vitamina D3</div>
+        <div class="sup-status warn">Medir antes de suplementar</div>
+        <div class="sup-desc">Muy frecuente en personas con trabajo de oficina y poco sol directo. Impacta la masa muscular, el sistema inmune y el estado de ánimo. Incluirlo en los próximos exámenes. Si el nivel está bajo de 30 ng/mL, suplementar 2000-4000 UI al día.</div>
+      </div>
+    </div>
+
+    <div class="card accent" style="margin-top:14px">
+      <div class="card-title">Resumen</div>
+      <p style="font-size:13.5px;color:#444;line-height:2.2">
+        <span class="pill pill-verde">Mantener</span> Magnesio citrato &nbsp;
+        <span class="pill pill-verde">Mantener</span> Tripleflex &nbsp;
+        <span class="pill pill-verde">Mantener</span> Colágeno &nbsp;
+        <span class="pill pill-naranja">Evaluar</span> Boro<br>
+        <span class="pill pill-rojo">Agregar ya</span> Omega-3 &nbsp;
+        <span class="pill pill-naranja">Si hace falta</span> Proteína en polvo &nbsp;
+        <span class="pill pill-naranja">Medir primero</span> Vitamina D3
+      </p>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <p>Isa Herra &nbsp;|&nbsp; <a href="https://instagram.com/isaherra.13">@isaherra.13</a></p>
+  <p style="margin-top:4px;opacity:0.5;font-size:11px">eat&amp;flow Nutrición Deportiva — Agosto 2026</p>
+</div>
+
+<script>
+function show(name, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+
+</script>
+</body>
+</html>
