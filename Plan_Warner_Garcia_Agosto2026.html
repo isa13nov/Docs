@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan Agosto 2026 | Warner García | eat&flow</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #F5F9F7 0%, #E8F3EF 100%);
+            color: #2D4A3E;
+            line-height: 1.8;
+            padding: 3px;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 30px rgba(45,74,62,0.12);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1a5945 0%, #2D4A3E 100%);
+            color: white;
+            padding: 36px 20px;
+            text-align: center;
+            border-bottom: 4px solid #8bc34a;
+        }
+
+        .header .brand { font-size: 19px; font-weight: 700; letter-spacing: 4px; opacity: 0.88; margin-bottom: 14px; text-transform: uppercase; }
+        .header h1 { font-size: 26px; font-weight: 700; margin-bottom: 6px; }
+        .header .cliente { font-size: 20px; font-weight: 600; margin-top: 10px; }
+
+        .badge {
+            display: inline-block;
+            background: #ff9800;
+            color: white;
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-top: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .tabs {
+            display: flex;
+            overflow-x: auto;
+            background: white;
+            border-bottom: 2px solid #E8F3EF;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(45,74,62,0.06);
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .tabs::-webkit-scrollbar { height: 3px; }
+        .tabs::-webkit-scrollbar-thumb { background: #8bc34a; border-radius: 2px; }
+
+        .tab {
+            padding: 13px 15px;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            font-size: 12.5px;
+            font-weight: 600;
+            color: #6c757d;
+            white-space: nowrap;
+            transition: all 0.25s;
+            flex-shrink: 0;
+        }
+
+        .tab:hover { background: #F5F9F7; color: #2D4A3E; }
+        .tab.active { color: #1a5945; border-bottom: 3px solid #1a5945; background: #F5F9F7; }
+
+        .content { padding: 18px 10px; }
+
+        .section { display: none; }
+        .section.active { display: block; animation: fadeIn 0.3s; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            font-size: 23px;
+            color: #1a5945;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #8bc34a;
+            font-weight: 800;
+        }
+
+        .subsection-title {
+            font-size: 17px;
+            color: #2D4A3E;
+            margin: 30px 0 14px;
+            font-weight: 700;
+        }
+
+        .card {
+            background: #F5FAF8;
+            border-left: 4px solid #8bc34a;
+            padding: 16px 18px;
+            margin-bottom: 16px;
+            border-radius: 8px;
+        }
+
+        .card h3 { color: #1a5945; font-size: 16px; margin-bottom: 10px; }
+        .card p { margin-bottom: 8px; font-size: 14px; }
+        .card p:last-child { margin-bottom: 0; }
+        .card ul { margin-left: 16px; margin-bottom: 8px; font-size: 14px; }
+        .card ul li { margin-bottom: 4px; }
+        .card ol { margin-left: 16px; margin-bottom: 8px; font-size: 14px; }
+        .card ol li { margin-bottom: 4px; }
+
+        .card.highlight { background: linear-gradient(135deg, #fff8f0, #fff3e6); border-left-color: #ff9800; }
+        .card.success { background: #e8f5e9; border-left-color: #43a047; }
+        .card.warning { background: #fffde7; border-left-color: #fdd835; }
+        .card.critical { background: #fce4ec; border-left-color: #e53935; }
+        .card.dark { background: #e8f0ee; border-left-color: #1a5945; }
+
+        .orange-box {
+            background: linear-gradient(135deg, #fff8f0, #fff3e6);
+            border-left: 4px solid #ff9800;
+            padding: 16px 18px;
+            margin: 18px 0;
+            border-radius: 8px;
+        }
+        .orange-box p { margin-bottom: 8px; font-size: 14px; }
+        .orange-box p:last-child { margin-bottom: 0; }
+
+        .info-box {
+            background: #e8f5e9;
+            border-left: 4px solid #43a047;
+            padding: 16px 18px;
+            margin: 18px 0;
+            border-radius: 8px;
+        }
+        .info-box p { margin-bottom: 8px; font-size: 14px; }
+        .info-box p:last-child { margin-bottom: 0; }
+
+        .critical-box {
+            background: #fce4ec;
+            border-left: 4px solid #e53935;
+            padding: 16px 18px;
+            margin: 18px 0;
+            border-radius: 8px;
+        }
+        .critical-box p { margin-bottom: 8px; font-size: 14px; }
+        .critical-box p:last-child { margin-bottom: 0; }
+
+        p { font-size: 14px; margin-bottom: 10px; }
+        p:last-child { margin-bottom: 0; }
+        strong { color: #1a5945; }
+
+        .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 16px 0; border-radius: 6px; }
+
+        table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 480px; }
+        table th { background: #1a5945; color: white; padding: 10px 12px; text-align: left; font-weight: 700; }
+        table td { border-bottom: 1px solid #E8F3EF; padding: 10px 12px; vertical-align: top; }
+        table tr:hover { background: #F5FAF8; }
+
+        .meal-plan {
+            background: #F5FAF8;
+            border-left: 4px solid #8bc34a;
+            padding: 14px 16px;
+            margin: 14px 0;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        .meal-plan strong { color: #1a5945; display: block; margin-bottom: 6px; }
+        .meal-plan p { margin-bottom: 5px; font-size: 14px; }
+
+        .recipe-card {
+            background: #F5FAF8;
+            border-left: 4px solid #ff9800;
+            padding: 14px 16px;
+            margin: 14px 0;
+            border-radius: 8px;
+        }
+        .recipe-card h4 { color: #1a5945; margin-bottom: 8px; font-size: 15px; }
+        .recipe-card p { margin-bottom: 6px; font-size: 14px; }
+        .recipe-card ul { margin-left: 16px; margin-bottom: 8px; font-size: 14px; }
+        .recipe-card ol { margin-left: 16px; margin-bottom: 8px; font-size: 14px; }
+
+        .priority-badge {
+            display: inline-block;
+            padding: 2px 9px;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+        .p1 { background: #e53935; color: white; }
+        .p2 { background: #ff9800; color: white; }
+        .p3 { background: #8bc34a; color: white; }
+
+        .zone-box {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-right: 4px;
+        }
+        .z2 { background: #c8e6c9; color: #1b5e20; }
+        .z3 { background: #fff9c4; color: #f57f17; }
+        .z4 { background: #ffccbc; color: #bf360c; }
+        .z5 { background: #ffcdd2; color: #b71c1c; }
+
+        .fc-box {
+            background: linear-gradient(135deg, #1a5945, #2D4A3E);
+            color: white;
+            border-radius: 10px;
+            padding: 16px 18px;
+            margin: 16px 0;
+        }
+        .fc-box h4 { color: #8bc34a; margin-bottom: 10px; font-size: 15px; }
+        .fc-box p { color: rgba(255,255,255,0.9); font-size: 13.5px; margin-bottom: 6px; }
+        .fc-box p:last-child { margin-bottom: 0; }
+        .fc-box strong { color: #8bc34a; }
+
+        .footer {
+            background: #1a5945;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 13px;
+        }
+        .footer p { color: white; margin-bottom: 5px; }
+        .footer p:last-child { margin-bottom: 0; }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="header">
+        <div class="brand">eat&flow</div>
+        <h1>Plan Agosto 2026</h1>
+        <p style="font-size:13px;opacity:.88;margin-top:8px;">Asesoría Nutricional y de Entrenamiento: Isa Herra</p>
+        <div class="cliente">Warner García Flores</div>
+        <span class="badge">Full Endurance · Mes 2</span>
+    </div>
+
+    <div class="tabs">
+        <button class="tab active" onclick="show('ajustes',this)">Ajustes del Mes</button>
+        <button class="tab" onclick="show('zonas',this)">Zonas de FC</button>
+        <button class="tab" onclick="show('entrenamiento',this)">Entrenamiento</button>
+        <button class="tab" onclick="show('nutricion',this)">Nutrición Diaria</button>
+        <button class="tab" onclick="show('fueling',this)">Fueling en Ruta</button>
+        <button class="tab" onclick="show('suplementos',this)">Suplementos</button>
+        <button class="tab" onclick="show('seguimiento',this)">Seguimiento</button>
+    </div>
+
+    <div class="content">
+
+        <!-- ======= AJUSTES DEL MES ======= -->
+        <div id="ajustes" class="section active">
+            <h2 class="section-title">Ajustes del Mes — Qué Cambia en Agosto</h2>
+
+            <div class="orange-box">
+                <p><strong>Antes de empezar:</strong> El primer mes mostró algo importante. Donde no dependés de cambios de hábito externos, cumplís al máximo: acondicionamiento 8/10, suplementos 8/10, post entreno 10/10. Eso no es poca cosa. El desafío de agosto es trasladar esa misma disciplina a las áreas que todavía no han tomado forma — el fondo del domingo, el desayuno en casa y la intensidad del ciclismo entre semana.</p>
+                <p style="margin-top:8px;">Los resultados que ya tenés — 2 cm menos en cintura, 2 cm menos en cadera, +1 cm en brazo — los lograste con el plan a medias. Eso dice mucho del potencial que hay cuando el plan esté al completo.</p>
+            </div>
+
+            <h3 class="subsection-title">Lo que se mantiene igual</h3>
+
+            <div class="card success">
+                <h3>No toques esto — está funcionando</h3>
+                <p><strong>Suplementos diarios:</strong> Todos en la mañana como lo venís haciendo. No cambiar nada.</p>
+                <p><strong>Post entreno:</strong> 1 scoop Basic Whey dentro de 30 minutos. Perfecto como está.</p>
+                <p><strong>Acondicionamiento físico:</strong> Las dos sesiones semanales se mantienen. En agosto se progresa la carga — más peso o más repeticiones en lo que ya manejás bien.</p>
+                <p><strong>Meriendas (7/10):</strong> Seguir con lo que ya funciona: fruta + yogurt o avena nocturna. En agosto ajustamos la opción de lácteo por la intolerancia.</p>
+            </div>
+
+            <h3 class="subsection-title">Cambio 1: Lactosa</h3>
+
+            <div class="card highlight">
+                <h3>Ajuste por Intolerancia a la Lactosa</h3>
+                <p>Reportás que la lactosa te afecta. Esto implica tres ajustes puntuales:</p>
+                <p><strong>Yogurt griego:</strong> El yogurt griego natural tiene muy poca lactosa por la fermentación. Probalo en cantidad pequeña (3-4 cucharadas) y evaluá si te genera malestar. Si sí molesta, lo reemplazamos por yogurt de coco o de almendras sin azúcar añadida, o simplemente por más fruta con maní.</p>
+                <p><strong>Leche del post entreno:</strong> La Basic Whey que tenés no contiene lactosa significativa — seguí usándola sin problema.</p>
+                <p><strong>Queso en comidas:</strong> Si usabas queso blanco en alguna preparación, pasá a versiones sin lactosa o eliminalo y compensá con más proteína en el plato.</p>
+            </div>
+
+            <h3 class="subsection-title">Cambio 2: El Desayuno — Sin Excusas</h3>
+
+            <div class="card critical">
+                <h3>Desayuno en casa: 1/10 → meta 7/10</h3>
+                <p>El desayuno en soda está directamente relacionado con la energía que llegás a los entrenamientos y con la grasa abdominal que querés bajar. La soda no es mala, pero no tiene control sobre el aceite, la sal ni las porciones, y no te da el perfil proteico que necesitás en la mañana.</p>
+                <p style="margin-top:8px;">La razón por la que no lo hacés en casa no es falta de voluntad — es que no hay un sistema tan simple que quite la fricción. En agosto el desayuno en casa dura 5 minutos exactos:</p>
+                <p style="margin-top:8px;"><strong>Opción A (5 min):</strong> 2 huevos enteros + 2 claras revueltos en sartén con aceite mínimo · 1-2 rebanadas de pan integral · café.</p>
+                <p><strong>Opción B (3 min):</strong> Avena nocturna preparada la noche anterior · café. Ya está lista en el refrigerador.</p>
+                <p>Si hay días que definitivamente no hay tiempo, el casado de soda está bien — pero la meta es que eso sea la excepción, no la regla.</p>
+            </div>
+
+            <h3 class="subsection-title">Cambio 3: La Intensidad del Ciclismo Entre Semana</h3>
+
+            <div class="card critical">
+                <h3>De anaeróbico crónico a entrenamiento con propósito</h3>
+                <p>La gráfica de FC que compartiste muestra 47 de 100 minutos en zona anaeróbica. Eso es demasiado para una sesión de entre semana orientada a ultra endurance. No es que el esfuerzo sea malo — es que ese tipo de esfuerzo sin estructura acumula fatiga sin construir la base aeróbica que necesitás para los 500 km.</p>
+                <p style="margin-top:8px;">En agosto cada sesión entre semana va a tener un objetivo de FC definido. Con tu FC máxima de 168 ppm, calculé tus zonas reales. Eso lo encontrás en la pestaña <strong>Zonas de FC</strong>. Cada sesión del plan de entrenamiento dice en qué zona debés estar y cuántos minutos — ya no es a punta de sensaciones.</p>
+            </div>
+
+            <h3 class="subsection-title">Cambio 4: Los Fondos Regresan</h3>
+
+            <div class="card dark">
+                <h3>El fondo del domingo es no negociable en agosto</h3>
+                <p>Sin fondos, el entrenamiento aeróbico de base para ultra no se construye. Los 300 km del fin de semana pasado (a ritmo suave acompañando) fueron una buena experiencia, pero no reemplazan el fondo estructurado semanal.</p>
+                <p style="margin-top:8px;">En agosto retomamos los fondos del domingo con una progresión controlada y con protocolo de fueling desde el kilómetro 1. Arrancamos en 100 km la primera semana — bien fueled y bien ejecutados — y construimos desde ahí de forma progresiva.</p>
+                <p style="margin-top:8px;">La meta del mes es hacer mínimo 3 de 4 fondos del domingo. Eso sí mueve la aguja.</p>
+            </div>
+
+            <h3 class="subsection-title">La Giganta — Preparación Específica</h3>
+
+            <div class="card highlight">
+                <h3>Dos competencias confirmadas — septiembre y octubre</h3>
+                <p><strong>La Giganta — 26 y 27 de septiembre:</strong> 350 km, autoasistida, dos días.</p>
+                <p style="margin-top:6px;"><strong>Carrera de Aventura — 3 y 4 de octubre:</strong> Evento de dos días, una semana después de La Giganta.</p>
+                <p style="margin-top:8px;">El protocolo específico de fueling y preparación para ambas competencias va en el plan de septiembre. Para construirlo bien necesito ver cómo respondió el intestino con el fueling en los fondos de agosto — información que todavía no existe. Cada fondo de agosto es un ensayo directo de lo que se va a necesitar en La Giganta y en la Carrera de Aventura.</p>
+                <p style="margin-top:8px;"><strong>Agosto tiene un solo foco: cumplir los fondos con fueling.</strong> Ese es el insumo que construye todo lo demás.</p>
+            </div>
+        </div>
+
+        <!-- ======= ZONAS DE FC ======= -->
+        <div id="zonas" class="section">
+            <h2 class="section-title">Tus Zonas de Frecuencia Cardíaca</h2>
+
+            <div class="orange-box">
+                <p><strong>Este es el cambio más importante del mes.</strong> Ya tenés el monitor de FC. Ahora cada sesión tiene un número en pantalla que te dice si estás en la zona correcta. Se acabó el "a punta de sensaciones" — no porque las sensaciones estén mal, sino porque combinadas con la FC vas a tener un control mucho más preciso de tu entrenamiento.</p>
+            </div>
+
+            <div class="fc-box">
+                <h4>Tus Zonas Calculadas — FC Máxima: 168 ppm</h4>
+                <p><strong>Zona 1 — Calentamiento:</strong> Por debajo de 101 ppm · Menos del 60% FCmax</p>
+                <p><strong>Zona 2 — Base aeróbica:</strong> 101–118 ppm · 60–70% FCmax</p>
+                <p><strong>Zona 3 — Aeróbico sostenido:</strong> 118–135 ppm · 70–80% FCmax</p>
+                <p><strong>Zona 4 — Umbral anaeróbico:</strong> 135–152 ppm · 80–90% FCmax</p>
+                <p><strong>Zona 5 — Esfuerzo máximo:</strong> 152–168 ppm · 90–100% FCmax</p>
+            </div>
+
+            <div class="card">
+                <h3>Por Qué el Z2 Parece Demasiado Fácil</h3>
+                <p>101–118 ppm va a sentirse muy lento al principio, especialmente en subidas. Vas a querer acelerar. Esa incomodidad de ir "demasiado despacio" es normal y dura las primeras 2-3 semanas mientras el cuerpo se adapta a trabajar en esa zona con mayor eficiencia.</p>
+                <p style="margin-top:8px;">El Z2 es donde ocurre la mayor parte de la adaptación aeróbica que necesita un ultra atleta: mitocondrias, capilares, enzimas oxidativas. No se siente heroico porque no lo es. Pero es lo que construye la base para que en las horas 15, 20 y 25 de un ultra todavía tengás motor.</p>
+            </div>
+
+            <div class="card dark">
+                <h3>Cómo Aplicarlo en las Subidas</h3>
+                <p>Las subidas van a obligarte a pasarte de zona si mantenés el ritmo. La solución no es bajar de la bici — es bajar la marcha, reducir la cadencia o el ritmo, y mantener la FC dentro del rango objetivo. En Z2 en una subida vas a ir más lento de lo que acostumbrás. Eso está bien. El objetivo del entrenamiento no es la velocidad — es el estímulo cardíaco correcto.</p>
+                <p style="margin-top:8px;"><strong>En los fondos del domingo:</strong> Si en una subida la FC sube a Z3 por 1-2 minutos, no pasa nada. Lo que hay que evitar es sostenerse en Z4-Z5 por bloques largos sin que sea parte del plan.</p>
+            </div>
+
+            <h3 class="subsection-title">Referencia Rápida para Llevar en el Celular</h3>
+
+            <div class="table-wrap"><table>
+                <tr><th>Sesión</th><th>Zona objetivo</th><th>FC a buscar</th><th>Sensación</th></tr>
+                <tr><td>Fondo domingo</td><td><span class="zone-box z2">Z2</span></td><td>101–118 ppm</td><td>Podés hablar en frases completas</td></tr>
+                <tr><td>Ciclismo Z2 entre semana</td><td><span class="zone-box z2">Z2</span></td><td>101–118 ppm</td><td>Cómodo, conversación posible</td></tr>
+                <tr><td>Bloques de tempo</td><td><span class="zone-box z3">Z3</span></td><td>118–135 ppm</td><td>Cuesta hablar, palabras sueltas</td></tr>
+                <tr><td>Intervalos</td><td><span class="zone-box z4">Z4</span></td><td>135–152 ppm</td><td>No podés hablar, esfuerzo fuerte</td></tr>
+                <tr><td>Sprints</td><td><span class="zone-box z5">Z5</span></td><td>152–168 ppm</td><td>Máximo 30-45 seg, imposible hablar</td></tr>
+                <tr><td>Recuperación y calentamiento</td><td><span class="zone-box z2">Z1</span></td><td>Menos de 101</td><td>Muy suave, recuperación activa</td></tr>
+            </table></div>
+        </div>
+
+        <!-- ======= ENTRENAMIENTO ======= -->
+        <div id="entrenamiento" class="section">
+            <h2 class="section-title">Plan de Entrenamiento — Agosto 2026</h2>
+
+            <div class="orange-box">
+                <p>Agosto tiene dos objetivos de entrenamiento: <strong>corregir la intensidad</strong> del ciclismo entre semana usando las zonas de FC, y <strong>retomar los fondos del domingo</strong> con protocolo de fueling. El acondicionamiento progresa en carga. Todo lo demás se consolida.</p>
+            </div>
+
+            <h3 class="subsection-title">Estructura Semanal</h3>
+
+            <div class="table-wrap"><table>
+                <tr><th>Día</th><th>Mañana</th><th>Tarde</th><th>Objetivo</th></tr>
+                <tr><td><strong>Lunes</strong></td><td>Recuperación activa: foam roller 20 min + estiramiento</td><td>—</td><td>Recuperar del domingo</td></tr>
+                <tr><td><strong>Martes</strong></td><td>Ciclismo Z2 — 60-75 min (FC 101-118)</td><td>Acondicionamiento Sesión A — 45 min</td><td>Base aeróbica + fuerza</td></tr>
+                <tr><td><strong>Miércoles</strong></td><td>Ciclismo: Z2 base + bloques Z4 — 75 min</td><td>—</td><td>Umbral anaeróbico</td></tr>
+                <tr><td><strong>Jueves</strong></td><td>—</td><td>Acondicionamiento Sesión B — 45 min</td><td>Espalda, core, movilidad</td></tr>
+                <tr><td><strong>Viernes</strong></td><td>Ciclismo Z2 o sprints — 60 min (según semana)</td><td>—</td><td>Potencia o recuperación</td></tr>
+                <tr><td><strong>Sábado</strong></td><td>Descanso completo</td><td>—</td><td>Trabajo · Día de cocina</td></tr>
+                <tr><td><strong>Domingo</strong></td><td>Fondo largo — Z2 predominante (ver protocolo)</td><td>—</td><td>Base ultra endurance</td></tr>
+            </table></div>
+
+            <h3 class="subsection-title">Ciclismo Entre Semana — Sesiones Detalladas</h3>
+
+            <div class="card highlight">
+                <h3>Martes — Z2 Puro con FC (60-75 min)</h3>
+                <p><strong>FC objetivo: 101–118 ppm todo el tiempo.</strong></p>
+                <p>Salís y mantenés la FC dentro de ese rango desde el inicio. En las subidas bajás el ritmo para no salirte. Si la FC sube de 118, bajás marcha o reducís velocidad hasta volver al rango. Va a sentirse lento — eso es correcto.</p>
+                <p style="margin-top:6px;"><strong>Semanas 1-2:</strong> 60 min en Z2 estricto.<br><strong>Semanas 3-4:</strong> 75 min en Z2 estricto.</p>
+                <p style="margin-top:6px;"><em>Por qué:</em> Este es el entrenamiento que más construye la base aeróbica. Cada minuto en Z2 es una adaptación que se va a expresar en las horas finales de un ultra.</p>
+            </div>
+
+            <div class="card highlight">
+                <h3>Miércoles — Z2 Base con Bloques Z4 (75 min)</h3>
+                <p><strong>Estructura:</strong></p>
+                <p>Calentamiento 15 min: Z2 progresivo (empezás en Z1, llegás a Z2 al final).</p>
+                <p>Bloque principal 45 min: 4 repeticiones de <strong>5 min en Z4 (135-152 ppm) + 4 min en Z2 (101-118 ppm)</strong> de recuperación completa. Después de las 4 repeticiones, el resto del tiempo en Z2.</p>
+                <p>Enfriamiento 15 min: Z1-Z2 decreciente.</p>
+                <p style="margin-top:6px;"><strong>Cómo saber que estás en Z4:</strong> La FC entre 135-152 ppm. Esfuerzo fuerte, respiración pesada, no podés hablar. Si la FC se pasa de 152, bajás un poco.</p>
+                <p style="margin-top:6px;"><strong>Los 4 minutos de recuperación son sagrados:</strong> No los acortés. El cuerpo necesita ese tiempo para limpiar el lactato y preparar el siguiente intervalo. Si empezás el siguiente sin recuperación, la calidad baja y el riesgo de lesión sube.</p>
+                <p style="margin-top:6px;"><em>Semanas 3-4:</em> Aumentás a 5 repeticiones.</p>
+            </div>
+
+            <div class="card highlight">
+                <h3>Viernes — Alternando Semanas (60 min)</h3>
+                <p><strong>Semanas 1 y 3: Ciclismo Z2 suave.</strong> 60 min en FC 101-118. Recuperación activa antes del fondo del domingo. No agregar intensidad.</p>
+                <p style="margin-top:8px;"><strong>Semanas 2 y 4: Sprints Z5 (60 min).</strong></p>
+                <p>Calentamiento 15 min: Z2 bien completo.<br>
+                Bloque de sprints 25 min: 6 sprints de <strong>30 seg a FC máxima (152-168 ppm)</strong> + 90 seg a Z1 de recuperación entre cada uno.<br>
+                Enfriamiento 20 min: Z1-Z2 suave, largo.</p>
+                <p style="margin-top:6px;"><strong>Los sprints:</strong> 30 segundos todo lo que tenés. No guardás nada. Si llegás al sprint 5 sin poder mantener la misma intensidad que el primero, parás ahí — calidad sobre cantidad.</p>
+            </div>
+
+            <h3 class="subsection-title">El Fondo del Domingo — Protocolo Agosto</h3>
+
+            <div class="card dark">
+                <h3>Progresión de los Fondos</h3>
+                <div class="table-wrap"><table>
+                    <tr><th>Semana</th><th>Distancia objetivo</th><th>FC predominante</th><th>Condición para avanzar</th></tr>
+                    <tr><td>Semana 1</td><td>100-120 km</td><td>Z2 (101-118 ppm)</td><td>Sin crisis energética, fueling aplicado desde km 1</td></tr>
+                    <tr><td>Semana 2</td><td>120-150 km</td><td>Z2</td><td>Si semana 1 fue bien ejecutada</td></tr>
+                    <tr><td>Semana 3</td><td>150-180 km</td><td>Z2 + bloques Z3 en subidas</td><td>Si semana 2 fue bien ejecutada</td></tr>
+                    <tr><td>Semana 4</td><td>180-220 km</td><td>Z2</td><td>Si todos los fondos anteriores fueron con fueling completo</td></tr>
+                </table></div>
+            </div>
+
+            <div class="card">
+                <h3>Cómo Ejecutar el Fondo del Domingo</h3>
+                <p><strong>Primera hora:</strong> Z2 estricto. FC 101-118. No importa que el grupo vaya más rápido o que la cuesta pida más. Controlás la FC.</p>
+                <p><strong>Horas 2 en adelante:</strong> Z2 sostenido. Si hay subidas cortas podés llegar a Z3 (118-135) pero volvés a Z2 en la bajada o en llano.</p>
+                <p><strong>Lo que no hacés:</strong> Salir disparado en la primera hora, subir en Z4-Z5 cada cuesta, llegar a la mitad de la ruta con el glucógeno quemado.</p>
+                <p style="margin-top:8px;"><strong>Señal de que el fondo va bien:</strong> En la hora 3 todavía tenés sensación de reserva, no de supervivencia.</p>
+            </div>
+
+            <h3 class="subsection-title">Acondicionamiento Físico — Progresión Agosto</h3>
+
+            <div class="orange-box">
+                <p>Con 8/10 de cumplimiento el mes pasado, el acondicionamiento está establecido. En agosto la progresión es simple: más peso o más repeticiones en lo que ya manejás bien. Si la sentadilla goblet la hacías con 10 kg, este mes probás con 12-14 kg. Si las series de plancha eran de 45 seg, ahora son de 60 seg. El principio de sobrecarga progresiva es lo que convierte el ejercicio en músculo real.</p>
+            </div>
+
+            <div class="card success">
+                <h3>Sesión A — Tren Inferior y Core (Martes tarde, 45 min)</h3>
+                <p><strong>Calentamiento 5 min:</strong> Jumping jacks, círculos de cadera, trote en lugar.</p>
+                <p style="margin-top:8px;"><strong>Bloque 1 — Fuerza (16 min):</strong> 4 series de: 12 sentadillas goblet con más peso que julio · 10 estocadas por pierna · 15 step-ups. Descanso 40 seg.</p>
+                <p style="margin-top:8px;"><strong>Bloque 2 — Potencia (12 min):</strong> 5 rondas de: 20 seg salto squat · 10 seg descanso · 30 seg mountain climbers · 20 seg descanso.</p>
+                <p style="margin-top:8px;"><strong>Bloque 3 — Core (12 min):</strong> 3 series de: 60 seg plancha frontal · 40 seg plancha lateral derecha · 40 seg plancha lateral izquierda · 15 dead bugs · 15 bird dogs. Descanso 25 seg.</p>
+                <p style="margin-top:8px;"><strong>Enfriamiento 5 min:</strong> Foam roller en cuádriceps y glúteos.</p>
+            </div>
+
+            <div class="card success">
+                <h3>Sesión B — Espalda, Hombros y Movilidad (Jueves tarde, 45 min)</h3>
+                <p><strong>Calentamiento 5 min:</strong> Círculos de hombro, estiramientos dinámicos de espalda.</p>
+                <p style="margin-top:8px;"><strong>Bloque 1 — Espalda (15 min):</strong> 4 series de: 12 remos con mancuerna (derecho completo, izquierdo con carga reducida sin dolor) · 15 remos invertidos en TRX · 10 curl de bíceps. Descanso 40 seg.</p>
+                <p style="margin-top:8px;"><strong>Bloque 2 — Hombros (10 min):</strong> 3 series de: 15 elevaciones laterales leves (hombro izquierdo sin dolor) · 20 rotaciones externas con banda para manguito rotador. Rango controlado siempre.</p>
+                <p style="margin-top:8px;"><strong>Bloque 3 — Core antirotación (10 min):</strong> 3 series de: 15 pallof press cada lado · 20 Russian twists · 12 leg raises. Descanso 30 seg.</p>
+                <p style="margin-top:8px;"><strong>Movilidad 8 min:</strong> Flexores de cadera, zona torácica en bola suiza, caderas. Obligatorio — abre la postura cerrada de la bici.</p>
+            </div>
+
+            <h3 class="subsection-title">Hombro Izquierdo y la Mochila de Hidratación</h3>
+
+            <div class="card warning">
+                <h3>Solución práctica para los fondos largos</h3>
+                <p>El hombro molesta cuando llevás el camelback cargado en rodadas largas. Con los fondos de agosto que arrancan en 100 km, la hidratación extra es necesaria — la solución no es el camelback sino cambiar cómo la llevás:</p>
+                <p><strong>Opción A:</strong> Agregar un tercer portabidón al cuadro o a la bici — hay adaptadores que van en el tubo o bajo el sillín. Con tres bidones de 750 ml tenés 2.25 L sin cargar el hombro.</p>
+                <p><strong>Opción B:</strong> Bolso de manillar tipo bolsa de bikepacking — distribuye el peso al frente de la bici, sin contacto con el hombro.</p>
+                <p><strong>Opción C:</strong> Si usás camelback, que sea la versión más liviana posible (1L o menos) y que vayas rellenándolo en los puntos de avituallamiento en lugar de salir con el máximo de agua.</p>
+                <p style="margin-top:8px;"><strong>La fisioterapia de agosto es prioritaria.</strong> Hay que agendar una sesión este mes. El hombro crónico con carga sostenida es una bomba de tiempo si no se trabaja. Una sola sesión de fisio puede darte información que mejore todo el plan de entrenamiento.</p>
+            </div>
+
+            <div class="card">
+                <h3>Lunes — Recuperación Activa (20-25 min)</h3>
+                <p>Foam roller sistemático: cuádriceps 60 seg cada pierna · isquiotibiales · glúteos · pantorrillas · zona lumbar. Presión sostenida, movimiento lento. Luego 10 min de estiramiento estático. No es opcional — es lo que permite que el lunes de entrenamiento siguiente tenga calidad.</p>
+            </div>
+
+            <h3 class="subsection-title">Descarga Muscular — Meta de Agosto</h3>
+
+            <div class="card critical">
+                <h3>Este mes se agenda. No el mes que viene.</h3>
+                <p>Julio pasó sin descarga muscular. Agosto tiene que tener una. Fisioterapia o masaje deportivo profundo. La combinación de trabajo físico laboral + ciclismo diario + acondicionamiento sin descarga mensual acumula tensión en fascias y tejidos que eventualmente se expresa como lesión. El hombro izquierdo necesita atención profesional ahora.</p>
+            </div>
+        </div>
+
+        <!-- ======= NUTRICIÓN DIARIA ======= -->
+        <div id="nutricion" class="section">
+            <h2 class="section-title">Nutrición Diaria — Agosto</h2>
+
+            <div class="orange-box">
+                <p>La base del plan de julio sigue igual. Lo que cambia es que simplificamos todavía más el sistema de cocina, ajustamos para la lactosa y ponemos el pre entreno en práctica porque en agosto hay entrenamientos con intervalos que lo requieren.</p>
+            </div>
+
+            <h3 class="subsection-title">El Día de Cocina — Versión Simplificada</h3>
+
+            <div class="card dark">
+                <h3>Solo 3 preparaciones. Lo que funciona.</h3>
+                <p>De las recetas del mes pasado, el arroz integral con quinoa y las leguminosas son las que funcionaron. Agosto se simplifica al máximo para que el día de cocina no se convierta en obstáculo.</p>
+                <p style="margin-top:8px;"><strong>Preparación 1 — Arroz integral + quinoa:</strong> Ya lo tenés dominado. Igual que siempre: 1 taza quinoa lavada + 2 tazas arroz integral + 6 tazas agua + condimentos. En la olla arrocera. Para toda la semana.</p>
+                <p style="margin-top:8px;"><strong>Preparación 2 — Leguminosa de la semana:</strong> Rotá entre frijoles, garbanzos o lentejas. La noche antes en remojo, el día de cocina las cocinás con sal y condimento. Todo en una olla. Dividís en porciones.</p>
+                <p style="margin-top:8px;"><strong>Preparación 3 — Pollo desmenuzado:</strong> Pechugas en olla con agua y condimentos. Cuando estén listas, desmenuzás con batidora de mano bajo el trapo. Guardás el caldo aparte. Esta proteína te dura toda la semana.</p>
+                <p style="margin-top:8px;">Con esas tres preparaciones listas, el almuerzo y la cena de lunes a viernes es solo servir y calentar.</p>
+            </div>
+
+            <h3 class="subsection-title">Día Típico — Agosto</h3>
+
+            <div class="meal-plan">
+                <strong>Desayuno (antes de salir al trabajo)</strong>
+                <p>2 huevos enteros + 2 claras revueltos o en tortilla · 1-2 rebanadas de pan integral · café sin azúcar.</p>
+                <p><em>O si preparaste avena nocturna:</em> avena con banano y canela lista del refrigerador · café.</p>
+                <p style="color:#7a9a8e;font-size:13px;">5 minutos máximo. Si el desayuno tarda más que eso, hay que ajustar el sistema — avisame.</p>
+            </div>
+
+            <div class="meal-plan">
+                <strong>Merienda media mañana (10:00 AM)</strong>
+                <p>1 manzana o banano + yogurt griego natural (probá con pequeña cantidad y evaluá tolerancia a la lactosa) o maní natural si el yogurt no tolera.</p>
+            </div>
+
+            <div class="meal-plan">
+                <strong>Almuerzo (12:30-1:00 PM)</strong>
+                <p>Pollo desmenuzado + arroz integral con quinoa + leguminosa de la semana + verdura. Todo preparado el fin de semana. Solo calentás.</p>
+            </div>
+
+            <div class="meal-plan">
+                <strong>Merienda tarde (3:30-4:00 PM)</strong>
+                <p>Avena nocturna si no la comiste en el desayuno · o 1 banano con mantequilla de maní · o fruta con maní.</p>
+            </div>
+
+            <div class="meal-plan">
+                <strong>Cena (7:00-8:00 PM)</strong>
+                <p>Proteína liviana (atún, pollo o 2 huevos) + carbohidrato (camote, yuca, papa o arroz integral) + verdura. O sándwich en pan integral con pollo, aguacate y tomate.</p>
+                <p style="color:#1a5945;font-weight:600;font-size:13px;">La comida china y los alimentos pesados nocturnos ya quedaron atrás — es el mayor logro del mes pasado y se consolida en agosto.</p>
+            </div>
+
+            <h3 class="subsection-title">Pre Entreno — Ahora es Obligatorio</h3>
+
+            <div class="card critical">
+                <h3>Pre entreno: de 1/10 a meta 8/10</h3>
+                <p>En julio el cumplimiento fue 1/10. En agosto los entrenamientos tienen intervalos Z4 y sprints Z5 — ese nivel de intensidad sin glucosa disponible agota las reservas musculares y ralentiza la recuperación.</p>
+                <p style="margin-top:8px;"><strong>15-20 minutos antes de cada sesión de ciclismo o acondicionamiento:</strong></p>
+                <p><strong>Opción A:</strong> 1 tostada integral con miel de abeja + 1 banano maduro.</p>
+                <p><strong>Opción B:</strong> 1 tostada integral con mantequilla de maní + miel.</p>
+                <p style="margin-top:8px;">Si salís a entrenar antes de las 6 AM y no tenés hambre: al menos el banano solo. Algo es mejor que nada.</p>
+            </div>
+
+            <h3 class="subsection-title">Post Entreno — Se Mantiene Perfecto</h3>
+
+            <div class="card success">
+                <h3>10/10 — No cambiar nada</h3>
+                <p>1 scoop Basic Whey en agua dentro de los 30 minutos. Si después del entreno van a pasar más de 30 minutos antes del desayuno, la proteína es obligatoria. Si desayunás de inmediato, podés omitirla siempre que el desayuno tenga mínimo 20-25 g de proteína (2 huevos + 2 claras lo cumplen).</p>
+            </div>
+
+            <h3 class="subsection-title">Hidratación Diaria</h3>
+
+            <div class="card">
+                <h3>De "a veces" a consistente</h3>
+                <p>Meta de agosto: 3 litros de agua en días de trabajo físico activo. 2.5 litros en días más tranquilos.</p>
+                <p style="margin-top:8px;"><strong>Sistema práctico:</strong> Una botella de 1 litro visible en el trabajo. La terminás antes del mediodía. Llenás de nuevo. La terminás en la tarde. La tercera en la noche. Sin sistema visible, el agua no se toma.</p>
+            </div>
+        </div>
+
+        <!-- ======= FUELING EN RUTA ======= -->
+        <div id="fueling" class="section">
+            <h2 class="section-title">Fueling en Ruta — Retomando el Protocolo</h2>
+
+            <div class="orange-box">
+                <p>En julio no hubo fondos, por lo que el fueling no se practicó. Agosto es el mes donde se retoma y se establece el hábito. Los fondos más cortos de las primeras semanas son la oportunidad perfecta para practicar el protocolo antes de que las distancias crezcan.</p>
+            </div>
+
+            <h3 class="subsection-title">Fase Actual: 50-60 g de Carbohidrato por Hora</h3>
+
+            <div class="card dark">
+                <h3>Retomamos desde la Fase 1</h3>
+                <p>Como no hubo fondos en julio, el intestino no practicó procesar glucosa bajo esfuerzo de forma sistemática. Arrancamos en Fase 1 — 50 g de CHO por hora — y evaluamos cómo responde antes de escalar.</p>
+                <div class="table-wrap"><table>
+                    <tr><th>Semana Agosto</th><th>g CHO/hora</th><th>Fuente principal</th></tr>
+                    <tr><td>Semana 1-2 (100-150 km)</td><td>50 g</td><td>Tailwind (2 scoops en bidón) + banano o colado</td></tr>
+                    <tr><td>Semana 3-4 (150-220 km)</td><td>60-70 g</td><td>Tailwind + gel IBSport en subidas</td></tr>
+                    <tr><td>Septiembre en adelante</td><td>80-90 g</td><td>Si agosto fue sin problemas digestivos</td></tr>
+                </table></div>
+            </div>
+
+            <h3 class="subsection-title">Protocolo para el Fondo del Domingo</h3>
+
+            <div class="card">
+                <h3>Sistema de Alarmas — No Negociable</h3>
+                <p>Ponés <strong>dos alarmas en el celular antes de salir:</strong></p>
+                <p>Alarma A: cada <strong>30 minutos</strong> → tomar medio bidón de Tailwind.</p>
+                <p>Alarma B: cada <strong>45 minutos</strong> → comer algo sólido (banano, colado, galletas, gel).</p>
+                <p style="margin-top:8px;">Sin alarmas el tiempo pasa y el cuerpo suprime la señal de hambre bajo esfuerzo. Con alarmas el hábito se construye automáticamente en 3-4 salidas.</p>
+            </div>
+
+            <div class="card dark">
+                <h3>Cronograma Fondo 100-120 km (Semana 1 y 2)</h3>
+                <div class="table-wrap"><table>
+                    <tr><th>Tiempo</th><th>Acción</th><th>CHO aprox.</th></tr>
+                    <tr><td>Antes de salir</td><td>Pre entreno: tostada + miel + banano</td><td>~45 g</td></tr>
+                    <tr><td>0:00-0:30</td><td>Solo agua o Tailwind muy diluido — intestino arrancando</td><td>—</td></tr>
+                    <tr><td>0:30</td><td>Medio bidón Tailwind (2 scoops ya mezclados)</td><td>~25 g</td></tr>
+                    <tr><td>0:45</td><td>1 banano maduro o colado de bebé</td><td>~25-27 g</td></tr>
+                    <tr><td>1:00</td><td>Medio bidón Tailwind</td><td>~25 g</td></tr>
+                    <tr><td>1:30</td><td>Alimento sólido: galletas saladas o colado</td><td>~20-25 g</td></tr>
+                    <tr><td>2:00</td><td>Bidón Tailwind + gel si hay subida fuerte</td><td>~50-55 g</td></tr>
+                    <tr><td>Cada 30/45 min</td><td>Continuar el ciclo</td><td>~50 g/hora total</td></tr>
+                </table></div>
+            </div>
+
+            <h3 class="subsection-title">Tailwind — Recordatorio de Uso</h3>
+
+            <div class="card success">
+                <h3>Seguís con Tailwind — está bien elegido</h3>
+                <p><strong>Mezcla estándar:</strong> 2 scoops en 500-600 ml de agua = 50 g de CHO + electrolitos completos. Un bidón por hora es la base del fueling.</p>
+                <p style="margin-top:8px;"><strong>En calor:</strong> Podés diluir un poco más. La hidratación no compite con la nutrición si la mezcla está bien hecha.</p>
+                <p style="margin-top:8px;"><strong>Cuando no tenés Tailwind en ruta:</strong> Powerade en tienda está bien puntualmente. Pero desde casa siempre Tailwind.</p>
+            </div>
+
+            <h3 class="subsection-title">Protocolo para La Giganta y la Carrera de Aventura</h3>
+
+            <div class="card dark">
+                <h3>Se construye en el plan de septiembre</h3>
+                <p><strong>La Giganta (26-27 septiembre · 350 km · autoasistida):</strong> El protocolo de fueling específico para este evento — qué llevar, cuánto por hora, qué comer en las paradas, cómo manejar la noche — va incluido en el plan de septiembre.</p>
+                <p style="margin-top:8px;"><strong>Carrera de Aventura (3-4 octubre):</strong> También se planifica en septiembre, incluyendo el protocolo de recuperación entre los dos eventos, que se dan con una semana de diferencia.</p>
+                <p style="margin-top:10px;">Para que esos protocolos sean precisos y no genéricos, necesito saber cómo toleró el intestino el fueling en los fondos de agosto — qué funcionó, qué generó malestar, a qué ritmo de CHO llegaste sin problemas. Sin esa información no se puede construir bien el protocolo de carrera. Por eso agosto tiene que tener fondos con fueling real.</p>
+            </div>
+        </div>
+
+        <!-- ======= SUPLEMENTOS ======= -->
+        <div id="suplementos" class="section">
+            <h2 class="section-title">Suplementos — Agosto</h2>
+
+            <div class="info-box">
+                <p><strong>8/10 de cumplimiento el mes pasado — excelente.</strong> Todos los suplementos comprados y tomados en la mañana con consistencia. En agosto no cambia nada en la suplementación. Solo hay un ajuste por la intolerancia a la lactosa si alguno de los suplementos contiene derivados lácteos — revisá las etiquetas de la proteína (la Basic Whey no tiene problema) y del colágeno.</p>
+            </div>
+
+            <h3 class="subsection-title">Tabla de Suplementos Activos</h3>
+
+            <div class="table-wrap"><table>
+                <tr><th>Prioridad</th><th>Suplemento</th><th>Cuándo</th><th>Dosis</th></tr>
+                <tr>
+                    <td><span class="priority-badge p1">1</span></td>
+                    <td><strong>Basic Whey</strong> (post entreno)</td>
+                    <td>Dentro de 30 min post ejercicio</td>
+                    <td>1 scoop (34 g polvo = 25 g proteína)</td>
+                </tr>
+                <tr>
+                    <td><span class="priority-badge p1">1</span></td>
+                    <td><strong>Tailwind Endurance Fuel</strong></td>
+                    <td>Durante fondos y rodadas largas</td>
+                    <td>2 scoops en 500-600 ml agua / hora</td>
+                </tr>
+                <tr>
+                    <td><span class="priority-badge p2">2</span></td>
+                    <td><strong>Creatina Monohidratada</strong></td>
+                    <td>Todos los días con el desayuno o en agua</td>
+                    <td>3-5 g diarios. Sin días de descanso.</td>
+                </tr>
+                <tr>
+                    <td><span class="priority-badge p2">2</span></td>
+                    <td><strong>Omega 3</strong></td>
+                    <td>Con almuerzo o cena (con comida)</td>
+                    <td>1-2 g de EPA+DHA. Revisá que la etiqueta diga EPA y DHA.</td>
+                </tr>
+                <tr>
+                    <td><span class="priority-badge p2">2</span></td>
+                    <td><strong>Vitamina D3 + K2</strong></td>
+                    <td>Con el desayuno</td>
+                    <td>2,000-4,000 UI D3 + 100 mcg K2</td>
+                </tr>
+                <tr>
+                    <td><span class="priority-badge p3">3</span></td>
+                    <td><strong>Magnesio Glicinato</strong></td>
+                    <td>30-60 min antes de dormir</td>
+                    <td>300-400 mg. Previene calambres y mejora el sueño.</td>
+                </tr>
+                <tr>
+                    <td><span class="priority-badge p3">3</span></td>
+                    <td><strong>Colágeno + Vitamina C</strong></td>
+                    <td>30-60 min antes del acondicionamiento</td>
+                    <td>10-15 g colágeno + 200-500 mg vit. C. Crítico para el hombro.</td>
+                </tr>
+            </table></div>
+
+            <div class="card">
+                <h3>Nota sobre el colágeno y el hombro</h3>
+                <p>El colágeno tomado 30-60 minutos antes del acondicionamiento tiene mayor efectividad porque el movimiento articular que sigue activa la síntesis de colágeno en los tejidos. Para el hombro izquierdo, esto no reemplaza la fisioterapia — pero lo complementa y acelera el proceso de recuperación del tejido conectivo dañado.</p>
+            </div>
+        </div>
+
+        <!-- ======= SEGUIMIENTO ======= -->
+        <div id="seguimiento" class="section">
+            <h2 class="section-title">Seguimiento — Agosto 2026</h2>
+
+            <h3 class="subsection-title">Metas del Mes</h3>
+
+            <div class="table-wrap"><table>
+                <tr><th>Área</th><th>Meta Agosto</th><th>Cómo se mide</th></tr>
+                <tr><td>Fondos del domingo</td><td>Mínimo 3 de 4 · Arrancar en 100 km</td><td>Distancia + fueling aplicado desde km 1</td></tr>
+                <tr><td>Cintura</td><td>84 cm o menos</td><td>Cinta métrica, mañana en ayunas</td></tr>
+                <tr><td>Cadera</td><td>86-87 cm</td><td>Cinta métrica</td></tr>
+                <tr><td>Brazo derecho</td><td>29 cm</td><td>Cinta métrica</td></tr>
+                <tr><td>Desayuno en casa</td><td>5/7 días por semana</td><td>Autoreporte lunes</td></tr>
+                <tr><td>Pre entreno</td><td>7/10 o más</td><td>Autoreporte lunes</td></tr>
+                <tr><td>Intensidad ciclismo</td><td>FC en zona objetivo cada sesión</td><td>Gráfica de FC compartida</td></tr>
+                <tr><td>Fisioterapia</td><td>1 sesión agendada y hecha</td><td>Sí o no</td></tr>
+            </table></div>
+
+            <h3 class="subsection-title">Check-in Semanal</h3>
+
+            <div class="card highlight">
+                <h3>Lunes a las 9 AM — Por WhatsApp</h3>
+                <p>Cada lunes me mandás un mensaje corto con:</p>
+                <p><strong>1.</strong> ¿Hiciste el fondo del domingo? ¿Cuántos km? ¿Aplicaste el fueling?</p>
+                <p><strong>2.</strong> ¿Cuántos días desayunaste en casa?</p>
+                <p><strong>3.</strong> ¿Cómo se sintió la FC en el ciclismo entre semana?</p>
+                <p><strong>4.</strong> ¿Algo que no pudo seguir o que necesita ajuste?</p>
+                <p style="margin-top:8px;">Con eso puedo ajustar lo que no esté funcionando antes de que se convierta en un problema.</p>
+            </div>
+
+            <h3 class="subsection-title">Medidas — Fin de Agosto</h3>
+
+            <div class="card">
+                <h3>Medición al cierre del mes</h3>
+                <p>La última semana de agosto, antes de que te mande el formulario del mes 3, te medís con cinta en las mismas condiciones que siempre: mañana, en ayunas, sin haber entrenado ese día. Peso, cintura, cadera, pecho y brazo derecho.</p>
+                <p style="margin-top:8px;">Si podés hacerte una medición en la pesa o en el InBody ese mismo día y en las mismas condiciones que la medición inicial, podemos comparar el porcentaje de grasa de forma más confiable.</p>
+            </div>
+
+            <h3 class="subsection-title">El Mensaje del Mes</h3>
+
+            <div class="card dark">
+                <h3>Proporcional al cumplimiento</h3>
+                <p>Ganaste la Pura Vida Ultra 500 km sin plan nutricional ni entrenamiento estructurado. Con el plan a 50% de cumplimiento ya mostraste 2 cm menos en cintura y cadera, +1 cm en brazo, más energía y cero comida china nocturna. Esos son resultados reales con medio plan.</p>
+                <p style="margin-top:8px;">Agosto es el mes en que el plan empieza a estar al completo. No porque sea más difícil — sino porque las piezas que faltaban (los fondos, el desayuno en casa, la intensidad controlada) son las que van a hacer la diferencia más grande. El techo de lo que podés lograr con el 100% todavía no lo has visto. Agosto es la oportunidad de empezar a verlo.</p>
+            </div>
+        </div>
+
+    </div><!-- /content -->
+
+    <div class="footer">
+        <p>Isa Herra | @isaherra.13</p>
+        <p>eat&flow Nutrición Deportiva</p>
+        <p>Consultas y seguimiento por WhatsApp</p>
+    </div>
+
+</div>
+
+<script>
+    function show(id, el) {
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        el.classList.add('active');
+    }
+</script>
+
+</body>
+</html>
