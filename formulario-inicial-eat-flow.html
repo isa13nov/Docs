@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Inicial | eat&flow</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #F5F9F7;
+            color: #2D4A3E;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1a5945 0%, #2D4A3E 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+
+        .header .brand {
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            opacity: 0.9;
+            text-transform: uppercase;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .header .subtitulo {
+            font-size: 15px;
+            opacity: 0.9;
+            margin-top: 8px;
+        }
+
+        .intro-box {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border-left: 4px solid #ff9800;
+        }
+
+        .intro-box h2 {
+            color: #ff9800;
+            font-size: 18px;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .intro-box p {
+            color: #555;
+            line-height: 1.75;
+            margin-bottom: 8px;
+            font-size: 14.5px;
+        }
+
+        .intro-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .section {
+            background: white;
+            padding: 30px 25px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .section h2 {
+            color: #1a5945;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #8bc34a;
+        }
+
+        .section h3 {
+            color: #2D4A3E;
+            font-size: 15px;
+            font-weight: 700;
+            margin: 28px 0 14px 0;
+            padding: 8px 14px;
+            background: #f0f7f4;
+            border-radius: 6px;
+            border-left: 3px solid #8bc34a;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .field {
+            margin-bottom: 22px;
+        }
+
+        .field label {
+            display: block;
+            font-weight: 600;
+            color: #2D4A3E;
+            margin-bottom: 8px;
+            font-size: 14.5px;
+            line-height: 1.4;
+        }
+
+        .field input,
+        .field textarea,
+        .field select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #E0EDE8;
+            border-radius: 8px;
+            font-size: 14.5px;
+            font-family: inherit;
+            background: #F5FAF8;
+            color: #2D4A3E;
+            transition: border-color 0.25s, background 0.25s;
+        }
+
+        .field input:focus,
+        .field textarea:focus,
+        .field select:focus {
+            outline: none;
+            border-color: #8bc34a;
+            background: white;
+        }
+
+        .field textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .field small {
+            display: block;
+            color: #7a9a8e;
+            font-size: 12.5px;
+            margin-top: 6px;
+            font-style: italic;
+            line-height: 1.4;
+        }
+
+        .radio-group,
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .radio-group label,
+        .checkbox-group label {
+            display: flex;
+            align-items: flex-start;
+            padding: 11px 14px;
+            background: #F5FAF8;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-weight: normal;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .radio-group label:hover,
+        .checkbox-group label:hover {
+            background: #e6f2ec;
+        }
+
+        .radio-group input[type="radio"],
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            margin-right: 10px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .alerta-box {
+            background: #fff8f0;
+            border: 2px solid #ff9800;
+            border-radius: 10px;
+            padding: 18px 20px;
+            margin-bottom: 22px;
+        }
+
+        .alerta-box p {
+            color: #7a4800;
+            font-size: 13.5px;
+            line-height: 1.6;
+        }
+
+        .alerta-box strong {
+            color: #e67e00;
+        }
+
+        .campos-dobles {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .campos-triples {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 16px;
+        }
+
+        .submit-section {
+            background: linear-gradient(135deg, #1a5945, #2D4A3E);
+            color: white;
+            padding: 35px 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .submit-section h2 {
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+
+        .submit-section p {
+            opacity: 0.9;
+            font-size: 14.5px;
+            margin-bottom: 8px;
+        }
+
+        .submit-btn {
+            background: #ff9800;
+            color: white;
+            padding: 16px 44px;
+            border: none;
+            border-radius: 50px;
+            font-size: 17px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(255, 152, 0, 0.35);
+            transition: transform 0.25s, box-shadow 0.25s;
+            letter-spacing: 0.5px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 22px rgba(255, 152, 0, 0.45);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #8a9e98;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            .header { padding: 28px 20px; }
+            .header h1 { font-size: 22px; }
+            .section { padding: 22px 16px; }
+            .campos-dobles { grid-template-columns: 1fr; }
+            .campos-triples { grid-template-columns: 1fr; }
+            .submit-section { padding: 28px 20px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- Header -->
+    <div class="header">
+        <div class="brand">eat&flow</div>
+        <h1>Formulario Inicial<br>de Valoracion Nutricional</h1>
+        <p class="subtitulo">Cuando comes bien, todo en tu vida fluye</p>
+    </div>
+
+    <!-- Introduccion -->
+    <div class="intro-box">
+        <h2>Antes de comenzar</h2>
+        <p><strong>Bienvenido/a a eat&flow.</strong></p>
+        <p>Este formulario es el punto de partida de tu proceso. Con esta informacion voy a disenar un plan nutricional especializado, basado en evidencia cientifica y en experiencia real de campo, que se ajuste a tu deporte, tu horario, tu cuerpo y tu vida.</p>
+        <p>Es largo porque necesito conocerte a fondo. No hay respuestas correctas o incorrectas: mientras mas honesta y especifica seas, mejor y mas aplicable sera tu plan.</p>
+        <p><strong>Tiempo estimado:</strong> 25-35 minutos.</p>
+        <p><strong>Instruccion clave:</strong> cuando describas lo que comes o entrenas, se especifica con cantidades, horarios y marcas. Eso es lo que convierte un plan generico en un plan que realmente funciona para vos.</p>
+    </div>
+
+    <form action="https://formspree.io/f/mzzodpje" method="POST">
+
+        <!-- SECCION 1: DATOS PERSONALES -->
+        <div class="section">
+            <h2>1. Datos Personales</h2>
+
+            <div class="campos-dobles">
+                <div class="field">
+                    <label for="nombre">Nombre completo *</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+                <div class="field">
+                    <label for="edad">Edad *</label>
+                    <input type="number" id="edad" name="edad" min="10" max="90" required>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="field">
+                <label for="whatsapp">WhatsApp (con codigo de pais) *</label>
+                <input type="tel" id="whatsapp" name="whatsapp" placeholder="+506 8XXX XXXX" required>
+            </div>
+
+            <div class="field">
+                <label for="ocupacion">Ocupacion o trabajo *</label>
+                <input type="text" id="ocupacion" name="ocupacion" placeholder="Ej: Contadora, trabajo de lunes a viernes de 7am a 4pm" required>
+                <small>Describe tu horario laboral. Esto define cuando y como podes comer durante el dia.</small>
+            </div>
+
+            <div class="field">
+                <label for="vida-familiar">Situacion de vida *</label>
+                <textarea id="vida-familiar" name="vida-familiar" placeholder="Ej: Vivo sola. O: Vivo con mi pareja y 2 hijos, cocino para todos. O: Vivo con mis padres, mi mama cocina." required></textarea>
+                <small>Importante para saber quien decide las comidas en casa.</small>
+            </div>
+        </div>
+
+        <!-- SECCION 2: MEDIDAS Y COMPOSICION CORPORAL -->
+        <div class="section">
+            <h2>2. Medidas y Composicion Corporal</h2>
+
+            <div class="campos-dobles">
+                <div class="field">
+                    <label for="peso">Peso actual (kg) *</label>
+                    <input type="number" id="peso" name="peso" step="0.1" placeholder="Ej: 68.5" required>
+                </div>
+                <div class="field">
+                    <label for="estatura">Estatura (cm) *</label>
+                    <input type="number" id="estatura" name="estatura" placeholder="Ej: 170" required>
+                </div>
+            </div>
+
+            <div class="campos-triples">
+                <div class="field">
+                    <label for="medida-cintura">Cintura (cm)</label>
+                    <input type="number" id="medida-cintura" name="medida-cintura" step="0.1">
+                </div>
+                <div class="field">
+                    <label for="medida-cadera">Cadera (cm)</label>
+                    <input type="number" id="medida-cadera" name="medida-cadera" step="0.1">
+                </div>
+                <div class="field">
+                    <label for="medida-cuello">Cuello (cm)</label>
+                    <input type="number" id="medida-cuello" name="medida-cuello" step="0.1">
+                </div>
+            </div>
+
+            <div class="campos-dobles">
+                <div class="field">
+                    <label for="medida-brazo">Brazo relajado (cm)</label>
+                    <input type="number" id="medida-brazo" name="medida-brazo" step="0.1">
+                </div>
+                <div class="field">
+                    <label for="medida-muslo">Muslo (cm)</label>
+                    <input type="number" id="medida-muslo" name="medida-muslo" step="0.1">
+                </div>
+            </div>
+            <small>Si no tenes cinta metrica a mano ahora, dejalo en blanco y lo tomamos juntos en la primera sesion.</small>
+
+            <div class="field" style="margin-top: 22px;">
+                <label for="inbody-previo">Te has hecho alguna vez un analisis de composicion corporal (InBody u otro) *</label>
+                <textarea id="inbody-previo" name="inbody-previo" placeholder="Ej: Si, hace 6 meses, tenia 22% de grasa corporal. O: Nunca me he hecho uno." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="objetivo-fisico">Cual es tu objetivo respecto a tu composicion corporal *</label>
+                <textarea id="objetivo-fisico" name="objetivo-fisico" placeholder="Ej: Bajar grasa corporal manteniendo musculo. Ganar masa muscular. Mantenerme y mejorar rendimiento sin enfocarme en el peso. No tengo un objetivo estetico, solo rendir mejor." required></textarea>
+                <small>En eat&flow trabajamos con composicion corporal, no con el numero de la bascula.</small>
+            </div>
+        </div>
+
+        <!-- SECCION 3: ENTRENAMIENTO ACTUAL -->
+        <div class="section">
+            <h2>3. Entrenamiento Actual</h2>
+
+            <div class="field">
+                <label for="deporte-principal">Deporte(s) que practicas *</label>
+                <input type="text" id="deporte-principal" name="deporte-principal" placeholder="Ej: Ciclismo de ruta. O: Running + gimnasio. O: Triatlon." required>
+            </div>
+
+            <div class="field">
+                <label for="anos-deporte">Cuantos anos llevas practicando este deporte *</label>
+                <input type="text" id="anos-deporte" name="anos-deporte" placeholder="Ej: 3 anos" required>
+            </div>
+
+            <div class="field">
+                <label for="nivel-actual">Como describes tu nivel actual *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="nivel-actual" value="Recreativo/a (entreno por salud y disfrute)"> Recreativo/a (entreno por salud y disfrute)</label>
+                    <label><input type="radio" name="nivel-actual" value="Competitivo/a amateur (compito pero no es mi prioridad central)"> Competitivo/a amateur (compito pero no es mi prioridad central)</label>
+                    <label><input type="radio" name="nivel-actual" value="Competitivo/a serio/a (el rendimiento es una prioridad importante)"> Competitivo/a serio/a (el rendimiento es una prioridad importante)</label>
+                    <label><input type="radio" name="nivel-actual" value="Semiprofesional o profesional"> Semiprofesional o profesional</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="horario-entrenos">Dias y horas exactas en que entrenas cada semana *</label>
+                <textarea id="horario-entrenos" name="horario-entrenos" placeholder="Ej: Lunes y miercoles, 5:30am, 1h de fuerza. Martes y jueves, 6am, bici 1.5h. Sabado, ruta larga 4-6h. Domingo, descanso." required></textarea>
+                <small>Dia por dia si podes. Esto define cuando comes antes y despues de cada sesion.</small>
+            </div>
+
+            <div class="field">
+                <label for="duracion-sesiones">Duracion promedio de tus sesiones de entrenamiento *</label>
+                <textarea id="duracion-sesiones" name="duracion-sesiones" placeholder="Ej: Entre semana: 1-1.5h. Fines de semana: 3-5h." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="intensidad-semana">Como describes la intensidad de tu semana de entrenamiento actual *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="intensidad-semana" value="Baja (cardio ligero, no me canso mucho)"> Baja (cardio ligero, no me canso mucho)</label>
+                    <label><input type="radio" name="intensidad-semana" value="Moderada (entreno fuerte pero me recupero bien)"> Moderada (entreno fuerte pero me recupero bien)</label>
+                    <label><input type="radio" name="intensidad-semana" value="Alta (semanas duras, llego cansado/a)"> Alta (semanas duras, llego cansado/a)</label>
+                    <label><input type="radio" name="intensidad-semana" value="Muy alta (cuerpo casi siempre en modo de recuperacion)"> Muy alta (cuerpo casi siempre en modo de recuperacion)</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="zonas-entrenamiento">Entrenas por zonas de frecuencia cardiaca o potencia, o por sensaciones *</label>
+                <textarea id="zonas-entrenamiento" name="zonas-entrenamiento" placeholder="Ej: Tengo coach y entreno con potenciometro por zonas. O: Uso reloj Garmin pero no sigo zonas estrictas. O: Entreno por sensaciones." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="sensacion-recuperacion">Como es tu recuperacion entre sesiones de entrenamiento *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="sensacion-recuperacion" value="Excelente, al dia siguiente estoy listo/a"> Excelente, al dia siguiente estoy listo/a</label>
+                    <label><input type="radio" name="sensacion-recuperacion" value="Buena, 1-2 dias y estoy bien"> Buena, 1-2 dias y estoy bien</label>
+                    <label><input type="radio" name="sensacion-recuperacion" value="Regular, necesito mas tiempo del que tengo"> Regular, necesito mas tiempo del que tengo</label>
+                    <label><input type="radio" name="sensacion-recuperacion" value="Mala, siempre llego a entrenar con fatiga acumulada"> Mala, siempre llego a entrenar con fatiga acumulada</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="competencias-proximas">Tienes alguna competencia o evento planificado en los proximos meses *</label>
+                <textarea id="competencias-proximas" name="competencias-proximas" placeholder="Ej: Media maraton el 15 de noviembre. O: Ruta de 100km en enero, aun sin fecha exacta. O: Ninguna, entreno sin competir por ahora." required></textarea>
+            </div>
+        </div>
+
+        <!-- SECCION 4: ALIMENTACION ACTUAL - DIA TIPICO -->
+        <div class="section">
+            <h2>4. Tu Alimentacion Actual Dia a Dia</h2>
+
+            <div class="alerta-box">
+                <p><strong>Ser especifico/a aqui es lo mas importante del formulario.</strong> No me digas "como sano": decime exactamente que comes, cuanto, a que hora y con que frecuencia. Describime tu semana real, no la ideal.</p>
+            </div>
+
+            <h3>Antes del entrenamiento</h3>
+
+            <div class="field">
+                <label for="come-antes-entreno">Comes algo antes de entrenar *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="come-antes-entreno" value="Si, siempre"> Si, siempre</label>
+                    <label><input type="radio" name="come-antes-entreno" value="A veces, depende de la hora"> A veces, depende de la hora</label>
+                    <label><input type="radio" name="come-antes-entreno" value="No, entreno en ayunas"> No, entreno en ayunas</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="que-come-antes">Que comes o tomas antes del entrenamiento y con cuanto tiempo de anticipacion *</label>
+                <textarea id="que-come-antes" name="que-come-antes" placeholder="Ej: 30 min antes tomo cafe negro y como medio banano. O: 1h antes como tostada con mantequilla de mani. O: Nada, salgo directo." required></textarea>
+            </div>
+
+            <h3>Despues del entrenamiento</h3>
+
+            <div class="field">
+                <label for="tiempo-post-entreno">Cuanto tiempo despues del entrenamiento comes tu primera comida completa *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="tiempo-post-entreno" value="Inmediatamente (0-20 min)"> Inmediatamente (0-20 min)</label>
+                    <label><input type="radio" name="tiempo-post-entreno" value="30-60 minutos"> 30-60 minutos</label>
+                    <label><input type="radio" name="tiempo-post-entreno" value="1-2 horas"> 1-2 horas</label>
+                    <label><input type="radio" name="tiempo-post-entreno" value="Mas de 2 horas"> Mas de 2 horas</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="recuperacion-post-entreno">Que comes o tomas justo despues de entrenar *</label>
+                <textarea id="recuperacion-post-entreno" name="recuperacion-post-entreno" placeholder="Ej: Batido de proteina con leche y banano. O: Nada especifico, espero hasta la proxima comida." required></textarea>
+            </div>
+
+            <h3>Desayuno, almuerzo y cena</h3>
+
+            <div class="field">
+                <label for="desayuno">Que desayunas normalmente *</label>
+                <textarea id="desayuno" name="desayuno" placeholder="Ej: Gallo pinto con 2 huevos, jugo natural, cafe con leche." required></textarea>
+                <small>Se especifico con cantidades estimadas.</small>
+            </div>
+
+            <div class="campos-dobles">
+                <div class="field">
+                    <label for="hora-almuerzo">Hora habitual de almuerzo *</label>
+                    <input type="time" id="hora-almuerzo" name="hora-almuerzo" required>
+                </div>
+                <div class="field">
+                    <label for="hora-cena">Hora habitual de cena *</label>
+                    <input type="time" id="hora-cena" name="hora-cena" required>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="almuerzo">Que comes en el almuerzo un dia tipico de entrenamiento *</label>
+                <textarea id="almuerzo" name="almuerzo" placeholder="Ej: Arroz 1 taza, pollo 150g, frijoles, ensalada, tortilla." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="merienda-tarde">Meriendas algo en la tarde *</label>
+                <textarea id="merienda-tarde" name="merienda-tarde" placeholder="Ej: Cafe con galletas. O: Yogurt con granola. O: No meriendo." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="cena">Que cenas un dia tipico *</label>
+                <textarea id="cena" name="cena" placeholder="Ej: Sopa de verduras con pollo, 2 tostadas. O: Como liviano en la noche." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="antes-dormir">Comes o tomas algo antes de dormir</label>
+                <textarea id="antes-dormir" name="antes-dormir" placeholder="Ej: Nada. O: Un vaso de leche. O: Un yogurt."></textarea>
+            </div>
+        </div>
+
+        <!-- SECCION 5: HARINAS, CARBOHIDRATOS Y AZUCARES -->
+        <div class="section">
+            <h2>5. Harinas, Carbohidratos y Azucares</h2>
+
+            <div class="field">
+                <label for="relacion-harinas">Como describes tu relacion actual con las harinas y carbohidratos *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="relacion-harinas" value="Las como libremente sin pensarlo mucho"> Las como libremente sin pensarlo mucho</label>
+                    <label><input type="radio" name="relacion-harinas" value="Las controlo o las limito intencionalmente"> Las controlo o las limito intencionalmente</label>
+                    <label><input type="radio" name="relacion-harinas" value="Trato de evitarlas pero no siempre lo logro"> Trato de evitarlas pero no siempre lo logro</label>
+                    <label><input type="radio" name="relacion-harinas" value="Tengo miedo a engordar con los carbohidratos"> Tengo miedo a engordar con los carbohidratos</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="harinas-habituales">Que harinas y carbohidratos consumes habitualmente *</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="harinas-habituales" value="Arroz blanco"> Arroz blanco</label>
+                    <label><input type="checkbox" name="harinas-habituales" value="Arroz integral"> Arroz integral</label>
+                    <label><input type="checkbox" name="harinas-habituales" value="Pan blanco"> Pan blanco</label>
+                    <label><input type="checkbox" name="harinas-habituales" value="Pan integral"> Pan integral</label>
+                    <label><input type="checkbox" name="harinas-habituales" value="Tortillas de maiz"> Tortillas de maiz</label>
+                    <label><input type="checkbox" name="harinas-habituales" value="Pasta"> Pasta</label>
+                    <label><input type="checkbox" name="harinas-habituales" value="Avena"> Avena</label>
+                    <label><input type="checkbox" name="harinas-habituales" value="Frijoles"> Frijoles</label>
+                    <label><input type="checkbox" name="harinas-habituales" value="Papa o camote"> Papa o camote</label>
+                    <label><input type="checkbox" name="harinas-habituales" value="Frutas (banano, mango, etc.)"> Frutas (banano, mango, etc.)</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="harinas-evita">Hay harinas o carbohidratos que evitas o no toleras bien *</label>
+                <textarea id="harinas-evita" name="harinas-evita" placeholder="Ej: Evito el pan blanco. No tolero bien el gluten. O: No evito ninguno." required></textarea>
+            </div>
+        </div>
+
+        <!-- SECCION 6: PROTEINAS Y GRASAS -->
+        <div class="section">
+            <h2>6. Proteinas y Grasas</h2>
+
+            <div class="field">
+                <label for="fuentes-proteina">Cuales son tus principales fuentes de proteina en el dia a dia *</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="fuentes-proteina" value="Pollo"> Pollo</label>
+                    <label><input type="checkbox" name="fuentes-proteina" value="Res/carne roja"> Res / carne roja</label>
+                    <label><input type="checkbox" name="fuentes-proteina" value="Cerdo"> Cerdo</label>
+                    <label><input type="checkbox" name="fuentes-proteina" value="Pescado o mariscos"> Pescado o mariscos</label>
+                    <label><input type="checkbox" name="fuentes-proteina" value="Huevos"> Huevos</label>
+                    <label><input type="checkbox" name="fuentes-proteina" value="Leche o queso"> Leche o queso</label>
+                    <label><input type="checkbox" name="fuentes-proteina" value="Yogurt natural o griego"> Yogurt natural o griego</label>
+                    <label><input type="checkbox" name="fuentes-proteina" value="Frijoles o lentejas"> Frijoles o lentejas</label>
+                    <label><input type="checkbox" name="fuentes-proteina" value="Proteina en polvo (whey, vegetal u otra)"> Proteina en polvo (whey, vegetal u otra)</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="grasas-habituales">Consumes grasas saludables con frecuencia *</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="grasas-habituales" value="Aguacate"> Aguacate</label>
+                    <label><input type="checkbox" name="grasas-habituales" value="Aceite de oliva"> Aceite de oliva</label>
+                    <label><input type="checkbox" name="grasas-habituales" value="Mantequilla de mani o almendras"> Mantequilla de mani o almendras</label>
+                    <label><input type="checkbox" name="grasas-habituales" value="Nueces o frutos secos"> Nueces o frutos secos</label>
+                    <label><input type="checkbox" name="grasas-habituales" value="No consumo muchas grasas saludables"> No consumo muchas grasas saludables</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCION 7: HIDRATACION -->
+        <div class="section">
+            <h2>7. Hidratacion</h2>
+
+            <div class="field">
+                <label for="agua-diaria">Cuanta agua tomas al dia en promedio, fuera del entrenamiento *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="agua-diaria" value="Menos de 1 litro"> Menos de 1 litro</label>
+                    <label><input type="radio" name="agua-diaria" value="1 a 1.5 litros"> 1 a 1.5 litros</label>
+                    <label><input type="radio" name="agua-diaria" value="1.5 a 2.5 litros"> 1.5 a 2.5 litros</label>
+                    <label><input type="radio" name="agua-diaria" value="2.5 a 3.5 litros"> 2.5 a 3.5 litros</label>
+                    <label><input type="radio" name="agua-diaria" value="No mido, no tengo idea"> No mido, no tengo idea</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="hidratacion-entreno">Cuanto liquido tomas durante el entrenamiento (por hora, si podes estimar) *</label>
+                <textarea id="hidratacion-entreno" name="hidratacion-entreno" placeholder="Ej: Tomo 1 botella de 750ml cada hora. O: Tomo cuando tengo sed, a veces olvido. O: No tomo liquido en sesiones cortas." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="que-tomas-entreno">Que tomas durante el entrenamiento: solo agua, bebida electrolitica, ninguna *</label>
+                <textarea id="que-tomas-entreno" name="que-tomas-entreno" placeholder="Ej: Solo agua. O: Agua con electrolitos en polvo. O: Nada, solo en sesiones largas." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="senales-deshidratacion">Has sentido alguna de estas senales durante o despues de entrenar *</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="senales-deshidratacion" value="Dolor de cabeza durante o despues"> Dolor de cabeza durante o despues</label>
+                    <label><input type="checkbox" name="senales-deshidratacion" value="Calambres musculares"> Calambres musculares</label>
+                    <label><input type="checkbox" name="senales-deshidratacion" value="Orina muy oscura despues de entrenar"> Orina muy oscura despues de entrenar</label>
+                    <label><input type="checkbox" name="senales-deshidratacion" value="Mareo o sensacion de debilidad"> Mareo o sensacion de debilidad</label>
+                    <label><input type="checkbox" name="senales-deshidratacion" value="Sed extrema despues de entrenar"> Sed extrema despues de entrenar</label>
+                    <label><input type="checkbox" name="senales-deshidratacion" value="Nunca he tenido senales de deshidratacion"> Nunca he tenido senales de deshidratacion</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="tolerancia-calor">Como te afecta el calor durante el ejercicio *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="tolerancia-calor" value="Bien, no me afecta mucho"> Bien, no me afecta mucho</label>
+                    <label><input type="radio" name="tolerancia-calor" value="Regular, sudo mucho y me cuesta"> Regular, sudo mucho y me cuesta</label>
+                    <label><input type="radio" name="tolerancia-calor" value="Mal, el calor me apaga"> Mal, el calor me apaga</label>
+                    <label><input type="radio" name="tolerancia-calor" value="No se, no tengo referencia"> No se, no tengo referencia</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="calambres">Has tenido calambres musculares durante eventos o entrenamientos *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="calambres" value="Si, frecuentemente"> Si, frecuentemente</label>
+                    <label><input type="radio" name="calambres" value="Si, de vez en cuando"> Si, de vez en cuando</label>
+                    <label><input type="radio" name="calambres" value="Rara vez"> Rara vez</label>
+                    <label><input type="radio" name="calambres" value="Nunca"> Nunca</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="otras-bebidas">Que otras bebidas consumes habitualmente, ademas del agua *</label>
+                <textarea id="otras-bebidas" name="otras-bebidas" placeholder="Ej: 2 cafes al dia con leche y azucar, un jugo natural. O: Solo agua y cafe negro. O: Refrescos, agua saborizada." required></textarea>
+            </div>
+        </div>
+
+        <!-- SECCION 8: SALUD, DIGESTION Y RESTRICCIONES -->
+        <div class="section">
+            <h2>8. Salud, Digestion y Restricciones</h2>
+
+            <div class="field">
+                <label for="condiciones-medicas">Tienes alguna condicion medica diagnosticada que afecte tu alimentacion *</label>
+                <textarea id="condiciones-medicas" name="condiciones-medicas" placeholder="Ej: Hipotiroidismo controlado. Anemia ferropenica leve. O: Ninguna." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="alergias-intolerancias">Tienes alergias o intolerancias alimentarias *</label>
+                <textarea id="alergias-intolerancias" name="alergias-intolerancias" placeholder="Ej: Intolerancia a la lactosa. Alergia a mariscos. Celiaco/a diagnosticado/a. O: Ninguna." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="digestion-general">Como describes tu digestion en general *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="digestion-general" value="Muy buena, no tengo problemas"> Muy buena, no tengo problemas</label>
+                    <label><input type="radio" name="digestion-general" value="Buena pero tengo algun alimento que me cae mal"> Buena pero tengo algun alimento que me cae mal</label>
+                    <label><input type="radio" name="digestion-general" value="Regular, tengo gases, hinchazon o malestar frecuente"> Regular, tengo gases, hinchazon o malestar frecuente</label>
+                    <label><input type="radio" name="digestion-general" value="Mala, tengo problemas digestivos frecuentes"> Mala, tengo problemas digestivos frecuentes</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="problemas-digestivos-entreno">Tienes problemas gastrointestinales durante entrenamientos largos *</label>
+                <textarea id="problemas-digestivos-entreno" name="problemas-digestivos-entreno" placeholder="Ej: Los geles me dan nausea. Nada de lacteos antes de entrenar. O: Nunca he tenido problemas." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="menstruacion">Sobre tu ciclo menstrual, si aplica: impacta tu energia, hambre o rendimiento en distintas fases del mes</label>
+                <textarea id="menstruacion" name="menstruacion" placeholder="Ej: En la semana antes del periodo me cae pesado entrenar y tengo mas hambre. O: No noto diferencia. O: Prefiero no responder esto."></textarea>
+            </div>
+        </div>
+
+        <!-- SECCION 9: SUPLEMENTACION Y HABITOS DE RECUPERACION -->
+        <div class="section">
+            <h2>9. Suplementacion y Habitos de Recuperacion</h2>
+
+            <div class="field">
+                <label for="suplementos-actuales">Que suplementos tomas actualmente *</label>
+                <textarea id="suplementos-actuales" name="suplementos-actuales" placeholder="Ej: Vitamina D 2000UI, omega 3 1g/dia, proteina whey post-entreno. O: Nada en este momento." required></textarea>
+                <small>Nombre comercial si lo tenes, dosis y momento del dia.</small>
+            </div>
+
+            <div class="field">
+                <label for="cafeina-uso">Usas cafeina antes de entrenar o competir *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="cafeina-uso" value="Si, siempre como parte de mi rutina"> Si, siempre como parte de mi rutina</label>
+                    <label><input type="radio" name="cafeina-uso" value="A veces, cuando me siento cansado/a"> A veces, cuando me siento cansado/a</label>
+                    <label><input type="radio" name="cafeina-uso" value="Nunca intencionalmente"> Nunca intencionalmente</label>
+                    <label><input type="radio" name="cafeina-uso" value="Tomo cafe pero no lo veo como suplemento"> Tomo cafe pero no lo veo como suplemento</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="sueno">Como es tu calidad de sueno en promedio *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="sueno" value="Excelente (7-9h, duermo profundo)"> Excelente (7-9h, duermo profundo)</label>
+                    <label><input type="radio" name="sueno" value="Bueno (6-7h, me levanto descansado/a)"> Bueno (6-7h, me levanto descansado/a)</label>
+                    <label><input type="radio" name="sueno" value="Regular (menos de 6h o sueno interrumpido)"> Regular (menos de 6h o sueno interrumpido)</label>
+                    <label><input type="radio" name="sueno" value="Malo (insomnio o muy poco descanso)"> Malo (insomnio o muy poco descanso)</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="alcohol">Consumes alcohol *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="alcohol" value="No consumo"> No consumo</label>
+                    <label><input type="radio" name="alcohol" value="Muy esporadico (menos de 1 vez al mes)"> Muy esporadico (menos de 1 vez al mes)</label>
+                    <label><input type="radio" name="alcohol" value="Ocasional (1-2 veces al mes)"> Ocasional (1-2 veces al mes)</label>
+                    <label><input type="radio" name="alcohol" value="Social (fines de semana)"> Social (fines de semana)</label>
+                    <label><input type="radio" name="alcohol" value="Frecuente (varias veces por semana)"> Frecuente (varias veces por semana)</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCION 10: GUSTOS, PREFERENCIAS Y TU PECADO -->
+        <div class="section">
+            <h2>10. Gustos, Preferencias y tu "Pecado"</h2>
+
+            <div class="field">
+                <label for="alimentos-favoritos">Cuales son tus comidas o alimentos favoritos *</label>
+                <textarea id="alimentos-favoritos" name="alimentos-favoritos" placeholder="Ej: Me encanta el pollo asado, el arroz, la fruta y el queso. Podria comer pasta todos los dias." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="alimentos-rechazados">Hay alimentos que no te gustan o no consumis por preferencia *</label>
+                <textarea id="alimentos-rechazados" name="alimentos-rechazados" placeholder="Ej: No como higado ni visceras. Odio el brocoli. No me gustan los mariscos. O: Como de todo sin problema." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="pecado">Cual es tu "pecado": esa comida a la que te cuesta decir que no *</label>
+                <textarea id="pecado" name="pecado" placeholder="Ej: El chocolate, no puedo parar una vez que empiezo. O: Las papas fritas. O: Los helados en la noche. O: No tengo un pecado particular." required></textarea>
+                <small>Contame con honestidad, esto es clave para disenar un plan realista y no uno que te vas a saltar en 2 semanas.</small>
+            </div>
+
+            <div class="field">
+                <label for="comida-reconfortante">Cuando estas estresado/a, triste o ansioso/a, hay alguna comida a la que recurris</label>
+                <textarea id="comida-reconfortante" name="comida-reconfortante" placeholder="Ej: Como dulce cuando estoy estresado/a. O: Pierdo el hambre por completo. O: No noto un patron."></textarea>
+            </div>
+
+            <div class="field">
+                <label for="cocinas-tipo">Que tipo de cocina o sabores preferis *</label>
+                <textarea id="cocinas-tipo" name="cocinas-tipo" placeholder="Ej: Comida tipica costarricense, sencilla. O: Me gusta variar, cocina asiatica, mexicana, italiana." required></textarea>
+            </div>
+        </div>
+
+        <!-- SECCION 11: LOGISTICA Y HABITOS PRACTICOS -->
+        <div class="section">
+            <h2>11. Logistica y Habitos Practicos</h2>
+
+            <div class="field">
+                <label for="tiempo-cocinar">Cuanto tiempo tenes disponible para cocinar en una semana tipica *</label>
+                <textarea id="tiempo-cocinar" name="tiempo-cocinar" placeholder="Ej: Los domingos preparo para la semana. Entre semana solo tengo 20-30 min por comida. O: Casi no cocino, como lo que prepara alguien en casa." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="meal-prep">Haces meal prep (preparacion de comidas para varios dias) *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="meal-prep" value="Si, regularmente"> Si, regularmente</label>
+                    <label><input type="radio" name="meal-prep" value="A veces cuando tengo tiempo"> A veces cuando tengo tiempo</label>
+                    <label><input type="radio" name="meal-prep" value="No, nunca"> No, nunca</label>
+                    <label><input type="radio" name="meal-prep" value="No, alguien mas cocina en casa"> No, alguien mas cocina en casa</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="come-fuera">Cuantas veces por semana comes fuera de casa o pedis comida *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="come-fuera" value="Casi nunca (0-1 vez por semana)"> Casi nunca (0-1 vez por semana)</label>
+                    <label><input type="radio" name="come-fuera" value="Pocas veces (2-3 veces por semana)"> Pocas veces (2-3 veces por semana)</label>
+                    <label><input type="radio" name="come-fuera" value="Frecuentemente (4-5 veces por semana)"> Frecuentemente (4-5 veces por semana)</label>
+                    <label><input type="radio" name="come-fuera" value="Casi siempre, rara vez cocino"> Casi siempre, rara vez cocino</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="presupuesto-alimentacion">Cual es tu presupuesto mensual aproximado para alimentacion *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="presupuesto-alimentacion" value="Limitado (menos de 80,000 colones)"> Limitado (menos de ₡80,000 al mes)</label>
+                    <label><input type="radio" name="presupuesto-alimentacion" value="Moderado (80,000 a 150,000 colones)"> Moderado (₡80,000 a ₡150,000 al mes)</label>
+                    <label><input type="radio" name="presupuesto-alimentacion" value="Flexible (150,000 a 250,000 colones)"> Flexible (₡150,000 a ₡250,000 al mes)</label>
+                    <label><input type="radio" name="presupuesto-alimentacion" value="Amplio (mas de 250,000 colones)"> Amplio (mas de ₡250,000 al mes)</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="supermercado">Donde haces las compras de alimentos habitualmente *</label>
+                <input type="text" id="supermercado" name="supermercado" placeholder="Ej: Automercado, Walmart, Mas x Menos, feria del agricultor" required>
+            </div>
+        </div>
+
+        <!-- SECCION 12: HISTORIAL NUTRICIONAL -->
+        <div class="section">
+            <h2>12. Historial Nutricional y Experiencias Previas</h2>
+
+            <div class="field">
+                <label for="planes-previos">Has seguido algun plan nutricional o dieta antes *</label>
+                <textarea id="planes-previos" name="planes-previos" placeholder="Ej: Hice keto 4 meses, perdi peso pero sin energia para entrenar. O: No, nunca he seguido un plan." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="que-funciono">Que HA funcionado para vos nutricionalmente en el pasado *</label>
+                <textarea id="que-funciono" name="que-funciono" placeholder="Ej: Cuando como bien antes de entrenar rindo mucho mejor. El meal prep me ayuda a no improvisar." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="que-no-funciono">Que NO ha funcionado o lo que te cuesta mas *</label>
+                <textarea id="que-no-funciono" name="que-no-funciono" placeholder="Ej: No puedo con planes muy rigidos. Me aburre comer lo mismo. En eventos sociales todo se descontrola." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="relacion-comida">Como describis tu relacion con la comida en general *</label>
+                <textarea id="relacion-comida" name="relacion-comida" placeholder="Ej: Saludable, como lo que necesito. O: A veces como por ansiedad o estres. O: Me cuesta mucho con los dulces." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="miedos-alimentacion">Tenes miedos o creencias sobre la alimentacion que sentis que te limitan *</label>
+                <textarea id="miedos-alimentacion" name="miedos-alimentacion" placeholder="Ej: Me da miedo comer carbos en la noche. O: No tengo miedos particulares." required></textarea>
+                <small>Contame con honestidad. Esto me ayuda a disenar un plan que trabaje con tu psicologia, no en contra.</small>
+            </div>
+        </div>
+
+        <!-- SECCION 13: OBJETIVOS Y COMPROMISOS -->
+        <div class="section">
+            <h2>13. Objetivos y Compromisos</h2>
+
+            <div class="field">
+                <label for="objetivo-principal">Cual es tu objetivo principal al buscar asesoria nutricional *</label>
+                <textarea id="objetivo-principal" name="objetivo-principal" placeholder="Ej: Mejorar mi rendimiento en bici. Bajar grasa corporal sin perder energia. Entender como comer para entrenar mejor. Tener mas energia en el dia a dia." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="cambio-mas-importante">Si solo pudieras cambiar UNA cosa de tu alimentacion actual, cual seria *</label>
+                <textarea id="cambio-mas-importante" name="cambio-mas-importante" placeholder="Ej: Comer mejor antes de entrenar. Dejar de saltarme comidas. Hidratarme mejor." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="nivel-compromiso">Que tan comprometido/a estas a seguir el plan durante el primer mes *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="nivel-compromiso" value="100% (hare todo lo que me recomienden)"> 100% comprometido/a, hare todo lo que me recomienden</label>
+                    <label><input type="radio" name="nivel-compromiso" value="80-90% (seguire la mayoria con flexibilidad)"> 80-90%, seguire la mayoria con algo de flexibilidad</label>
+                    <label><input type="radio" name="nivel-compromiso" value="50-70% (intentare pero tengo muchas limitaciones)"> 50-70%, intentare pero tengo muchas limitaciones</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="limitaciones-seguimiento">Que obstaculos concretos ves que podrian dificultar el seguimiento del plan *</label>
+                <textarea id="limitaciones-seguimiento" name="limitaciones-seguimiento" placeholder="Ej: Viajo seguido por trabajo. Eventos sociales los fines de semana. Mi horario es impredecible. Presupuesto limitado para suplementos." required></textarea>
+            </div>
+        </div>
+
+        <!-- SECCION 14: ESPACIO LIBRE -->
+        <div class="section">
+            <h2>14. Lo que Quieras que Sepa</h2>
+
+            <div class="field">
+                <label for="info-adicional">Hay algo mas sobre tu caso que sea importante que yo sepa y que no te haya preguntado *</label>
+                <textarea id="info-adicional" name="info-adicional" style="min-height: 130px;" placeholder="Este es tu espacio. Puede ser sobre tu historial deportivo, una lesion reciente, una preocupacion especifica, lo que sea. Mientras mas me cuentes, mejor sera el plan." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="pregunta-principal">Cual es tu mayor duda o pregunta especifica sobre nutricion deportiva</label>
+                <textarea id="pregunta-principal" name="pregunta-principal" placeholder="Ej: Por que me quedo sin energia despues de cierto tiempo entrenando? Cuanto sodio necesito? Que como la noche antes de competir?"></textarea>
+            </div>
+        </div>
+
+        <!-- Submit -->
+        <div class="submit-section">
+            <h2>Listo</h2>
+            <p>Gracias por tomarte el tiempo de responder con detalle.</p>
+            <p>Con esta informacion voy a analizar tu caso y disenar tu plan nutricional personalizado, basado en evidencia cientifica y adaptado a tu deporte, tu horario y tu vida real.</p>
+            <p style="margin-top: 12px;"><strong>Proximos pasos:</strong></p>
+            <p>1. Reviso tu formulario (48 horas)</p>
+            <p>2. Preparo tu plan personalizado</p>
+            <p>3. Coordinamos llamada de revision inicial</p>
+            <p style="margin-top: 12px;">Te escribo por WhatsApp para coordinar.</p>
+            <button type="submit" class="submit-btn">Enviar Formulario</button>
+        </div>
+
+    </form>
+
+    <div class="footer">
+        <p><strong>eat&flow</strong> | Nutricion Deportiva</p>
+        <p>Isa Herra | @isaherra.13</p>
+        <p>Si tienes problemas con el formulario, escribeme directo por WhatsApp</p>
+    </div>
+
+</div>
+</body>
+</html>
