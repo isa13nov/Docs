@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Setiembre | Andrés Induni | eat&flow</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #F5F9F7;
+            color: #2D4A3E;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container { max-width: 700px; margin: 0 auto; }
+
+        .header {
+            background: linear-gradient(135deg, #1a5945 0%, #2D4A3E 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+
+        .header .brand {
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            opacity: 0.9;
+            text-transform: uppercase;
+        }
+
+        .header h1 {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .header .subtitulo {
+            font-size: 15px;
+            opacity: 0.9;
+            margin-top: 8px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #ff9800;
+            color: white;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 5px 18px;
+            border-radius: 50px;
+            margin-top: 14px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .intro-box {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border-left: 4px solid #ff9800;
+        }
+
+        .intro-box h2 {
+            color: #ff9800;
+            font-size: 18px;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .intro-box p {
+            color: #555;
+            line-height: 1.75;
+            margin-bottom: 8px;
+            font-size: 14.5px;
+        }
+
+        .intro-box p:last-child { margin-bottom: 0; }
+
+        .section {
+            background: white;
+            padding: 30px 25px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .section h2 {
+            color: #1a5945;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #8bc34a;
+        }
+
+        .section h3 {
+            color: #2D4A3E;
+            font-size: 14px;
+            font-weight: 700;
+            margin: 24px 0 12px 0;
+            padding: 8px 14px;
+            background: #f0f7f4;
+            border-radius: 6px;
+            border-left: 3px solid #8bc34a;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .field { margin-bottom: 22px; }
+
+        .field label {
+            display: block;
+            font-weight: 600;
+            color: #2D4A3E;
+            margin-bottom: 8px;
+            font-size: 14.5px;
+            line-height: 1.4;
+        }
+
+        .field input,
+        .field textarea,
+        .field select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #E0EDE8;
+            border-radius: 8px;
+            font-size: 14.5px;
+            font-family: inherit;
+            background: #F5FAF8;
+            color: #2D4A3E;
+            transition: border-color 0.25s, background 0.25s;
+        }
+
+        .field input:focus,
+        .field textarea:focus,
+        .field select:focus {
+            outline: none;
+            border-color: #8bc34a;
+            background: white;
+        }
+
+        .field textarea { min-height: 95px; resize: vertical; }
+
+        .field small {
+            display: block;
+            color: #7a9a8e;
+            font-size: 12.5px;
+            margin-top: 6px;
+            font-style: italic;
+            line-height: 1.4;
+        }
+
+        .radio-group,
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .radio-group label,
+        .checkbox-group label {
+            display: flex;
+            align-items: flex-start;
+            padding: 11px 14px;
+            background: #F5FAF8;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-weight: normal;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .radio-group label:hover,
+        .checkbox-group label:hover { background: #e6f2ec; }
+
+        .radio-group input[type="radio"],
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            margin-right: 10px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .campos-dobles {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .alerta-box {
+            background: #fff8f0;
+            border: 2px solid #ff9800;
+            border-radius: 10px;
+            padding: 18px 20px;
+            margin-bottom: 22px;
+        }
+
+        .alerta-box p {
+            color: #7a4800;
+            font-size: 13.5px;
+            line-height: 1.6;
+        }
+
+        .alerta-box strong { color: #e67e00; }
+
+        .info-box {
+            background: #e8f5e9;
+            border: 2px solid #43a047;
+            border-radius: 10px;
+            padding: 18px 20px;
+            margin-bottom: 22px;
+        }
+
+        .info-box p {
+            color: #1b5e20;
+            font-size: 13.5px;
+            line-height: 1.6;
+        }
+
+        .info-box strong { color: #1a5945; }
+
+        .numero-pregunta {
+            display: inline-block;
+            background: #1a5945;
+            color: white;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-right: 6px;
+            vertical-align: middle;
+        }
+
+        .escala-group {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+        }
+
+        .escala-group label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px 6px;
+            background: #F5FAF8;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-weight: normal;
+            font-size: 13px;
+            text-align: center;
+            gap: 6px;
+        }
+
+        .escala-group label:hover { background: #e6f2ec; }
+        .escala-group input[type="radio"] { width: auto; margin: 0; }
+
+        /* CALENDARIO DE DISPONIBILIDAD */
+        .calendario-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .fin-semana-item {
+            background: #F5FAF8;
+            border: 2px solid #E0EDE8;
+            border-radius: 10px;
+            padding: 14px 16px;
+            transition: border-color 0.2s;
+        }
+
+        .fin-semana-item:has(input:checked) {
+            border-color: #8bc34a;
+            background: #e8f5e9;
+        }
+
+        .fin-semana-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .fin-semana-header input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+
+        .fin-semana-fechas {
+            font-weight: 700;
+            color: #1a5945;
+            font-size: 15px;
+        }
+
+        .fin-semana-nota {
+            font-size: 12px;
+            color: #666;
+            font-style: italic;
+            margin-top: 2px;
+        }
+
+        .dias-disponibles {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+            margin-top: 6px;
+            padding-top: 10px;
+            border-top: 1px solid #E0EDE8;
+        }
+
+        .dia-check {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: #2D4A3E;
+        }
+
+        .dia-check input[type="checkbox"] {
+            width: auto;
+            margin: 0;
+        }
+
+        .submit-section {
+            background: linear-gradient(135deg, #1a5945, #2D4A3E);
+            color: white;
+            padding: 35px 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .submit-section h2 { font-size: 22px; margin-bottom: 12px; }
+        .submit-section p { opacity: 0.9; font-size: 14.5px; margin-bottom: 8px; }
+
+        .submit-btn {
+            background: #ff9800;
+            color: white;
+            padding: 16px 44px;
+            border: none;
+            border-radius: 50px;
+            font-size: 17px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(255,152,0,0.35);
+            transition: transform 0.25s, box-shadow 0.25s;
+            letter-spacing: 0.5px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 22px rgba(255,152,0,0.45);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #8a9e98;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            .header { padding: 28px 20px; }
+            .header h1 { font-size: 22px; }
+            .section { padding: 22px 16px; }
+            .campos-dobles { grid-template-columns: 1fr; }
+            .submit-section { padding: 28px 20px; }
+            .escala-group { grid-template-columns: repeat(5, 1fr); }
+            .dias-disponibles { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="header">
+        <div class="brand">eat&flow</div>
+        <h1>Formulario Setiembre 2026</h1>
+        <p class="subtitulo">Asesoría Nutricional: Isa Herra</p>
+        <div class="badge">Andrés Induni — Hacia La Ruta</div>
+    </div>
+
+    <div class="intro-box">
+        <h2>Setiembre es el mes clave</h2>
+        <p>La Ruta arranca el 29 de octubre. Quedan menos de 8 semanas. Este formulario me ayuda a entender cómo te fue en agosto, cómo estás ahora y, lo más importante, cómo organizar setiembre para que llegués a La Ruta en las mejores condiciones posibles.</p>
+        <p>Respondé con honestidad. Necesito la verdad, no lo que creés que quiero escuchar.</p>
+        <p><strong>Tiempo estimado:</strong> 20 minutos.</p>
+    </div>
+
+    <form action="https://formspree.io/f/mzzodpje" method="POST">
+
+        <!-- SECCIÓN 1: ESTADO ACTUAL -->
+        <div class="section">
+            <h2>1. Estado Actual</h2>
+
+            <div class="campos-dobles">
+                <div class="field">
+                    <label for="peso-actual">Peso actual (kg) *</label>
+                    <input type="number" id="peso-actual" name="peso-actual" step="0.1" placeholder="Ej: 95.5" required>
+                    <small>En ayunas, mañana, antes de entrenar.</small>
+                </div>
+                <div class="field">
+                    <label for="peso-inicio-agosto">Peso al inicio de agosto (kg)</label>
+                    <input type="number" id="peso-inicio-agosto" name="peso-inicio-agosto" step="0.1" placeholder="97 kg">
+                </div>
+            </div>
+
+            <div class="campos-dobles">
+                <div class="field">
+                    <label for="cintura">Circunferencia cintura (cm)</label>
+                    <input type="number" id="cintura" name="cintura" step="0.5" placeholder="Ej: 106">
+                </div>
+                <div class="field">
+                    <label for="cadera">Circunferencia cadera (cm)</label>
+                    <input type="number" id="cadera" name="cadera" step="0.5" placeholder="Ej: 105">
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="cambio-percibido">¿Notás algún cambio físico respecto a inicio de agosto? *</label>
+                <textarea id="cambio-percibido" name="cambio-percibido" placeholder="Ej: Siento la ropa un poco más suelta. La barriga bajó un poco. O: Honestamente no noto mucha diferencia todavía." required></textarea>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">1</span>¿Cuánto cambió tu VO2max en el reloj respecto al inicio de agosto? *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="vo2max" value="Subio, ya estoy en 40 o mas"> Subió, ya estoy en 40 o más</label>
+                    <label><input type="radio" name="vo2max" value="Subio un poco, estoy entre 39 y 40"> Subió un poco, estoy entre 39 y 40</label>
+                    <label><input type="radio" name="vo2max" value="Igual, sigo en 39"> Igual, sigo en 39</label>
+                    <label><input type="radio" name="vo2max" value="Bajo mas"> Bajó más</label>
+                    <label><input type="radio" name="vo2max" value="No lo revise"> No lo revisé</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">2</span>¿Cómo te sentís físicamente en este momento comparado con el inicio de agosto? *</label>
+                <div class="escala-group">
+                    <label><input type="radio" name="estado-fisico" value="1"> 1<br>Mucho peor</label>
+                    <label><input type="radio" name="estado-fisico" value="2"> 2<br>Peor</label>
+                    <label><input type="radio" name="estado-fisico" value="3"> 3<br>Igual</label>
+                    <label><input type="radio" name="estado-fisico" value="4"> 4<br>Mejor</label>
+                    <label><input type="radio" name="estado-fisico" value="5"> 5<br>Mucho mejor</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 2: NUTRICIÓN DE AGOSTO -->
+        <div class="section">
+            <h2>2. Nutrición de Agosto</h2>
+
+            <div class="field">
+                <label><span class="numero-pregunta">3</span>¿Seguiste la estructura de comidas del plan de agosto? *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="estructura-comidas" value="Si, la mayoria de dias"> Sí, la mayoría de días</label>
+                    <label><input type="radio" name="estructura-comidas" value="A medias, algunos dias si y otros no"> A medias, algunos días sí y otros no</label>
+                    <label><input type="radio" name="estructura-comidas" value="Poco, me costó mucho"> Poco, me costó mucho</label>
+                    <label><input type="radio" name="estructura-comidas" value="No, casi nada"> No, casi nada</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">4</span>¿Cocinaste en casa o seguiste comiendo afuera la mayoría del tiempo? *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="cocina-casa" value="Cociné la mayoría de veces"> Cociné la mayoría de veces</label>
+                    <label><input type="radio" name="cocina-casa" value="Mitad cocina mitad afuera"> Mitad en casa, mitad afuera</label>
+                    <label><input type="radio" name="cocina-casa" value="Comí afuera la mayoría"> Comí afuera la mayoría</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">5</span>¿Cómo estuvo la ansiedad por el dulce este mes? *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="ansiedad-dulce" value="Bien, use las recetas y me ayudaron mucho"> Bien, usé las recetas (dátiles, helado de yogurt) y me ayudaron mucho</label>
+                    <label><input type="radio" name="ansiedad-dulce" value="Regular, a veces use las recetas y a veces cai en dulces"> Regular, a veces usé las recetas y a veces caí en dulces</label>
+                    <label><input type="radio" name="ansiedad-dulce" value="Mal, sigo comiendo dulces procesados con frecuencia"> Mal, sigo comiendo dulces procesados con frecuencia</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">6</span>¿Qué fue lo más difícil de la nutrición este mes? *</label>
+                <textarea id="dificultad-nutricion" name="dificultad-nutricion" placeholder="Ej: Me costó mucho cocinar entre semana por el trabajo. O: La ansiedad por el dulce en las noches. O: Comer bien los días de después del fondo." required></textarea>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">7</span>¿Seguiste tomando el magnesio todas las noches? *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="magnesio" value="Si, todos los dias"> Sí, todos los días</label>
+                    <label><input type="radio" name="magnesio" value="La mayoria de dias"> La mayoría de días</label>
+                    <label><input type="radio" name="magnesio" value="Algunas veces"> Algunas veces</label>
+                    <label><input type="radio" name="magnesio" value="No"> No</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 3: ENTRENAMIENTO DE AGOSTO -->
+        <div class="section">
+            <h2>3. Entrenamiento de Agosto</h2>
+
+            <div class="field">
+                <label><span class="numero-pregunta">8</span>¿Cuántos días por semana entrenaste en promedio en agosto? *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="dias-entreno" value="5 dias, estructura completa"> 5 días, seguí la estructura completa</label>
+                    <label><input type="radio" name="dias-entreno" value="4 dias"> 4 días</label>
+                    <label><input type="radio" name="dias-entreno" value="3 dias"> 3 días</label>
+                    <label><input type="radio" name="dias-entreno" value="2 dias o menos"> 2 días o menos</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">9</span>Describí cómo fueron los 3 fondos largos del mes *</label>
+                <textarea id="fondos-agosto" name="fondos-agosto" placeholder="Ej:
+Fondo 1 (60 km): Bien, terminé con energía, el fueling funcionó.
+Fondo 2 (75 km): Más duro, me costó la última hora pero llegué.
+Fondo 3 (90 km): Pendiente / Lo hice y fue el mejor hasta ahora / No lo hice porque..." required></textarea>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">10</span>¿Cómo te sentiste en los fondos de agosto comparado con antes de las vacaciones? *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="fondos-vs-antes"> Mejor que antes de las vacaciones</label>
+                    <label><input type="radio" name="fondos-vs-antes"> Similar a como estaba antes de las vacaciones</label>
+                    <label><input type="radio" name="fondos-vs-antes"> Todavía por debajo de lo que estaba antes de las vacaciones</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">11</span>¿Seguiste el protocolo de fueling (comer cada 45 min) en los fondos? *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="fueling-fondos" value="Si, en todos"> Sí, en todos los fondos</label>
+                    <label><input type="radio" name="fueling-fondos" value="En la mayoria"> En la mayoría</label>
+                    <label><input type="radio" name="fueling-fondos" value="Solo en algunos"> Solo en algunos</label>
+                    <label><input type="radio" name="fueling-fondos" value="No"> No, se me sigue olvidando</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">12</span>¿Tuviste calambres, lesiones o molestias durante agosto? *</label>
+                <textarea id="lesiones" name="lesiones" placeholder="Ej: Sin calambres, el magnesio ayuda mucho. O: Dolor en la rodilla derecha después del segundo fondo. O: Todo bien, sin molestias." required></textarea>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 4: EL INTENTO DE LA ETAPA -->
+        <div class="section">
+            <h2>4. El Intento de la Primera Etapa</h2>
+
+            <div class="alerta-box">
+                <p><strong>Sé que este fin de semana intentaste hacer la primera etapa de La Ruta y fue duro.</strong> Quiero entender exactamente qué pasó para ajustar el plan de setiembre. No es fracaso, es información.</p>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">13</span>¿Cómo fue la experiencia en general? *</label>
+                <textarea id="experiencia-etapa" name="experiencia-etapa" placeholder="Contame con tus palabras cómo te fue: cómo te sentiste física y mentalmente, en qué momento fue más duro, si pudiste comer en ruta, qué falló y qué funcionó." required></textarea>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">14</span>Los 56 km en 10 horas, ¿a qué se debió principalmente el tiempo? *</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="causa-tiempo" value="El terreno era mucho mas dificil de lo esperado"> El terreno era mucho más difícil de lo esperado</label>
+                    <label><input type="checkbox" name="causa-tiempo" value="El grupo iba lento y eso me afecto el ritmo"> El grupo iba lento y eso me afectó el ritmo</label>
+                    <label><input type="checkbox" name="causa-tiempo" value="Me fui quedando sin energia en algun punto"> Me fui quedando sin energía en algún punto</label>
+                    <label><input type="checkbox" name="causa-tiempo" value="Problemas mecanicos"> Problemas mecánicos (pinchazos, cadena, etc.)</label>
+                    <label><input type="checkbox" name="causa-tiempo" value="No hice bien el fueling"> No hice bien el fueling</label>
+                    <label><input type="checkbox" name="causa-tiempo" value="Paradas largas del grupo"> Paradas largas del grupo</label>
+                    <label><input type="checkbox" name="causa-tiempo" value="Otra razon"> Otra razón</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">15</span>¿Cómo llegaste al final de esos 56 km? *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="como-llegaste" value="Bien, con energia todavia"> Bien, con energía todavía</label>
+                    <label><input type="radio" name="como-llegaste" value="Cansado pero bien"> Cansado pero bien</label>
+                    <label><input type="radio" name="como-llegaste" value="Muy cansado, al limite"> Muy cansado, al límite</label>
+                    <label><input type="radio" name="como-llegaste" value="Agotado totalmente"> Agotado totalmente</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">16</span>¿Cómo estuvo tu fueling durante esos 56 km? *</label>
+                <textarea id="fueling-etapa" name="fueling-etapa" placeholder="Ej: Comí bien las primeras 3 horas pero después dejé de comer porque no tenía hambre. O: Llevé suficiente pero el estómago no me cooperó. O: Me fui quedando sin comida a la mitad." required></textarea>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">17</span>¿Cómo está tu cabeza después de esta experiencia? *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="estado-mental" value="Motivado, quiero volver y hacerlo mejor"> Motivado, quiero volver y hacerlo mejor</label>
+                    <label><input type="radio" name="estado-mental" value="Desanimado pero no me rindo"> Desanimado pero no me rindo</label>
+                    <label><input type="radio" name="estado-mental" value="Con dudas serias sobre si puedo hacer La Ruta"> Con dudas serias sobre si puedo hacer La Ruta</label>
+                    <label><input type="radio" name="estado-mental" value="Ya no quiero hacer La Ruta"> Ya no quiero hacer La Ruta</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 5: DISPONIBILIDAD SETIEMBRE -->
+        <div class="section">
+            <h2>5. Tu Disponibilidad en Setiembre</h2>
+
+            <div class="info-box">
+                <p><strong>Necesito saber qué días tenés disponibles para armar los dos bloques de entrenamiento de 3 días consecutivos</strong> que van a simular la exigencia de La Ruta. Cada día de bloque requiere que puedas dedicar entre 6 y 10 horas al entrenamiento.</p>
+                <p style="margin-top:8px;">Marcá todos los días que podés, tanto entre semana como fines de semana. Yo acomodo los dos bloques según lo que me indiqués.</p>
+            </div>
+
+            <div class="field">
+                <label style="font-weight:700; color:#1a5945; font-size:15px;">Marcá todos los días disponibles del 11 al 28 de setiembre *</label>
+                <small>Marcá cualquier día donde podás dedicar 6-10 horas al entrenamiento. No te limitás a fines de semana, si podés tomar días entre semana también marcálos.</small>
+            </div>
+
+            <!-- Semana 11-14 set -->
+            <div class="fin-semana-item" style="margin-bottom:12px;">
+                <div style="font-weight:700; color:#1a5945; font-size:13px; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:10px; padding-bottom:8px; border-bottom:1px solid #E0EDE8;">Semana del 11 al 14 de setiembre</div>
+                <div class="dias-disponibles" style="grid-template-columns: repeat(4,1fr);">
+                    <label class="dia-check" style="background:#F5FAF8; padding:10px 8px; border-radius:8px; justify-content:center; flex-direction:column; text-align:center; gap:6px; font-size:13px;">
+                        <input type="checkbox" name="disponibilidad-dias" value="Jueves 11 set">
+                        <span style="font-weight:600;">Jue 11</span>
+                    </label>
+                    <label class="dia-check" style="background:#F5FAF8; padding:10px 8px; border-radius:8px; justify-content:center; flex-direction:column; text-align:center; gap:6px; font-size:13px;">
+                        <input type="checkbox" name="disponibilidad-dias" value="Viernes 12 set">
+                        <span style="font-weight:600;">Vie 12</span>
+                    </label>
+                    <label class="dia-check" style="background:#F5FAF8; padding:10px 8px; border-radius:8px; justify-content:center; flex-direction:column; text-align:center; gap:6px; font-size:13px;">
+                        <input type="checkbox" name="disponibilidad-dias" value="Sábado 13 set">
+                        <span style="font-weight:600;">Sáb 13</span>
+                    </label>
+                    <label class="dia-check" style="background:#F5FAF8; padding:10px 8px; border-radius:8px; justify-content:center; flex-direction:column; text-align:center; gap:6px; font-size:13px;">
+                        <input type="checkbox" name="disponibilidad-dias" value="Domingo 14 set">
+                        <span style="font-weight:600;">Dom 14</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Semana 15-21 set -->
+            <div class="fin-semana-item" style="margin-bottom:12px;">
+                <div style="font-weight:700; color:#1a5945; font-size:13px; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:10px; padding-bottom:8px; border-bottom:1px solid #E0EDE8;">Semana del 15 al 21 de setiembre</div>
+                <div class="dias-disponibles" style="grid-template-columns: repeat(4,1fr);">
+                    <label class="dia-check" style="background:#F5FAF8; padding:10px 8px; border-radius:8px; justify-content:center; flex-direction:column; text-align:center; gap:6px; font-size:13px;">
+                        <input type="checkbox" name="disponibilidad-dias" value="Lunes 15 set">
+                        <span style="font-weight:600;">Lun 15</span>
+                    </label>
+                    <label class="dia-check" style="background:#F5FAF8; padding:10px 8px; border-radius:8px; justify-content:center; flex-direction:column; text-align:center; gap:6px; font-size:13px;">
+                        <input type="checkbox" name="disponibilidad-dias" value="Martes 16 set">
+                        <span style="font-weight:600;">Mar 16</span>
+                    </label>
+                    <label class="dia-check" style="background:#F5FAF8; padding:10px 8px; border-radius:8px; justify-content:center; flex-direction:column; text-align:center; gap:6px; font-size:13px;">
+                        <input type="checkbox" name="disponibilidad-dias" value="Miércoles 17 set">
+                        <span style="font-weight:600;">Mié 17</span>
+                    </label>
+                    <label class="dia-check" style="background:#F5FAF8; padding:10px 8px; border-radius:8px; justify-content:center; flex-direction:column; text-align:center; gap:6px; font-size:13px;">
+                        <input type="checkbox" name="disponibilidad-dias" value="Jueves 18 set">
+                        <span style="font-weight:600;">Jue 18</span>
+                    </label>
+                    <label class="dia-check" style="background:#F5FAF8; padding:10px 8px; border-radius:8px; justify-content:center; flex-direction:column; text-align:center; gap:6px; font-size:13px;">
+                        <input type="checkbox" name="disponibilidad-dias" value="Viernes 19 set">
+                        <span style="font-weight:600;">Vie 19</span>
+                    </label>
+                    <label class="dia-check" style="background:#F5FAF8; padding:10px 8px; border-radius:8px; justify-content:center; flex-direction:column; text-align:center; gap:6px; font-size:13px;">
+                        <input type="checkbox" name="disponibilidad-dias" value="Sábado 20 set">
+                        <span style="font-weight:600;">Sáb 20</span>
+                    </label>
+                    <label class="dia-check" style="background:#F5FAF8; padding:10px 8px; border-radius:8px; justify-content:center; flex-direction:column; text-align:center; gap:6px; font-size:13px;">
+                        <input type="checkbox" name="disponibilidad-dias" value="Domingo 21 set">
+                        <span style="font-weight:600;">Dom 21</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Semana 22-28 set -->
+            <div class="fin-semana-item" style="margin-bottom:20px;">
+                <div style="font-weight:700; color:#1a5945; font-size:13px; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:10px; padding-bottom:8px; border-bottom:1px solid #E0EDE8;">Semana del 22 al 28 de setiembre</div>
+                <div class="dias-disponibles" style="grid-template-columns: repeat(4,1fr);">
+                    <label class="dia-check" style="background:#F5FAF8; padding:10px 8px; border-radius:8px; justify-content:center; flex-direction:column; text-align:center; gap:6px; font-size:13px;">
+                        <input type="checkbox" name="disponibilidad-dias" value="Lunes 22 set">
+                        <span style="font-weight:600;">Lun 22</span>
+                    </label>
+                    <label class="dia-check" style="background:#F5FAF8; padding:10px 8px; border-radius:8px; justify-content:center; flex-direction:column; text-align:center; gap:6px; font-size:13px;">
+                        <input type="checkbox" name="disponibilidad-dias" value="Martes 23 set">
+                        <span style="font-weight:600;">Mar 23</span>
+                    </label>
+                    <label class="dia-check" style="background:#F5FAF8; padding:10px 8px; border-radius:8px; justify-content:center; flex-direction:column; text-align:center; gap:6px; font-size:13px;">
+                        <input type="checkbox" name="disponibilidad-dias" value="Miércoles 24 set">
+                        <span style="font-weight:600;">Mié 24</span>
+                    </label>
+                    <label class="dia-check" style="background:#F5FAF8; padding:10px 8px; border-radius:8px; justify-content:center; flex-direction:column; text-align:center; gap:6px; font-size:13px;">
+                        <input type="checkbox" name="disponibilidad-dias" value="Jueves 25 set">
+                        <span style="font-weight:600;">Jue 25</span>
+                    </label>
+                    <label class="dia-check" style="background:#F5FAF8; padding:10px 8px; border-radius:8px; justify-content:center; flex-direction:column; text-align:center; gap:6px; font-size:13px;">
+                        <input type="checkbox" name="disponibilidad-dias" value="Viernes 26 set">
+                        <span style="font-weight:600;">Vie 26</span>
+                    </label>
+                    <label class="dia-check" style="background:#F5FAF8; padding:10px 8px; border-radius:8px; justify-content:center; flex-direction:column; text-align:center; gap:6px; font-size:13px;">
+                        <input type="checkbox" name="disponibilidad-dias" value="Sábado 27 set">
+                        <span style="font-weight:600;">Sáb 27</span>
+                    </label>
+                    <label class="dia-check" style="background:#F5FAF8; padding:10px 8px; border-radius:8px; justify-content:center; flex-direction:column; text-align:center; gap:6px; font-size:13px;">
+                        <input type="checkbox" name="disponibilidad-dias" value="Domingo 28 set">
+                        <span style="font-weight:600;">Dom 28</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">18</span>¿Preferís hacer los bloques como reconocimiento de las etapas reales de La Ruta, o como fondos largos en rutas que ya conocés? *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="tipo-bloque" value="Reconocimiento de las etapas reales"> Reconocimiento: quiero ir a los lugares exactos de La Ruta aunque implique desplazamiento</label>
+                    <label><input type="radio" name="tipo-bloque" value="Fondos largos en rutas conocidas"> Fondos largos: prefiero entrenar en rutas que ya conozco, sin desplazarme lejos</label>
+                    <label><input type="radio" name="tipo-bloque" value="Combinacion de ambas"> Combinación: uno de reconocimiento y uno en ruta conocida</label>
+                    <label><input type="radio" name="tipo-bloque" value="No se, lo que usted recomiende"> No sé, lo que vos recomendés</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">19</span>¿Tenés con quién hacer estos bloques o los harías solo? *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="companeros" value="Tengo grupo para hacerlos"> Tengo grupo para hacerlos</label>
+                    <label><input type="radio" name="companeros" value="Podria conseguir alguien"> Podría conseguir a alguien</label>
+                    <label><input type="radio" name="companeros" value="Los haria solo"> Los haría solo</label>
+                </div>
+                <small>Importante saberlo porque pedalear solo en fondos muy largos tiene implicaciones de seguridad y también mentales.</small>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 6: CIERRE -->
+        <div class="section">
+            <h2>6. Para Cerrar</h2>
+
+            <div class="field">
+                <label><span class="numero-pregunta">20</span>¿Cómo está tu motivación para La Ruta en este momento? *</label>
+                <div class="escala-group">
+                    <label><input type="radio" name="motivacion-ruta" value="1"> 1<br>Muy baja</label>
+                    <label><input type="radio" name="motivacion-ruta" value="2"> 2<br>Baja</label>
+                    <label><input type="radio" name="motivacion-ruta" value="3"> 3<br>Regular</label>
+                    <label><input type="radio" name="motivacion-ruta" value="4"> 4<br>Alta</label>
+                    <label><input type="radio" name="motivacion-ruta" value="5"> 5<br>Muy alta</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">21</span>¿Qué es lo que más te preocupa de cara a La Ruta ahora mismo? *</label>
+                <textarea id="preocupacion-ruta" name="preocupacion-ruta" placeholder="Ej: Que no voy a poder con el día 2 y el día 3 si el día 1 me deja tan destruido. O: La parte mental, no sé si voy a poder mantener la cabeza cuando el cuerpo quiera parar. O: El fueling, no sé si lo voy a hacer bien en competencia." required></textarea>
+            </div>
+
+            <div class="field">
+                <label><span class="numero-pregunta">22</span>¿Algo más que quieras contarme? *</label>
+                <textarea id="mensaje-libre" name="mensaje-libre" placeholder="Cualquier cosa que no encajó en las preguntas anteriores o que creás que es importante para el plan de setiembre." required></textarea>
+            </div>
+        </div>
+
+        <div class="submit-section">
+            <h2>A La Ruta se llega así</h2>
+            <p>Un formulario a la vez. Un mes a la vez. Un fondo a la vez.</p>
+            <p>Cuando reciba esto, construyo el plan de setiembre y te lo envío.</p>
+            <button type="submit" class="submit-btn">Enviar Formulario</button>
+        </div>
+
+    </form>
+
+    <div class="footer">
+        <p>eat&flow | Asesoría Nutricional: Isa Herra</p>
+        <p>@eatandflow.cr | @isaherra.13</p>
+        <p>WhatsApp: +506 8312 9092</p>
+    </div>
+
+</div>
+</body>
+</html>
