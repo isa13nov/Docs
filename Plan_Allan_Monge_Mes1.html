@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan de Rendimiento | Allan Monge | eat&flow</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #F5F9F7 0%, #E8F3EF 100%);
+            color: #2D4A3E;
+            line-height: 1.8;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 30px rgba(45,74,62,0.12);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1a5945 0%, #2D4A3E 100%);
+            color: white;
+            padding: 44px 30px;
+            text-align: center;
+            border-bottom: 4px solid #8bc34a;
+        }
+
+        .header .brand {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            opacity: 0.9;
+            margin-bottom: 18px;
+            text-transform: uppercase;
+        }
+
+        .header h1 { font-size: 30px; font-weight: 700; margin-bottom: 6px; }
+        .header .cliente { font-size: 22px; font-weight: 600; margin-top: 12px; }
+
+        .badge {
+            display: inline-block;
+            background: #ff9800;
+            color: white;
+            padding: 7px 22px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-top: 14px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .tabs {
+            display: flex;
+            overflow-x: auto;
+            background: white;
+            border-bottom: 2px solid #E8F3EF;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(45,74,62,0.06);
+        }
+
+        .tab {
+            padding: 15px 20px;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            font-size: 13px;
+            font-weight: 600;
+            color: #6c757d;
+            white-space: nowrap;
+            transition: all 0.3s;
+            flex-shrink: 0;
+        }
+
+        .tab:hover { background: #F5F9F7; color: #2D4A3E; }
+        .tab.active { color: #1a5945; border-bottom: 3px solid #1a5945; background: #F5F9F7; }
+
+        .content { padding: 40px 32px; }
+
+        .section { display: none; }
+        .section.active { display: block; animation: fadeIn 0.3s; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            font-size: 26px;
+            color: #1a5945;
+            margin-bottom: 28px;
+            padding-bottom: 14px;
+            border-bottom: 3px solid #8bc34a;
+        }
+
+        .subsection-title {
+            font-size: 20px;
+            color: #2D4A3E;
+            margin: 36px 0 18px;
+            font-weight: 700;
+        }
+
+        .card {
+            background: #F5FAF8;
+            border-left: 4px solid #8bc34a;
+            padding: 20px 22px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
+        .card h3 { color: #1a5945; font-size: 17px; margin-bottom: 12px; }
+        .card p { margin-bottom: 8px; font-size: 14.5px; }
+        .card ul { margin-left: 18px; margin-bottom: 8px; font-size: 14.5px; }
+
+        .card.highlight {
+            background: linear-gradient(135deg, #fff8f0, #fff3e6);
+            border-left: 4px solid #ff9800;
+        }
+
+        .card.success {
+            background: #e8f5e9;
+            border-left: 4px solid #43a047;
+        }
+
+        .card.warning {
+            background: #fffde7;
+            border-left: 4px solid #fdd835;
+        }
+
+        .card.critical {
+            background: #fce4ec;
+            border-left: 4px solid #e53935;
+        }
+
+        .card.dark {
+            background: #e8f0ee;
+            border-left: 4px solid #1a5945;
+        }
+
+        .orange-box {
+            background: linear-gradient(135deg, #fff8f0, #fff3e6);
+            border-left: 4px solid #ff9800;
+            padding: 20px 22px;
+            margin: 22px 0;
+            border-radius: 8px;
+        }
+
+        .orange-box p { margin-bottom: 8px; font-size: 14.5px; }
+
+        .info-box {
+            background: linear-gradient(135deg, #e8f5e9, #d4edda);
+            border-left: 4px solid #43a047;
+            padding: 20px 22px;
+            margin: 22px 0;
+            border-radius: 8px;
+        }
+
+        .warning-box {
+            background: #fffde7;
+            border-left: 4px solid #fdd835;
+            padding: 20px 22px;
+            margin: 22px 0;
+            border-radius: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 13.5px;
+        }
+
+        table th {
+            background: #1a5945;
+            color: white;
+            padding: 10px;
+            text-align: left;
+            font-weight: 700;
+        }
+
+        table td {
+            border-bottom: 1px solid #E8F3EF;
+            padding: 10px;
+            vertical-align: top;
+        }
+
+        table tr:hover { background: #F5FAF8; }
+
+        .table-wrap { overflow-x: auto; }
+
+        .menu-table th { font-size: 12.5px; }
+        .menu-table td { font-size: 12.5px; line-height: 1.5; }
+        .menu-table td.day-label { font-weight: 700; color: #1a5945; background: #F5FAF8; white-space: nowrap; }
+
+        .meal-plan {
+            background: #F5FAF8;
+            border-left: 4px solid #8bc34a;
+            padding: 18px 20px;
+            margin: 18px 0;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .meal-plan strong { color: #1a5945; }
+        .meal-plan p { margin-bottom: 6px; }
+
+        .whatsapp-box {
+            background: linear-gradient(135deg, #e8f5e9, #d4edda);
+            border-left: 4px solid #43a047;
+            padding: 20px 22px;
+            margin: 22px 0;
+            border-radius: 8px;
+        }
+
+        .whatsapp-box h3 { color: #2e7d32; margin-bottom: 12px; font-size: 17px; }
+        .whatsapp-box p { margin-bottom: 8px; font-size: 14.5px; }
+        .whatsapp-box ul { margin-left: 18px; margin-bottom: 8px; font-size: 14.5px; }
+
+        .recipe-card {
+            background: #F5FAF8;
+            border-left: 4px solid #ff9800;
+            padding: 18px 20px;
+            margin: 18px 0;
+            border-radius: 8px;
+        }
+
+        .recipe-card h4 { color: #1a5945; margin-bottom: 10px; }
+        .recipe-card p { margin-bottom: 6px; font-size: 14px; }
+        .recipe-card ul { margin-left: 18px; margin-bottom: 8px; font-size: 14px; }
+
+        .timeline { margin: 20px 0; }
+
+        .timeline-item {
+            background: #F5FAF8;
+            border-left: 4px solid #8bc34a;
+            padding: 18px 20px;
+            margin-bottom: 16px;
+            border-radius: 8px;
+        }
+
+        .timeline-item h4 { color: #1a5945; margin-bottom: 8px; font-size: 15px; font-weight: 700; }
+        .timeline-item p { margin-bottom: 6px; font-size: 14px; }
+        .timeline-item ul { margin-left: 18px; font-size: 14px; }
+
+        .footer {
+            background: #1a5945;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        .footer p { margin-bottom: 6px; }
+
+        .key-point {
+            background: linear-gradient(135deg, #fff8f0, #fff3e6);
+            border-left: 4px solid #ff9800;
+            padding: 15px 18px;
+            margin: 15px 0;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        strong { color: #1a5945; }
+
+        @media (max-width: 600px) {
+            .content { padding: 26px 18px; }
+            .header { padding: 30px 18px; }
+            .header h1 { font-size: 24px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <div class="brand">eat&flow</div>
+        <h1>Plan de Rendimiento</h1>
+        <p style="font-size: 14px; opacity: 0.95; margin-top: 10px;">Asesoría Nutricional: Isa Herra</p>
+        <div class="cliente">Allan Monge Salas</div>
+        <span class="badge">Mes 1 · Bimbo Global Race 5K</span>
+    </div>
+
+    <div class="tabs">
+        <button class="tab active" onclick="showSection('analisis')">Análisis</button>
+        <button class="tab" onclick="showSection('estrategia')">Estrategia</button>
+        <button class="tab" onclick="showSection('menu-mes')">Menú del Mes</button>
+        <button class="tab" onclick="showSection('hidratacion')">Hidratación</button>
+        <button class="tab" onclick="showSection('antojos')">Snacks y Antojos</button>
+        <button class="tab" onclick="showSection('carrera')">Semana de Carrera</button>
+        <button class="tab" onclick="showSection('cronograma')">Cronograma</button>
+        <button class="tab" onclick="showSection('seguimiento')">Seguimiento</button>
+    </div>
+
+    <div class="content">
+
+        <!-- ======= ANÁLISIS ======= -->
+        <div id="analisis" class="section active">
+            <h2 class="section-title">Análisis Inicial</h2>
+
+            <h3 class="subsection-title">Tu Perfil</h3>
+
+            <div class="card dark">
+                <h3>Datos Actuales</h3>
+                <div class="table-wrap">
+                <table>
+                    <tr><th>Métrica</th><th>Valor</th><th>Nota</th></tr>
+                    <tr><td>Edad</td><td>21 años</td><td>Etapa ideal para construir músculo y establecer hábitos que te duren toda la vida</td></tr>
+                    <tr><td>Peso actual</td><td>74 kg</td><td>IMC 27.2, dato que casi no uso porque no distingue músculo de grasa</td></tr>
+                    <tr><td>Estatura</td><td>165 cm</td><td>—</td></tr>
+                    <tr><td>Deporte</td><td>Ciclismo de ruta + atletismo (pista)</td><td>2 años, nivel competitivo serio, coach John</td></tr>
+                    <tr><td>Próximo objetivo</td><td>Bimbo Global Race, 5K</td><td>20 de septiembre, ritmo objetivo 4:35/km</td></tr>
+                </table>
+                </div>
+            </div>
+
+            <h3 class="subsection-title">Lo que Dice Tu InBody</h3>
+
+            <div class="card dark">
+                <h3>Historial de Composición Corporal</h3>
+                <div class="table-wrap">
+                <table>
+                    <tr><th>Fecha</th><th>Peso</th><th>% Grasa</th><th>Músculo Esquelético</th><th>TMB</th><th>Puntuación</th></tr>
+                    <tr><td>Agosto 2024</td><td>72.3 kg</td><td>21.9%</td><td>32.1 kg</td><td>1,589 kcal</td><td>78/100</td></tr>
+                    <tr><td>Abril 2025</td><td>70.3 kg</td><td>19.8%</td><td>32.1 kg</td><td>1,568 kcal</td><td>80/100</td></tr>
+                    <tr><td>Mayo 2026</td><td>73.1 kg</td><td>26.1%</td><td>30.6 kg</td><td>1,536 kcal</td><td>73/100</td></tr>
+                </table>
+                </div>
+            </div>
+
+            <div class="orange-box">
+                <p><strong>Esto es lo que más me importa de todo tu formulario:</strong> entre abril de 2025 y mayo de 2026 ganaste 5.2 kg de grasa, pero además perdiste 1.5 kg de músculo. No es solo que subiste de peso: la calidad de ese cambio fue mala. Ganaste grasa mientras perdías el tejido que más te conviene tener como atleta. Y tu metabolismo basal bajó de 1,568 a 1,536 kcal en el mismo periodo, coherente con esa pérdida muscular. Tu grasa visceral está en nivel 8 y tu grado de obesidad en 122%, ambos indicadores de que el cuerpo se está acostumbrando a almacenar más de lo que necesita.</p>
+                <p style="margin-top: 10px;"><strong>La buena noticia:</strong> ya demostraste que podés ir en la otra dirección. Entre agosto 2024 y abril 2025 bajaste grasa y mantuviste el músculo exacto. Ese fue tu mejor momento y coincide, según lo que contás, con una época donde comías con más estructura. No partimos de cero: partimos de un patrón que ya funcionó una vez.</p>
+            </div>
+
+            <h3 class="subsection-title">Tu Relación con la Comida</h3>
+
+            <div class="card critical">
+                <h3>Lo que Vos Mismo Contaste</h3>
+                <p>Describís ciclos de dos semanas comiendo bien y luego un rebote. Contás que ves la comida como algo malo, que sentís culpa después de comer, y que esa culpa te hace comer peor. Eso es exactamente lo que muestra tu InBody en números: no es que no tengas disciplina, es que el patrón de restricción-culpa-rebote no se sostiene, y cada vez que rebota, el cuerpo se queda con más grasa y menos músculo que antes.</p>
+                <p style="margin-top: 10px;">Quiero ser clara con vos: no te voy a psicoanalizar ni a ponerte una etiqueta, pero sí quiero que sepás que lo que contaste sobre pensar en hacerte bulímico cuando comés mal es información importante, y si en algún momento sentís que el peso emocional de esto es más grande de lo que la nutrición sola puede resolver, hablalo conmigo directamente. Yo trabajo la parte de la comida; si hace falta, te puedo ayudar a buscar apoyo adicional. No es debilidad, es parte de cuidarte bien.</p>
+            </div>
+
+            <div class="card warning">
+                <h3>Por Qué Este Plan Es Diferente al de la Nutricionista Anterior</h3>
+                <p>Vos mismo lo explicaste: el plan anterior te falló porque era por porciones y vos no cocinabas, entonces improvisabas constantemente y terminabas racionalizando ("hoy sí está bien" cuando en realidad no lo estaba). Y lo que sí te funcionó fue el keto, no porque fuera restrictivo, sino porque toda tu familia comió igual con vos. Ese es el dato más útil que tengo.</p>
+                <p style="margin-top: 10px;">Por eso este plan está construido sobre el mismo principio que ya te funcionó: toda la casa cocina con vos. Tu mamá o quien cocine en casa prepara lo que vos debés comer, y además vos vas a tomar un día a la semana para dejar listas las comidas que necesitás para los días más ocupados. Ya no vas a comer en soda: llevás la comida preparada. Te dejo el menú completo del mes en la siguiente pestaña.</p>
+            </div>
+
+            <h3 class="subsection-title">Tu Entrenamiento</h3>
+
+            <div class="card success">
+                <h3>Volumen Real, Recuperación Buena</h3>
+                <p>Entrenás con John, nivel competitivo serio, combinando ciclismo de ruta y atletismo. Tu semana incluye sesiones de 35 minutos a 1 hora y 20 minutos entre semana, pista de 1.5 a 2 horas, y fondos y rodajes de bici de hasta 2 horas. Reportás recuperación buena (1-2 días) e intensidad semanal moderada, lo cual es coherente con ese volumen.</p>
+                <p style="margin-top: 10px;"><strong>El punto que sí me preocupa:</strong> el miércoles te levantás a las 3:20 am para estar en pista a las 5 am, y además trabajás miércoles, jueves y viernes. Eso es muy poco margen de sueño en un día donde también exigís mucho al cuerpo. El sueño no es un tema aparte de la nutrición: si dormís mal, tu cuerpo recupera peor, tu hambre se desregula más, y las decisiones de comida se vuelven más reactivas. Vamos a trabajar esto también, aunque el foco principal de este mes sea la comida.</p>
+            </div>
+
+        </div>
+
+        <!-- ======= ESTRATEGIA ======= -->
+        <div id="estrategia" class="section">
+            <h2 class="section-title">Estrategia de Este Mes</h2>
+
+            <div class="orange-box">
+                <p><strong>Este plan tiene una filosofía clara: cuando comés bien, todo en tu vida fluye.</strong> No vamos a restringir. No hay alimentos prohibidos, ni siquiera los chips y los takis fuego. Vamos a construir una estructura que se adapte a tu casa y a tu entrenamiento, para que puedas ver cambios reales en composición corporal sin repetir el ciclo de restricción y rebote que ya vimos en tu InBody.</p>
+            </div>
+
+            <h3 class="subsection-title">Sobre Este Mes en Particular</h3>
+
+            <div class="card">
+                <p>Vamos a trabajar con un horizonte de un mes. La meta es simple: que termines estas cuatro semanas viendo y sintiendo una mejora real, sin que dependa de un compromiso a largo plazo que hoy no podés asegurar. Al final del mes revisamos juntos cómo te fue, cómo te sentiste, y ahí decidís vos si seguimos. Todo lo que armé está diseñado para dejarte con herramientas útiles incluso si este fuera el único mes que trabajamos juntos.</p>
+            </div>
+
+            <h3 class="subsection-title">Los Pilares</h3>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>1. Recomposición, no solo báscula</h4>
+                    <p>Tu objetivo es bajar grasa, subir músculo y tener energía. Eso no siempre baja el número de la báscula rápido, sobre todo al inicio. Vamos a medir progreso con cómo te queda la ropa, cómo te ves, cómo rendís entrenando, y con un InBody de seguimiento al final del mes, no solo con el peso.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>2. Comer suficiente para no perder más músculo</h4>
+                    <p>Tu TMB ya bajó por la pérdida de músculo del último año. Si te pongo en un déficit fuerte ahora, lo más probable es que pierdas más músculo todavía y que tu cuerpo entre otra vez en modo de defensa. Vamos a comer suficiente, con proteína alta, para que el cuerpo tenga con qué reconstruir mientras baja grasa.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>3. Meal prep en familia: un día de cocina, toda la semana lista</h4>
+                    <p>Vas a tomar un día fijo a la semana (te recomiendo el domingo) para cocinar y dejar lista la comida que vas a necesitar entre semana, sobre todo para los días de más brete. Los demás días, solo servís y calentás. Tu mamá o quien cocine en casa va a preparar directamente lo que el menú indica para vos. Ya no comés en soda: llevás la comida.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>4. Chips y takis con permiso, no con culpa</h4>
+                    <p>Sabemos que es tu antojo real y que aparece más cuando estás de bajón. No lo vamos a prohibir porque eso es justo lo que alimenta el ciclo de restricción-rebote. Le vamos a dar un espacio estructurado dentro de la semana, con porciones que vos controlás desde el principio, y unas alternativas para cuando el antojo pega fuerte y no es día de "chips oficial".</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>5. Hidratación desde cero</h4>
+                    <p>Estás tomando menos de 1 litro de agua al día fuera de entreno y una sola botella de 500 ml sin importar si el entreno dura una hora o dos. Esto no es un detalle menor, es probablemente lo que más rápido podemos mejorar este mes con el menor esfuerzo de tu parte.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>6. Preparar la Bimbo Global Race sin volver esto complicado</h4>
+                    <p>Es una carrera de 5K con ritmo objetivo de 4:35 por kilómetro, un esfuerzo de unos 23 minutos. No necesitás una estrategia de fueling elaborada. Necesitás llegar bien hidratado, con el estómago liviano y con la energía disponible. Te dejo el protocolo exacto en la pestaña de Semana de Carrera.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ======= MENÚ DEL MES ======= -->
+        <div id="menu-mes" class="section">
+            <h2 class="section-title">Menú del Mes</h2>
+
+            <div class="orange-box">
+                <p>Este menú está armado con lo que ya se cocina en tu casa, quitando lo que no comés (aguacate, salmón, hígado, lengua, mondongo, vainica) y ordenando las 5 comidas del día según tu entreno de cada jornada. Tu mamá o quien cocine puede seguirlo directo. Vos ya no comés en soda: llevás la comida preparada de la casa.</p>
+            </div>
+
+            <h3 class="subsection-title">Tu Día de Meal Prep</h3>
+
+            <div class="card highlight">
+                <h3>Domingo: El Día que Deja Lista la Semana</h3>
+                <ul>
+                    <li>Cociná de una vez 4-5 tazas de arroz, 2 tazas de frijoles, y la proteína principal de la semana (pollo guisado, carne molida o pollo al horno) que vas a usar para los almuerzos de lunes a viernes.</li>
+                    <li>Herví 6 huevos de una vez: los vas a usar como snack entre semana y para las claras que se agregan a los desayunos.</li>
+                    <li>Armá los recipientes individuales del almuerzo que vas a llevar los jueves y viernes (1.5 tazas de arroz + 1 palma y media de proteína + 1/2 taza de frijoles + ensalada por táper), y guardalos en la nevera (hasta 3-4 días).</li>
+                    <li>Preparate 4-5 porciones individuales de yogurt griego con granola en frascos o táper, listas para la semana.</li>
+                </ul>
+            </div>
+
+            <h3 class="subsection-title">Cómo Servirte en la Mesa</h3>
+
+            <div class="card">
+                <h3>El Método del Plato y las Medidas que Vamos a Usar</h3>
+                <p>Cuando la comida la sirve tu mamá o se sirve en familia, usá esta guía para servirte vos mismo, sin necesidad de pesar nada. En el menú vas a ver siempre la cantidad en tazas, cucharadas, palmas o unidades, nunca en gramos:</p>
+                <ul>
+                    <li><strong>1 palma</strong> = tu proteína (carne, pollo, pescado) del grosor y tamaño de la palma de tu mano. <strong>Palma y media</strong> en días de pista, fondo, o jueves y viernes con entreno tarde-noche.</li>
+                    <li><strong>1 taza</strong> = una taza de medir estándar de cocina, para arroz, pasta, gallo pinto o sopa.</li>
+                    <li><strong>1 cucharada</strong> = una cucharada sopera, para frijoles cuando se acompañan aparte, granola, mantequilla de maní, miel o salsas.</li>
+                    <li>Ensalada y vegetales van al gusto, sin límite: entre más, mejor.</li>
+                    <li>Cuando el menú indique aumentar huevos, siempre agregá las claras extra a huevos enteros, nunca huevo entero adicional: 3 huevos son 2 enteros más 1 clara, y 4 huevos son 2 enteros más 2 claras. Los podés preparar en torta, picados o a la plancha, siempre en esa proporción.</li>
+                </ul>
+            </div>
+
+            <h3 class="subsection-title">Las 5 Comidas, Semana por Semana</h3>
+
+            <div class="info-box">
+                <p>Las cuatro semanas usan la misma estructura de horarios y de porciones según tu entreno, rotando qué proteína específica usás cada día para que no se sienta repetitivo. La Semana 2 está ajustada por la Bimbo Global Race del domingo 20; el detalle de ese día lo tenés completo en la pestaña Semana de Carrera.</p>
+            </div>
+
+            <div class="warning-box">
+                <p><strong>Sobre el fueling en el fondo del sábado:</strong> el banano se aplasta fácil en el bolsillo del jersey y la "galleta" sola era una opción muy abierta. Cambiamos ese snack de ruta por Tricopilia sport (guayaba en trocitos individuales, no se aplasta ni ensucia) o rollitos de pan cuadrado con miel, que aguantan mejor el traqueteo de la bici y son igual de rápidos en carbohidrato.</p>
+            </div>
+
+            <h3 class="subsection-title">Semana 1 (7-13 de septiembre)</h3>
+
+            <div class="table-wrap">
+            <table class="menu-table">
+                <tr><th>Día</th><th>Desayuno</th><th>Merienda AM</th><th>Almuerzo</th><th>Merienda PM</th><th>Cena</th></tr>
+                <tr>
+                    <td class="day-label">Lunes<br>(entreno tarde)</td>
+                    <td>Gallo pinto (1 taza), 3 huevos (2 enteros + 1 clara) revueltos, 1 rebanada de queso, café con leche (1 taza)</td>
+                    <td>1 banano con 1 cucharada de mantequilla de maní</td>
+                    <td>Casado: arroz (1 taza), frijoles (1/2 taza), pollo guisado (1 palma), ensalada al gusto</td>
+                    <td>1 fruta mediana, 45 min antes de entrenar</td>
+                    <td>Sopa negra (1 taza) con 1 huevo entero, 2 tortillas de maíz</td>
+                </tr>
+                <tr>
+                    <td class="day-label">Martes<br>(entreno tarde)</td>
+                    <td>Huevos revueltos (3: 2 enteros + 1 clara), 2 galletas Sanissimo, 1 fruta, café con leche (1 taza)</td>
+                    <td>Yogurt griego natural (1 taza) con granola (2 cucharadas)</td>
+                    <td>Arroz (1 taza) con atún (1 palma) y vegetales salteados (1 taza), ensalada al gusto</td>
+                    <td>1 fruta o 2 galletas Sanissimo antes de entrenar</td>
+                    <td>Pasta (1 taza) con salsa blanca (3 cucharadas) y pollo (1 palma)</td>
+                </tr>
+                <tr>
+                    <td class="day-label">Miércoles<br>(pista 5am)</td>
+                    <td>3:25am: 2 rollitos de pan cuadrado con miel (2 rebanadas de pan cuadrado, 1 cucharada de miel) + café. Post-pista: gallo pinto (1 taza), plátano maduro (1 unidad), 1 tostada, 1 rebanada de queso, 4 huevos (2 enteros + 2 claras), café con leche</td>
+                    <td>Yogurt griego natural (1 taza) con fruta picada (1/2 taza) y granola (2 cucharadas)</td>
+                    <td>Almuerzo llevado: arroz (1.5 tazas), pollo al horno (1.5 palmas), frijoles (1/2 taza), ensalada al gusto</td>
+                    <td>Café con leche y 1 fruta, más batido (1 taza de leche con 1 banano)</td>
+                    <td>Lo que se cocine en casa, proteína visible (1.5 palmas)</td>
+                </tr>
+                <tr>
+                    <td class="day-label">Jueves<br>(trabajo + entreno tarde-noche)</td>
+                    <td>Huevos (3: 2 enteros + 1 clara), 2 galletas Sanissimo, gallo pinto (1/2 taza), 1 fruta, café con leche</td>
+                    <td>1 huevo duro con sal y chile</td>
+                    <td>Almuerzo llevado: arroz (1.5 tazas) con carne molida guisada (1.5 palmas), frijoles (1/2 taza), ensalada al gusto</td>
+                    <td>1 banano o 2 galletas Sanissimo 45 min antes de entrenar, más batido (1 taza de leche con 1 cucharada de maní)</td>
+                    <td>Carne a la parrilla (1 palma) con ensalada, papas al horno (1 taza)</td>
+                </tr>
+                <tr>
+                    <td class="day-label">Viernes<br>(trabajo + entreno tarde-noche)</td>
+                    <td>Huevos (3: 2 enteros + 1 clara), 2 galletas Sanissimo, 1 fruta, café con leche</td>
+                    <td>Yogurt griego natural (1 taza) con granola (2 cucharadas)</td>
+                    <td>Almuerzo llevado: pasta (1.5 tazas) con pollo (1.5 palmas) y salsa roja (3 cucharadas), ensalada al gusto</td>
+                    <td>1 fruta antes de entrenar, más batido (1 taza de leche con 1 banano)</td>
+                    <td>Pescado (corvina o tilapia) a la plancha (1 palma), arroz (1 taza), vegetal salteado (1 taza)</td>
+                </tr>
+                <tr>
+                    <td class="day-label">Sábado<br>(fondo/rodaje)</td>
+                    <td>Antes del fondo: gallo pinto (1 taza), 3 huevos (2 enteros + 1 clara), 1 fruta, café</td>
+                    <td>Durante el fondo, cada 45-60 min: 2 unidades de Tricopilia sport, o 2 rollitos de pan cuadrado con miel</td>
+                    <td>Casado completo: arroz (1.5 tazas), frijoles (1/2 taza), pollo o carne (1.5 palmas), ensalada al gusto</td>
+                    <td>Batido: 1 taza de leche con 1 banano y 1 cucharada de maní</td>
+                    <td>Sopa maggi (1 taza) con pollo (1 palma), 1 huevo, vegetales</td>
+                </tr>
+                <tr>
+                    <td class="day-label">Domingo<br>(día familiar, meal prep)</td>
+                    <td>Gallo pinto (1 taza) con natilla (1 cucharada), 2 huevos, 1 rebanada de queso, café con leche</td>
+                    <td>1 fruta con 1 rebanada de queso</td>
+                    <td>Pollo al horno en familia (1.5 palmas), arroz (1 taza), ensalada al gusto, papas al aire (1 taza)</td>
+                    <td>2 chalupas con 1 vaso de leche (tu momento de antojo estructurado, ver pestaña Snacks)</td>
+                    <td>Liviano: pasta (1 taza) con vegetales salteados, o lo que sobre del almuerzo</td>
+                </tr>
+            </table>
+            </div>
+
+            <h3 class="subsection-title">Semana 2 (14-20 de septiembre) — Semana de Carrera</h3>
+
+            <div class="table-wrap">
+            <table class="menu-table">
+                <tr><th>Día</th><th>Desayuno</th><th>Merienda AM</th><th>Almuerzo</th><th>Merienda PM</th><th>Cena</th></tr>
+                <tr>
+                    <td class="day-label">Lunes</td>
+                    <td>Gallo pinto (1 taza), 3 huevos (2 enteros + 1 clara), 1 rebanada de queso, café con leche</td>
+                    <td>Yogurt griego natural (1 taza) con 1/2 taza de fruta picada</td>
+                    <td>Arroz (1 taza) con pollo guisado (1 palma), frijoles (1/2 taza), ensalada al gusto</td>
+                    <td>1 fruta antes de entrenar</td>
+                    <td>Pasta (1 taza) con salsa roja (3 cucharadas) y carne molida (1 palma)</td>
+                </tr>
+                <tr>
+                    <td class="day-label">Martes</td>
+                    <td>Huevos (3: 2 enteros + 1 clara), 2 galletas Sanissimo, 1 fruta, café con leche</td>
+                    <td>1 banano con 1 cucharada de mantequilla de maní</td>
+                    <td>Casado: arroz (1 taza), frijoles (1/2 taza), carne guisada (1 palma), ensalada al gusto</td>
+                    <td>2 galletas Sanissimo o 1 fruta antes de entrenar</td>
+                    <td>Sopa negra (1 taza) con 1 huevo entero, 2 tortillas de maíz</td>
+                </tr>
+                <tr>
+                    <td class="day-label">Miércoles<br>(pista 5am)</td>
+                    <td>3:25am: 2 rollitos de pan cuadrado con miel + café. Post-pista: gallo pinto (1 taza), plátano maduro (1 unidad), 1 tostada, 1 rebanada de queso, 4 huevos (2 enteros + 2 claras), café con leche</td>
+                    <td>Yogurt griego natural (1 taza) con granola (2 cucharadas)</td>
+                    <td>Almuerzo llevado: arroz (1.5 tazas) con pescado (1.5 palmas), frijoles (1/2 taza), ensalada al gusto</td>
+                    <td>Café con leche y 1 fruta, más batido (1 taza de leche con 1 banano)</td>
+                    <td>Lo que se cocine en casa, proteína visible (1.5 palmas)</td>
+                </tr>
+                <tr>
+                    <td class="day-label">Jueves<br>(trabajo + entreno)</td>
+                    <td>Huevos (3: 2 enteros + 1 clara), 2 galletas Sanissimo, 1 fruta, café con leche</td>
+                    <td>1 huevo duro con chile</td>
+                    <td>Almuerzo llevado: arroz (1.5 tazas) con pollo (1.5 palmas), frijoles (1/2 taza), ensalada al gusto</td>
+                    <td>1 banano antes de entrenar, más batido (1 taza de leche con 1 cucharada de maní)</td>
+                    <td>Carne a la parrilla (1 palma), papas al horno (1 taza), ensalada al gusto</td>
+                </tr>
+                <tr>
+                    <td class="day-label">Viernes<br>(último entreno fuerte antes de la carrera)</td>
+                    <td>Huevos (3: 2 enteros + 1 clara), 2 galletas Sanissimo, 1 fruta, café con leche</td>
+                    <td>Yogurt griego natural (1 taza) con 1/2 taza de fruta</td>
+                    <td>Almuerzo llevado: pasta (1 taza) con pollo (1 palma), ensalada al gusto</td>
+                    <td>1 fruta antes de entrenar</td>
+                    <td>Ver pestaña Semana de Carrera: cena liviana y conocida</td>
+                </tr>
+                <tr>
+                    <td class="day-label">Sábado 19<br>(día antes de la carrera)</td>
+                    <td>Gallo pinto (1 taza), 2 huevos, 1 fruta, café</td>
+                    <td>1 fruta</td>
+                    <td>Arroz (1 taza), pollo a la plancha (1 palma), ensalada al gusto</td>
+                    <td>1 fruta o 2 galletas Sanissimo</td>
+                    <td>Ver protocolo del día antes en Semana de Carrera</td>
+                </tr>
+                <tr>
+                    <td class="day-label">Domingo 20<br>BIMBO GLOBAL RACE</td>
+                    <td colspan="5">Protocolo completo de carrera en la pestaña Semana de Carrera. Después de la carrera, disfrutá la celebración con la familia.</td>
+                </tr>
+            </table>
+            </div>
+
+            <h3 class="subsection-title">Semana 3 (21-27 de septiembre)</h3>
+
+            <div class="table-wrap">
+            <table class="menu-table">
+                <tr><th>Día</th><th>Desayuno</th><th>Merienda AM</th><th>Almuerzo</th><th>Merienda PM</th><th>Cena</th></tr>
+                <tr>
+                    <td class="day-label">Lunes</td>
+                    <td>Huevos (3: 2 enteros + 1 clara), 2 galletas Sanissimo, 1 fruta, café con leche</td>
+                    <td>Yogurt griego natural (1 taza) con granola (2 cucharadas)</td>
+                    <td>Casado: arroz (1 taza), frijoles (1/2 taza), carne asada (1 palma), ensalada al gusto</td>
+                    <td>1 fruta antes de entrenar</td>
+                    <td>Pasta (1 taza) con pollo (1 palma) y salsa blanca (3 cucharadas)</td>
+                </tr>
+                <tr>
+                    <td class="day-label">Martes</td>
+                    <td>Gallo pinto (1 taza), 3 huevos (2 enteros + 1 clara), 1 rebanada de queso, café con leche</td>
+                    <td>1 banano con 1 cucharada de mantequilla de maní</td>
+                    <td>Arroz (1 taza) con atún (1 palma), vegetales salteados (1 taza), ensalada al gusto</td>
+                    <td>2 galletas Sanissimo antes de entrenar</td>
+                    <td>Sopa negra (1 taza) con 1 huevo entero, 2 tortillas de maíz</td>
+                </tr>
+                <tr>
+                    <td class="day-label">Miércoles<br>(pista 5am)</td>
+                    <td>3:25am: 2 rollitos de pan cuadrado con miel + café. Post-pista: gallo pinto (1 taza), plátano maduro (1 unidad), 1 tostada, 1 rebanada de queso, 4 huevos (2 enteros + 2 claras), café con leche</td>
+                    <td>Yogurt griego natural (1 taza) con fruta picada (1/2 taza) y granola (2 cucharadas)</td>
+                    <td>Almuerzo llevado: arroz (1.5 tazas) con carne molida (1.5 palmas), frijoles (1/2 taza), ensalada al gusto</td>
+                    <td>Café con leche y 1 fruta, más batido (1 taza de leche con 1 banano)</td>
+                    <td>Lo que se cocine en casa, proteína visible (1.5 palmas)</td>
+                </tr>
+                <tr>
+                    <td class="day-label">Jueves<br>(trabajo + entreno)</td>
+                    <td>Huevos (3: 2 enteros + 1 clara), 2 galletas Sanissimo, 1 fruta, café con leche</td>
+                    <td>1 huevo duro con chile</td>
+                    <td>Almuerzo llevado: pasta (1.5 tazas) con pollo (1.5 palmas), ensalada al gusto</td>
+                    <td>1 banano antes de entrenar, más batido (1 taza de leche con 1 cucharada de maní)</td>
+                    <td>Pescado a la plancha (1 palma), arroz (1 taza), vegetal salteado (1 taza)</td>
+                </tr>
+                <tr>
+                    <td class="day-label">Viernes<br>(trabajo + entreno)</td>
+                    <td>Huevos (3: 2 enteros + 1 clara), 2 galletas Sanissimo, 1 fruta, café con leche</td>
+                    <td>Yogurt griego natural (1 taza) con granola (2 cucharadas)</td>
+                    <td>Almuerzo llevado: arroz (1.5 tazas) con pollo guisado (1.5 palmas), frijoles (1/2 taza), ensalada al gusto</td>
+                    <td>1 fruta antes de entrenar, más batido (1 taza de leche con 1 banano)</td>
+                    <td>Carne a la parrilla (1 palma), papas al aire (1 taza), ensalada al gusto</td>
+                </tr>
+                <tr>
+                    <td class="day-label">Sábado<br>(fondo/rodaje)</td>
+                    <td>Antes del fondo: gallo pinto (1 taza), 3 huevos (2 enteros + 1 clara), 1 fruta, café</td>
+                    <td>Durante el fondo, cada 45-60 min: 2 unidades de Tricopilia sport, o 2 rollitos de pan cuadrado con miel</td>
+                    <td>Casado completo: arroz (1.5 tazas), frijoles (1/2 taza), pollo (1.5 palmas), ensalada al gusto</td>
+                    <td>Batido: 1 taza de leche con 1 banano y 1 cucharada de maní</td>
+                    <td>Sopa maggi (1 taza) con pollo (1 palma), 1 huevo, vegetales</td>
+                </tr>
+                <tr>
+                    <td class="day-label">Domingo<br>(día familiar, meal prep)</td>
+                    <td>Gallo pinto (1 taza) con natilla (1 cucharada), 2 huevos, 1 rebanada de queso, café con leche</td>
+                    <td>1 fruta con 1 rebanada de queso</td>
+                    <td>Carne asada en familia (1.5 palmas), arroz (1 taza), ensalada al gusto</td>
+                    <td>2 chalupas con 1 vaso de leche (momento de antojo estructurado)</td>
+                    <td>Liviano: lo que sobre del almuerzo</td>
+                </tr>
+            </table>
+            </div>
+
+            <h3 class="subsection-title">Semana 4 (28 de septiembre - 4 de octubre)</h3>
+
+            <div class="table-wrap">
+            <table class="menu-table">
+                <tr><th>Día</th><th>Desayuno</th><th>Merienda AM</th><th>Almuerzo</th><th>Merienda PM</th><th>Cena</th></tr>
+                <tr>
+                    <td class="day-label">Lunes</td>
+                    <td>Gallo pinto (1 taza), 3 huevos (2 enteros + 1 clara), 1 rebanada de queso, café con leche</td>
+                    <td>Yogurt griego natural (1 taza) con 1/2 taza de fruta</td>
+                    <td>Arroz (1 taza) con pollo (1 palma), frijoles (1/2 taza), ensalada al gusto</td>
+                    <td>1 fruta antes de entrenar</td>
+                    <td>Pasta (1 taza) con carne molida (1 palma) y salsa roja (3 cucharadas)</td>
+                </tr>
+                <tr>
+                    <td class="day-label">Martes</td>
+                    <td>Huevos (3: 2 enteros + 1 clara), 2 galletas Sanissimo, 1 fruta, café con leche</td>
+                    <td>1 banano con 1 cucharada de mantequilla de maní</td>
+                    <td>Casado: arroz (1 taza), frijoles (1/2 taza), carne guisada (1 palma), ensalada al gusto</td>
+                    <td>2 galletas Sanissimo antes de entrenar</td>
+                    <td>Sopa negra (1 taza) con 1 huevo entero, 2 tortillas de maíz</td>
+                </tr>
+                <tr>
+                    <td class="day-label">Miércoles<br>(pista 5am)</td>
+                    <td>3:25am: 2 rollitos de pan cuadrado con miel + café. Post-pista: gallo pinto (1 taza), plátano maduro (1 unidad), 1 tostada, 1 rebanada de queso, 4 huevos (2 enteros + 2 claras), café con leche</td>
+                    <td>Yogurt griego natural (1 taza) con granola (2 cucharadas)</td>
+                    <td>Almuerzo llevado: arroz (1.5 tazas) con pescado (1.5 palmas), frijoles (1/2 taza), ensalada al gusto</td>
+                    <td>Café con leche y 1 fruta, más batido (1 taza de leche con 1 banano)</td>
+                    <td>Lo que se cocine en casa, proteína visible (1.5 palmas)</td>
+                </tr>
+                <tr>
+                    <td class="day-label">Jueves<br>(trabajo + entreno)</td>
+                    <td>Huevos (3: 2 enteros + 1 clara), 2 galletas Sanissimo, 1 fruta, café con leche</td>
+                    <td>1 huevo duro con chile</td>
+                    <td>Almuerzo llevado: arroz (1.5 tazas) con pollo guisado (1.5 palmas), frijoles (1/2 taza), ensalada al gusto</td>
+                    <td>1 banano antes de entrenar, más batido (1 taza de leche con 1 cucharada de maní)</td>
+                    <td>Carne a la parrilla (1 palma), papas al horno (1 taza), ensalada al gusto</td>
+                </tr>
+                <tr>
+                    <td class="day-label">Viernes<br>(trabajo + entreno)</td>
+                    <td>Huevos (3: 2 enteros + 1 clara), 2 galletas Sanissimo, 1 fruta, café con leche</td>
+                    <td>Yogurt griego natural (1 taza) con 1/2 taza de fruta</td>
+                    <td>Almuerzo llevado: pasta (1.5 tazas) con pollo (1.5 palmas), ensalada al gusto</td>
+                    <td>1 fruta antes de entrenar, más batido (1 taza de leche con 1 banano)</td>
+                    <td>Pescado a la plancha (1 palma), arroz (1 taza), vegetal salteado (1 taza)</td>
+                </tr>
+                <tr>
+                    <td class="day-label">Sábado<br>(fondo/rodaje)</td>
+                    <td>Antes del fondo: gallo pinto (1 taza), 3 huevos (2 enteros + 1 clara), 1 fruta, café</td>
+                    <td>Durante el fondo, cada 45-60 min: 2 unidades de Tricopilia sport, o 2 rollitos de pan cuadrado con miel</td>
+                    <td>Casado completo: arroz (1.5 tazas), frijoles (1/2 taza), pollo o carne (1.5 palmas), ensalada al gusto</td>
+                    <td>Batido: 1 taza de leche con 1 banano y 1 cucharada de maní</td>
+                    <td>Sopa maggi (1 taza) con pollo (1 palma), 1 huevo, vegetales</td>
+                </tr>
+                <tr>
+                    <td class="day-label">Domingo<br>(cierre del mes, meal prep)</td>
+                    <td>Gallo pinto (1 taza) con natilla (1 cucharada), 2 huevos, 1 rebanada de queso, café con leche</td>
+                    <td>1 fruta con 1 rebanada de queso</td>
+                    <td>Pollo al horno en familia (1.5 palmas), arroz (1 taza), ensalada al gusto</td>
+                    <td>2 chalupas con 1 vaso de leche (momento de antojo estructurado)</td>
+                    <td>Liviano: pasta (1 taza) con vegetales salteados, o lo que sobre</td>
+                </tr>
+            </table>
+            </div>
+
+        </div>
+
+
+        <!-- ======= HIDRATACIÓN ======= -->
+        <div id="hidratacion" class="section">
+            <h2 class="section-title">Hidratación</h2>
+
+            <div class="orange-box">
+                <p><strong>Esto es lo que más rápido podemos arreglar este mes.</strong> Hoy tomás menos de 1 litro de agua al día fuera de entreno, y en entreno usás una sola botella de 500 ml sin importar si la sesión dura una hora o dos. Eso significa que en tus fondos y en pista probablemente estás entrenando deshidratado, aunque no sientas señales todavía — la sed es una señal tardía, no temprana.</p>
+            </div>
+
+            <h3 class="subsection-title">Meta Diaria</h3>
+
+            <div class="card dark">
+                <h3>Agua Fuera del Entreno</h3>
+                <p>Meta: 2.5 a 3 litros de agua al día, sin contar lo que tomás en entreno. Empezá con una botella de 1 litro que tengas siempre a la par tuya, en el trabajo y en la casa, y proponete llenarla y vaciarla tres veces al día. No hace falta que sea de golpe: repartilo entre que te levantás y la hora de dormir.</p>
+            </div>
+
+            <h3 class="subsection-title">Durante el Entreno</h3>
+
+            <div class="card highlight">
+                <h3>Nueva Regla de Botella</h3>
+                <ul>
+                    <li>Sesiones de hasta 45 minutos: 1 botella de 500-600 ml alcanza.</li>
+                    <li>Sesiones de 1 a 1.5 horas (la mayoría de tus entrenos entre semana y pista): al menos 750 ml-1 litro. Llevá dos botellas o una más grande.</li>
+                    <li>Fondos de bici de 1.5 a 2 horas: 1-1.5 litros, con electrolitos incluidos (agua sola no alcanza en sesiones tan largas y con este calor).</li>
+                    <li>En pista, con la salida a las 5 am, el calor no es el problema, pero igual necesitás llegar bien hidratado desde la noche anterior porque venís de dormir poco.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>Sobre el Gatorade</h3>
+                <p>Está bien como hidratante de entreno, y lo podés seguir usando en pista y fondos mientras armamos el presupuesto para algo más orientado a rendimiento. A mediano plazo, un electrolito en polvo tipo IBSport te da más sodio y menos azúcar que el Gatorade, lo cual ayuda más en sesiones largas y con calor. Lo hablamos en la llamada si querés hacer el cambio.</p>
+            </div>
+
+            <h3 class="subsection-title">Otras Bebidas</h3>
+
+            <div class="card">
+                <p>El café, la coca zero y el té frío zero de Dos Pinos no cuentan como hidratación real y el café en exceso puede jugarte en contra dado lo poco que dormís el martes en la noche. No hace falta que los dejes, pero no los cuentes como parte de tu meta de agua del día.</p>
+            </div>
+
+        </div>
+
+        <!-- ======= SNACKS Y ANTOJOS ======= -->
+        <div id="antojos" class="section">
+            <h2 class="section-title">Snacks y Antojos</h2>
+
+            <div class="orange-box">
+                <p><strong>Los chips y los takis fuego no están prohibidos.</strong> Sabemos que es tu antojo real, que lo comés más cuando andás de bajón, y que ya intentaste bajarle por tu cuenta. Prohibirlo del todo es la receta perfecta para que aparezca el ciclo de restricción y rebote que ya vimos en tu InBody. Vamos a estructurarlo, no a eliminarlo.</p>
+            </div>
+
+            <h3 class="subsection-title">Tu Espacio Estructurado</h3>
+
+            <div class="card highlight">
+                <h3>Cómo lo Vamos a Manejar</h3>
+                <ul>
+                    <li>El menú ya te dejó un momento fijo el domingo. Podés sumar 1-2 momentos más entre semana si querés, por ejemplo después del entreno del jueves o el viernes.</li>
+                    <li>Comprá o serví la porción en una bolsita pequeña o un plato, no comas directo de la bolsa grande. Esto solo, sin cambiar nada más, ya reduce mucho la cantidad que comés sin darte cuenta.</li>
+                    <li>Combinalo con algo de proteína cerca (un yogurt, un poco de queso) para que no sea la única cosa que comés en ese momento y el antojo no se dispare más fuerte después.</li>
+                </ul>
+            </div>
+
+            <h3 class="subsection-title">Cuando el Antojo Pega en un Día que No Es "Día de Chips"</h3>
+
+            <div class="card">
+                <p>Vas a tener días donde el antojo aparece por el bajón de ánimo, no por hambre real. Ahí la meta no es aguantarte con fuerza de voluntad, sino tener algo picante o crocante a mano que te dé parte de esa satisfacción con menos impacto calórico:</p>
+                <ul>
+                    <li>Palomitas caseras con un toque de chile o tajín.</li>
+                    <li>Pepino o zanahoria en tiras con limón, sal y chile.</li>
+                    <li>Garbanzos horneados con chile picante, hechos en casa el domingo de meal prep.</li>
+                    <li>Una porción pequeña de takis o chips igual, si es lo que realmente querés — mejor comerla con calma y disfrutarla que sustituirla por algo que no te satisface y terminar comiendo ambas cosas.</li>
+                </ul>
+            </div>
+
+            <h3 class="subsection-title">Botanas para Preparar el Día de Meal Prep</h3>
+
+            <div class="recipe-card">
+                <h4>Huevos Duros con Chile</h4>
+                <p>Herví 4-6 huevos el domingo, guardalos en la nevera. Cuando te dé antojo entre semana, uno o dos huevos con sal y chile picante son una botana rápida, alta en proteína, y te da algo de la satisfacción picante que buscás.</p>
+            </div>
+
+            <div class="recipe-card">
+                <h4>Yogurt con Fruta y Granola</h4>
+                <p>Un yogurt natural con banano o fresa picada y una cucharada de granola. Preparalo en porciones individuales el domingo para tener listo entre semana.</p>
+            </div>
+
+            <div class="recipe-card">
+                <h4>Palomitas con Tajín</h4>
+                <p>Palomitas naturales (sin mantequilla en exceso) con un poco de tajín o chile picante en polvo. Es picante, es crocante, y una porción grande llena mucho más que una bolsa de chips con menos calorías.</p>
+            </div>
+
+        </div>
+
+        <!-- ======= SEMANA DE CARRERA ======= -->
+        <div id="carrera" class="section">
+            <h2 class="section-title">Bimbo Global Race — 5K</h2>
+
+            <div class="card dark">
+                <h3>Datos de la Carrera</h3>
+                <div class="table-wrap">
+                <table>
+                    <tr><th>Fecha</th><th>Distancia</th><th>Ritmo objetivo</th><th>Tiempo estimado</th></tr>
+                    <tr><td>20 de septiembre</td><td>5 km</td><td>4:35 / km</td><td>Cerca de 23 minutos</td></tr>
+                </table>
+                </div>
+                <p style="margin-top: 10px;">Es un esfuerzo corto e intenso, no una prueba de resistencia larga. La estrategia de nutrición para esto es simple: no necesitás cargar carbohidratos por días, ni comer nada especial durante la carrera. Lo que sí importa es llegar bien hidratado, con buena energía disponible, y el estómago liviano.</p>
+            </div>
+
+            <h3 class="subsection-title">Los Días Antes</h3>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>Jueves y Viernes antes de la carrera (17-18 de septiembre)</h4>
+                    <p>Nutrición normal, sin cambios grandes. Asegurate de mantener la meta de 2.5-3 litros de agua al día, porque la hidratación de estos días es la que realmente te va a servir el sábado.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Sábado 19 de septiembre (día antes)</h4>
+                    <p>Cena liviana y conocida por vos, nada nuevo ni muy picante ni muy frito, para que el domingo no tengas sorpresas digestivas. Algo tipo arroz, pollo o pescado a la plancha y una porción moderada de vegetal. Tomá agua con normalidad, sin excederte justo antes de dormir.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Domingo 20 de septiembre — Día de la Carrera</h4>
+                    <p><strong>2-3 horas antes:</strong> desayuno liviano y conocido — gallo pinto con huevo y un poco de fruta, o tu combinación habitual. Nada de comida nueva ese día.</p>
+                    <p style="margin-top: 8px;"><strong>45-60 minutos antes:</strong> tu café si es parte de tu rutina, y si querés, medio banano o una galleta para tener glucosa disponible.</p>
+                    <p style="margin-top: 8px;"><strong>15-20 minutos antes:</strong> unos sorbos de agua, sin llenarte.</p>
+                    <p style="margin-top: 8px;"><strong>Durante los 5K:</strong> no necesitás tomar ni comer nada, el esfuerzo es demasiado corto.</p>
+                    <p style="margin-top: 8px;"><strong>Después de cruzar la meta:</strong> agua o una bebida con electrolitos, y dentro de la primera hora una comida con proteína y carbohidrato para empezar la recuperación.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ======= CRONOGRAMA ======= -->
+        <div id="cronograma" class="section">
+            <h2 class="section-title">Cronograma del Mes</h2>
+
+            <div class="info-box">
+                <p>Este cronograma cubre el mes de septiembre. La Bimbo Global Race cae en la mitad, así que la Semana 2 del menú ya está ajustada para que llegues bien a la carrera sin desarmar el resto del plan.</p>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>Semana 1 (7-13 de septiembre): Construcción de Base</h4>
+                    <p><strong>Nutrición:</strong> Empezás a seguir el menú y el meal prep del domingo. No busques perfección, buscá aplicar la estructura la mayoría de los días.</p>
+                    <p style="margin-top: 8px;"><strong>Hidratación:</strong> Empezá a llevar la botella de 1 litro con vos todos los días. Ajustá el tamaño de botella en entreno según la duración de la sesión.</p>
+                    <p style="margin-top: 8px;"><strong>Antojos:</strong> Usá el momento del domingo y sumá 1-2 más si querés, sirviendo la porción en vez de comer de la bolsa.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Semana 2 (14-20 de septiembre): Semana de Carrera</h4>
+                    <p><strong>Nutrición:</strong> Seguí el menú de Semana 2, sin experimentar con comidas nuevas cerca del domingo. Seguí el protocolo de la pestaña Semana de Carrera desde el jueves 17.</p>
+                    <p style="margin-top: 8px;"><strong>Entreno:</strong> Esto lo coordinás con John. Nutricionalmente, tu única tarea es no llegar a la carrera con el estómago pesado ni deshidratado.</p>
+                    <p style="margin-top: 8px;"><strong>Domingo 20:</strong> Bimbo Global Race. Después de la carrera, disfrutala, y si es un día de celebrar con algo rico fuera del plan estricto, está bien.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Semana 3 (21-27 de septiembre): Retomar y Ajustar</h4>
+                    <p><strong>Nutrición:</strong> Volvés a la estructura completa con el menú de Semana 3. Esta semana es buena para revisar qué te costó más de las primeras dos semanas y ajustarlo juntos por WhatsApp.</p>
+                    <p style="margin-top: 8px;"><strong>Hidratación:</strong> Ya deberías sentir la meta de agua más natural, no forzada.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Semana 4 (28 de septiembre - 4 de octubre): Cierre del Mes</h4>
+                    <p><strong>Nutrición:</strong> Seguí el menú de Semana 4. Es la semana donde más se nota si el patrón ya se volvió costumbre.</p>
+                    <p style="margin-top: 8px;"><strong>Cierre:</strong> Al final de esta semana hacemos la revisión del mes completo: cómo te sentiste, cómo te fue en la carrera, y un InBody de seguimiento si podés sacarlo. Con esa información decidís vos si querés seguir el siguiente mes.</p>
+                </div>
+            </div>
+
+            <h3 class="subsection-title">Qué Esperar Este Mes</h3>
+
+            <div class="card dark">
+                <h3>Señales de que el Plan Está Funcionando</h3>
+                <div class="table-wrap">
+                <table>
+                    <tr><th>Semana</th><th>Qué buscar</th></tr>
+                    <tr><td>1</td><td>Te cuesta un poco tomar tanta agua al inicio, es normal. El meal prep del domingo se siente nuevo pero manejable.</td></tr>
+                    <tr><td>2</td><td>Llegás a la carrera sin molestias digestivas y con energía. El agua ya no se siente forzada.</td></tr>
+                    <tr><td>3</td><td>El menú y el meal prep ya no requieren pensarlos tanto, empiezan a ser más automáticos.</td></tr>
+                    <tr><td>4</td><td>Mejor energía general en los entrenos, menos altibajos de ánimo relacionados a la comida, y cambios visibles al espejo y en el InBody de cierre.</td></tr>
+                </table>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ======= SEGUIMIENTO ======= -->
+        <div id="seguimiento" class="section">
+            <h2 class="section-title">Seguimiento</h2>
+
+            <h3 class="subsection-title">Estructura de Contacto</h3>
+
+            <div class="whatsapp-box">
+                <h3>Check-in Semanal por WhatsApp</h3>
+                <ul>
+                    <li>Cómo te sentiste en los entrenos de la semana.</li>
+                    <li>Cómo te fue con el agua y con los momentos de chips o takis, sin culpa, solo honestidad.</li>
+                    <li>Si hubo algún día de bajón de ánimo y cómo lo manejaste.</li>
+                    <li>Una duda que tengas.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>Llamada Inicial de Aclaraciones</h3>
+                <p>Después de que leas este plan completo, coordinamos una llamada de 20-30 minutos para resolver dudas, ajustar lo que no te calce con tu horario real, y hablar con calma de la parte de tu relación con la comida que mencionaste en el formulario.</p>
+            </div>
+
+            <h3 class="subsection-title">Sobre Continuar el Siguiente Mes</h3>
+
+            <div class="info-box">
+                <p>Sé que no tenés confirmado si vas a poder seguir el próximo mes. Está bien. Este plan de septiembre está armado para dejarte con hábitos, un menú y una estructura que te sirvan aunque este sea el único mes que trabajemos juntos. Al cierre de la semana 4 revisamos resultados, y ahí decidís vos con calma si querés continuar. No hay presión de mi parte.</p>
+            </div>
+
+            <h3 class="subsection-title">Si Algo No Sale Como Esperamos</h3>
+
+            <div class="warning-box">
+                <p><strong>Escenario 1: Un día no se cocinó lo del menú.</strong></p>
+                <p style="margin-top: 6px;">Acción: Comé lo que se sirvió, priorizando servirte más proteína y algo de vegetal si hay, y seguí con el resto del día con normalidad. Un plato que no fue ideal no arruina la semana.</p>
+                <p style="margin-top: 10px;"><strong>Escenario 2: Comiste chips o takis fuera de tu momento planeado.</strong></p>
+                <p style="margin-top: 6px;">Acción: No hay castigo ni compensación con menos comida después. Seguí con tu siguiente comida normal, como si nada hubiera pasado.</p>
+                <p style="margin-top: 10px;"><strong>Escenario 3: El agua se te olvida en tus días de trabajo.</strong></p>
+                <p style="margin-top: 6px;">Acción: Dejá una botella en tu bolso o en el carro desde la noche anterior, para que no dependa de acordarte a media jornada.</p>
+                <p style="margin-top: 10px;"><strong>Escenario 4: Sentís que el bajón de ánimo y la comida están muy conectados y es más de lo que podemos resolver solo con el plan.</strong></p>
+                <p style="margin-top: 6px;">Acción: Hablalo conmigo directo por WhatsApp. Vemos juntos si hace falta acompañamiento adicional, sin ningún juicio de por medio.</p>
+            </div>
+
+        </div>
+
+    </div><!-- /content -->
+
+    <div class="footer">
+        <p>Isa Herra — Nutricionista Deportiva | eat&flow Nutrición Deportiva</p>
+        <p style="margin-top: 6px; opacity: 0.9;">@isaherra.13</p>
+        <p style="margin-top: 8px; font-size: 12px; opacity: 0.8;">Este plan es personalizado y confidencial. Está diseñado específicamente para Allan Monge Salas basado en sus objetivos, historial y respuesta al entrenamiento.</p>
+    </div>
+
+</div><!-- /container -->
+
+<script>
+    function showSection(id) {
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        event.target.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>
+</body>
+</html>
