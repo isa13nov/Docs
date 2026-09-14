@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan Full Endurance Septiembre | Tania Sun Cheong | eat&flow</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #F5F9F7 0%, #E8F3EF 100%);
+            color: #2D4A3E;
+            line-height: 1.8;
+            padding: 20px;
+        }
+
+        .container { max-width: 920px; margin: 0 auto; background: white; border-radius: 20px; box-shadow: 0 4px 30px rgba(45,74,62,0.12); overflow: hidden; }
+
+        .header { background: linear-gradient(135deg, #1a5945 0%, #2D4A3E 100%); color: white; padding: 44px 30px; text-align: center; border-bottom: 4px solid #8bc34a; }
+        .header .brand { font-size: 22px; font-weight: 700; letter-spacing: 4px; opacity: 0.9; margin-bottom: 18px; text-transform: uppercase; }
+        .header h1 { font-size: 28px; font-weight: 700; margin-bottom: 6px; }
+        .header .cliente { font-size: 22px; font-weight: 600; margin-top: 12px; }
+        .header .asesoria { font-size: 13px; opacity: 0.8; margin-top: 6px; letter-spacing: 1px; }
+
+        .badge { display: inline-block; background: #ff9800; color: white; padding: 7px 22px; border-radius: 20px; font-size: 13px; font-weight: 700; margin-top: 14px; letter-spacing: 1px; text-transform: uppercase; }
+
+        .tabs { display: flex; overflow-x: auto; background: white; border-bottom: 2px solid #E8F3EF; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(45,74,62,0.06); }
+        .tab { padding: 15px 16px; cursor: pointer; border: none; background: transparent; font-size: 12.5px; font-weight: 600; color: #6c757d; white-space: nowrap; transition: all 0.3s; flex-shrink: 0; display: inline-block; }
+        .tab:hover { background: #F5F9F7; color: #2D4A3E; }
+
+        .tab-radio { display: none; }
+
+        #tab-bienvenida:checked ~ .tabs label[for="tab-bienvenida"],
+        #tab-analisis:checked ~ .tabs label[for="tab-analisis"],
+        #tab-entreno:checked ~ .tabs label[for="tab-entreno"],
+        #tab-acondicionamiento:checked ~ .tabs label[for="tab-acondicionamiento"],
+        #tab-nutricion:checked ~ .tabs label[for="tab-nutricion"],
+        #tab-huevo:checked ~ .tabs label[for="tab-huevo"],
+        #tab-seguimiento:checked ~ .tabs label[for="tab-seguimiento"] {
+            color: #1a5945; border-bottom: 3px solid #1a5945; background: #F5F9F7;
+        }
+
+        #tab-bienvenida:checked ~ .content #bienvenida,
+        #tab-analisis:checked ~ .content #analisis,
+        #tab-entreno:checked ~ .content #entreno,
+        #tab-acondicionamiento:checked ~ .content #acondicionamiento,
+        #tab-nutricion:checked ~ .content #nutricion,
+        #tab-huevo:checked ~ .content #huevo,
+        #tab-seguimiento:checked ~ .content #seguimiento {
+            display: block; animation: fadeIn 0.3s;
+        }
+
+        .content { padding: 40px 32px; }
+        .section { display: none; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .section-title { font-size: 25px; color: #1a5945; margin-bottom: 26px; padding-bottom: 13px; border-bottom: 3px solid #8bc34a; font-weight: 700; }
+        .subsection-title { font-size: 19px; color: #2D4A3E; margin: 34px 0 16px; font-weight: 700; }
+
+        .card { background: #F5FAF8; border-left: 4px solid #8bc34a; padding: 20px 22px; margin-bottom: 18px; border-radius: 8px; }
+        .card h3 { color: #1a5945; font-size: 16px; margin-bottom: 10px; }
+        .card p { margin-bottom: 8px; font-size: 14.5px; }
+        .card ul, .card ol { margin-left: 20px; font-size: 14.5px; line-height: 1.9; }
+        .card.highlight { background: linear-gradient(135deg, #fff8f0, #fff3e6); border-left: 4px solid #ff9800; }
+        .card.success { background: #e8f5e9; border-left: 4px solid #43a047; }
+        .card.warning { background: #fffde7; border-left: 4px solid #fdd835; }
+        .card.dark { background: #e8f0ee; border-left: 4px solid #1a5945; }
+        .card.critical { background: #fce4ec; border-left: 4px solid #e53935; }
+
+        .info-box { background: linear-gradient(135deg, #e8f5e9, #d4edda); border-left: 4px solid #43a047; padding: 20px 22px; margin: 20px 0; border-radius: 8px; }
+        .info-box h3 { color: #2e7d32; margin-bottom: 8px; font-size: 15px; }
+        .info-box p { font-size: 14.5px; }
+
+        .orange-box { background: linear-gradient(135deg, #fff8f0, #fff3e6); border-left: 4px solid #ff9800; padding: 18px 20px; margin: 18px 0; border-radius: 8px; font-size: 14.5px; }
+
+        table { width: 100%; border-collapse: collapse; margin: 14px 0; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05); font-size: 14px; }
+        th { background: #1a5945; color: white; padding: 12px 14px; text-align: left; font-weight: 600; }
+        td { padding: 10px 14px; border-bottom: 1px solid #E8F3EF; vertical-align: top; }
+        tr:hover { background: #F5FAF8; }
+
+        .comida-bloque { background: white; border: 1px solid #e0ede8; border-radius: 10px; padding: 16px 18px; margin-top: 12px; }
+        .comida-bloque .hora { font-size: 12px; color: #ff9800; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+        .comida-bloque .titulo-comida { font-size: 15px; font-weight: 700; color: #1a5945; margin-bottom: 8px; }
+        .macros-tag { display: inline-block; background: #1a5945; color: white; font-size: 11px; font-weight: 600; padding: 2px 9px; border-radius: 4px; margin-top: 8px; }
+        .opcion-tag { display: inline-block; background: #ff9800; color: white; font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 4px; margin-right: 5px; text-transform: uppercase; }
+
+        .timeline { position: relative; padding-left: 30px; margin: 24px 0; }
+        .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: #8bc34a; }
+        .timeline-item { background: white; border-radius: 10px; padding: 18px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); position: relative; }
+        .timeline-item::before { content: ''; position: absolute; left: -36px; top: 22px; width: 13px; height: 13px; border-radius: 50%; background: #1a5945; border: 3px solid white; }
+        .timeline-item h4 { color: #1a5945; font-size: 16px; margin-bottom: 8px; }
+
+        .receta-box { background: #F5FAF8; border-radius: 10px; padding: 18px 20px; margin-bottom: 16px; border: 1px solid #e0ede8; }
+        .receta-box h4 { color: #1a5945; font-size: 15px; font-weight: 700; margin-bottom: 10px; }
+        .receta-box p { font-size: 14px; color: #555; margin-bottom: 6px; line-height: 1.6; }
+        .receta-tag { display: inline-block; background: #8bc34a; color: white; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 10px; margin-bottom: 8px; }
+
+        .separador { height: 1px; background: #e0ede8; margin: 24px 0; }
+
+        .semana-header { background: #1a5945; color: white; padding: 10px 16px; border-radius: 8px; font-weight: 700; font-size: 14px; margin: 20px 0 10px; letter-spacing: 0.5px; }
+
+        ul { margin-left: 20px; line-height: 1.9; font-size: 14.5px; }
+        ol { margin-left: 20px; line-height: 1.9; font-size: 14.5px; }
+
+        .footer-doc { text-align: center; padding: 24px; color: #aaa; font-size: 12.5px; border-top: 1px solid #E8F3EF; line-height: 1.9; }
+
+        @media (max-width: 768px) {
+            .content { padding: 20px 14px; }
+            .header h1 { font-size: 22px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <input type="radio" name="tabgroup" id="tab-bienvenida" class="tab-radio" checked>
+    <input type="radio" name="tabgroup" id="tab-analisis" class="tab-radio">
+    <input type="radio" name="tabgroup" id="tab-entreno" class="tab-radio">
+    <input type="radio" name="tabgroup" id="tab-acondicionamiento" class="tab-radio">
+    <input type="radio" name="tabgroup" id="tab-nutricion" class="tab-radio">
+    <input type="radio" name="tabgroup" id="tab-huevo" class="tab-radio">
+    <input type="radio" name="tabgroup" id="tab-seguimiento" class="tab-radio">
+
+    <div class="header">
+        <div class="brand">eat&flow</div>
+        <h1>Plan Full Endurance</h1>
+        <p style="font-size:14px; opacity:0.85;">Mes 6 — Septiembre 2026</p>
+        <div class="cliente">Tania Sun Cheong</div>
+        <div class="asesoria">Asesoría Nutricional — Isa Herra</div>
+        <div class="badge">14 de septiembre en adelante</div>
+    </div>
+
+    <div class="tabs">
+        <label class="tab" for="tab-bienvenida">Bienvenida</label>
+        <label class="tab" for="tab-analisis">Análisis</label>
+        <label class="tab" for="tab-entreno">Plan de Entreno</label>
+        <label class="tab" for="tab-acondicionamiento">Acondicionamiento</label>
+        <label class="tab" for="tab-nutricion">Nutrición</label>
+        <label class="tab" for="tab-huevo">Reintroducción del Huevo</label>
+        <label class="tab" for="tab-seguimiento">Seguimiento</label>
+    </div>
+
+    <div class="content">
+
+        <!-- ======= BIENVENIDA ======= -->
+        <div id="bienvenida" class="section">
+            <h2 class="section-title">Bienvenida — Mes 6</h2>
+
+            <div class="info-box">
+                <h3>Este mes no hay formulario</h3>
+                <p>Este plan lo armo con lo que fuiste contando en las conversaciones directas, no con un formulario formal. Contás vos misma que nada cambió en tu situación general de horario o trabajo, así que la base sigue siendo la misma de meses anteriores. Lo que sí cambió son varias cosas puntuales que fuiste resolviendo o probando por tu cuenta, y este plan las recoge todas.</p>
+            </div>
+
+            <h3 class="subsection-title">Lo que traés de las últimas semanas</h3>
+
+            <div class="card">
+                <ul>
+                    <li><strong>Cena:</strong> encontraste que te gusta alternar entre papa hervida y pan de harina de papa con queso deslactosado — lo integro como rotación normal.</li>
+                    <li><strong>Yogur natural:</strong> lo compraste — te doy dos formas de comerlo, una dulce y una salada.</li>
+                    <li><strong>Huevo:</strong> te cayó mal la última vez que lo intentaste. Este mes armo un protocolo de reintroducción gradual para no perder la yema del todo.</li>
+                    <li><strong>Fondos:</strong> estabas valorando fondear miércoles o domingo — armo el ciclo de 7 días completo abajo.</li>
+                    <li><strong>Apetito y energía:</strong> contaste que no tenés mucha hambre y que los entrenos han sido más bien mini estos días — lo tomo en cuenta, no hay presión de volumen este mes.</li>
+                    <li><strong>Piernas frías al arrancar:</strong> contaste que al empezar a pedalear sentís que no generás fuerza — es músculo frío, y tiene solución con activación previa.</li>
+                </ul>
+            </div>
+
+            <div class="card highlight">
+                <h3>El tono de este mes</h3>
+                <p>Con poco apetito y entrenos mini estos días, este plan no busca presionar volumen. Busca mantener la estructura viva — los fondos, la activación antes de pedalear, el huevo reintroducido con cuidado — para que cuando la energía vuelva a subir, ya esté todo el sistema andando y no haya que empezar de cero.</p>
+            </div>
+        </div>
+
+        <!-- ======= ANÁLISIS ======= -->
+        <div id="analisis" class="section">
+            <h2 class="section-title">Análisis</h2>
+
+            <h3 class="subsection-title">Sobre el huevo — por qué reintroducirlo con cuidado</h3>
+
+            <div class="card warning">
+                <h3>Le cayó mal la última vez</h3>
+                <p>Ya veníamos comiendo huevo pochado con buena tolerancia, pero la última vez te cayó mal. En vez de volver directo al huevo completo, o de eliminarlo por completo, la estrategia este mes es reintroducirlo de forma gradual y escondida, para que el cuerpo lo vuelva a aceptar sin perder las vitaminas que aporta la yema (vitamina D, A, E, colina). Ver el protocolo completo en la pestaña dedicada.</p>
+            </div>
+
+            <h3 class="subsection-title">Sobre el apetito bajo y los entrenos mini</h3>
+
+            <div class="card">
+                <p>No es la primera vez que contás esto, y la respuesta sigue siendo la misma: no se fuerza. Un entreno corto que sí se hace vale más que uno largo que se salta por agotamiento o falta de ganas. Este mes la estructura de fondos está armada para que la sigas cuando el cuerpo responda, no como obligación fija.</p>
+            </div>
+
+            <h3 class="subsection-title">Sobre las piernas frías al arrancar</h3>
+
+            <div class="card highlight">
+                <h3>Qué es y por qué pasa</h3>
+                <p>Lo que describís — que al empezar a pedalear sentís que no generás fuerza — es el músculo trabajando en frío. Un músculo que no tuvo ninguna activación previa tarda varios minutos en generar la fuerza que va a dar una vez que ya entró en calor. Eso genera exactamente esa sensación de "estoy pedaleando pero no avanzo con fuerza" en los primeros minutos.</p>
+                <p style="margin-top:8px;"><strong>La solución es simple:</strong> activar el músculo antes de montarte, no después. Ver el detalle exacto en la pestaña de Plan de Entreno — es una rutina de sentadillas de menos de 2 minutos, justo antes del primer pedaleo.</p>
+            </div>
+        </div>
+
+        <!-- ======= PLAN DE ENTRENO ======= -->
+        <div id="entreno" class="section">
+            <h2 class="section-title">Plan de Entrenamiento</h2>
+
+            <h3 class="subsection-title">Activación antes de cada salida — para las piernas frías</h3>
+
+            <div class="card dark">
+                <h3>Rutina de activación — menos de 2 minutos, siempre en este orden</h3>
+                <ol>
+                    <li>Vestida y lista para salir, antes de ponerte los zapatos de ciclismo</li>
+                    <li><strong>3 series de 10 sentadillas</strong>, sin pausa larga entre series (10-15 segundos entre cada una)</li>
+                    <li>Ahora sí, ponete los zapatos</li>
+                    <li>Primer pedaleo</li>
+                </ol>
+                <p style="margin-top:10px;">Este orden es intencional: la sentadilla activa el músculo justo antes de que se vuelva a enfriar poniéndote el equipo, así llegás a la bici con el músculo ya despierto en vez de arrancar desde cero.</p>
+            </div>
+
+            <h3 class="subsection-title">Fondos — miércoles o domingo, ciclo de 7 días desde el fondo</h3>
+
+            <div class="orange-box">
+                <p>El fondo se hace <strong>solo un día por semana — miércoles o domingo, el que mejor encaje esa semana</strong> — no los dos. El resto de la semana se organiza como un ciclo de 7 días contados desde el fondo: "día 1" siempre es el fondo, y los días siguientes se cuentan a partir de ahí, sin importar si ese fondo cayó en miércoles o en domingo. Así, el mismo plan de la semana funciona para cualquiera de las dos opciones — solo cambia a qué día real corresponde cada número.</p>
+            </div>
+
+            <table>
+                <tr><th>Día del ciclo</th><th>Si el fondo fue miércoles</th><th>Si el fondo fue domingo</th></tr>
+                <tr><td><strong>Día 1</strong></td><td>Miércoles</td><td>Domingo</td></tr>
+                <tr><td><strong>Día 2</strong></td><td>Jueves</td><td>Lunes</td></tr>
+                <tr><td><strong>Día 3</strong></td><td>Viernes</td><td>Martes</td></tr>
+                <tr><td><strong>Día 4</strong></td><td>Sábado</td><td>Miércoles</td></tr>
+                <tr><td><strong>Día 5</strong></td><td>Domingo</td><td>Jueves</td></tr>
+                <tr><td><strong>Día 6</strong></td><td>Lunes</td><td>Viernes</td></tr>
+                <tr><td><strong>Día 7</strong></td><td>Martes</td><td>Sábado</td></tr>
+            </table>
+
+            <div class="card dark">
+                <h3>Qué hacer en cada día del ciclo</h3>
+                <table>
+                    <tr><th>Día</th><th>Contenido</th></tr>
+                    <tr><td><strong>Día 1</strong></td><td>Fondo. Zona 2 mayormente (110-125 ppm), sin meta fija de kilómetros mientras el apetito y la energía sigan bajos — sostener el hábito, no exigir distancia.</td></tr>
+                    <tr><td><strong>Día 2</strong></td><td>Descanso o activación muy suave. El cuerpo viene del esfuerzo largo — este día es de recuperación, no de entreno estructurado.</td></tr>
+                    <tr><td><strong>Día 3</strong></td><td>Bici corta + acondicionamiento, en la versión que el cuerpo permita ese día (mini si hace falta).</td></tr>
+                    <tr><td><strong>Día 4</strong></td><td>Bici corta + acondicionamiento — <strong>excepto si este día cae en sábado</strong>, en cuyo caso es feria, sin entreno estructurado.</td></tr>
+                    <tr><td><strong>Día 5</strong></td><td>Bici corta + acondicionamiento, en la versión que el cuerpo permita.</td></tr>
+                    <tr><td><strong>Día 6</strong></td><td>Bici corta + acondicionamiento, en la versión que el cuerpo permita.</td></tr>
+                    <tr><td><strong>Día 7</strong></td><td>Descanso o movimiento muy suave — día previo al siguiente fondo, llegar fresca. <strong>Excepto si este día cae en sábado</strong>, en cuyo caso es feria de todas formas.</td></tr>
+                </table>
+            </div>
+
+            <div class="card warning">
+                <h3>La feria manda sobre el ciclo</h3>
+                <p>El sábado siempre es feria, sin importar qué número de día del ciclo le toque esa semana. Si el fondo fue miércoles, la feria cae en día 4. Si el fondo fue domingo, la feria cae en día 7. En cualquiera de los dos casos, ese sábado específico no lleva bici ni acondicionamiento estructurado — la feria ya cumple esa función.</p>
+            </div>
+
+            <div class="card">
+                <h3>Cómo elegir entre miércoles o domingo cada semana</h3>
+                <p>No hay una regla fija de cuál usar — se elige según cómo venga la semana de trabajo y de energía. Lo único que importa es que una vez elegido el día, el resto de la semana sigue la columna correspondiente de la tabla de arriba.</p>
+            </div>
+
+            <div class="card success">
+                <h3>La activación de sentadillas aplica todos los días de bici</h3>
+                <p>Sin importar el día del ciclo, la rutina de activación (3 series de 10 sentadillas justo antes de montar, ver arriba) se hace siempre que haya bici — sea fondo, sesión corta, o mini entreno.</p>
+            </div>
+        </div>
+
+        <!-- ======= ACONDICIONAMIENTO ======= -->
+        <div id="acondicionamiento" class="section">
+            <h2 class="section-title">Acondicionamiento</h2>
+
+            <div class="orange-box">
+                <p>Este mes no hay progresión nueva de ejercicios. Con el apetito bajo y los entrenos mini, no es el momento de subir la exigencia — es el momento de sostener lo que ya sabés hacer, en la versión que el cuerpo permita ese día. Acá está la rutina completa para que la tengas toda en un solo lugar, sin tener que buscarla en otro documento.</p>
+            </div>
+
+            <h3 class="subsection-title">Rutina completa — 35-40 minutos, inmediatamente después de la bici</h3>
+
+            <h3 class="subsection-title">Piernas y glúteos</h3>
+
+            <div class="card">
+                <h3>Sentadilla búlgara con pausa</h3>
+                <p>Pie trasero apoyado sobre una silla o superficie elevada, bajar con la pierna delantera hasta 90°, con una pausa de 2-3 segundos en la posición baja antes de subir. Trabaja cada pierna de forma independiente.</p>
+                <p style="margin-top:6px;"><strong>3 series de 10 repeticiones por pierna.</strong></p>
+            </div>
+
+            <div class="card">
+                <h3>Zancada caminando con giro de torso</h3>
+                <p>Avanzar caminando con cada paso en zancada, alternando piernas continuamente. Al bajar en cada paso, girar el torso suavemente hacia la pierna delantera.</p>
+                <p style="margin-top:6px;"><strong>3 series de 12 pasos por pierna.</strong></p>
+            </div>
+
+            <div class="card">
+                <h3>Puente de glúteo a una pierna con marcha</h3>
+                <p>Acostada boca arriba, rodillas flexionadas. Una pierna extendida en el aire, elevar la cadera solo con la pierna de apoyo. Antes de bajar, agregar una pequeña elevación de rodilla de la pierna de apoyo tipo "marcha".</p>
+                <p style="margin-top:6px;"><strong>3 series de 12 repeticiones por pierna.</strong></p>
+            </div>
+
+            <h3 class="subsection-title">Espalda</h3>
+
+            <div class="card">
+                <h3>Superman con sostén prolongado</h3>
+                <p>Boca abajo, brazos y piernas extendidos. Elevar brazos, pecho y piernas al mismo tiempo, apretando toda la espalda, y sostener la posición arriba en vez de repetir rápido.</p>
+                <p style="margin-top:6px;"><strong>3 series de 6 repeticiones, sosteniendo 8 segundos cada una.</strong></p>
+            </div>
+
+            <h3 class="subsection-title">Core / abdomen</h3>
+
+            <div class="card">
+                <h3>Plancha lateral con elevación de cadera</h3>
+                <p>Apoyada en un antebrazo de costado, cuerpo en línea recta. Bajar y subir la cadera levemente en vez de mantenerla fija.</p>
+                <p style="margin-top:6px;"><strong>3 series de 12 elevaciones por lado.</strong></p>
+            </div>
+
+            <div class="card">
+                <h3>Plancha en antebrazos</h3>
+                <p>Antebrazos y puntas de pie en el suelo, línea recta de hombros a talones, abdomen contraído, sin dejar caer la cadera. Cierre de la rutina.</p>
+                <p style="margin-top:6px;"><strong>3 series de 50-55 segundos.</strong></p>
+            </div>
+
+            <div class="separador"></div>
+
+            <h3 class="subsection-title">Versión mini — 15 minutos, para los días que el cuerpo no da para más</h3>
+
+            <div class="card highlight">
+                <h3>Solo 3 ejercicios, con transiciones rápidas</h3>
+                <ul>
+                    <li><strong>Sentadilla búlgara:</strong> 1 serie de 10 por pierna</li>
+                    <li><strong>Puente de glúteo a una pierna:</strong> 1 serie de 12 por pierna</li>
+                    <li><strong>Plancha en antebrazos:</strong> 2 series de 30-35 segundos, con 20 segundos de descanso entre series</li>
+                </ul>
+                <p style="margin-top:10px;">Esta versión cabe en 15 minutos y mantiene el hábito activo aunque no sea la sesión completa. Ningún día de acondicionamiento reducido es un día perdido.</p>
+            </div>
+        </div>
+
+        <!-- ======= NUTRICIÓN ======= -->
+        <div id="nutricion" class="section">
+            <h2 class="section-title">Nutrición</h2>
+
+            <div class="orange-box">
+                <p>Con el apetito bajo estos días, sigue la misma regla de siempre: no se fuerza cantidad, se cuida calidad. Acá está el plan de comidas completo del día, con lo nuevo de este mes ya integrado en su lugar, para que tengas todo junto sin tener que buscar en otro documento.</p>
+            </div>
+
+            <h3 class="subsection-title">Plan de comidas — días con entrenamiento</h3>
+
+            <div class="comida-bloque">
+                <div class="hora">Al despertar — antes de salir</div>
+                <div class="titulo-comida">Activación digestiva</div>
+                <ul>
+                    <li>500ml de agua</li>
+                    <li>Probiótico + L-Glutamina (5g en polvo con agua)</li>
+                    <li>30 min antes del entreno: 1 tostada sin gluten con mantequilla de maní + ½ banano (o la fruta que prefieras) + café negro con canela</li>
+                </ul>
+            </div>
+
+            <div class="comida-bloque">
+                <div class="hora">Post-entreno inmediato (primeros 30 min)</div>
+                <div class="titulo-comida">Recuperación temprana</div>
+                <ul>
+                    <li>1 scoop de proteína vegana con agua de coco o agua sola</li>
+                </ul>
+            </div>
+
+            <div class="comida-bloque">
+                <div class="hora">10:00am — Comida principal</div>
+                <div class="titulo-comida">Desayuno-almuerzo</div>
+                <p style="font-weight:600; margin-bottom:6px;"><span class="opcion-tag">Opción A</span></p>
+                <ul>
+                    <li>Sopa de arroz con pollo + zanahoria + culantro</li>
+                </ul>
+                <p style="font-weight:600; margin:12px 0 6px;"><span class="opcion-tag">Opción B</span></p>
+                <ul>
+                    <li>Sopa de crema de maíz con ayote y tofu (80-100g de tofu)</li>
+                </ul>
+                <p style="font-weight:600; margin:12px 0 6px;"><span class="opcion-tag">Opción C</span></p>
+                <ul>
+                    <li>Arroz blanco 1-1.5 tazas + pollo 100g + papa hervida + aceite de oliva</li>
+                </ul>
+                <p style="margin-top:8px; font-size:13px; color:#666;">Durante las dos semanas del protocolo de huevo (ver pestaña dedicada), cualquiera de estas opciones puede llevar la receta del huevo correspondiente a esa semana como parte de la comida.</p>
+            </div>
+
+            <div class="comida-bloque">
+                <div class="hora">2:00–3:00pm — Merienda</div>
+                <div class="titulo-comida">Puente energético</div>
+                <p style="font-weight:600; margin-bottom:6px;"><span class="opcion-tag">Opción A</span></p>
+                <ul>
+                    <li>Yogur natural — versión dulce o salada (ver detalle abajo)</li>
+                </ul>
+                <p style="font-weight:600; margin:12px 0 6px;"><span class="opcion-tag">Opción B</span></p>
+                <ul>
+                    <li>Manzana fuji + yogurt de kéfir, o banano (o la fruta que prefieras) + mantequilla de maní</li>
+                </ul>
+            </div>
+
+            <div class="comida-bloque">
+                <div class="hora">6:00pm — Cena</div>
+                <div class="titulo-comida">Cena — alternar entre estas dos opciones</div>
+                <p style="font-weight:600; margin-bottom:6px;"><span class="opcion-tag">Opción A</span></p>
+                <ul>
+                    <li>Papa hervida + proteína (pollo, tofu o lo que tengas disponible)</li>
+                </ul>
+                <p style="font-weight:600; margin:12px 0 6px;"><span class="opcion-tag">Opción B — la que vos propusiste</span></p>
+                <ul>
+                    <li>Pan de harina de papa (verificar que sea certificado sin gluten) con queso deslactosado</li>
+                </ul>
+                <p style="margin-top:10px; font-size:13.5px; color:#666;">Las dos están bien como base de carbohidrato para la cena. Alterná según el antojo del día — no hay una que sea "mejor" que la otra en este contexto, ambas cumplen función.</p>
+            </div>
+
+            <div class="comida-bloque">
+                <div class="hora">8:30–9:00pm — Antes de dormir</div>
+                <div class="titulo-comida">Recuperación nocturna</div>
+                <ul>
+                    <li>Chocolate caliente con leche de almendras + 2 scoops de proteína vegana</li>
+                    <li>Magnesio — siempre en este momento</li>
+                </ul>
+            </div>
+
+            <h3 class="subsection-title">Yogur natural — dos formas de comerlo</h3>
+
+            <div class="card highlight">
+                <h3>Versión dulce</h3>
+                <p>Yogur natural + 1 cucharadita de miel + canela al gusto + fruta picada (banano, manzana fuji, o la que tengas). Buena opción para la merienda de la tarde o como snack rápido.</p>
+            </div>
+
+            <div class="card highlight">
+                <h3>Versión salada</h3>
+                <p>Yogur natural + sal + pimienta al gusto. Se puede comer solo como acompañamiento, o usar como base para mojar algo salado. Es una forma distinta de aprovechar el mismo yogur sin que se sienta repetitivo.</p>
+            </div>
+
+            <div class="card">
+                <p>Probá las dos versiones y quedate con la que más se te antoje según el día — tener ambas opciones evita que el yogur se sienta aburrido y se quede sin usar en la refri.</p>
+            </div>
+
+            <h3 class="subsection-title">Suplementos — sin cambios</h3>
+
+            <div class="card">
+                <p>Magnesio, probiótico, L-Glutamina, proteína vegana, Immuvit y vitamina D siguen exactamente igual que los meses anteriores, en los mismos momentos del día que ya tenés incorporados.</p>
+            </div>
+
+            <div class="card success">
+                <h3>Con el apetito bajo</h3>
+                <p>Priorizá que cada comida tenga su proteína aunque la porción sea más chica. Si algún día una comida completa no entra, mejor una versión reducida con proteína que saltarla por completo.</p>
+            </div>
+        </div>
+
+        <!-- ======= REINTRODUCCIÓN DEL HUEVO ======= -->
+        <div id="huevo" class="section">
+            <h2 class="section-title">Reintroducción del Huevo — Protocolo de 2 Semanas</h2>
+
+            <div class="orange-box">
+                <p>El huevo te cayó mal la última vez. En vez de volver de golpe, vamos con un protocolo de dos semanas: primero la yema escondida dentro de una receta donde no se percibe como huevo, y después un paso intermedio con más proporción de yema. La idea es que el cuerpo la vuelva a tolerar sin perder sus vitaminas, sin forzar una reacción.</p>
+            </div>
+
+            <h3 class="subsection-title">Semana 1 — Yema escondida</h3>
+
+            <div class="receta-box">
+                <span class="receta-tag">Receta 1</span>
+                <h4>Panqueques con yema escondida</h4>
+                <p><strong>Ingredientes:</strong> 1 yema de huevo, 1 banano maduro (o ½ manzana fuji rallada, o ½ camote pequeño ya cocido y hecho puré como alternativa), 3 cucharadas de avena sin gluten (molida o entera), canela al gusto, una pizca de polvo de hornear si se quiere más esponjoso.</p>
+                <p><strong>Preparación:</strong> Licuar o mezclar bien todos los ingredientes hasta lograr una mezcla homogénea. Cocinar en sartén a fuego medio-bajo, como panqueque normal, volteando cuando se despegue fácil de la base.</p>
+                <p style="margin-top:8px; font-size:13px; color:#666;">La yema queda completamente integrada en la masa — el sabor y la textura de la fruta y la avena dominan por completo. No se percibe como comer huevo. La manzana rallada y el camote cumplen la misma función que el banano: dan humedad y dulzor natural a la mezcla.</p>
+            </div>
+
+            <div class="receta-box">
+                <span class="receta-tag">Receta 2</span>
+                <h4>Sopa enriquecida con yema</h4>
+                <p><strong>Ingredientes:</strong> 1 yema de huevo, 1 taza de tu sopa habitual ya caliente (arroz, pollo, o la que prefieras).</p>
+                <p><strong>Preparación:</strong> Batir la yema en una taza aparte. Retirar la sopa del fuego, dejar que baje un poco la temperatura (para que la yema no se cocine de golpe en grumos), y verter la yema batida en un hilo fino mientras se revuelve constantemente. La yema se disuelve en el caldo y le da cuerpo y cremosidad a la sopa.</p>
+                <p style="margin-top:8px; font-size:13px; color:#666;">Esta técnica se usa en muchas sopas tradicionales para espesar sin que se note el huevo como ingrediente aparte — queda integrado en el caldo.</p>
+            </div>
+
+            <div class="card">
+                <p><strong>Cómo probarlo:</strong> Empezá con una de las dos recetas, en una sola comida, y observá cómo responde el cuerpo en las horas siguientes. Si no hay molestia, podés repetir con la segunda receta más adelante en la semana.</p>
+            </div>
+
+            <h3 class="subsection-title">Semana 2 — Más proporción de yema (3 claras + 1 yema)</h3>
+
+            <div class="receta-box">
+                <span class="receta-tag">Opción A</span>
+                <h4>Torta de huevo</h4>
+                <p><strong>Ingredientes:</strong> 3 claras + 1 yema, sal al gusto, lo que quieras agregar (cebolla, tomate, culantro, lo que ya tolerés bien).</p>
+                <p><strong>Preparación:</strong> Batir los huevos con sal, cocinar en sartén como omelette o tortilla, a fuego medio, hasta que cuaje.</p>
+                <p style="margin-top:8px;"><strong>Cómo comerla:</strong> Con el pan de harina de papa, con tortilla de maíz, o dentro de la sopa habitual como acompañamiento.</p>
+            </div>
+
+            <div class="receta-box">
+                <span class="receta-tag">Opción B</span>
+                <h4>Arroz con huevo</h4>
+                <p><strong>Ingredientes:</strong> 3 claras + 1 yema, 1 taza de arroz blanco ya cocido, lo que quieras agregar (cebolla, tomate, o lo que prefieras).</p>
+                <p><strong>Preparación:</strong> Batir los huevos aparte. En un sartén caliente, revolver el arroz con los huevos batidos directamente, tipo arroz frito, hasta que el huevo cuaje integrado con el arroz. Agregar los demás ingredientes al gusto durante la cocción.</p>
+            </div>
+
+            <div class="card success">
+                <h3>La lógica detrás de las dos semanas</h3>
+                <p>La semana 1 reintroduce la yema en una cantidad mínima y completamente disimulada, para que el cuerpo la reciba sin asociarla con "huevo". La semana 2 sube un poco la proporción (todavía con más clara que yema) pero ya en preparaciones donde el huevo es reconocible. Si las dos semanas van bien, en el mes siguiente se puede evaluar volver al huevo pochado completo.</p>
+            </div>
+
+            <div class="card warning">
+                <h3>Si aparece alguna molestia</h3>
+                <p>Si en cualquier punto de las dos semanas aparece alguna molestia digestiva, escribime antes de seguir avanzando el protocolo. No hay ningún apuro en completarlo — mejor ir despacio y con seguridad que forzar el ritmo.</p>
+            </div>
+        </div>
+
+        <!-- ======= SEGUIMIENTO ======= -->
+        <div id="seguimiento" class="section">
+            <h2 class="section-title">Seguimiento</h2>
+
+            <div class="card highlight">
+                <h3>Contacto directo por WhatsApp</h3>
+                <p>Escribime cuando:</p>
+                <ul>
+                    <li>Alguna receta del protocolo de huevo genere molestia</li>
+                    <li>El ciclo de 7 días desde el fondo no encaje con el horario real de alguna semana — lo puedo ajustar</li>
+                    <li>La activación de sentadillas no resuelva la sensación de piernas frías</li>
+                    <li>El apetito o la energía cambien, para bien o para mal</li>
+                </ul>
+            </div>
+
+            <h3 class="subsection-title">Qué reviso el próximo mes</h3>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>Reintroducción del huevo</h4>
+                    <p>Si las dos semanas del protocolo van bien, evalúo volver al huevo pochado completo para el próximo ciclo.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>El ciclo de fondo miércoles/domingo</h4>
+                    <p>Si elegir entre miércoles o domingo cada semana funciona bien con tu horario real, lo mantengo como estructura fija. Si no, ajusto la lógica del ciclo.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>Apetito y energía</h4>
+                    <p>Reviso si el apetito volvió a su nivel habitual o si sigue bajo — eso define si el próximo mes vuelve la progresión de acondicionamiento o seguimos en modo sostenimiento.</p>
+                </div>
+            </div>
+
+            <div class="info-box" style="margin-top:28px;">
+                <h3>Sobre este mes sin formulario</h3>
+                <p>El próximo ciclo retomo el formulario de check-in completo con medidas corporales, para no perder el registro de progreso que veníamos llevando. Este mes fue un ajuste directo sobre lo que fuiste contando en el camino, y está bien que así sea de vez en cuando.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer-doc">
+        <p><strong>eat&flow</strong> | Asesoría Nutricional Isa Herra | @eatandflow.cr</p>
+        <p>Plan Full Endurance — Tania Sun Cheong — Mes 6 — Septiembre 2026</p>
+    </div>
+
+</div>
+
+</body>
+</html>
