@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Plan Final | eat&flow | Warner</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #F5F9F7;
+            color: #2D4A3E;
+            line-height: 1.6;
+            padding: 6px;
+        }
+
+        .container { max-width: 100%; margin: 0 auto; }
+
+        .header {
+            background: linear-gradient(135deg, #1a5945 0%, #2D4A3E 100%);
+            color: white;
+            padding: 36px 18px;
+            text-align: center;
+            border-radius: 12px;
+            margin-bottom: 18px;
+        }
+
+        .header .brand { font-size: 19px; font-weight: 700; letter-spacing: 3px; margin-bottom: 12px; opacity: 0.9; text-transform: uppercase; }
+        .header h1 { font-size: 26px; font-weight: 700; margin-bottom: 6px; line-height: 1.3; }
+        .header .subtitulo { font-size: 14px; opacity: 0.9; margin-top: 6px; }
+
+        .badge {
+            display: inline-block;
+            background: #ff9800;
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 5px 16px;
+            border-radius: 50px;
+            margin-top: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .intro-box {
+            background: white;
+            padding: 20px 18px;
+            border-radius: 10px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+            border-left: 4px solid #ff9800;
+        }
+
+        .intro-box h2 { color: #ff9800; font-size: 17px; margin-bottom: 10px; font-weight: 700; }
+        .intro-box p { color: #555; line-height: 1.7; margin-bottom: 8px; font-size: 14px; }
+        .intro-box p:last-child { margin-bottom: 0; }
+
+        .section {
+            background: white;
+            padding: 22px 16px;
+            margin-bottom: 14px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+        }
+
+        .section h2 {
+            color: #1a5945;
+            font-size: 19px;
+            font-weight: 700;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #8bc34a;
+        }
+
+        .section h3 {
+            color: #2D4A3E;
+            font-size: 14px;
+            font-weight: 700;
+            margin: 24px 0 12px 0;
+            padding: 7px 12px;
+            background: #f0f7f4;
+            border-radius: 6px;
+            border-left: 3px solid #8bc34a;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .field { margin-bottom: 18px; }
+
+        .field label {
+            display: block;
+            font-weight: 600;
+            color: #2D4A3E;
+            margin-bottom: 7px;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .field input,
+        .field textarea,
+        .field select {
+            width: 100%;
+            padding: 11px 13px;
+            border: 2px solid #E0EDE8;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: inherit;
+            background: #F5FAF8;
+            color: #2D4A3E;
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        .field input:focus,
+        .field textarea:focus,
+        .field select:focus {
+            outline: none;
+            border-color: #8bc34a;
+            background: white;
+        }
+
+        .field textarea { min-height: 85px; resize: vertical; }
+
+        .field small {
+            display: block;
+            color: #7a9a8e;
+            font-size: 12px;
+            margin-top: 5px;
+            font-style: italic;
+            line-height: 1.4;
+        }
+
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .radio-group label {
+            display: flex;
+            align-items: flex-start;
+            padding: 10px 13px;
+            background: #F5FAF8;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-weight: normal;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .radio-group label:hover { background: #e6f2ec; }
+
+        .radio-group input[type="radio"] {
+            width: auto;
+            margin-right: 9px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .campos-dobles {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .alerta-box {
+            background: #fff8f0;
+            border: 2px solid #ff9800;
+            border-radius: 8px;
+            padding: 14px 16px;
+            margin-bottom: 18px;
+            font-size: 14px;
+            color: #7a4800;
+            line-height: 1.6;
+        }
+
+        .alerta-box strong { color: #e67e00; }
+
+        .submit-section {
+            background: linear-gradient(135deg, #1a5945, #2D4A3E);
+            color: white;
+            padding: 30px 18px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 14px;
+        }
+
+        .submit-section h2 { font-size: 20px; margin-bottom: 10px; }
+        .submit-section p { opacity: 0.9; font-size: 14px; margin-bottom: 5px; }
+
+        .submit-btn {
+            background: #ff9800;
+            color: white;
+            padding: 14px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 18px;
+            box-shadow: 0 4px 15px rgba(255,152,0,0.35);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255,152,0,0.45);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 16px;
+            color: #8a9e98;
+            font-size: 12.5px;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 560px) {
+            .campos-dobles { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="header">
+        <div class="brand">eat&flow</div>
+        <h1>Plan de Septiembre 2026</h1>
+        <p class="subtitulo">Formulario de Actualización y Competencias</p>
+        <div class="badge">Full Endurance · Plan Final</div>
+    </div>
+
+    <div class="intro-box">
+        <h2>Warner, este es tu formulario de cierre de ciclo</h2>
+        <p>Septiembre trae dos competencias importantes. Para que el plan de este mes sea preciso, necesito que respondas con el mayor detalle posible, especialmente en todo lo que tiene que ver con equipamiento, logística y objetivos de carrera.</p>
+        <p>Este formulario cubre: medidas corporales actualizadas, todo sobre La Giganta, todo sobre la carrera de aventura, y ajustes al plan de entrenamiento y alimentación.</p>
+        <p><strong>Tiempo estimado:</strong> 20-25 minutos.</p>
+    </div>
+
+    <form action="https://formspree.io/f/mzzodpje" method="POST">
+
+        <input type="hidden" name="formulario" value="Warner Garcia — Septiembre 2026 / Plan Final">
+
+        <!-- SECCION 1: MEDIDAS -->
+        <div class="section">
+            <h2>1. Medidas Corporales</h2>
+
+            <div class="alerta-box">
+                <p><strong>Importante:</strong> Tomate las medidas en ayunas, antes de entrenar, en la mañana. Las mismas condiciones que los meses anteriores para que la comparacion sea valida.</p>
+            </div>
+
+            <div class="campos-dobles">
+                <div class="field">
+                    <label for="peso">Peso actual (kg) *</label>
+                    <input type="number" id="peso" name="peso" step="0.1" placeholder="Ej: 74.8" required>
+                    <small>Mes pasado: 75.2 kg</small>
+                </div>
+                <div class="field">
+                    <label for="hora-medicion">Hora de la medicion *</label>
+                    <input type="text" id="hora-medicion" name="hora-medicion" placeholder="Ej: 6:30 AM en ayunas" required>
+                </div>
+            </div>
+
+            <div class="campos-dobles">
+                <div class="field">
+                    <label for="cintura">Cintura (cm) *</label>
+                    <input type="number" id="cintura" name="cintura" step="0.5" placeholder="Ej: 84" required>
+                    <small>Mes pasado: 86 cm</small>
+                </div>
+                <div class="field">
+                    <label for="cadera">Cadera (cm) *</label>
+                    <input type="number" id="cadera" name="cadera" step="0.5" placeholder="Ej: 87" required>
+                    <small>Mes pasado: 88 cm</small>
+                </div>
+            </div>
+
+            <div class="campos-dobles">
+                <div class="field">
+                    <label for="pecho">Pecho (cm) *</label>
+                    <input type="number" id="pecho" name="pecho" step="0.5" placeholder="Ej: 95" required>
+                    <small>Mes pasado: 93 cm</small>
+                </div>
+                <div class="field">
+                    <label for="brazo">Brazo derecho (cm) *</label>
+                    <input type="number" id="brazo" name="brazo" step="0.5" placeholder="Ej: 29" required>
+                    <small>Mes pasado: 28 cm</small>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="percepcion-cuerpo">Como percibes tu cuerpo respecto al mes pasado *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="percepcion-cuerpo" value="Noto cambio claro y evidente" required> Noto un cambio claro y evidente</label>
+                    <label><input type="radio" name="percepcion-cuerpo" value="Algo de cambio pero sutil"> Algo de cambio pero sutil</label>
+                    <label><input type="radio" name="percepcion-cuerpo" value="No noto diferencia visible"> No noto diferencia visible todavia</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCION 2: LA GIGANTA -->
+        <div class="section">
+            <h2>2. La Giganta — 26 de septiembre</h2>
+
+            <div class="alerta-box">
+                <p><strong>250 km, autoasistida, un día.</strong> Esta es la competencia mas cercana y la que mas detalle necesita. Respondé con la mayor precision posible — cada dato cambia el protocolo de fueling y la estrategia del plan.</p>
+            </div>
+
+            <h3>Objetivo de la competencia</h3>
+
+            <div class="field">
+                <label for="objetivo-giganta">Cual es tu objetivo principal para La Giganta *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="objetivo-giganta" value="Ganar" required> Ganar</label>
+                    <label><input type="radio" name="objetivo-giganta" value="Terminarla bien y en buen estado"> Terminarla bien y en buen estado fisico</label>
+                    <label><input type="radio" name="objetivo-giganta" value="Llegar en un tiempo específico"> Llegar en un tiempo específico (indicalo abajo)</label>
+                    <label><input type="radio" name="objetivo-giganta" value="Otro objetivo"> Otro objetivo</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="tiempo-objetivo-giganta">Si tenes un tiempo objetivo, indicalo. Si no, dejalo en blanco.</label>
+                <input type="text" id="tiempo-objetivo-giganta" name="tiempo-objetivo-giganta" placeholder="Ej: menos de 28 horas, entre 30 y 35 horas, no tengo tiempo específico">
+            </div>
+
+            <div class="field">
+                <label for="dormir-giganta">Tenes pensado dormir durante la carrera o la idea es ir sin dormir *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="dormir-giganta" value="Sin dormir, ir de corrido" required> Sin dormir — ir de corrido</label>
+                    <label><input type="radio" name="dormir-giganta" value="Si, parar a dormir un rato"> Si, parar a dormir aunque sea un rato</label>
+                    <label><input type="radio" name="dormir-giganta" value="Depende de como vaya en el recorrido"> Depende de como vaya en el recorrido</label>
+                    <label><input type="radio" name="dormir-giganta" value="Todavia no lo he decidido"> Todavia no lo he decidido</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="ruta-estudiada">Ya estudiaste la ruta *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="ruta-estudiada" value="Si, la conozco bien" required> Si, la conozco bien — la he hecho antes o la estudie a fondo</label>
+                    <label><input type="radio" name="ruta-estudiada" value="Mas o menos, la he revisado pero no a fondo"> Mas o menos, la he revisado pero no a fondo</label>
+                    <label><input type="radio" name="ruta-estudiada" value="No, todavia no"> No, todavia no</label>
+                </div>
+            </div>
+<div class="field">
+                <label for="preocupaciones-giganta">Hay algo específico que te preocupe o sobre lo que tengas dudas de cara a La Giganta *</label>
+                <textarea id="preocupaciones-giganta" name="preocupaciones-giganta" placeholder="Ej: No se como manejar la alimentación de noche. Me preocupa el hombro con el peso del equipo. No se cuanto llevar de comida para no depender de los puntos. O: Por ahora no tengo dudas específicas." required></textarea>
+            </div>
+
+            <h3>Alimentación y logística en ruta</h3>
+
+            <div class="field">
+                <label for="alimentos-giganta">Para la alimentación durante La Giganta, como preferis manejarlo *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="alimentos-giganta" value="Llevar todo preparado de casa" required> Llevar todo preparado de casa y no depender de puntos externos</label>
+                    <label><input type="radio" name="alimentos-giganta" value="Comprar y conseguir en ruta"> Comprar y conseguir en ruta en tiendas y sodas</label>
+                    <label><input type="radio" name="alimentos-giganta" value="Combinacion de ambos"> Combinacion — llevar base y complementar en ruta</label>
+                    <label><input type="radio" name="alimentos-giganta" value="Todavia no lo se"> Todavia no lo se</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="asistencia-externa">La carrera es autoasistida — vas a tener alguna persona que te encuentre en puntos específicos del recorrido para darte cosas *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="asistencia-externa" value="Si" required> Si, tengo alguien que me va a asistir en puntos del recorrido</label>
+                    <label><input type="radio" name="asistencia-externa" value="No, voy completamente solo"> No, voy completamente solo sin asistencia externa</label>
+                    <label><input type="radio" name="asistencia-externa" value="Todavia no esta definido"> Todavia no esta definido</label>
+                </div>
+            </div>
+
+            <h3>Equipamiento en la bicicleta</h3>
+
+            <div class="field">
+                <label for="bolsos-giganta">Que bolsos vas a llevar en la bicicleta para La Giganta *</label>
+                <textarea id="bolsos-giganta" name="bolsos-giganta" placeholder="Ej: Bolso de manillar de 5L, bolso de cuadro mediano, bolso de sillin de 10L, bolsillos del jersey. Indicame las marcas si las sabes y el tamaño apróximado de cada uno." required></textarea>
+                <small>Necesito saber la capacidad total de almacenamiento para calcular cuanta comida podes llevar y por cuantas horas.</small>
+            </div>
+
+            <div class="field">
+                <label for="hidratación-giganta">Como vas a llevar el agua e hidratante *</label>
+                <textarea id="hidratación-giganta" name="hidratación-giganta" placeholder="Ej: 2 bidones de 750ml en el cuadro + camelback de 2L. O: 3 portabidones. O: Solo bidones, sin camelback." required></textarea>
+                <small>Capacidad total en litros que podes llevar en un momento dado.</small>
+            </div>
+
+            <div class="field">
+                <label for="peso-maximo-cargado">Cual es el peso maximo apróximado que has salido a cargar en una competencia o fondo largo *</label>
+                <textarea id="peso-maximo-cargado" name="peso-maximo-cargado" placeholder="Ej: Nunca lo he pesado pero salgo con camelback lleno + 2 bidones + bolso de sillin con ropa y herramientas. O: Cálculo que unos 8kg. O: Salgo muy liviano, maximo 3kg." required></textarea>
+                <small>Si no tenes el dato exacto, describime con que cosas salis normalmente y yo cálculo el peso apróximado.</small>
+            </div>
+        </div>
+
+        <!-- SECCION 3: CARRERA DE AVENTURA -->
+        <div class="section">
+            <h2>3. Carrera de Aventura — Octubre</h2>
+
+            <div class="alerta-box">
+                <p><strong>Este evento combina disciplinas.</strong> Necesito entender bien el formato para armar el protocolo de cada etapa y los bolsos adecuados para cada disciplina.</p>
+            </div>
+
+            <h3>Datos del evento</h3>
+
+            <div class="field">
+                <label for="fecha-aventura">Fecha exacta del evento *</label>
+                <input type="text" id="fecha-aventura" name="fecha-aventura" placeholder="Ej: 3 y 4 de octubre 2026" required>
+            </div>
+
+            <div class="field">
+                <label for="objetivo-aventura">Cual es tu objetivo principal para esta carrera *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="objetivo-aventura" value="Ganar o quedar en el podio" required> Ganar o quedar en el podio</label>
+                    <label><input type="radio" name="objetivo-aventura" value="Terminarla completa y bien"> Terminarla completa y en buen estado</label>
+                    <label><input type="radio" name="objetivo-aventura" value="Tiempo específico"> Terminar en un tiempo específico (indicalo abajo)</label>
+                    <label><input type="radio" name="objetivo-aventura" value="Es mi primera vez en este formato"> Es mi primera vez en este formato y quiero conocerlo bien</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="tiempo-objetivo-aventura">Si tenes un tiempo objetivo para la carrera de aventura, indicalo. Si no, dejalo en blanco.</label>
+                <input type="text" id="tiempo-objetivo-aventura" name="tiempo-objetivo-aventura" placeholder="Ej: 18 horas, no tengo tiempo específico">
+            </div>
+
+            <h3>Formato y etapas del evento</h3>
+
+            <div class="field">
+                <label for="conoces-etapas">Ya sabes como estan distribuidas las etapas del evento *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="conoces-etapas" value="Si, ya tengo el roadbook o el perfil del evento" required> Si, ya tengo el roadbook o el perfil del evento</label>
+                    <label><input type="radio" name="conoces-etapas" value="Mas o menos, se el formato general pero no los detalles"> Mas o menos, se el formato general pero no los detalles</label>
+                    <label><input type="radio" name="conoces-etapas" value="No, todavia no tengo esa información"> No, todavia no tengo esa información</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="etapas-bici">Etapa de bicicleta: cuantos km apróximados y que tipo de terreno *</label>
+                <input type="text" id="etapas-bici" name="etapas-bici" placeholder="Ej: 80km de ruta en carretera. O: 40km de MTB en tierra. O: No se todavia." required>
+            </div>
+
+            <div class="field">
+                <label for="etapas-run">Etapa de carrera a pie: cuantos km apróximados y que tipo de terreno *</label>
+                <input type="text" id="etapas-run" name="etapas-run" placeholder="Ej: 20km de trail en montaña. O: 15km de carretera. O: No se todavia." required>
+            </div>
+
+            <div class="field">
+                <label for="etapas-remo">Etapa de remo o kayak: hay remo en este evento *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="etapas-remo" value="Si hay remo y se la distancia" required> Si hay remo — indicala abajo</label>
+                    <label><input type="radio" name="etapas-remo" value="Si hay remo pero no se la distancia"> Si hay remo pero no se la distancia todavia</label>
+                    <label><input type="radio" name="etapas-remo" value="No hay remo en este evento"> No hay remo en este evento</label>
+                </div>
+            </div>
+<div class="field">
+                <label for="etapas-rápel">Hay rápel u otras disciplinas técnicas en este evento *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="etapas-rápel" value="Si hay rápel" required> Si hay rápel — indicalo abajo</label>
+                    <label><input type="radio" name="etapas-rápel" value="Hay otras disciplinas técnicas"> Hay otras disciplinas técnicas (escalada, orientación, etc) — indicalo abajo</label>
+                    <label><input type="radio" name="etapas-rápel" value="No hay disciplinas técnicas"> No hay rápel ni disciplinas técnicas</label>
+                    <label><input type="radio" name="etapas-rápel" value="No lo se todavia"> No lo se todavia</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="detalle-rápel-otras">Describe las disciplinas técnicas si las hay: distancia, altura, si el equipo lo provee el evento</label>
+                <textarea id="detalle-rápel-otras" name="detalle-rápel-otras" placeholder="Ej: Rápel de una cascada de 40m. El evento provee el equipo. O: Solo orientación con mapa. O: No aplica."></textarea>
+            </div>
+</div>
+
+            <h3>Equipamiento por disciplina</h3>
+
+            <div class="field">
+                <label for="bolsos-bici-aventura">Equipamiento para la etapa de bici: que bolsos y portabidones vas a llevar *</label>
+                <textarea id="bolsos-bici-aventura" name="bolsos-bici-aventura" placeholder="Ej: Lo mismo que La Giganta. O: Para esta etapa voy mas liviano, solo un bolso de cuadro y 2 bidones." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="bolsos-run-aventura">Equipamiento para la etapa de carrera a pie: chaleco, mochila, cinturon de hidratación *</label>
+                <textarea id="bolsos-run-aventura" name="bolsos-run-aventura" placeholder="Ej: Chaleco de trail con 1.5L de hidratación y bolsillos delanteros. O: Solo un cinturon con 2 botellitas. O: No tengo equipo específico de trail todavia." required></textarea>
+                <small>Indicame la capacidad de hidratación y cuanto espacio tiene para comida o geles.</small>
+            </div>
+
+            <div class="field">
+                <label for="bolsos-remo-aventura">Equipamiento para la etapa de remo (si aplica): donde cargas comida e hidratación durante el remo</label>
+                <textarea id="bolsos-remo-aventura" name="bolsos-remo-aventura" placeholder="Ej: Bolsa impermeabilizada dentro del kayak. O: En un chaleco. O: No aplica o no se todavia."></textarea>
+            </div>
+
+            <div class="field">
+                <label for="bolsos-rápel-aventura">Equipamiento para rápel u otras disciplinas técnicas (si aplica): como portás cosas durante esas etapas</label>
+                <textarea id="bolsos-rápel-aventura" name="bolsos-rápel-aventura" placeholder="Ej: Mochila técnica de 10L que uso en rápel y orientación. O: No aplica."></textarea>
+            </div>
+        </div>
+
+        <!-- SECCION 4: ENTRENAMIENTO -->
+        <div class="section">
+            <h2>4. Entrenamiento — Confirmación y Ajustes</h2>
+
+            <h3>Ciclismo entre semana</h3>
+
+            <div class="field">
+                <label for="dias-bici-semana">Cuantos dias a la semana estas pudiendo salir en bici actualmente *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="dias-bici-semana" value="1 dia" required> 1 dia</label>
+                    <label><input type="radio" name="dias-bici-semana" value="2 dias"> 2 dias</label>
+                    <label><input type="radio" name="dias-bici-semana" value="3 dias"> 3 dias</label>
+                    <label><input type="radio" name="dias-bici-semana" value="4 o mas"> 4 o mas dias</label>
+                    <label><input type="radio" name="dias-bici-semana" value="Variable, depende de la semana"> Variable, depende de la semana</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="duración-sesiónes-bici">Duración tipica de tus sesiónes de bici entre semana *</label>
+                <input type="text" id="duración-sesiónes-bici" name="duración-sesiónes-bici" placeholder="Ej: 1h30 en la mañana. O: 1 hora. O: Varia entre 45min y 2h." required>
+            </div>
+
+            <div class="field">
+                <label for="fondos-agosto">Pudiste hacer fondos largos en agosto. Si es asi, contame las distancias y como aplicaste el fueling *</label>
+                <textarea id="fondos-agosto" name="fondos-agosto" placeholder="Ej: Hice 3 fondos: 110km, 130km y 160km. En los dos primeros aplique el Tailwind cada 30 min y comi cada 45 min, sin problemas digestivos. En el tercero me quede sin gel y me cai a las 4h. O: No pude hacer fondos este mes." required></textarea>
+                <small>Esta información es clave para construir el protocolo de fueling de La Giganta. Sin datos de fondos no podemos saber como responde el intestino bajo esfuerzo prolongado.</small>
+            </div>
+
+            <div class="field">
+                <label for="uso-zonas-fc">Pudiste usar las zonas de frecuencia cardiaca en el ciclismo entre semana *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="uso-zonas-fc" value="Si, aplique las zonas en la mayoria de sesiónes" required> Si, aplique las zonas en la mayoria de sesiónes</label>
+                    <label><input type="radio" name="uso-zonas-fc" value="A veces, no siempre lo aplico"> A veces, no siempre lo aplico</label>
+                    <label><input type="radio" name="uso-zonas-fc" value="No, sigo a sensaciones"> No, sigo yendo a sensaciones</label>
+                </div>
+            </div>
+
+            <h3>Acondicionamiento fisico</h3>
+
+            <div class="field">
+                <label for="acondi-agosto">Como fue el acondicionamiento en agosto. Cuantas sesiónes por semana y como te sentiste *</label>
+                <textarea id="acondi-agosto" name="acondi-agosto" placeholder="Ej: Dos sesiónes semanales casi siempre. Noto mas fuerza en piernas. El hombro bien. O: Solo pude hacer una sesión por semana por el trabajo." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="cambio-acondi">Queres algun cambio en las sesiónes de acondicionamiento para septiembre *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="cambio-acondi" value="No, mantener igual" required> No, mantener igual lo que estoy haciendo</label>
+                    <label><input type="radio" name="cambio-acondi" value="Mas intensidad o mas peso"> Mas intensidad o mas peso en los ejercicios</label>
+                    <label><input type="radio" name="cambio-acondi" value="Menos sesiónes, hay mucho volumen"> Menos sesiónes — hay demasiado volumen con las competencias</label>
+                    <label><input type="radio" name="cambio-acondi" value="Agregar algo específico"> Quiero agregar algo específico (indicalo abajo)</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="detalle-cambio-acondi">Si queres agregar algo específico al acondicionamiento o tenes alguna observación, indicalo aqui</label>
+                <textarea id="detalle-cambio-acondi" name="detalle-cambio-acondi" placeholder="Ej: Quiero agregar trabajo específico de remo antes de la carrera de aventura. O: Quiero enfocar mas en core. O: No aplica."></textarea>
+            </div>
+
+            <div class="field">
+                <label for="fisioterapia-agosto">Pudiste agendarte la sesión de fisioterapia para el hombro en agosto *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="fisioterapia-agosto" value="Si, ya me la hice" required> Si, ya me la hice</label>
+                    <label><input type="radio" name="fisioterapia-agosto" value="La tengo agendada"> La tengo agendada</label>
+                    <label><input type="radio" name="fisioterapia-agosto" value="No, todavia no"> No, todavia no he podido</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCION 5: ALIMENTACION -->
+        <div class="section">
+            <h2>5. Alimentación — Ajustes para Septiembre</h2>
+
+            <div class="field">
+                <label for="cambios-alimentación">Queres algun cambio en el plan de alimentación diaria para septiembre *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="cambios-alimentación" value="No, seguir igual" required> No, seguir igual — el plan esta funcionando</label>
+                    <label><input type="radio" name="cambios-alimentación" value="Si, hay cosas que quiero ajustar"> Si, hay cosas que quiero ajustar (indicalo abajo)</label>
+                    <label><input type="radio" name="cambios-alimentación" value="Quiero mas opciones de recetas"> Quiero mas opciones de recetas o variedad</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="detalle-cambios-alimentación">Si queres cambios o tenes alguna observación sobre la alimentación, indicalo aqui</label>
+                <textarea id="detalle-cambios-alimentación" name="detalle-cambios-alimentación" placeholder="Ej: Quiero mas opciones de desayuno. La leguminosa de los garbanzos no me quedo bien. Quiero agregar mas proteina. O: Por ahora todo bien."></textarea>
+            </div>
+
+            <div class="field">
+                <label for="lactosa-update">En agosto tuviste algun malestar con lactosa o con algun otro alimento del plan *</label>
+                <textarea id="lactosa-update" name="lactosa-update" placeholder="Ej: El yogurt en poca cantidad si lo tolero. Los garbanzos me dan gas. Todo bien. O: Todavia la lactosa me molesta si como mucho." required></textarea>
+            </div>
+
+            <div class="field">
+                <label for="comida-fuera-agosto">Con que frecuencia terminaste comiendo en soda o restaurante en agosto *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="comida-fuera-agosto" value="0-1 vez por semana" required> 0-1 vez — casi siempre en casa</label>
+                    <label><input type="radio" name="comida-fuera-agosto" value="2-3 veces por semana"> 2-3 veces por semana</label>
+                    <label><input type="radio" name="comida-fuera-agosto" value="4 o mas veces"> 4 o mas veces — sigo dependiendo de afuera</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="desayuno-casa-agosto">Cuantos dias a la semana en promedio desayunaste en casa en agosto *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="desayuno-casa-agosto" value="5-7 dias" required> 5-7 dias — ya es habito</label>
+                    <label><input type="radio" name="desayuno-casa-agosto" value="3-4 dias"> 3-4 dias</label>
+                    <label><input type="radio" name="desayuno-casa-agosto" value="1-2 dias"> 1-2 dias — todavia me cuesta</label>
+                    <label><input type="radio" name="desayuno-casa-agosto" value="Casi nunca"> Casi nunca</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCION 6: CIERRE -->
+        <div class="section">
+            <h2>6. Cierre</h2>
+
+            <div class="field">
+                <label for="sensacion-general">Como te sientes en general de cara a estas dos competencias *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="sensacion-general" value="Listo y confiado" required> Listo y confiado</label>
+                    <label><input type="radio" name="sensacion-general" value="Bien pero con dudas puntuales"> Bien pero con dudas puntuales sobre algunas cosas</label>
+                    <label><input type="radio" name="sensacion-general" value="Nervioso, me falta preparación"> Nervioso, siento que me falta preparación</label>
+                    <label><input type="radio" name="sensacion-general" value="Indiferente, lo tomo como experiencia"> Tranquilo, lo tomo como experiencia y aprendizaje</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="info-final">Algo mas que quieras que sepa antes de construir el plan de septiembre</label>
+                <textarea id="info-final" name="info-final" placeholder="Cambios en el trabajo, una lesion nueva, algo sobre las competencias que no te pregunte, lo que sea."></textarea>
+            </div>
+        </div>
+
+        <div class="submit-section">
+            <h2>Listo, Warner</h2>
+            <p>Con este formulario construyo el plan de septiembre.</p>
+            <p>Incluye el protocolo específico para La Giganta y para la carrera de aventura.</p>
+            <p style="margin-top:10px;"><strong>Próximo paso:</strong> Revisa que respondiste todo y enviame el formulario. Te tengo el plan listo en 48 horas.</p>
+            <button type="submit" class="submit-btn">Enviar Formulario</button>
+        </div>
+
+    </form>
+
+    <div class="footer">
+        <p><strong>eat&flow</strong> | Asesoría Nutricional y Deportiva</p>
+        <p>Isa Herra | @isaherra.13</p>
+        <p>Consultas por WhatsApp</p>
+    </div>
+
+</div>
+</body>
+</html>
