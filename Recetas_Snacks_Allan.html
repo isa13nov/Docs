@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recetas de Snacks | Allan Monge | eat&flow</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #F5F9F7 0%, #E8F3EF 100%);
+            color: #2D4A3E;
+            line-height: 1.8;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 920px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 30px rgba(45,74,62,0.12);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1a5945 0%, #2D4A3E 100%);
+            color: white;
+            padding: 44px 30px;
+            text-align: center;
+            border-bottom: 4px solid #8bc34a;
+        }
+
+        .header .brand {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            opacity: 0.9;
+            margin-bottom: 18px;
+            text-transform: uppercase;
+        }
+
+        .header h1 { font-size: 28px; font-weight: 700; margin-bottom: 6px; }
+        .header .cliente { font-size: 20px; font-weight: 600; margin-top: 12px; }
+
+        .badge {
+            display: inline-block;
+            background: #ff9800;
+            color: white;
+            padding: 7px 22px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-top: 14px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .tabs {
+            display: flex;
+            overflow-x: auto;
+            background: white;
+            border-bottom: 2px solid #E8F3EF;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(45,74,62,0.06);
+        }
+
+        .tab {
+            padding: 15px 20px;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            font-size: 13px;
+            font-weight: 600;
+            color: #6c757d;
+            white-space: nowrap;
+            transition: all 0.3s;
+            flex-shrink: 0;
+        }
+
+        .tab:hover { background: #F5F9F7; color: #2D4A3E; }
+        .tab.active { color: #1a5945; border-bottom: 3px solid #1a5945; background: #F5F9F7; }
+
+        .content { padding: 40px 32px; }
+
+        .section { display: none; }
+        .section.active { display: block; animation: fadeIn 0.3s; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            font-size: 24px;
+            color: #1a5945;
+            margin-bottom: 24px;
+            padding-bottom: 14px;
+            border-bottom: 3px solid #8bc34a;
+        }
+
+        .orange-box {
+            background: linear-gradient(135deg, #fff8f0, #fff3e6);
+            border-left: 4px solid #ff9800;
+            padding: 20px 22px;
+            margin: 0 0 28px;
+            border-radius: 8px;
+        }
+
+        .orange-box p { margin-bottom: 8px; font-size: 14.5px; }
+
+        .info-box {
+            background: linear-gradient(135deg, #e8f5e9, #d4edda);
+            border-left: 4px solid #43a047;
+            padding: 20px 22px;
+            margin: 22px 0;
+            border-radius: 8px;
+        }
+
+        .info-box p { font-size: 14.5px; margin-bottom: 8px; }
+
+        .recipe-card {
+            background: #F5FAF8;
+            border-left: 4px solid #ff9800;
+            padding: 20px 22px;
+            margin: 0 0 20px;
+            border-radius: 8px;
+        }
+
+        .recipe-card h4 { color: #1a5945; margin-bottom: 12px; font-size: 17px; }
+        .recipe-card p { margin-bottom: 8px; font-size: 14.5px; }
+        .recipe-card .rinde {
+            display: inline-block;
+            background: #e8f0ee;
+            color: #1a5945;
+            font-size: 12.5px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 12px;
+            margin-top: 6px;
+        }
+
+        .recipe-card .label {
+            font-weight: 700;
+            color: #1a5945;
+        }
+
+        .footer {
+            background: #1a5945;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        .footer p { margin-bottom: 6px; }
+
+        strong { color: #1a5945; }
+
+        @media (max-width: 600px) {
+            .content { padding: 26px 18px; }
+            .header { padding: 30px 18px; }
+            .header h1 { font-size: 22px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <div class="brand">eat&flow</div>
+        <h1>Recetas de Snacks Picantes y Salados</h1>
+        <p style="font-size: 14px; opacity: 0.95; margin-top: 10px;">Asesoría Nutricional: Isa Herra</p>
+        <div class="cliente">Para Allan Monge</div>
+        <span class="badge">Antojo con Permiso, no con Culpa</span>
+    </div>
+
+    <div class="tabs">
+        <button class="tab active" onclick="showSection('proteina')">Con Proteína</button>
+        <button class="tab" onclick="showSection('crocantes')">Crocantes</button>
+        <button class="tab" onclick="showSection('mix')">Mix para Llevar</button>
+    </div>
+
+    <div class="content">
+
+        <div class="orange-box">
+            <p><strong>Allan, esto es para cuando el antojo pega, sobre todo en esos días de bajón.</strong> Ya sabés que en eat&flow no prohibimos nada, ni los chips ni los takis. Pero acá tenés opciones con el mismo picante y salado que te gusta, más proteína o más fibra, para que tengas algo listo en la nevera antes de que el antojo te agarre sin nada a la mano.</p>
+            <p>La mayoría se preparan el domingo, el mismo día que ya usás para dejar lista la comida de la semana. Ninguna reemplaza tu momento de chips o takis planeado — son para los días donde el antojo aparece fuera de ese momento.</p>
+        </div>
+
+        <!-- ======= CON PROTEÍNA ======= -->
+        <div id="proteina" class="section active">
+            <h2 class="section-title">Con Proteína</h2>
+            <p style="margin-bottom: 20px; font-size: 14.5px;">Estas te llenan más porque traen proteína, así que son las mejores cuando el antojo viene mezclado con hambre real.</p>
+
+            <div class="recipe-card">
+                <h4>Garbanzos Horneados con Chile</h4>
+                <p><span class="label">Ingredientes:</span> 1 lata de garbanzos (o 1.5 tazas ya cocidos), 1 cucharada de aceite, 1/2 cucharadita de sal, 1 cucharadita de chile en polvo o Tajín.</p>
+                <p><span class="label">Preparación:</span> Escurrí los garbanzos y secalos bien con un paño de cocina. Mezclalos con el aceite, la sal y el chile en un tazón. Horneá a 200°C por 20-25 minutos, moviendo a la mitad, hasta que queden dorados y crocantes. Dejalos enfriar antes de guardar — se ponen más crocantes al enfriar.</p>
+                <span class="rinde">Rinde 6 porciones de 3 cucharadas · se guarda en frasco cerrado hasta 5 días</span>
+            </div>
+
+            <div class="recipe-card">
+                <h4>Edamame con Sal y Limón</h4>
+                <p><span class="label">Ingredientes:</span> 2 tazas de edamame congelado, sal al gusto, jugo de medio limón.</p>
+                <p><span class="label">Preparación:</span> Herví o cociná al vapor el edamame unos 5 minutos, según las instrucciones del paquete. Escurrí y mezclá con sal y limón mientras todavía está caliente, para que se impregne mejor.</p>
+                <span class="rinde">Rinde 4 porciones de 1/2 taza · mejor comer el mismo día o al siguiente</span>
+            </div>
+
+            <div class="recipe-card">
+                <h4>Huevos Duros con Chile y Limón</h4>
+                <p><span class="label">Ingredientes:</span> 6 huevos, sal al gusto, chile en polvo al gusto, jugo de limón al gusto.</p>
+                <p><span class="label">Preparación:</span> Herví los huevos 10 minutos, enfrialos en agua fría y pelalos. Cortalos por la mitad o dejalos enteros. Espolvoreá sal y chile, y agregá unas gotas de limón justo antes de comer.</p>
+                <span class="rinde">Rinde 6 porciones de 1 huevo · se guardan en la nevera hasta 5 días</span>
+            </div>
+
+            <div class="recipe-card">
+                <h4>Queso Fresco en Cubos con Chile y Limón</h4>
+                <p><span class="label">Ingredientes:</span> 1 taza de queso fresco o turrialba en cubos, chile en polvo al gusto, jugo de limón al gusto.</p>
+                <p><span class="label">Preparación:</span> Cortá el queso en cubos, espolvoreá chile por encima y agregá unas gotas de limón justo antes de comer, para que no se aguade.</p>
+                <span class="rinde">Rinde 4 porciones de 1/4 de taza · preparalo el mismo día que lo vas a comer</span>
+            </div>
+
+            <div class="recipe-card">
+                <h4>Maní Enchilado Casero</h4>
+                <p><span class="label">Ingredientes:</span> 1 taza de maní tostado sin sal, 1 cucharadita de aceite, 1 cucharadita de chile en polvo, 1/2 cucharadita de sal.</p>
+                <p><span class="label">Preparación:</span> Calentá el aceite en un sartén a fuego medio, agregá el maní y salteá 2-3 minutos. Retirá del fuego, espolvoreá el chile y la sal, mezclá bien y dejá enfriar antes de guardar.</p>
+                <span class="rinde">Rinde 6 porciones de 2-3 cucharadas · se guarda en frasco cerrado hasta 2 semanas</span>
+            </div>
+        </div>
+
+        <!-- ======= CROCANTES ======= -->
+        <div id="crocantes" class="section">
+            <h2 class="section-title">Crocantes</h2>
+            <p style="margin-bottom: 20px; font-size: 14.5px;">Estas son para cuando el antojo es más de textura — ese "quiero algo crocante ya" — y son las que más se parecen a la sensación de una bolsa de chips.</p>
+
+            <div class="recipe-card">
+                <h4>Palomitas con Tajín</h4>
+                <p><span class="label">Ingredientes:</span> 1/4 de taza de maíz pira (o 4 tazas de palomitas naturales ya reventadas), 1 cucharadita de aceite, tajín o chile en polvo al gusto, sal al gusto.</p>
+                <p><span class="label">Preparación:</span> Reventá el maíz con el aceite en una olla tapada a fuego medio, moviendo de vez en cuando. Espolvoreá el tajín y la sal apenas salgan del fuego, mientras están calientes, para que se peguen bien.</p>
+                <span class="rinde">Rinde 2-3 porciones de 1.5 tazas</span>
+            </div>
+
+            <div class="recipe-card">
+                <h4>Chips de Camote al Horno</h4>
+                <p><span class="label">Ingredientes:</span> 1 camote mediano, 1 cucharada de aceite, sal al gusto, chile en polvo al gusto.</p>
+                <p><span class="label">Preparación:</span> Cortá el camote en rodajas bien finas. Mezclalas con el aceite, la sal y el chile. Horneá a 200°C por 20-25 minutos, volteando a la mitad, hasta que doren y queden crocantes en los bordes.</p>
+                <span class="rinde">Rinde 2 porciones · mejor comer el mismo día, pierden lo crocante al guardar</span>
+            </div>
+
+            <div class="recipe-card">
+                <h4>Tortillas Horneadas con Chile (Chips Caseras)</h4>
+                <p><span class="label">Ingredientes:</span> 4 tortillas de maíz, 1 cucharada de aceite, sal al gusto, chile en polvo al gusto.</p>
+                <p><span class="label">Preparación:</span> Cortá cada tortilla en 6-8 triángulos. Untalos con el aceite y espolvoreá sal y chile. Horneá a 200°C por 8-10 minutos hasta que doren y queden crocantes.</p>
+                <span class="rinde">Rinde 2 porciones · se guardan en bolsa cerrada hasta 2 días</span>
+            </div>
+
+            <div class="recipe-card">
+                <h4>Pepino y Zanahoria con Limón, Sal y Chile</h4>
+                <p><span class="label">Ingredientes:</span> 1 pepino, 2 zanahorias, jugo de 1 limón, sal al gusto, chile en polvo al gusto.</p>
+                <p><span class="label">Preparación:</span> Cortá el pepino y la zanahoria en tiras o rodajas. Agregá el limón, la sal y el chile justo antes de comer.</p>
+                <span class="rinde">Rinde 3-4 porciones · cortalo el mismo día para mejor textura</span>
+            </div>
+
+            <div class="recipe-card">
+                <h4>Galletas Sanissimo con Limón y Chile</h4>
+                <p><span class="label">Ingredientes:</span> 1 paquete de galletas Sanissimo, jugo de limón al gusto, chile en polvo al gusto.</p>
+                <p><span class="label">Preparación:</span> Poné las galletas en un plato, agregá unas gotas de limón y espolvoreá chile por encima justo antes de comer. Una forma rápida de variar el snack que ya usás en el plan.</p>
+                <span class="rinde">Rinde 1 porción</span>
+            </div>
+        </div>
+
+        <!-- ======= MIX PARA LLEVAR ======= -->
+        <div id="mix" class="section">
+            <h2 class="section-title">Mix para Llevar</h2>
+            <p style="margin-bottom: 20px; font-size: 14.5px;">Para tener algo listo en el bolso o en el trabajo, sin depender de la nevera.</p>
+
+            <div class="recipe-card">
+                <h4>Mix Picante Casero</h4>
+                <p><span class="label">Ingredientes:</span> 1 porción de maní enchilado, 1 porción de garbanzos horneados, 4-5 unidades de Tricopilia sport.</p>
+                <p><span class="label">Preparación:</span> Una vez que el maní y los garbanzos estén listos y fríos, mezclalos en un frasco grande junto con la Tricopilia. Serví porciones individuales de 3-4 cucharadas en bolsitas pequeñas, para tener listo toda la semana y controlar la cantidad sin necesidad de medir cada vez que te da el antojo.</p>
+                <span class="rinde">Rinde varias porciones para la semana, según cuánto prepares de cada receta</span>
+            </div>
+
+            <div class="info-box">
+                <p><strong>Cómo usar estas recetas:</strong> el domingo, cuando ya estás cocinando para la semana, aprovechá y dejá lista una o dos de estas — no hace falta hacer las once. Serví siempre en bolsitas o táperes pequeños desde el principio, nunca comas directo del frasco grande. Y si un día el antojo real es por los takis o los chips, está bien, ese es tu momento estructurado y ya lo tenés en el plan.</p>
+            </div>
+        </div>
+
+    </div><!-- /content -->
+
+    <div class="footer">
+        <p>Isa Herra — Asesoría Nutricional y Deportiva | eat&flow Nutrición Deportiva</p>
+        <p style="margin-top: 6px; opacity: 0.9;">@isaherra.13</p>
+    </div>
+
+</div><!-- /container -->
+
+<script>
+    function showSection(id) {
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        event.target.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>
+</body>
+</html>
