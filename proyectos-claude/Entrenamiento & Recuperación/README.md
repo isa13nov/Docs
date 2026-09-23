@@ -37,3 +37,6 @@ Manejo sleep deprivation en competencias 71-96h
 - Última actualización: 2026-08-02T23:39:34.194256+00:00
 - Documentos de conocimiento del proyecto: 0
 
+## Conversaciones personales
+
+Ver `conversaciones/README.md` — chats propios rescatados del historial de claude.ai relacionados con este tema.

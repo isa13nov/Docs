@@ -1,0 +1,25 @@
+# Conversaciones personales migradas
+
+Chats propios de Isa (no de clientes) rescatados del historial de claude.ai y clasificados en este proyecto.
+
+- **2025-11-17** — [Nutrition evaluation request](conversaciones/2025-11-17-nutrition-evaluation-request.md)
+- **2025-12-15** — [Evaluación del Gatorade Gx Sweat Patch](conversaciones/2025-12-15-evaluacion-del-gatorade-gx-sweat-patch.md)
+- **2026-01-21** — [Estrategia nutricional para Mulas](conversaciones/2026-01-21-estrategia-nutricional-para-mulas.md)
+- **2026-03-02** — [Cómo elegir el colágeno adecuado y alternativas a Mobicil Dúo](conversaciones/2026-03-02-como-elegir-el-colageno-adecuado-y-alternativas-a-mobicil-du.md)
+- **2026-03-17** — [Nutella en ultra endurance: viabilidad y alternativas](conversaciones/2026-03-17-nutella-en-ultra-endurance-viabilidad-y-alternativas.md)
+- **2026-03-24** — [Entrenamientos dobles y fortalecimiento para ultraenduras](conversaciones/2026-03-24-entrenamientos-dobles-y-fortalecimiento-para-ultraenduras.md)
+- **2026-04-04** — [Análisis de productos Del Caribe para rendimiento deportivo](conversaciones/2026-04-04-analisis-de-productos-del-caribe-para-rendimiento-deportivo.md)
+- **2026-04-14** — [Jamón de pavo saludable y marca Lipowski](conversaciones/2026-04-14-jamon-de-pavo-saludable-y-marca-lipowski.md)
+- **2026-04-14** — [Planificación de entrenamiento bici y natación post-masaje](conversaciones/2026-04-14-planificacion-de-entrenamiento-bici-y-natacion-post-masaje.md)
+- **2026-04-24** — [Colágeno con vitamina C: la razón bioquímica](conversaciones/2026-04-24-colageno-con-vitamina-c-la-razon-bioquimica.md)
+- **2026-04-30** — [Estrategia nutricional para competencia de ciclismo](conversaciones/2026-04-30-estrategia-nutricional-para-competencia-de-ciclismo.md)
+- **2026-05-18** — [Análisis de resultados de exámenes mayo 2026](conversaciones/2026-05-18-analisis-de-resultados-de-examenes-mayo-2026.md)
+- **2026-06-16** — [Análisis de colágeno PriceSmart](conversaciones/2026-06-16-analisis-de-colageno-pricesmart.md)
+- **2026-06-16** — [Opinión sobre geles Honey Stinger](conversaciones/2026-06-16-opinion-sobre-geles-honey-stinger.md)
+- **2026-06-22** — [Análisis de etiqueta de arroz de levadura roja](conversaciones/2026-06-22-analisis-de-etiqueta-de-arroz-de-levadura-roja.md)
+- **2026-06-23** — [Cómo elegir omega-3 de calidad en Amazon](conversaciones/2026-06-23-como-elegir-omega-3-de-calidad-en-amazon.md)
+- **2026-07-08** — [Micotoxinas y salud intestinal](conversaciones/2026-07-08-micotoxinas-y-salud-intestinal.md)
+- **2026-07-11** — [Geles de lactato: evidencia científica y uso en deportistas](conversaciones/2026-07-11-geles-de-lactato-evidencia-cientifica-y-uso-en-deportistas.md)
+- **2026-07-14** — [(sin título)](conversaciones/2026-07-14-sin-titulo.md)
+- **2026-08-22** — [💬 Que del atún en lata me podrá…](conversaciones/2026-08-22-que-del-atun-en-lata-me-podra.md)
+- **2026-09-02** — [Recuperación de dolor muscular post-trail](conversaciones/2026-09-02-recuperacion-de-dolor-muscular-post-trail.md)
