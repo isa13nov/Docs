@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propuesta de Servicios - Plan de Redes Sociales</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; line-height: 1.6; color: #1a1a1a; background: #fafafa; }
+        
+        .hero {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            color: #ffffff; padding: 100px 40px 60px; text-align: center;
+        }
+        .hero h1 { font-size: 3em; margin-bottom: 15px; font-weight: 300; }
+        .hero .subtitle { font-size: 1.3em; color: #d4af37; }
+        
+        .container { max-width: 900px; margin: 0 auto; padding: 60px 40px; }
+        
+        h2 {
+            font-size: 2.2em; margin: 60px 0 30px; color: #1a1a1a;
+            font-weight: 300; padding-bottom: 15px;
+            border-bottom: 3px solid #d4af37;
+        }
+        
+        .service-card {
+            background: #fff; border: 2px solid #e5e5e5;
+            border-radius: 12px; padding: 40px; margin: 30px 0;
+            border-left: 6px solid #d4af37;
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            transform: translateY(-4px);
+        }
+        
+        .service-card.recommended {
+            border: 3px solid #d4af37;
+            position: relative;
+        }
+        
+        .badge {
+            position: absolute; top: -15px; right: 30px;
+            background: #d4af37; color: #1a1a1a;
+            padding: 8px 20px; border-radius: 25px;
+            font-size: 0.85em; font-weight: bold;
+            letter-spacing: 1px;
+        }
+        
+        .service-header {
+            display: flex; justify-content: space-between;
+            align-items: center; margin-bottom: 25px;
+            flex-wrap: wrap; gap: 20px;
+        }
+        
+        .service-title { font-size: 2em; color: #1a1a1a; }
+        .service-price {
+            font-size: 2.8em; color: #d4af37;
+            font-weight: bold; white-space: nowrap;
+        }
+        
+        .includes-section {
+            background: #f8f8f8; padding: 25px;
+            border-radius: 8px; margin: 25px 0;
+        }
+        
+        .includes-section h4 {
+            color: #d4af37; margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+        
+        .includes-section ul {
+            list-style: none; padding: 0;
+        }
+        
+        /* Solo li directos de includes-section tienen checkmarks */
+        .includes-section > ul > li {
+            padding: 10px 0; padding-left: 30px;
+            position: relative; line-height: 1.7;
+        }
+        
+        .includes-section > ul > li::before {
+            content: 'âœ“'; position: absolute; left: 0; top: 10px;
+            color: #d4af37; font-size: 1.3em; font-weight: bold;
+        }
+        
+        /* Sub-listas anidadas sin checkmarks */
+        .includes-section li ul {
+            margin-top: 10px;
+            padding-left: 0;
+            list-style: disc;
+        }
+        
+        .includes-section li ul li {
+            padding: 5px 0;
+            padding-left: 20px;
+        }
+        
+        .includes-section li ul li::before {
+            content: none;
+        }
+        
+        .excludes-section {
+            background: #f5f5f5; padding: 20px;
+            border-radius: 8px; margin: 20px 0;
+        }
+        
+        .excludes-section h4 {
+            color: #999; margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        
+        .excludes-section ul {
+            list-style: none; padding: 0;
+        }
+        
+        .excludes-section > ul > li {
+            padding: 8px 0; padding-left: 30px;
+            position: relative; line-height: 1.7; color: #999;
+        }
+        
+        .excludes-section > ul > li::before {
+            content: 'âœ—'; position: absolute; left: 0; top: 8px;
+            color: #999; font-size: 1.3em;
+        }
+        
+        .best-for {
+            background: #fffbf0; border-left: 4px solid #d4af37;
+            padding: 20px; margin-top: 25px; border-radius: 4px;
+        }
+        
+        .comparison-table {
+            width: 100%; border-collapse: collapse;
+            margin: 30px 0; background: #fff;
+        }
+        
+        .comparison-table th {
+            background: #1a1a1a; color: #d4af37;
+            padding: 15px; text-align: left; font-weight: 400;
+        }
+        
+        .comparison-table td {
+            padding: 15px; border-bottom: 1px solid #e5e5e5;
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            color: #ffffff; padding: 60px 40px;
+            text-align: center; margin: 60px 0; border-radius: 8px;
+        }
+        
+        .cta-button {
+            display: inline-block; padding: 18px 40px;
+            background: #d4af37; color: #1a1a1a;
+            text-decoration: none; border-radius: 4px;
+            font-weight: bold; font-size: 1.1em;
+            margin: 15px 10px; transition: all 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            background: #f0c850;
+            transform: translateY(-2px);
+        }
+        
+        footer {
+            background: #1a1a1a; color: #e0e0e0;
+            padding: 40px; text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hero">
+        <h1>Propuesta de Servicios</h1>
+        <p class="subtitle">Plan de Redes Sociales - Luis Diego Ramos</p>
+    </div>
+
+    <div class="container">
+        
+        <h2>Opciones de InversiÃ³n</h2>
+        
+        <p style="font-size: 1.15em; margin-bottom: 40px; line-height: 1.8;">
+            ElegÃ­ la opciÃ³n que mejor se adapte a tu nivel de involucramiento y presupuesto. 
+            Todas las opciones incluyen los <strong>8 documentos HTML completos</strong> con 
+            90 posts escritos, 100+ hashtags, templates, BIOs, y guÃ­as de implementaciÃ³n.
+        </p>
+
+        <!-- OPCIÃ“N 1 -->
+        <div class="service-card">
+            <div class="service-header">
+                <h3 class="service-title">OpciÃ³n 1: Solo Entregables</h3>
+                <div class="service-price">$2,200</div>
+            </div>
+            
+            <p style="font-size: 1.1em; margin-bottom: 20px;">
+                RecibÃ­s todos los documentos, estrategias y contenido completo. 
+                Vos te encargÃ¡s de la implementaciÃ³n siguiendo las guÃ­as detalladas incluidas.
+            </p>
+
+            <div class="includes-section">
+                <h4>âœ… Incluye:</h4>
+                <ul>
+                    <li>8 documentos HTML interactivos completos</li>
+                    <li>90 posts con copy escrito (100-200 palabras cada uno)</li>
+                    <li>20-30 hashtags especÃ­ficos por post</li>
+                    <li>100+ hashtags organizados en 5 categorÃ­as</li>
+                    <li>15 templates copy-paste personalizables</li>
+                    <li>BIOs optimizadas para 3 plataformas</li>
+                    <li>Estrategia completa con framework de 100 libros</li>
+                    <li>Plan de engagement con rutina diaria</li>
+                    <li>GuÃ­a de implementaciÃ³n paso a paso</li>
+                    <li>Archivo CSV para importar a Later/Planoly</li>
+                </ul>
+            </div>
+
+            <div class="excludes-section">
+                <h4>âŒ No incluye:</h4>
+                <ul>
+                    <li>Soporte de implementaciÃ³n</li>
+                    <li>Llamadas de seguimiento</li>
+                    <li>RevisiÃ³n de posts o mÃ©tricas</li>
+                    <li>Ajustes de estrategia personalizados</li>
+                </ul>
+            </div>
+
+            <div class="best-for">
+                <p><strong>Ideal para:</strong> Profesionales autosuficientes y tech-savvy que tienen 
+                tiempo para implementar por su cuenta y prefieren seguir guÃ­as detalladas. Presupuesto ajustado 
+                pero quieren estrategia profesional completa.</p>
+            </div>
+        </div>
+
+        <!-- OPCIÃ“N 2 -->
+        <div class="service-card recommended">
+            <span class="badge">â­ RECOMENDADO</span>
+            
+            <div class="service-header">
+                <h3 class="service-title">OpciÃ³n 2: Con AsesorÃ­a</h3>
+                <div class="service-price">$2,800</div>
+            </div>
+            
+            <p style="font-size: 1.1em; margin-bottom: 20px;">
+                Todo lo anterior <strong>MÃS</strong> asesorÃ­a personalizada para garantizar implementaciÃ³n 
+                exitosa y optimizaciÃ³n continua.
+            </p>
+
+            <div class="includes-section">
+                <h4>âœ… Incluye todo de OpciÃ³n 1 MÃS:</h4>
+                <ul>
+                    <li><strong>Llamada de Setup Inicial (90 minutos):</strong>
+                        <ul style="margin-top: 10px; padding-left: 20px; list-style: disc;">
+                            <li style="padding: 5px 0;">ConfiguraciÃ³n guiada de todos los perfiles</li>
+                            <li style="padding: 5px 0;">Setup de Later/Planoly para programaciÃ³n</li>
+                            <li style="padding: 5px 0;">ProgramaciÃ³n de primeros 10 posts juntos</li>
+                            <li style="padding: 5px 0;">ResoluciÃ³n de dudas tÃ©cnicas</li>
+                            <li style="padding: 5px 0;">Plan de acciÃ³n personalizado primera semana</li>
+                        </ul>
+                    </li>
+                    <li style="margin-top: 15px;"><strong>3 Sesiones de Seguimiento Mensuales (60 min c/u):</strong>
+                        <ul style="margin-top: 10px; padding-left: 20px; list-style: disc;">
+                            <li style="padding: 5px 0;">RevisiÃ³n de mÃ©tricas y KPIs</li>
+                            <li style="padding: 5px 0;">AnÃ¡lisis de posts con mejor/peor performance</li>
+                            <li style="padding: 5px 0;">Ajustes de estrategia segÃºn resultados</li>
+                            <li style="padding: 5px 0;">OptimizaciÃ³n de engagement y alcance</li>
+                            <li style="padding: 5px 0;">Nuevas ideas de contenido</li>
+                            <li style="padding: 5px 0;">Troubleshooting de problemas</li>
+                        </ul>
+                    </li>
+                    <li style="margin-top: 15px;"><strong>Soporte continuo vÃ­a WhatsApp</strong> durante los 3 meses</li>
+                    <li>RevisiÃ³n de borradores de posts (hasta 5/mes)</li>
+                    <li>Acceso a actualizaciones de documentos</li>
+                </ul>
+            </div>
+
+            <div style="background: #f8f8f8; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <p style="font-size: 1.05em;"><strong>Desglose de inversiÃ³n:</strong></p>
+                <ul style="list-style: none; padding: 0; margin: 15px 0;">
+                    <li style="padding: 8px 0;">â€¢ Entregables completos: <strong>$2,200</strong></li>
+                    <li style="padding: 8px 0;">â€¢ Llamada setup inicial (90 min): <strong>$300</strong></li>
+                    <li style="padding: 8px 0;">â€¢ 3 meses seguimiento (3 llamadas/mes): <strong>$300</strong></li>
+                    <li style="padding: 8px 0; margin-top: 10px; font-size: 1.2em; color: #d4af37;"><strong>TOTAL: $2,800</strong></li>
+                </ul>
+            </div>
+
+            <div class="best-for">
+                <p><strong>Ideal para:</strong> Profesionales que quieren aprender el proceso e implementar 
+                personalmente, pero valoran la guÃ­a experta y el seguimiento para asegurar resultados Ã³ptimos. 
+                Perfecto para quienes invierten por primera vez en redes sociales estratÃ©gicas.</p>
+            </div>
+        </div>
+
+        <!-- OPCIÃ“N 3 -->
+        <div class="service-card">
+            <div class="service-header">
+                <h3 class="service-title">OpciÃ³n 3: Done-For-You</h3>
+                <div class="service-price">$4,500</div>
+            </div>
+            
+            <p style="font-size: 1.1em; margin-bottom: 20px;">
+                ImplementaciÃ³n completa y gestiÃ³n activa durante 3 meses. Vos te enfocÃ¡s en tu arte, 
+                yo manejo las redes sociales.
+            </p>
+
+            <div class="includes-section">
+                <h4>âœ… ImplementaciÃ³n y GestiÃ³n Completa:</h4>
+                <ul>
+                    <li><strong>Setup Completo de Perfiles ($500 valor):</strong>
+                        <ul style="margin-top: 10px; padding-left: 20px; list-style: disc;">
+                            <li style="padding: 5px 0;">CreaciÃ³n/optimizaciÃ³n de Instagram Business</li>
+                            <li style="padding: 5px 0;">CreaciÃ³n/optimizaciÃ³n de LinkedIn</li>
+                            <li style="padding: 5px 0;">CreaciÃ³n/optimizaciÃ³n de Facebook Page</li>
+                            <li style="padding: 5px 0;">Fotos de perfil y portadas optimizadas</li>
+                            <li style="padding: 5px 0;">BIOs escritas e implementadas</li>
+                            <li style="padding: 5px 0;">CreaciÃ³n de Instagram Highlights</li>
+                            <li style="padding: 5px 0;">Link tree configurado</li>
+                        </ul>
+                    </li>
+                    <li style="margin-top: 15px;"><strong>ProgramaciÃ³n Completa de 90 Posts ($800 valor):</strong>
+                        <ul style="margin-top: 10px; padding-left: 20px; list-style: disc;">
+                            <li style="padding: 5px 0;">ImportaciÃ³n y programaciÃ³n en Later/Planoly</li>
+                            <li style="padding: 5px 0;">AdaptaciÃ³n de copy segÃºn necesidad</li>
+                            <li style="padding: 5px 0;">SelecciÃ³n/ediciÃ³n bÃ¡sica de imÃ¡genes</li>
+                            <li style="padding: 5px 0;">Hashtags optimizados por post</li>
+                            <li style="padding: 5px 0;">Calendario de publicaciÃ³n estratÃ©gico</li>
+                        </ul>
+                    </li>
+                    <li style="margin-top: 15px;"><strong>GestiÃ³n Activa 3 Meses ($1,000 valor):</strong>
+                        <ul style="margin-top: 10px; padding-left: 20px; list-style: disc;">
+                            <li style="padding: 5px 0;">Engagement diario (30 min/dÃ­a)</li>
+                            <li style="padding: 5px 0;">Respuesta a DMs y comentarios</li>
+                            <li style="padding: 5px 0;">Seguimiento de cuentas estratÃ©gicas</li>
+                            <li style="padding: 5px 0;">Reportes mensuales detallados</li>
+                            <li style="padding: 5px 0;">Ajustes de estrategia segÃºn mÃ©tricas</li>
+                            <li style="padding: 5px 0;">Nuevos posts segÃºn necesidad (hasta 10/mes adicionales)</li>
+                        </ul>
+                    </li>
+                    <li style="margin-top: 15px;">Todos los entregables de OpciÃ³n 1</li>
+                    <li>CapacitaciÃ³n final para continuar autÃ³nomamente</li>
+                </ul>
+            </div>
+
+            <div style="background: #f8f8f8; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <p style="font-size: 1.05em;"><strong>Desglose de inversiÃ³n:</strong></p>
+                <ul style="list-style: none; padding: 0; margin: 15px 0;">
+                    <li style="padding: 8px 0;">â€¢ Entregables completos: <strong>$2,200</strong></li>
+                    <li style="padding: 8px 0;">â€¢ Setup completo de perfiles: <strong>$500</strong></li>
+                    <li style="padding: 8px 0;">â€¢ ProgramaciÃ³n de 90 posts: <strong>$800</strong></li>
+                    <li style="padding: 8px 0;">â€¢ GestiÃ³n activa 3 meses: <strong>$1,000</strong></li>
+                    <li style="padding: 8px 0; margin-top: 10px; font-size: 1.2em; color: #d4af37;"><strong>TOTAL: $4,500</strong></li>
+                </ul>
+            </div>
+
+            <div class="best-for">
+                <p><strong>Ideal para:</strong> Artistas y profesionales que prefieren delegar completamente 
+                la gestiÃ³n de redes sociales para enfocarse 100% en su trabajo creativo. DespuÃ©s de los 3 meses, 
+                tenÃ©s todo el sistema funcionando y podÃ©s continuar tÃº mismo o contratar gestiÃ³n mensual.</p>
+            </div>
+        </div>
+
+        <!-- TABLA COMPARATIVA -->
+        <h2>Comparativa RÃ¡pida</h2>
+        
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>CaracterÃ­sticas</th>
+                    <th>OpciÃ³n 1<br>$2,200</th>
+                    <th>OpciÃ³n 2<br>$2,800</th>
+                    <th>OpciÃ³n 3<br>$4,500</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>8 Documentos completos</strong></td>
+                    <td style="text-align: center; color: #4CAF50; font-size: 1.3em;">âœ“</td>
+                    <td style="text-align: center; color: #4CAF50; font-size: 1.3em;">âœ“</td>
+                    <td style="text-align: center; color: #4CAF50; font-size: 1.3em;">âœ“</td>
+                </tr>
+                <tr>
+                    <td><strong>90 posts con copy escrito</strong></td>
+                    <td style="text-align: center; color: #4CAF50; font-size: 1.3em;">âœ“</td>
+                    <td style="text-align: center; color: #4CAF50; font-size: 1.3em;">âœ“</td>
+                    <td style="text-align: center; color: #4CAF50; font-size: 1.3em;">âœ“</td>
+                </tr>
+                <tr>
+                    <td><strong>100+ hashtags organizados</strong></td>
+                    <td style="text-align: center; color: #4CAF50; font-size: 1.3em;">âœ“</td>
+                    <td style="text-align: center; color: #4CAF50; font-size: 1.3em;">âœ“</td>
+                    <td style="text-align: center; color: #4CAF50; font-size: 1.3em;">âœ“</td>
+                </tr>
+                <tr>
+                    <td><strong>Llamada setup inicial</strong></td>
+                    <td style="text-align: center; color: #999;">â€“</td>
+                    <td style="text-align: center; color: #4CAF50; font-size: 1.3em;">âœ“</td>
+                    <td style="text-align: center; color: #4CAF50; font-size: 1.3em;">âœ“</td>
+                </tr>
+                <tr>
+                    <td><strong>Llamadas de seguimiento</strong></td>
+                    <td style="text-align: center; color: #999;">â€“</td>
+                    <td style="text-align: center; color: #4CAF50;">3 mensuales</td>
+                    <td style="text-align: center; color: #4CAF50;">Incluidas</td>
+                </tr>
+                <tr>
+                    <td><strong>Setup de perfiles</strong></td>
+                    <td style="text-align: center; color: #999;">Lo hacÃ©s vos</td>
+                    <td style="text-align: center; color: #4CAF50;">Guiado</td>
+                    <td style="text-align: center; color: #4CAF50;">Completo</td>
+                </tr>
+                <tr>
+                    <td><strong>ProgramaciÃ³n de posts</strong></td>
+                    <td style="text-align: center; color: #999;">Lo hacÃ©s vos</td>
+                    <td style="text-align: center; color: #4CAF50;">Guiado</td>
+                    <td style="text-align: center; color: #4CAF50;">Completo</td>
+                </tr>
+                <tr>
+                    <td><strong>Engagement diario</strong></td>
+                    <td style="text-align: center; color: #999;">Lo hacÃ©s vos</td>
+                    <td style="text-align: center; color: #999;">Lo hacÃ©s vos</td>
+                    <td style="text-align: center; color: #4CAF50;">3 meses</td>
+                </tr>
+                <tr>
+                    <td><strong>GestiÃ³n completa</strong></td>
+                    <td style="text-align: center; color: #999;">â€“</td>
+                    <td style="text-align: center; color: #999;">â€“</td>
+                    <td style="text-align: center; color: #4CAF50; font-size: 1.3em;">âœ“</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- CÃ“MO ELEGIR -->
+        <div style="background: #fffbf0; border-left: 4px solid #d4af37; padding: 30px; margin: 50px 0; border-radius: 4px;">
+            <h3 style="color: #d4af37; margin-bottom: 20px;">ðŸ’¡ Â¿CÃ³mo Elegir?</h3>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; margin-top: 25px;">
+                <div>
+                    <p style="font-weight: bold; margin-bottom: 10px; font-size: 1.1em;">ElegÃ­ OpciÃ³n 1 si:</p>
+                    <ul style="margin-left: 20px; line-height: 1.8;">
+                        <li>TenÃ©s tiempo para implementar</li>
+                        <li>Sos tech-savvy</li>
+                        <li>Presupuesto ajustado</li>
+                        <li>QuerÃ©s total control del proceso</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <p style="font-weight: bold; margin-bottom: 10px; font-size: 1.1em;">ElegÃ­ OpciÃ³n 2 si:</p>
+                    <ul style="margin-left: 20px; line-height: 1.8;">
+                        <li>QuerÃ©s aprender el proceso</li>
+                        <li>NecesitÃ¡s guÃ­a experta</li>
+                        <li>ValorÃ¡s el seguimiento</li>
+                        <li>Primera vez con redes estratÃ©gicas</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <p style="font-weight: bold; margin-bottom: 10px; font-size: 1.1em;">ElegÃ­ OpciÃ³n 3 si:</p>
+                    <ul style="margin-left: 20px; line-height: 1.8;">
+                        <li>QuerÃ©s delegar totalmente</li>
+                        <li>Enfoque 100% en tu arte</li>
+                        <li>Resultados garantizados</li>
+                        <li>No tenÃ©s tiempo para gestionar</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- CTA SECTION -->
+    <div class="cta-section">
+        <h2 style="font-size: 2.5em; margin-bottom: 20px; color: #ffffff;">Â¿Listo para comenzar?</h2>
+        <p style="font-size: 1.2em; margin-bottom: 40px; max-width: 700px; margin-left: auto; margin-right: auto;">
+            ElegÃ­ tu opciÃ³n y agendemos una llamada inicial de 30 minutos (gratis) para resolver 
+            dudas y definir prÃ³ximos pasos.
+        </p>
+        
+        <a href="/cdn-cgi/l/email-protection#b1dcd0c5d4def1d6c3c4c1ded8dfd7d8dfd8c5de9fd2c38ec2c4d3dbd4d2c58ce1ddd0df91d5d491e3d4d5d4c291e2ded2d8d0ddd4c2919c91fdc4d8c291f5d8d4d6de91e3d0dcdec2" class="cta-button">
+            ðŸ“§ Contactar por Email
+        </a>
+        
+        <a href="https://wa.me/50670143739?text=Hola%20Mateo%2C%20me%20interesa%20el%20plan%20de%20redes%20sociales" class="cta-button">
+            ðŸ’¬ WhatsApp: +506 7014-3739
+        </a>
+
+        <p style="margin-top: 40px; font-size: 1.1em; color: #cccccc;">
+            <strong>PrÃ³ximos Pasos:</strong><br>
+            1. ElegÃ­ tu opciÃ³n preferida<br>
+            2. Contactame vÃ­a email o WhatsApp<br>
+            3. Agendamos una llamada inicial (30 min, gratis)<br>
+            4. Comenzamos implementaciÃ³n
+        </p>
+    </div>
+
+    <footer>
+        <div style="max-width: 900px; margin: 0 auto;">
+            <h3 style="color: #d4af37; margin-bottom: 20px;">Mateo Arias</h3>
+            <p>Consultor en AutomatizaciÃ³n & TransformaciÃ³n Empresarial</p>
+            <p>Grupo Infinito Costa Rica</p>
+            <p style="margin-top: 20px;">ðŸ“§ <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="aac7cbdecfc5eacdd8dfdac5c3c4ccc3c4c3dec584c9d8">[email&#160;protected]</a> | ðŸ“± +506 7014-3739</p>
+            
+            <div style="margin-top: 40px;">
+                <a href="0_INDICE_PLAN_COMPLETO.html" style="display: inline-block; padding: 12px 30px; background: #d4af37; color: #1a1a1a; text-decoration: none; border-radius: 4px; font-weight: bold;">
+                    â¬…ï¸ Volver al Ãndice Principal
+                </a>
+            </div>
+ 

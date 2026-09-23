@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estrategia de Contenido - Luis Diego Ramos</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; line-height: 1.6; color: #1a1a1a; background: #fafafa; }
+        
+        /* STICKY NAVIGATION */
+        .sticky-nav {
+            position: fixed; top: 0; left: 0; right: 0;
+            background: rgba(26, 26, 26, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid #d4af37;
+        }
+        
+        .sticky-nav-content {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 40px;
+        }
+        
+        .nav-brand { font-size: 1.1em; font-weight: 300; color: #d4af37; letter-spacing: 1px; }
+        .nav-brand span { color: #ffffff; font-weight: 400; }
+        .nav-links { display: flex; gap: 5px; flex-wrap: wrap; }
+        .nav-links a {
+            color: #e0e0e0; text-decoration: none;
+            padding: 8px 16px; font-size: 0.9em;
+            transition: all 0.3s ease; border-radius: 3px;
+        }
+        .nav-links a:hover { color: #d4af37; background: rgba(212, 175, 55, 0.1); }
+        .nav-links a.active { color: #d4af37; }
+        
+        /* HERO SECTION */
+        .hero {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            color: #ffffff; padding: 120px 40px 80px; text-align: center; margin-top: 60px;
+        }
+        .hero h1 { font-size: 2.8em; margin-bottom: 20px; font-weight: 300; letter-spacing: 1px; }
+        .hero .subtitle { font-size: 1.3em; color: #d4af37; margin-bottom: 30px; }
+        .hero .description {
+            font-size: 1.1em; color: #cccccc;
+            max-width: 800px; margin: 0 auto; line-height: 1.8;
+        }
+        
+        /* SECTIONS */
+        section { padding: 80px 40px; background: #ffffff; border-bottom: 1px solid #e5e5e5; }
+        section:nth-child(even) { background: #f8f8f8; }
+        section h2 {
+            font-size: 2.2em; margin-bottom: 30px; color: #1a1a1a;
+            font-weight: 300; text-align: center;
+            position: relative; padding-bottom: 20px;
+        }
+        section h2::after {
+            content: ''; position: absolute; bottom: 0; left: 50%;
+            transform: translateX(-50%); width: 80px; height: 3px; background: #d4af37;
+        }
+        
+        /* SUMMARY BOX */
+        .summary-box {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            color: #ffffff; padding: 40px; border-radius: 8px;
+            margin: 40px 0; border-left: 4px solid #d4af37;
+        }
+        .summary-box h3 { color: #d4af37; font-size: 1.6em; margin-bottom: 20px; font-weight: 400; }
+        .summary-box ul { list-style: none; padding-left: 0; }
+        .summary-box li {
+            padding: 12px 0; padding-left: 30px;
+            position: relative; font-size: 1.05em; line-height: 1.7;
+        }
+        .summary-box li::before {
+            content: 'â–¸'; position: absolute; left: 0;
+            color: #d4af37; font-size: 1.2em;
+        }
+        
+        /* EXPANDIBLE */
+        .expandible {
+            background: #fff; border: 1px solid #e5e5e5;
+            border-radius: 8px; margin: 20px 0;
+            overflow: hidden; transition: all 0.3s ease;
+        }
+        .expandible:hover { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); }
+        .expandible-header {
+            padding: 25px 30px; background: #f8f8f8;
+            cursor: pointer; display: flex;
+            justify-content: space-between; align-items: center;
+            transition: all 0.3s ease;
+        }
+        .expandible-header:hover { background: #f0f0f0; }
+        .expandible-header h3 { color: #1a1a1a; font-size: 1.4em; font-weight: 400; }
+        .expandible-icon { color: #d4af37; font-size: 1.5em; transition: transform 0.3s ease; }
+        .expandible-content {
+            padding: 0 30px; max-height: 0;
+            overflow: hidden; transition: all 0.4s ease;
+        }
+        .expandible.active .expandible-content { padding: 30px; max-height: 5000px; }
+        .expandible.active .expandible-icon { transform: rotate(180deg); }
+        
+        /* GRID */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px; margin: 30px 0;
+        }
+        .grid-item {
+            background: #ffffff; padding: 30px;
+            border-radius: 8px; border: 1px solid #e5e5e5;
+            transition: all 0.3s ease;
+        }
+        .grid-item:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+        .grid-item h4 { color: #d4af37; font-size: 1.3em; margin-bottom: 15px; font-weight: 400; }
+        .grid-item ul { list-style: none; padding: 0; }
+        .grid-item li { padding: 8px 0; padding-left: 20px; position: relative; }
+        .grid-item li::before { content: 'â€¢'; position: absolute; left: 0; color: #d4af37; }
+        
+        /* PILLAR CARDS */
+        .pillar-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f8f8 100%);
+            padding: 30px; border-radius: 8px;
+            border-left: 4px solid #d4af37; margin: 20px 0;
+        }
+        .pillar-card h4 { color: #1a1a1a; font-size: 1.4em; margin-bottom: 10px; }
+        .pillar-card .percentage {
+            color: #d4af37; font-size: 1.8em;
+            font-weight: bold; margin-bottom: 15px;
+        }
+        .pillar-card p { color: #555; line-height: 1.7; margin-bottom: 10px; }
+        
+        /* TIMELINE */
+        .timeline { position: relative; padding-left: 40px; margin: 40px 0; }
+        .timeline::before {
+            content: ''; position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 2px; background: #d4af37;
+        }
+        .timeline-item { position: relative; padding-bottom: 30px; }
+        .timeline-item::before {
+            content: ''; position: absolute;
+            left: -47px; top: 5px;
+            width: 12px; height: 12px; border-radius: 50%;
+            background: #d4af37; border: 3px solid #ffffff;
+            box-shadow: 0 0 0 2px #d4af37;
+        }
+        .timeline-item h4 { color: #1a1a1a; font-size: 1.3em; margin-bottom: 10px; }
+        .timeline-item p { color: #666; line-height: 1.7; }
+        
+        /* HIGHLIGHT BOX */
+        .highlight-box {
+            background: #fffbf0; border-left: 4px solid #d4af37;
+            padding: 25px; margin: 25px 0; border-radius: 4px;
+        }
+        .highlight-box strong { color: #d4af37; }
+        
+        /* FOOTER */
+        footer {
+            background: #1a1a1a; color: #e0e0e0;
+            padding: 50px 40px; text-align: center;
+        }
+        footer h3 { color: #d4af37; margin-bottom: 20px; font-size: 1.3em; font-weight: 400; }
+        footer p { margin: 10px 0; line-height: 1.8; }
+        footer .contact-info { margin-top: 25px; padding-top: 25px; border-top: 1px solid #333; }
+        footer .copyright { margin-top: 30px; font-size: 0.9em; color: #999; }
+        
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2em; }
+            .sticky-nav-content { flex-direction: column; gap: 15px; padding: 15px 20px; }
+            .nav-links { justify-content: center; }
+            .nav-links a { font-size: 0.85em; padding: 6px 12px; }
+            section { padding: 50px 20px; }
+            .grid { grid-template-columns: 1fr; }
+        }
+        
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+<body>
+
+    <!-- STICKY NAVIGATION -->
+    <nav class="sticky-nav">
+        <div class="sticky-nav-content">
+            <div class="nav-brand">Luis Diego Ramos <span>| Estrategia de Contenido</span></div>
+            <div class="nav-links">
+                <a href="#resumen">Resumen</a>
+                <a href="#plataformas">Plataformas</a>
+                <a href="#pilares">Pilares</a>
+                <a href="#crecimiento">Crecimiento</a>
+                <a href="#engagement">Engagement</a>
+                <a href="#metricas">MÃ©tricas</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="hero">
+        <h1>Estrategia de Contenido de Redes Sociales</h1>
+        <p class="subtitle">Plan Integral para Luis Diego Ramos</p>
+        <p class="description">
+            Estrategia diseÃ±ada para posicionar a Luis Diego Ramos como el referente de fotografÃ­a urbana documental 
+            y arqueologÃ­a visual en Costa Rica, aplicando el framework de 100 libros de marketing y estrategia Blue Ocean.
+        </p>
+    </div>
+
+    <!-- RESUMEN -->
+    <section id="resumen">
+        <div class="container">
+            <h2>ðŸ“Š Resumen Ejecutivo</h2>
+            
+            <div class="summary-box">
+                <h3>Objetivos SMART (6 meses)</h3>
+                <ul>
+                    <li><strong>EspecÃ­fico:</strong> Posicionar a Luis Diego Ramos como EL referente de arqueologÃ­a urbana y fotografÃ­a documental en Costa Rica</li>
+                    <li><strong>Medible:</strong> 500-1000 seguidores de calidad, 10-15 consultas cualificadas/mes, 3-5 menciones en medios especializados</li>
+                    <li><strong>Alcanzable:</strong> Con inversiÃ³n de tiempo de 1-2 horas/dÃ­a y contenido de archivo existente</li>
+                    <li><strong>Relevante:</strong> Atraer curadores, coleccionistas, gestores culturales y prensa de arte</li>
+                    <li><strong>Temporal:</strong> ImplementaciÃ³n gradual en 3 fases durante 6 meses</li>
+                </ul>
+            </div>
+
+            <div class="grid">
+                <div class="grid-item">
+                    <h4>ðŸŽ¯ Objetivo Principal</h4>
+                    <ul>
+                        <li>Curadores de museos y galerÃ­as</li>
+                        <li>Coleccionistas de arte contemporÃ¡neo</li>
+                        <li>Gestores culturales</li>
+                        <li>Prensa especializada en arte</li>
+                    </ul>
+                </div>
+                
+                <div class="grid-item">
+                    <h4>ðŸ“ˆ KPIs Clave</h4>
+                    <ul>
+                        <li>500-1000 seguidores (calidad > cantidad)</li>
+                        <li>10-15 consultas cualificadas/mes</li>
+                        <li>3-5 menciones en medios de arte</li>
+                        <li>1-2 oportunidades de exposiciÃ³n</li>
+                    </ul>
+                </div>
+                
+                <div class="grid-item">
+                    <h4>ðŸ’° ROI Esperado</h4>
+                    <ul>
+                        <li>1-2 ventas de prints = ROI positivo</li>
+                        <li>Autoridad institucional</li>
+                        <li>Networking cultural</li>
+                        <li>Oportunidades de exposiciÃ³n</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <p><strong>Framework Aplicado:</strong> Esta estrategia integra los principios de <strong>Blue Ocean Strategy</strong> 
+                (dominar el nicho de arqueologÃ­a urbana), <strong>StoryBrand</strong> (Luis Diego como guÃ­a del arte urbano conceptual), 
+                <strong>Contagious</strong> (contenido remarkable que genera conversaciÃ³n), y <strong>Purple Cow</strong> (fotografÃ­a analÃ³gica + QR codes).</p>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>ðŸ“… Timeline de ImplementaciÃ³n</h4>
+                    <p><strong>Mes 1-2:</strong> Setup completo, optimizaciÃ³n de perfiles, primeros 30 posts de archivo</p>
+                </div>
+                <div class="timeline-item">
+                    <p><strong>Mes 3-4:</strong> Engagement activo, colaboraciones, participaciÃ³n en conversaciones del sector</p>
+                </div>
+                <div class="timeline-item">
+                    <p><strong>Mes 5-6:</strong> ConsolidaciÃ³n de autoridad, primeras oportunidades de exposiciÃ³n, medios</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PLATAFORMAS -->
+    <section id="plataformas">
+        <h2>ðŸ“± Estrategia por Plataforma</h2>
+        
+        <div class="expandible active">
+            <div class="expandible-header" onclick="toggleExpandible(this)">
+                <h3>Instagram (70% del esfuerzo) - Plataforma Principal</h3>
+                <span class="expandible-icon">â–¼</span>
+            </div>
+            <div class="expandible-content">
+                <h4 style="color: #d4af37; margin-bottom: 15px;">Â¿Por quÃ© Instagram?</h4>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="padding: 8px 0; padding-left: 25px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #d4af37;">âœ“</span>
+                        Plataforma visual perfecta para fotografÃ­a de alta calidad
+                    </li>
+                    <li style="padding: 8px 0; padding-left: 25px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #d4af37;">âœ“</span>
+                        Comunidad artÃ­stica y curatorial muy activa
+                    </li>
+                    <li style="padding: 8px 0; padding-left: 25px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #d4af37;">âœ“</span>
+                        GalerÃ­as y museos buscan artistas aquÃ­
+                    </li>
+                </ul>
+
+                <h4 style="color: #d4af37; margin: 25px 0 15px;">Estrategia de Contenido</h4>
+                
+                <div class="grid">
+                    <div class="grid-item">
+                        <h4>Feed</h4>
+                        <p><strong>Frecuencia:</strong> 3-4 posts/semana</p>
+                        <p><strong>Horarios:</strong> 6pm-8pm</p>
+                        <p><strong>Formato:</strong> Cuadrado, estÃ©tica curatorial</p>
+                    </div>
+                    
+                    <div class="grid-item">
+                        <h4>Stories</h4>
+                        <p><strong>Frecuencia:</strong> 5-7 dÃ­as/semana</p>
+                        <p><strong>Contenido:</strong> Behind the scenes</p>
+                        <p><strong>Highlights:</strong> Proyectos, Proceso, Exposiciones</p>
+                    </div>
+                    
+                    <div class="grid-item">
+                        <h4>Reels</h4>
+                        <p><strong>Frecuencia:</strong> 1-2/mes</p>
+                        <p><strong>DuraciÃ³n:</strong> 30-60 segundos</p>
+                        <p><strong>Contenido:</strong> Conceptos educativos</p>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>Grid Strategy:</strong> Alternancia entre obra destacada y detalles conceptuales. 
+                    Paleta consistente: tonos neutros urbanos con acentos dorados del QR code.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="expandible">
+            <div class="expandible-header" onclick="toggleExpandible(this)">
+                <h3>LinkedIn (20% del esfuerzo) - Networking Profesional</h3>
+                <span class="expandible-icon">â–¼</span>
+            </div>
+            <div class="expandible-content">
+                <p><strong>Frecuencia:</strong> 1-2 posts/semana</p>
+                <p><strong>Formato:</strong> ArtÃ­culos de 300-500 palabras sobre arqueologÃ­a urbana, memoria colectiva, proceso analÃ³gico</p>
+                <div class="highlight-box">
+                    <p><strong>Tone of Voice:</strong> MÃ¡s profesional y reflexivo. Enfoque conceptual y teÃ³rico. TerminologÃ­a acadÃ©mica.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="expandible">
+            <div class="expandible-header" onclick="toggleExpandible(this)">
+                <h3>Facebook (10% del esfuerzo) - Eventos y Alcance Local</h3>
+                <span class="expandible-icon">â–¼</span>
+            </div>
+            <div class="expandible-content">
+                <p><strong>Frecuencia:</strong> 2-3 posts/semana</p>
+                <p><strong>Contenido:</strong> Cross-posting de Instagram, eventos, notas de prensa, grupos de arte</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PILARES -->
+    <section id="pilares">
+        <h2>ðŸŽ¯ Pilares de Contenido</h2>
+        
+        <div class="pillar-card">
+            <div class="percentage">40%</div>
+            <h4>1. Obra Destacada (Portfolio)</h4>
+            <p><strong>PropÃ³sito:</strong> Mostrar calidad tÃ©cnica y conceptual</p>
+            <p><strong>Formato:</strong> FotografÃ­a cuadrada, presentaciÃ³n museogrÃ¡fica</p>
+        </div>
+
+        <div class="pillar-card">
+            <div class="percentage">25%</div>
+            <h4>2. Behind the Scenes (Proceso)</h4>
+            <p><strong>PropÃ³sito:</strong> Humanizar el trabajo, mostrar dedicaciÃ³n</p>
+            <p><strong>Formato:</strong> Proceso, cÃ¡mara en acciÃ³n, revelado</p>
+        </div>
+
+        <div class="pillar-card">
+            <div class="percentage">20%</div>
+            <h4>3. Conceptos Educativos (Thought Leadership)</h4>
+            <p><strong>PropÃ³sito:</strong> Establecer autoridad en arqueologÃ­a urbana</p>
+            <p><strong>Formato:</strong> Carruseles explicativos, overlays conceptuales</p>
+        </div>
+
+        <div class="pillar-card">
+            <div class="percentage">10%</div>
+            <h4>4. Exposiciones y Eventos</h4>
+            <p><strong>PropÃ³sito:</strong> Demostrar reconocimiento institucional</p>
+        </div>
+
+        <div class="pillar-card">
+            <div class="percentage">5%</div>
+            <h4>5. TÃ©cnica FotogrÃ¡fica</h4>
+            <p><strong>PropÃ³sito:</strong> Conectar con comunidad analÃ³gica</p>
+        </div>
+    </section>
+
+    <!-- CRECIMIENTO -->
+    <section id="crecimiento">
+        <h2>ðŸ“ˆ Plan de Crecimiento (6 Meses)</h2>
+        
+        <div class="timeline">
+            <div class="timeline-item">
+                <h4>Fase 1: FundaciÃ³n (Mes 1-2)</h4>
+                <p><strong>Objetivos:</strong> Setup completo, primeros 30 posts, estÃ©tica visual establecida</p>
+                <p><strong>Meta:</strong> 100-200 seguidores orgÃ¡nicos</p>
+            </div>
+
+            <div class="timeline-item">
+                <h4>Fase 2: Engagement (Mes 3-4)</h4>
+                <p><strong>Objetivos:</strong> Aumentar interacciÃ³n, colaboraciones, consultas por DM</p>
+                <p><strong>Meta:</strong> 300-500 seguidores de calidad</p>
+            </div>
+
+            <div class="timeline-item">
+                <h4>Fase 3: Autoridad (Mes 5-6)</h4>
+                <p><strong>Objetivos:</strong> ConsolidaciÃ³n, primera exposiciÃ³n, menciones en medios</p>
+                <p><strong>Meta:</strong> 500-1000 seguidores cualificados</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ENGAGEMENT -->
+    <section id="engagement">
+        <h2>ðŸ’¬ Plan de Engagement</h2>
+        
+        <div class="summary-box">
+            <h3>Daily Routine (30 min/dÃ­a)</h3>
+            <ul>
+                <li><strong>MaÃ±ana (15 min):</strong> Revisar notificaciones, responder comentarios, DMs</li>
+                <li><strong>Tarde (15 min):</strong> Engagement proactivo - comentar en 5-10 cuentas estratÃ©gicas</li>
+            </ul>
+        </div>
+
+        <div class="grid">
+            <div class="grid-item">
+                <h4>A QuiÃ©n Seguir (100 cuentas)</h4>
+                <ul>
+                    <li>30 GalerÃ­as (CR y regiÃ³n)</li>
+                    <li>20 Museos</li>
+                    <li>20 Artistas contemporÃ¡neos</li>
+                    <li>15 Curadores/Gestores</li>
+                    <li>10 Medios de arte</li>
+                    <li>5 Coleccionistas</li>
+                </ul>
+            </div>
+            
+            <div class="grid-item">
+                <h4>CÃ³mo Interactuar</h4>
+                <p><strong>âœ“ Hacer:</strong> Comentarios reflexivos, preguntas inteligentes</p>
+                <p><strong>âœ— Evitar:</strong> Solo emojis, "Nice pic", auto-promociÃ³n</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- MÃ‰TRICAS -->
+    <section id="metricas">
+        <h2>ðŸ“Š MÃ©tricas de Ã‰xito</h2>
+        
+        <div class="summary-box">
+            <h3>MÃ©tricas Primarias</h3>
+            <ul>
+                <li><strong>Consultas cualificadas:</strong> 10-15/mes</li>
+                <li><strong>Menciones medios:</strong> 3-5/6 meses</li>
+                <li><strong>Oportunidades exposiciÃ³n:</strong> 1-2/6 meses</li>
+                <li><strong>Engagement rate:</strong> 3-5%</li>
+            </ul>
+        </div>
+
+        <div class="highlight-box">
+            <p><strong>Framework - The Long Tail:</strong> Mejor 500 seguidores del nicho especÃ­fico que 10,000 genÃ©ricos. 
+            El valor estÃ¡ en la calidad de la audiencia.</p>
+        </div>
+    </section>
+
+    <!-- INVERSIÃ“N -->
+    <section id="inversion" style="background: #f8f8f8;">
+        <div class="container">
+            <h2>ðŸ’° Opciones de InversiÃ³n</h2>
+            
+            <p style="text-align: center; font-size: 1.1em; color: #666; margin-bottom: 40px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                Este plan completo puede implementarse de 3 formas diferentes segÃºn tu nivel de involucramiento y presupuesto.
+            </p>
+
+            <div class="grid">
+                <div class="grid-item" style="background: #ffffff;">
+                    <h4>OpciÃ³n 1: Solo Entregables</h4>
+                    <div style="font-size: 2.5em; color: #d4af37; font-weight: bold; margin: 20px 0;">$2,200</div>
+                    <p style="margin-bottom: 15px;">RecibÃ­s los 8 documentos completos e implementÃ¡s por tu cuenta siguiendo las guÃ­as detalladas.</p>
+                    <ul style="margin-top: 15px;">
+                        <li>8 documentos HTML completos</li>
+                        <li>90 posts con copy escrito</li>
+                        <li>Sin soporte adicional</li>
+                    </ul>
+                </div>
+                
+                <div class="grid-item" style="background: #fffbf0; border: 2px solid #d4af37;">
+                    <div style="background: #d4af37; color: #1a1a1a; padding: 5px 15px; border-radius: 20px; font-size: 0.85em; font-weight: bold; display: inline-block; margin-bottom: 10px;">
+                        â­ RECOMENDADO
+                    </div>
+                    <h4>OpciÃ³n 2: Con AsesorÃ­a</h4>
+                    <div style="font-size: 2.5em; color: #d4af37; font-weight: bold; margin: 20px 0;">$2,800</div>
+                    <p style="margin-bottom: 15px;">Todo lo anterior + llamada setup inicial (90 min) + 3 llamadas mensuales de seguimiento.</p>
+                    <ul style="margin-top: 15px;">
+                        <li>ConfiguraciÃ³n guiada de perfiles</li>
+                        <li>RevisiÃ³n mensual de mÃ©tricas</li>
+                        <li>Ajustes de estrategia</li>
+                        <li>Soporte vÃ­a WhatsApp</li>
+                    </ul>
+                </div>
+                
+                <div class="grid-item" style="background: #ffffff;">
+                    <h4>OpciÃ³n 3: Done-For-You</h4>
+                    <div style="font-size: 2.5em; color: #d4af37; font-weight: bold; margin: 20px 0;">$4,500</div>
+                    <p style="margin-bottom: 15px;">ImplementaciÃ³n completa: setup de perfiles, programaciÃ³n de 90 posts, y gestiÃ³n activa durante 3 meses.</p>
+                    <ul style="margin-top: 15px;">
+                        <li>Yo lo implemento todo</li>
+                        <li>Engagement diario (30 min)</li>
+                        <li>GestiÃ³n activa 3 meses</li>
+                        <li>Reportes mensuales</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="highlight-box" style="margin-top: 40px;">
+                <p style="text-align: center; font-size: 1.1em;">
+                    <strong>Detalles completos de cada opciÃ³n en:</strong> 
+                    <a href="0_INDICE_PLAN_COMPLETO.html#inversion" style="color: #d4af37; text-decoration: underline;">
+                        Ver Comparativa Completa â†’
+                    </a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <h3>Mateo Arias</h3>
+        <p>Consultor en AutomatizaciÃ³n & TransformaciÃ³n Empresarial</p>
+        <p>Grupo Infinito Costa Rica</p>
+        
+        <div class="contact-info">
+            <p>ðŸ“§ <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a6cbc7d2c3c988c7d4cfc7d588c4c7d4d4c7c8d2c3d5e6c1cbc7cfca88c5c9cb">[email&#160;protected]</a></p>
+            <p>ðŸ“± WhatsApp: +506 7014-3739</p>
+        </div>
+        
+        <p class="copyright">
+            Â© 2025 Grupo Infinito Costa Rica | Plan de Redes Sociales - Luis Diego Ramos
+        </p>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        function toggleExpandible(header) {
+            const expandible = header.parentElement;
+            expandible.classList.toggle('active');
+        }
+        
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Highlight active nav link
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+ 

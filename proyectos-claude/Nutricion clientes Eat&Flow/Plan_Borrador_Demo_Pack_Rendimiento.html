@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan Rendimiento Demo | eat&flow</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #F5F9F7 0%, #E8F3EF 100%);
+            color: #2D4A3E;
+            line-height: 1.8;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 920px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 30px rgba(45,74,62,0.12);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1a5945 0%, #2D4A3E 100%);
+            color: white;
+            padding: 44px 30px;
+            text-align: center;
+            border-bottom: 4px solid #ff9800;
+        }
+
+        .header .brand {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            opacity: 0.9;
+            margin-bottom: 18px;
+            text-transform: uppercase;
+        }
+
+        .header h1 { font-size: 30px; font-weight: 700; margin-bottom: 6px; }
+        .header .cliente { font-size: 22px; font-weight: 600; margin-top: 12px; }
+
+        .badge {
+            display: inline-block;
+            background: #ff9800;
+            color: white;
+            padding: 7px 22px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-top: 14px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .demo-banner {
+            background: linear-gradient(135deg, #ff9800, #e65100);
+            color: white;
+            padding: 14px 24px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .tabs {
+            display: flex;
+            overflow-x: auto;
+            background: white;
+            border-bottom: 2px solid #E8F3EF;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(45,74,62,0.06);
+        }
+
+        .tab {
+            padding: 15px 20px;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            font-size: 13px;
+            font-weight: 600;
+            color: #6c757d;
+            white-space: nowrap;
+            transition: all 0.3s;
+            flex-shrink: 0;
+        }
+
+        .tab:hover { background: #F5F9F7; color: #2D4A3E; }
+        .tab.active { color: #1a5945; border-bottom: 3px solid #ff9800; background: #F5F9F7; }
+
+        .content { padding: 40px 32px; }
+
+        .section { display: none; }
+        .section.active { display: block; animation: fadeIn 0.3s; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            font-size: 26px;
+            color: #1a5945;
+            margin-bottom: 28px;
+            padding-bottom: 14px;
+            border-bottom: 3px solid #ff9800;
+        }
+
+        .subsection-title {
+            font-size: 20px;
+            color: #2D4A3E;
+            margin: 36px 0 18px;
+            font-weight: 700;
+        }
+
+        .card {
+            background: #F5FAF8;
+            border-left: 4px solid #8bc34a;
+            padding: 20px 22px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
+        .card h3 { color: #1a5945; font-size: 17px; margin-bottom: 12px; }
+        .card p { margin-bottom: 8px; font-size: 14.5px; }
+
+        .card.highlight {
+            background: linear-gradient(135deg, #fff8f0, #fff3e6);
+            border-left: 4px solid #ff9800;
+        }
+
+        .card.success {
+            background: #e8f5e9;
+            border-left: 4px solid #43a047;
+        }
+
+        .card.warning {
+            background: #fffde7;
+            border-left: 4px solid #fdd835;
+        }
+
+        .card.critical {
+            background: #fce4ec;
+            border-left: 4px solid #e53935;
+        }
+
+        .card.dark {
+            background: #e8f0ee;
+            border-left: 4px solid #1a5945;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #e8f5e9, #d4edda);
+            border-left: 4px solid #43a047;
+            padding: 20px 22px;
+            margin: 22px 0;
+            border-radius: 8px;
+        }
+
+        .info-box h3 { color: #2e7d32; margin-bottom: 10px; font-size: 16px; }
+
+        .warning-box {
+            background: #fffde7;
+            border-left: 4px solid #fdd835;
+            padding: 18px 20px;
+            margin: 16px 0;
+            border-radius: 8px;
+        }
+
+        .critical-box {
+            background: #fce4ec;
+            border-left: 4px solid #e53935;
+            padding: 18px 20px;
+            margin: 16px 0;
+            border-radius: 8px;
+        }
+
+        .orange-box {
+            background: linear-gradient(135deg, #fff8f0, #fff3e6);
+            border-left: 4px solid #ff9800;
+            padding: 20px 22px;
+            margin: 22px 0;
+            border-radius: 8px;
+        }
+
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 16px;
+            margin: 22px 0;
+        }
+
+        .metric-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: #ff9800;
+            margin: 8px 0;
+        }
+
+        .metric-label {
+            font-size: 12px;
+            color: #6c757d;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 16px 0;
+            border-radius: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            font-size: 14px;
+        }
+
+        th {
+            background: #1a5945;
+            color: white;
+            padding: 13px 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td { padding: 11px 15px; border-bottom: 1px solid #E8F3EF; vertical-align: top; }
+        tr:hover { background: #F5FAF8; }
+
+        @media (max-width: 600px) {
+            table thead { display: none; }
+            table, tbody, tr, td { display: block; width: 100%; }
+            tr {
+                margin-bottom: 14px;
+                border: 1px solid #e0ede8;
+                border-radius: 8px;
+                overflow: hidden;
+            }
+            td {
+                padding: 10px 14px;
+                border-bottom: 1px solid #f0f7f4;
+                display: flex;
+                flex-direction: column;
+            }
+            td::before {
+                content: attr(data-label);
+                font-size: 11px;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 0.8px;
+                color: #ff9800;
+                margin-bottom: 4px;
+            }
+            td:last-child { border-bottom: none; }
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 32px;
+            margin: 28px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 3px;
+            background: #ff9800;
+        }
+
+        .timeline-item {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 18px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -38px; top: 24px;
+            width: 14px; height: 14px;
+            border-radius: 50%;
+            background: #ff9800;
+            border: 3px solid white;
+        }
+
+        .timeline-item h4 { color: #1a5945; font-size: 17px; margin-bottom: 10px; }
+
+        .whatsapp-box {
+            background: #e8f5e9;
+            border: 2px solid #43a047;
+            border-radius: 10px;
+            padding: 20px 22px;
+            margin: 20px 0;
+        }
+
+        .whatsapp-box h3 { color: #2e7d32; margin-bottom: 10px; }
+
+        .receta-bloque {
+            background: white;
+            border: 1px solid #e0ede8;
+            border-radius: 10px;
+            padding: 18px 20px;
+            margin-top: 14px;
+        }
+
+        .receta-bloque .receta-titulo {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1a5945;
+            margin-bottom: 6px;
+        }
+
+        .receta-bloque .receta-etiqueta {
+            font-size: 12px;
+            color: #ff9800;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .macros-tag {
+            display: inline-block;
+            background: #1a5945;
+            color: white;
+            font-size: 11.5px;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+
+        .carrera-bloque {
+            border: 2px solid #1a5945;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 18px;
+            background: white;
+        }
+
+        .carrera-bloque .fase {
+            background: #ff9800;
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .carrera-bloque h4 { color: #1a5945; font-size: 17px; margin-bottom: 8px; }
+
+        .diferencia-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 20px 0;
+        }
+
+        .diferencia-card {
+            padding: 18px 20px;
+            border-radius: 10px;
+        }
+
+        .diferencia-card.no {
+            background: #fce4ec;
+            border-left: 4px solid #e53935;
+        }
+
+        .diferencia-card.si {
+            background: #e8f5e9;
+            border-left: 4px solid #43a047;
+        }
+
+        .diferencia-card h4 {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .diferencia-card.no h4 { color: #c62828; }
+        .diferencia-card.si h4 { color: #2e7d32; }
+
+        .diferencia-card ul { font-size: 13.5px; line-height: 1.9; }
+
+        @media (max-width: 600px) {
+            .diferencia-grid { grid-template-columns: 1fr; }
+        }
+
+        ul { margin-left: 22px; line-height: 2; font-size: 14.5px; }
+        ol { margin-left: 22px; line-height: 2; font-size: 14.5px; }
+
+        .separador {
+            height: 1px;
+            background: #e0ede8;
+            margin: 28px 0;
+        }
+
+        .footer {
+            background: #1a5945;
+            color: white;
+            text-align: center;
+            padding: 22px;
+            font-size: 13px;
+            opacity: 0.92;
+            letter-spacing: 0.5px;
+        }
+
+        @media (max-width: 768px) {
+            .content { padding: 20px 16px; }
+            .metric-grid { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- BANNER DEMO -->
+    <div class="demo-banner">
+        PLAN DE MUESTRA — Perfil hipotético creado para ilustrar la metodología eat&flow
+    </div>
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="brand">eat&flow</div>
+        <h1>Pack Rendimiento</h1>
+        <p>Nutrición Específica para Competencia — Ultra Endurance Ciclismo</p>
+        <div class="cliente">Perfil de Muestra</div>
+        <div style="margin-top: 12px; font-size: 14px; opacity: 0.85; letter-spacing: 1px;">Asesoría Nutricional — Isa Herra</div>
+        <div class="badge">Documento Demostrativo | Metodología eat&flow</div>
+    </div>
+
+    <!-- TABS -->
+    <div class="tabs">
+        <button class="tab active" onclick="showSection('bienvenida')">Bienvenida</button>
+        <button class="tab" onclick="showSection('analisis')">Análisis</button>
+        <button class="tab" onclick="showSection('fondos')">Protocolo Fondos</button>
+        <button class="tab" onclick="showSection('recetas')">Recetas de Carrera</button>
+        <button class="tab" onclick="showSection('carrera')">Día de Competencia</button>
+        <button class="tab" onclick="showSection('ajustes')">Ajustes y Seguimiento</button>
+    </div>
+
+    <div class="content">
+
+        <!-- ======= BIENVENIDA ======= -->
+        <div id="bienvenida" class="section active">
+            <h2 class="section-title">Bienvenida — Pack Rendimiento</h2>
+
+            <div class="info-box">
+                <h3>Sobre este documento</h3>
+                <p>Este es un plan demostrativo del Pack Rendimiento de eat&flow, elaborado con un perfil hipotético de atleta. Refleja la estructura, profundidad y contenido de los planes reales de preparación específica para competencia. Cada plan real se construye a partir de un formulario de ingreso detallado.</p>
+            </div>
+
+            <h3 class="subsection-title">¿Qué es el Pack Rendimiento?</h3>
+
+            <div class="orange-box">
+                <p>El Pack Rendimiento es el plan para quien ya tiene una fecha de competencia y necesita preparar su nutrición específicamente para ese evento. No es un plan de alimentación diaria general — es un sistema diseñado alrededor del día de la carrera.</p>
+                <p style="margin-top: 10px;">Cubre cuatro áreas que ningún plan genérico de internet puede darte: aprender a comer mientras pedaleas en los fondos de entrenamiento, construir tus recetas personalizadas de carrera, ejecutar el protocolo completo el día del evento y tener acompañamiento real mientras todo eso sucede.</p>
+            </div>
+
+            <h3 class="subsection-title">Lo que incluye este pack</h3>
+
+            <div class="diferencia-grid">
+                <div class="diferencia-card no">
+                    <h4>Lo que no es</h4>
+                    <ul>
+                        <li>Un plan de comidas de semana</li>
+                        <li>Una lista de suplementos genérica</li>
+                        <li>Un protocolo copiado de internet</li>
+                        <li>Recomendaciones que no se prueban antes de la carrera</li>
+                        <li>Un documento que se envía y no se revisa más</li>
+                    </ul>
+                </div>
+                <div class="diferencia-card si">
+                    <h4>Lo que sí es</h4>
+                    <ul>
+                        <li>Protocolo progresivo de fueling en fondos</li>
+                        <li>Recetas personalizadas probadas en entrenamientos</li>
+                        <li>Plan completo del día de competencia</li>
+                        <li>Seguimiento por WhatsApp ilimitado</li>
+                        <li>Ajustes en tiempo real según tu respuesta</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 class="subsection-title">Perfil del Atleta (Datos Hipotéticos)</h3>
+
+            <div class="metric-grid">
+                <div class="metric-card">
+                    <div class="metric-label">Edad</div>
+                    <div class="metric-value">30</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Peso</div>
+                    <div class="metric-value">72 kg</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Evento</div>
+                    <div class="metric-value" style="font-size: 20px;">200 km</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Semanas al evento</div>
+                    <div class="metric-value">8</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Contexto de este atleta</h3>
+                <ul>
+                    <li><strong>Evento:</strong> Ultra endurance ciclismo — 200 km con 3,800 m de desnivel</li>
+                    <li><strong>Experiencia ciclismo:</strong> 2 años. Ya tiene base de entrenamiento.</li>
+                    <li><strong>Fondo más largo:</strong> 120 km completados. Nunca ha hecho 200 km.</li>
+                    <li><strong>Experiencia comiendo en ruta:</strong> Toma agua y a veces un banano. Nunca ha seguido un protocolo estructurado de fueling.</li>
+                    <li><strong>Problemas reportados en fondos largos:</strong> Se queda sin energía después de 3-4 horas. Ha tenido calambres en los últimos 30 km de sus fondos más largos.</li>
+                    <li><strong>Productos que usa actualmente:</strong> Banano y agua. Sin electrolitos ni geles.</li>
+                    <li><strong>Digestión:</strong> Sin condiciones diagnosticadas. Tolera bien la mayoría de los alimentos.</li>
+                </ul>
+            </div>
+
+            <div class="card highlight">
+                <h3>El diagnóstico inicial</h3>
+                <p>El problema no es físico. Este atleta tiene la condición para completar los 200 km. Lo que no tiene es un sistema de fueling que sostenga el esfuerzo durante 14-18 horas. Quedarse sin energía en el kilómetro 140 no es falta de entrenamiento — es falta de combustible en el momento correcto.</p>
+                <p style="margin-top: 10px;">Con 8 semanas de preparación específica, ese problema se puede resolver completamente.</p>
+            </div>
+
+            <div class="whatsapp-box">
+                <h3>Cómo funciona el acompañamiento del Pack Rendimiento</h3>
+                <p><strong>WhatsApp ilimitado durante todo el proceso.</strong> No hay horario ni límite de mensajes.</p>
+                <p style="margin-top: 12px;"><strong>Escribime cuando:</strong></p>
+                <ul>
+                    <li>Algo no funcionó en un fondo y no sabés qué cambiar</li>
+                    <li>Tu estómago rechazó algo en ruta y necesitás una alternativa</li>
+                    <li>Tenés dudas sobre qué llevar el día de la carrera</li>
+                    <li>Sentiste un calambre y querés ajustar el protocolo de electrolitos</li>
+                    <li>Necesitás validar si un producto que encontraste sirve para el evento</li>
+                    <li>Querés confirmar qué hacer si en la carrera el estómago se cierra</li>
+                </ul>
+                <p style="margin-top: 12px;"><strong>Tiempo de respuesta:</strong> Menos de 24 horas. Usualmente el mismo día.</p>
+                <p><strong>Ajustes en tiempo real:</strong> Si en el fondo del domingo algo no funcionó, el lunes ya tenés una versión ajustada del protocolo para el siguiente entreno.</p>
+            </div>
+        </div>
+
+        <!-- ======= ANÁLISIS ======= -->
+        <div id="analisis" class="section">
+            <h2 class="section-title">Análisis — Lo que hay que resolver antes del día de la carrera</h2>
+
+            <div class="orange-box">
+                <p>El Pack Rendimiento parte de un análisis específico de lo que este atleta necesita para completar su evento objetivo. No es un análisis de salud general ni de composición corporal — es un diagnóstico funcional de los factores que determinan si se llega a la meta o no.</p>
+            </div>
+
+            <h3 class="subsection-title">Los tres problemas que hay que resolver</h3>
+
+            <div class="card critical">
+                <h3>Problema 1 — El intestino nunca ha sido entrenado para absorber carbohidratos en movimiento</h3>
+                <p>Comer mientras se pedalea con intensidad moderada-alta no es lo mismo que comer en la mesa. El flujo sanguíneo se redistribuye hacia los músculos activos, reduciendo la perfusión intestinal. Para alguien sin experiencia en fueling estructurado, intentar consumir 70-80 g de carbohidratos por hora el día de la carrera sin haberlo practicado antes resulta en náuseas, dolor abdominal o diarrea — las tres causas más frecuentes de abandono en ultra endurance.</p>
+                <p style="margin-top: 10px;"><strong>La solución:</strong> Protocolo progresivo de fueling durante los fondos de las próximas 8 semanas. Ver tab "Protocolo Fondos".</p>
+            </div>
+
+            <div class="card critical">
+                <h3>Problema 2 — Sin protocolo de electrolitos, los calambres van a volver</h3>
+                <p>Los calambres que aparecen en los últimos 30 km de los fondos más largos no son mala suerte ni falta de condición. Son una señal directa de depleción de sodio y magnesio. En Costa Rica, con el calor y la humedad, la tasa de sudoración puede superar 1.5 L/hora en tramos duros. Sin reposición activa de sodio, el gradiente electrolítico que dispara la contracción muscular se desequilibra y el calambre es inevitable.</p>
+                <p style="margin-top: 10px;"><strong>La solución:</strong> Protocolo de electrolitos IBSport desde la semana 1 de fondos, con dosis ajustada según la tasa de sudoración individual. Ver tab "Protocolo Fondos".</p>
+            </div>
+
+            <div class="card critical">
+                <h3>Problema 3 — No hay un plan concreto para el día de la carrera</h3>
+                <p>Llegar al día del evento sin saber exactamente qué se come, cada cuánto, en qué forma y con qué se hidrata es llegar sin estrategia. En ultra endurance, improvisar la nutrición en carrera cuando ya se está bajo fatiga acumulada lleva a los dos errores más costosos: comer demasiado de golpe (vómito o malestar) o no comer suficiente y colapsar.</p>
+                <p style="margin-top: 10px;"><strong>La solución:</strong> Protocolo completo del día de competencia, construido con los alimentos que ya fueron probados y tolerados en los fondos de entrenamiento. Ver tab "Día de Competencia".</p>
+            </div>
+
+            <h3 class="subsection-title">Lo que ya funciona y hay que mantener</h3>
+
+            <div class="card success">
+                <h3>La base física está construida</h3>
+                <p>Dos años de entrenamiento y 120 km completados son una base real. Este no es un atleta que empieza desde cero. La tarea no es construir condición — es agregarle el sistema de fueling que permita que esa condición se exprese durante 200 km.</p>
+            </div>
+
+            <div class="card success">
+                <h3>La tolerancia digestiva es amplia</h3>
+                <p>Sin condiciones digestivas diagnosticadas ni intolerancias conocidas, hay un abanico completo de fuentes de carbohidratos disponibles para probar y seleccionar las que mejor funcionen en ruta. Eso es una ventaja concreta frente a atletas con restricciones digestivas.</p>
+            </div>
+
+            <h3 class="subsection-title">Requerimientos energéticos del evento</h3>
+
+            <div class="card dark">
+                <h3>Lo que el cuerpo va a necesitar durante los 200 km</h3>
+                <p><strong>Tiempo estimado de carrera:</strong> 14-18 horas (dependiendo del perfil de elevación y el ritmo)</p>
+                <p style="margin-top: 10px;"><strong>Gasto calórico total estimado durante el evento:</strong> 7,000-9,500 kcal</p>
+                <p style="margin-top: 8px;"><strong>Carbohidratos objetivo en carrera:</strong> 70-90 g/hora una vez alcanzada la adaptación intestinal</p>
+                <p style="margin-top: 8px;"><strong>Agua objetivo:</strong> 500-750 ml/hora según temperatura y esfuerzo</p>
+                <p style="margin-top: 8px;"><strong>Sodio objetivo:</strong> 500-1,000 mg/hora (equivale a pastillas de sal IBSport cada 45-60 minutos en clima caliente)</p>
+
+                <div class="warning-box" style="margin-top: 16px;">
+                    <p><strong>Por qué no se pueden reponer todas las calorías:</strong> Durante el ejercicio intenso, el tracto gastrointestinal no puede absorber lo que el músculo quema. La diferencia se cubre con las reservas de glucógeno cargadas previamente y con la oxidación de grasa. Por eso la carga de glucógeno pre-carrera y el entrenamiento del intestino son tan importantes.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ======= PROTOCOLO FONDOS ======= -->
+        <div id="fondos" class="section">
+            <h2 class="section-title">Protocolo Progresivo de Nutrición en Fondos</h2>
+
+            <div class="info-box">
+                <h3>Por qué los fondos son el laboratorio del plan</h3>
+                <p>Cada fondo largo del domingo es un ensayo de la carrera. No es solo entrenamiento físico — es la oportunidad de probar qué alimentos se toleran bien en movimiento, a qué ritmo hay que comer, qué productos de IBSport funcionan mejor para este atleta, y cómo responde el estómago bajo fatiga acumulada. Lo que se descubra en los fondos es lo que se lleva al día del evento.</p>
+            </div>
+
+            <h3 class="subsection-title">Progresión en 8 Semanas</h3>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>SEMANAS 1-2 — Introducción al fueling estructurado</h4>
+                    <p><strong>Objetivo:</strong> Que el cuerpo se acostumbre a recibir carbohidratos mientras pedalea. La primera vez que se come un mochi o una barra en movimiento puede sentirse incómodo — eso es normal y mejora rápido con práctica.</p>
+                    <p style="margin-top: 8px;"><strong>Protocolo de fondo (fondos de 2.5-3.5 horas):</strong></p>
+                    <ul>
+                        <li>Comer algo en ruta cada 60 minutos — empezar con alimentos muy conocidos y tolerados: banano, papita con sal</li>
+                        <li>Llevar botella con electrolitos IBSport desde el inicio — no esperar a tener sed</li>
+                        <li>Meta de carbohidratos en ruta: 40-50 g/hora</li>
+                        <li>Registrar en WhatsApp al terminar: qué comí, cada cuánto, hubo malestar, en qué momento bajó la energía</li>
+                    </ul>
+                    <p style="margin-top: 8px;"><strong>Señal de éxito de esta fase:</strong> Que no haya malestar gastrointestinal al comer en movimiento y que la energía se mantenga más estable que antes.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>SEMANAS 3-4 — Introducción de geles y productos IBSport</h4>
+                    <p><strong>Objetivo:</strong> Probar los geles y la bebida de carbohidratos IBSport en condiciones reales de entrenamiento. Esta es la fase de "ver qué le cae bien al cuerpo de cada producto específico".</p>
+                    <p style="margin-top: 8px;"><strong>Protocolo de fondo (fondos de 3-4.5 horas):</strong></p>
+                    <ul>
+                        <li>Semana 3: Probar gel IBSport sin cafeína a la hora 1.5 — evaluar tolerancia</li>
+                        <li>Semana 4: Probar bebida de carbohidratos IBSport mezclada en una de las botellas</li>
+                        <li>Alternar en cada hora entre alimento sólido (mochi, barra, banano) y producto IBSport</li>
+                        <li>Meta de carbohidratos en ruta: 55-65 g/hora</li>
+                        <li>Pastillas de sal IBSport: 1 cada 50-60 minutos desde el inicio del fondo</li>
+                    </ul>
+                    <p style="margin-top: 8px;"><strong>Señal de éxito de esta fase:</strong> Confirmar que los geles y bebida IBSport se toleran bien. Si algo genera malestar, se reporta y se ajusta antes del siguiente fondo.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>SEMANAS 5-6 — Simulación de condiciones de carrera</h4>
+                    <p><strong>Objetivo:</strong> Reproducir lo más posible las condiciones del evento. Fondos más largos, con los productos que ya se saben tolerados, con la misma distribución de bolsos y accesibilidad que habrá el día de la carrera.</p>
+                    <p style="margin-top: 8px;"><strong>Protocolo de fondo (fondos de 4-6 horas):</strong></p>
+                    <ul>
+                        <li>Llevar el kit completo de carrera: todas las bolsas, los mismos productos, el mismo número de botellas</li>
+                        <li>Comer cada 40-45 minutos sin esperar hambre</li>
+                        <li>Meta de carbohidratos en ruta: 70-80 g/hora</li>
+                        <li>Probar el gel con cafeína IBSport en el tramo final del fondo — evaluar respuesta</li>
+                        <li>Si el fondo incluye tramo al atardecer o nocturno: probar el protocolo nocturno de alimentación</li>
+                    </ul>
+                    <p style="margin-top: 8px;"><strong>Señal de éxito de esta fase:</strong> Llegar al final del fondo con energía sostenida, sin calambres y sin malestar gastrointestinal.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>SEMANAS 7-8 — Confirmación y reducción de volumen</h4>
+                    <p><strong>Objetivo:</strong> Ya no se prueba nada nuevo. Todo lo que va a usarse en la carrera ya fue probado y tolerado. Esta fase es de reducción de volumen de entrenamiento y optimización de reservas de glucógeno.</p>
+                    <p style="margin-top: 8px;"><strong>Protocolo de fondo (fondos más cortos, 2-3 horas):</strong></p>
+                    <ul>
+                        <li>Ejecutar el protocolo de carrera exacto, pero en versión corta — practicar los tiempos y la mecánica de comer en bicicleta</li>
+                        <li>Confirmar que todo el kit nutricional está completo y en orden</li>
+                        <li>Semana 8: Reducir volumen drásticamente. Enfocarse en la carga de glucógeno previa a la carrera</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 class="subsection-title">Protocolo de Electrolitos en Fondos</h3>
+
+            <div class="card dark">
+                <h3>Cómo usar los electrolitos IBSport en entrenamiento</h3>
+                <p>El protocolo de electrolitos no es fijo — se ajusta semana a semana según la temperatura, la duración del fondo y la respuesta del cuerpo. Como base de inicio:</p>
+
+                <div class="table-wrap">
+                <table style="margin-top: 14px;">
+                    <thead>
+                    <tr>
+                        <th>Duración del fondo</th>
+                        <th>Electrolitos IBSport</th>
+                        <th>Pastillas de sal IBSport</th>
+                        <th>Agua</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td data-label="Duración del fondo">Hasta 2 horas</td>
+                        <td data-label="Electrolitos IBSport">1 tableta en 600 ml</td>
+                        <td data-label="Pastillas de sal IBSport">No necesaria</td>
+                        <td data-label="Agua">500-600 ml/hora</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Duración del fondo">2 a 4 horas</td>
+                        <td data-label="Electrolitos IBSport">1 tableta por botella de 600 ml</td>
+                        <td data-label="Pastillas de sal IBSport">1 cada 50-60 minutos</td>
+                        <td data-label="Agua">600-750 ml/hora</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Duración del fondo">Más de 4 horas</td>
+                        <td data-label="Electrolitos IBSport">1 tableta por botella + bebida IBSport en botella 2</td>
+                        <td data-label="Pastillas de sal IBSport">1 cada 45 minutos en calor</td>
+                        <td data-label="Agua">700-800 ml/hora en calor</td>
+                    </tr>
+                    </tbody>
+                </table>
+                </div>
+
+                <div class="warning-box" style="margin-top: 14px;">
+                    <p><strong>Señal de que los electrolitos están funcionando:</strong> Los calambres del kilómetro final desaparecen o se reducen significativamente. Si persisten en algún fondo, se reporta por WhatsApp para ajustar la dosis antes del siguiente.</p>
+                </div>
+            </div>
+
+            <h3 class="subsection-title">Registro de Fondos — Tu Bitácora de Aprendizaje</h3>
+
+            <div class="card">
+                <h3>Qué registrar después de cada fondo largo</h3>
+                <p>El registro post-fondo es lo que permite ajustar el plan en tiempo real. Es el insumo que hace que el protocolo del día de la carrera sea tuyo, no genérico.</p>
+                <p style="margin-top: 10px;"><strong>Enviame por WhatsApp después de cada fondo:</strong></p>
+                <ul>
+                    <li>¿Qué comiste? ¿A qué hora y en qué kilómetro?</li>
+                    <li>¿Hubo algún producto que no cayera bien? ¿Cuál y cómo se sintió?</li>
+                    <li>¿En qué momento bajó la energía, si bajó?</li>
+                    <li>¿Tuviste calambres? ¿Cuándo y en qué parte del cuerpo?</li>
+                    <li>¿Cómo estaba el color de la orina al terminar?</li>
+                    <li>¿Cuánto líquido tomaste en total?</li>
+                </ul>
+                <p style="margin-top: 10px;"><strong>Con ese registro</strong>, el ajuste del siguiente protocolo llega antes del próximo fondo.</p>
+            </div>
+        </div>
+
+        <!-- ======= RECETAS DE CARRERA ======= -->
+        <div id="recetas" class="section">
+            <h2 class="section-title">Recetas Personalizadas de Carrera</h2>
+
+            <div class="orange-box">
+                <p>Las recetas de carrera son preparaciones específicas para llevar en la bicicleta durante el evento. No son recetas de cocina — son formulaciones de alta densidad energética, fáciles de comer con una mano y con guantes, tolerables bajo esfuerzo y que aportan la combinación correcta de carbohidratos, sodio y palatabilidad para mantener el fueling durante 14-18 horas.</p>
+                <p style="margin-top: 10px;">Estas recetas se prueban en los fondos de entrenamiento antes de llevarlas al día de la carrera. Nada llega al evento sin haber sido validado.</p>
+            </div>
+
+            <h3 class="subsection-title">Recetas Sólidas — Base del Fueling en las Primeras Horas</h3>
+
+            <div class="receta-bloque">
+                <div class="receta-etiqueta">Receta base — Mochi de arroz con sal y miel</div>
+                <div class="receta-titulo">Mochi de Arroz Salado-Dulce</div>
+                <p><strong>Ingredientes por porción (1 mochi):</strong></p>
+                <ul>
+                    <li>½ taza de arroz blanco cocido, bien caliente</li>
+                    <li>1 cucharadita de miel de abeja</li>
+                    <li>Pizca de sal marina (aproximadamente 200 mg de sodio)</li>
+                    <li>Opcional: pizca de canela o jengibre en polvo para palatabilidad</li>
+                </ul>
+                <p style="margin-top: 10px;"><strong>Preparación:</strong> Mezclar todos los ingredientes con el arroz todavía caliente para que la miel se integre bien. Formar bolas del tamaño de un puño pequeño y envolver en papel aluminio o film transparente. Guardar en bolsa hermética en el refrigerador. Preparar el día anterior a la carrera.</p>
+                <p style="margin-top: 8px;"><strong>Duración:</strong> Hasta 20 horas a temperatura ambiente si están bien envueltos.</p>
+                <div class="macros-tag">Por mochi: ~120 kcal | 27 g carbos | 200 mg sodio | 2 g proteína</div>
+                <p style="margin-top: 10px; font-size: 13.5px; color: #555;"><em>Por qué funciona: El arroz blanco es el carbohidrato de menor residuo y más alta tolerancia gastrointestinal bajo esfuerzo. La miel aporta fructosa que usa un transportador intestinal diferente al de la glucosa del arroz, permitiendo mayor absorción total por hora. La sal previene la hiponatremia.</em></p>
+            </div>
+
+            <div class="receta-bloque">
+                <div class="receta-etiqueta">Receta sólida — Para tramos de baja intensidad</div>
+                <div class="receta-titulo">Papa hervida con sal y aceite de oliva</div>
+                <p><strong>Ingredientes:</strong></p>
+                <ul>
+                    <li>2 papas medianas peladas y cortadas en cubos</li>
+                    <li>Sal marina al gusto generoso (aproximadamente 300-400 mg sodio por porción)</li>
+                    <li>1 cucharadita de aceite de oliva por porción</li>
+                </ul>
+                <p style="margin-top: 10px;"><strong>Preparación:</strong> Hervir las papas hasta que estén tiernas pero no deshechas. Condimentar con sal y aceite. Guardar en bolsa hermética. Comer en los planos o bajadas, no en subidas donde la respiración no permite masticar bien.</p>
+                <p style="margin-top: 8px;"><strong>Duración:</strong> Hasta 12 horas a temperatura ambiente.</p>
+                <div class="macros-tag">Por porción (100g): ~90 kcal | 20 g carbos | 300 mg sodio | 2 g proteína | 1.5 g grasa</div>
+                <p style="margin-top: 10px; font-size: 13.5px; color: #555;"><em>Por qué funciona: La papa es de fácil digestión, alta palatabilidad en tramos largos cuando los alimentos dulces empiezan a cansar, y el sodio está integrado en el alimento mismo.</em></p>
+            </div>
+
+            <div class="receta-bloque">
+                <div class="receta-etiqueta">Receta energética — Para subidas largas o crisis de energía</div>
+                <div class="receta-titulo">Bola de dátil con miel y sal</div>
+                <p><strong>Ingredientes por bola:</strong></p>
+                <ul>
+                    <li>3 dátiles Medjool sin semilla</li>
+                    <li>1 cucharadita de miel</li>
+                    <li>Pizca de sal marina</li>
+                    <li>Opcional: ralladura de jengibre fresco</li>
+                </ul>
+                <p style="margin-top: 10px;"><strong>Preparación:</strong> Procesar los dátiles hasta obtener una pasta. Mezclar con miel y sal. Formar bolas pequeñas y envolver en papel aluminio.</p>
+                <div class="macros-tag">Por bola: ~95 kcal | 24 g carbos | fructosa + glucosa combinadas | 150 mg sodio</div>
+                <p style="margin-top: 10px; font-size: 13.5px; color: #555;"><em>Por qué funciona: Los dátiles son 70% azúcar en forma de fructosa y glucosa — la combinación ideal para maximizar la absorción intestinal. Alta densidad calórica en volumen pequeño, perfecta para momentos donde hay que comer rápido.</em></p>
+            </div>
+
+            <h3 class="subsection-title">Recetas Semilíquidas — Para las Horas Finales y la Madrugada</h3>
+
+            <div class="receta-bloque">
+                <div class="receta-etiqueta">Receta de emergencia — Para cuando el estómago se cierra</div>
+                <div class="receta-titulo">Gel de miel con sal y jugo de limón</div>
+                <p><strong>Ingredientes:</strong></p>
+                <ul>
+                    <li>Miel de abeja (en botellita pequeña con tapa hermética)</li>
+                    <li>Pizca de sal marina mezclada con la miel antes de salir</li>
+                    <li>Gotas de jugo de limón (opcional — reduce el nivel de dulzor y mejora la palatabilidad en horas avanzadas)</li>
+                </ul>
+                <p style="margin-top: 10px;"><strong>Cómo usar en carrera:</strong> 1-2 cucharaditas directamente debajo de la lengua. No se necesita masticar. La absorción es casi inmediata por la mucosa bucal. Ideal en el momento exacto en que se siente el inicio de un bajón de energía.</p>
+                <div class="macros-tag">Por cucharadita (8g): ~24 kcal | 6 g carbos | absorción casi inmediata</div>
+                <p style="margin-top: 10px; font-size: 13.5px; color: #555;"><em>Plan B cuando el gel de IBSport no entra: la miel tiene mayor palatabilidad para algunas personas en estado de fatiga avanzada. Se lleva siempre como respaldo.</em></p>
+            </div>
+
+            <div class="receta-bloque">
+                <div class="receta-etiqueta">Receta de recuperación en carrera — Horas 6-10</div>
+                <div class="receta-titulo">Batido de proteína IBSport con bebida de carbohidratos</div>
+                <p><strong>Cómo preparar en ruta:</strong></p>
+                <ul>
+                    <li>1 sobrecito de proteína en polvo IBSport (porción individual)</li>
+                    <li>Mezclado en botella de 600 ml con bebida de carbohidratos IBSport</li>
+                    <li>Agitar bien antes de tomar</li>
+                    <li>Tomar en sorbos pequeños a lo largo de 30-45 minutos, no de un jalón</li>
+                </ul>
+                <p style="margin-top: 10px;"><strong>Cuándo usarlo:</strong> Una vez cada 4-5 horas durante el evento, especialmente en la transición tarde-noche y en la madrugada. Previene el catabolismo muscular en esfuerzos muy prolongados.</p>
+                <div class="macros-tag">Por botella: ~280 kcal | 35 g carbos | 20 g proteína | electrolitos incluidos</div>
+            </div>
+
+            <h3 class="subsection-title">Evaluación de Productos IBSport para Este Atleta</h3>
+
+            <div class="card dark">
+                <h3>Los productos IBSport recomendados para este evento</h3>
+                <div class="table-wrap">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Producto IBSport</th>
+                        <th>Cuándo usarlo en carrera</th>
+                        <th>Dosis</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td data-label="Producto IBSport">Gel energético sin cafeína</td>
+                        <td data-label="Cuándo usarlo en carrera">Horas 1-10 del evento, alternado con sólidos</td>
+                        <td data-label="Dosis">1 gel cada 45-60 minutos. Tomar con agua, nunca solo.</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Producto IBSport">Gel con cafeína</td>
+                        <td data-label="Cuándo usarlo en carrera">Transición tarde-noche y madrugada. Máximo 3-4 en todo el evento.</td>
+                        <td data-label="Dosis">1 gel. Esperar mínimo 2.5-3 horas antes del siguiente con cafeína.</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Producto IBSport">Bebida de carbohidratos e hidratación</td>
+                        <td data-label="Cuándo usarlo en carrera">En la botella secundaria durante todo el evento</td>
+                        <td data-label="Dosis">1 porción por botella de 600 ml. Alternar con agua pura.</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Producto IBSport">Pastillas de sal</td>
+                        <td data-label="Cuándo usarlo en carrera">Durante todo el evento en clima cálido-húmedo</td>
+                        <td data-label="Dosis">1 pastilla cada 45-60 minutos. Aumentar a cada 35 min en calor extremo.</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Producto IBSport">Proteína en polvo (sobrecitos)</td>
+                        <td data-label="Cuándo usarlo en carrera">Cada 4-5 horas, mezclada en botella</td>
+                        <td data-label="Dosis">1 sobrecito por toma. No exceder 3 tomas en el evento.</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Producto IBSport">Aminoácidos de recuperación</td>
+                        <td data-label="Cuándo usarlo en carrera">Post-carrera — primeras 2 horas después de cruzar la meta</td>
+                        <td data-label="Dosis">Según indicación del producto. Con carbohidratos y agua.</td>
+                    </tr>
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ======= DÍA DE COMPETENCIA ======= -->
+        <div id="carrera" class="section">
+            <h2 class="section-title">Día de Competencia — Protocolo Completo</h2>
+
+            <div class="critical-box">
+                <p><strong>Regla de oro absoluta:</strong> El día de la carrera no se experimenta nada que no haya sido probado antes en los fondos de entrenamiento. Ni un producto nuevo, ni un alimento nuevo, ni un cambio de último minuto. Todo lo que aparece en este protocolo ya fue validado durante las 8 semanas de preparación.</p>
+            </div>
+
+            <h3 class="subsection-title">Noche Previa — Preparación del Kit</h3>
+
+            <div class="card">
+                <h3>Lo que se hace la noche anterior (24 horas antes)</h3>
+                <ul>
+                    <li>Preparar todos los mochis de arroz, las papas y las bolas de dátil. Envolver individualmente. Guardar en bolsa hermética.</li>
+                    <li>Preparar los sobrecitos de proteína IBSport, contados según el protocolo del evento.</li>
+                    <li>Organizar todos los productos IBSport (geles, pastillas, bebida) en el bolso correspondiente. Confirmar que el conteo es correcto.</li>
+                    <li>Llenar las botellas con electrolitos para tenerlas listas. No hacerlo el mismo día antes de salir.</li>
+                    <li>Aplicar el bloqueador solar de prueba (si hay piel sensible, hacer prueba de 15 minutos).</li>
+                    <li>Revisar que la batería del computador de bicicleta y las luces estén cargadas al 100%.</li>
+                    <li>Cena: alimentos conocidos, sin fibra alta, énfasis en carbohidratos. Ver protocolo de carga de glucógeno.</li>
+                </ul>
+            </div>
+
+            <h3 class="subsection-title">Mañana del Evento — Preparación Antes de la Salida</h3>
+
+            <div class="carrera-bloque">
+                <div class="fase">3-4 horas antes de la salida</div>
+                <h4>Desayuno de carga</h4>
+                <ul>
+                    <li>2 tazas de arroz blanco con 1 cucharada de aceite de oliva + 2 huevos cocidos o pollo desmenuzado suave</li>
+                    <li>1 banano mediano</li>
+                    <li>Café negro (si se tolera bien y es parte del hábito habitual)</li>
+                    <li>500 ml de agua con electrolitos IBSport</li>
+                </ul>
+                <p style="margin-top: 10px; font-size: 14px;"><em>Alternativa si el nerviosismo cierra el apetito: avena con banano maduro + mantequilla de maní + batido de proteína IBSport. Lo importante es comer algo — no saltarse el desayuno por los nervios.</em></p>
+            </div>
+
+            <div class="carrera-bloque">
+                <div class="fase">30-45 minutos antes de la salida</div>
+                <h4>Activación final</h4>
+                <ul>
+                    <li>1 gel IBSport sin cafeína — activar el sistema digestivo con carbohidratos de rápida absorción</li>
+                    <li>300 ml de agua pura</li>
+                    <li>Aplicar crema anti-rozadura IBSport en zonas de contacto (badana, cuello de pie, axilas si aplica)</li>
+                    <li>Aplicar bloqueador solar en todas las zonas expuestas</li>
+                    <li>Confirmar que todos los bolsos estén accesibles y que ningún bolso roce la rueda o la rodilla</li>
+                </ul>
+            </div>
+
+            <h3 class="subsection-title">Durante los 200 km — Protocolo por Fases</h3>
+
+            <div class="carrera-bloque">
+                <div class="fase">Fase 1: Horas 0-4 (Salida — Tarde)</div>
+                <h4>Establecer el ritmo desde el inicio</h4>
+                <p><strong>El error más frecuente en ultra endurance es no comer las primeras horas por la euforia de la salida.</strong> Cuando se siente que falta energía, el déficit ya tiene 90 minutos de retraso.</p>
+                <ul style="margin-top: 8px;">
+                    <li><strong>Minuto 30-40:</strong> Primer mochi de arroz + empezar a beber botella de electrolitos</li>
+                    <li><strong>Cada 40-45 minutos:</strong> Alternar entre mochi, papa con sal, gel IBSport sin cafeína y bola de dátil</li>
+                    <li><strong>Cada 50 minutos:</strong> 1 pastilla de sal IBSport</li>
+                    <li><strong>Hidratación:</strong> Sorbo cada 15-20 minutos — no esperar sed</li>
+                    <li><strong>Meta:</strong> 70-80 g de carbohidratos por hora</li>
+                </ul>
+            </div>
+
+            <div class="carrera-bloque">
+                <div class="fase">Fase 2: Horas 4-8 (Tarde — Noche)</div>
+                <h4>Transición al esfuerzo prolongado</h4>
+                <p>El apetito puede empezar a cambiar. Algunos alimentos que antes eran palatables empiezan a perder atractivo. La clave es anticipar esto y tener variedad.</p>
+                <ul style="margin-top: 8px;">
+                    <li><strong>Hora 5-6:</strong> Primera toma de proteína IBSport mezclada en botella — tomarla en sorbos durante 30-40 minutos</li>
+                    <li><strong>Seguir alternando sólidos con geles IBSport</strong> según preferencia del momento</li>
+                    <li><strong>Si el estómago empieza a cerrarse:</strong> Cambiar a gel de miel con sal o galletas de arroz durante 30 minutos, luego volver gradualmente a los sólidos</li>
+                    <li><strong>Primer gel con cafeína IBSport:</strong> En la transición al anochecer si hay somnolencia. No antes.</li>
+                    <li><strong>Pastillas de sal IBSport:</strong> Mantener 1 cada 45-50 minutos. Aumentar si hay calor.</li>
+                </ul>
+            </div>
+
+            <div class="carrera-bloque">
+                <div class="fase">Fase 3: Horas 8-14 (Noche — Madrugada)</div>
+                <h4>La fase más exigente del evento</h4>
+                <p>La madrugada pone a prueba la disciplina nutricional. El cuerpo envía señales de "basta" que no son emergencias reales. El protocolo sigue igual aunque no haya ganas.</p>
+                <ul style="margin-top: 8px;">
+                    <li><strong>Calorías líquidas prioritarias:</strong> Si el sólido no entra, la combinación proteína + carbohidratos IBSport en botella es el sustento principal</li>
+                    <li><strong>Miel directa:</strong> Si hay un bajón brusco de energía, miel debajo de la lengua es la respuesta más rápida</li>
+                    <li><strong>Segunda toma de proteína IBSport:</strong> Entre las horas 9-10</li>
+                    <li><strong>Segundo o tercer gel con cafeína IBSport:</strong> Estratégicamente entre la 1am y las 4am si hay somnolencia marcada. No acumular cafeína.</li>
+                    <li><strong>Pastillas de sal:</strong> Continuar cada 45-60 minutos. Si hay calambres, tomar 2 juntas y esperar 10 minutos.</li>
+                    <li><strong>Temperatura:</strong> Si hay frío, comer algo más denso en calorías (bola de dátil, papa con aceite de oliva)</li>
+                </ul>
+
+                <div class="critical-box" style="margin-top: 14px;">
+                    <p><strong>Señales que sí requieren parar:</strong> Náuseas que impiden tomar cualquier líquido por más de 20-25 minutos, calambres severos que no ceden con pastillas de sal y reposo en 10 minutos, confusión o desorientación marcada. En esos casos, parar, reportar por WhatsApp y esperar instrucción.</p>
+                </div>
+            </div>
+
+            <div class="carrera-bloque">
+                <div class="fase">Fase 4: Últimos 30-40 km — Llegada</div>
+                <h4>No bajar la guardia al final</h4>
+                <p>Los últimos kilómetros no son el momento de dejar de comer. El cuerpo en ese punto ya está muy depletado y cualquier bajón de glucosa puede hacerse sentir aunque físicamente ya se vea la meta.</p>
+                <ul style="margin-top: 8px;">
+                    <li>Mantener el protocolo exacto de las horas anteriores</li>
+                    <li>Hidratación continua aunque no haya sed</li>
+                    <li>Si hay un tramo final de subida: gel IBSport justo antes del inicio de la subida</li>
+                    <li>En los últimos 5-10 km: si hay energía, se puede acelerar. Si no, mantener el ritmo. No forzar.</li>
+                </ul>
+            </div>
+
+            <h3 class="subsection-title">Kit Nutricional Completo — Lista de Verificación</h3>
+
+            <div class="card highlight">
+                <h3>Lo que va en la bicicleta el día del evento</h3>
+
+                <p><strong>Bolso de cuadro (acceso cada 40-45 min):</strong></p>
+                <ul>
+                    <li>10-12 mochis de arroz salado-dulce — preparados la noche anterior</li>
+                    <li>Papa hervida con sal en bolsa hermética (300 g)</li>
+                    <li>6-8 geles IBSport sin cafeína</li>
+                    <li>3-4 geles IBSport con cafeína (uso estratégico)</li>
+                    <li>Pastillas de sal IBSport — 1 tubo completo mínimo</li>
+                </ul>
+
+                <p style="margin-top: 14px;"><strong>Bolso de manillar o bolso trasero:</strong></p>
+                <ul>
+                    <li>4-5 sobrecitos individuales de proteína IBSport</li>
+                    <li>Bolas de dátil (6-8 unidades) en bolsa hermética</li>
+                    <li>Miel en botellita pequeña con tapa hermética</li>
+                    <li>Galletas de arroz simples (para estómago cerrado)</li>
+                    <li>Crema anti-rozadura IBSport (porción extra para reaplicar)</li>
+                    <li>Bloqueador solar (porción extra para reaplicar)</li>
+                    <li>Ropa de abrigo para la noche (jersey manga larga 3face o chubasquero)</li>
+                </ul>
+
+                <p style="margin-top: 14px;"><strong>Hidratación:</strong></p>
+                <ul>
+                    <li>CamelBak de 1.5-2 L con agua pura — reserva entre puntos de abastecimiento</li>
+                    <li>Botella 1: Agua pura o electrolitos IBSport</li>
+                    <li>Botella 2: Bebida de carbohidratos IBSport o proteína + carbohidratos mezclada</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ======= AJUSTES Y SEGUIMIENTO ======= -->
+        <div id="ajustes" class="section">
+            <h2 class="section-title">Ajustes en Tiempo Real y Seguimiento</h2>
+
+            <div class="info-box">
+                <h3>Por qué el seguimiento es parte del plan, no un extra</h3>
+                <p>La nutrición de ultra endurance no se puede planificar completamente en un documento. El cuerpo responde diferente cada semana, las condiciones de temperatura varían, el apetito cambia con la fatiga acumulada. El seguimiento continuo es lo que convierte un plan inicial en un protocolo ajustado a la realidad de este atleta específico.</p>
+            </div>
+
+            <h3 class="subsection-title">Ajustes en Tiempo Real Durante los Fondos</h3>
+
+            <div class="card highlight">
+                <h3>Cómo funciona el ciclo de ajuste semana a semana</h3>
+                <p>El ciclo de mejora del plan es simple y constante:</p>
+                <div class="timeline" style="margin-top: 16px;">
+                    <div class="timeline-item">
+                        <h4>Domingo — Fondo largo con protocolo</h4>
+                        <p>Ejecutar el protocolo de fueling de la semana según lo acordado.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Domingo noche o Lunes temprano — Reporte por WhatsApp</h4>
+                        <p>Enviar el registro de lo que se comió, cómo respondió el cuerpo, si hubo algún problema y cómo se sintió la energía en las diferentes fases del fondo.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Lunes o Martes — Protocolo ajustado</h4>
+                        <p>Basado en el reporte, se envía una versión ajustada del protocolo para el siguiente fondo. Puede ser un cambio de timing, una dosis diferente de electrolitos, un producto diferente en cierto momento, o la confirmación de que todo funcionó bien.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Domingo siguiente — Fondo con protocolo mejorado</h4>
+                        <p>Y el ciclo se repite. Cada semana el protocolo es más ajustado a este atleta específico.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="subsection-title">Situaciones Frecuentes y Cómo se Manejan</h3>
+
+            <div class="card">
+                <h3>El gel me cayó mal en el fondo — ¿Qué hago?</h3>
+                <p>Reportar inmediatamente: qué gel fue (con o sin cafeína, cuántos había tomado ese día, a qué hora del fondo), qué síntoma tuvo (náusea, dolor abdominal, acidez) y en qué momento apareció. Con esa información se determina si fue el producto, el timing, la concentración o una combinación.</p>
+                <p style="margin-top: 8px;">En la mayoría de los casos, el ajuste es de timing (tomarlo con más agua, no en subida, no en ayunas) y no implica descartar el producto. Si el producto genuinamente no se tolera, se busca una alternativa dentro del catálogo IBSport o se sustituye con receta casera.</p>
+            </div>
+
+            <div class="card">
+                <h3>Tuve calambres de nuevo en el fondo — ¿Cambio algo?</h3>
+                <p>Reportar: en qué momento del fondo apareció el calambre, en qué músculo, qué temperatura hacía, cuántas pastillas de sal habías tomado hasta ese punto y cuánto líquido. Con esa información se ajusta la dosis de sodio o la frecuencia de las pastillas de sal IBSport para el siguiente fondo.</p>
+                <p style="margin-top: 8px;">En casos de calambres persistentes, se evalúa también el magnesio nocturno y la hidratación total del día anterior al fondo.</p>
+            </div>
+
+            <div class="card">
+                <h3>En la mitad del fondo no pude comer nada — ¿Qué hago la próxima vez?</h3>
+                <p>El cierre del apetito bajo fatiga es uno de los problemas más comunes en fondos largos. La solución no es forzar sólidos — es tener una estrategia de respaldo con calorías líquidas o semilíquidas. Después del reporte se ajusta el protocolo para incluir específicamente las opciones de emergencia que mejor funcionan para este atleta.</p>
+            </div>
+
+            <div class="card">
+                <h3>No llegué a los 70 g de carbohidratos por hora — ¿Es grave?</h3>
+                <p>Depende de la semana. En las semanas 1-3 de adaptación, no alcanzar ese objetivo no es un problema — el intestino está aprendiendo. En las semanas 6-8, si el objetivo no se está alcanzando, se revisa el timing y la variedad de fuentes. Lo importante es que cada semana haya progreso.</p>
+            </div>
+
+            <h3 class="subsection-title">El Día de la Carrera — Soporte en Tiempo Real</h3>
+
+            <div class="whatsapp-box">
+                <h3>WhatsApp abierto durante el evento</h3>
+                <p>Durante el día de la carrera, el WhatsApp está disponible. Si en algún momento durante el evento hay un problema nutricional que el protocolo no cubre, se puede escribir.</p>
+                <p style="margin-top: 12px;"><strong>Situaciones donde escribir en carrera:</strong></p>
+                <ul>
+                    <li>Náuseas que no ceden después de 20 minutos con las estrategias del protocolo</li>
+                    <li>Calambres que no responden a las pastillas de sal y reposo</li>
+                    <li>Se acabó algún producto y hay que improvisar con lo disponible en una pulpería — se evalúa qué elegir</li>
+                    <li>Cualquier síntoma inusual que genere duda sobre si seguir o parar</li>
+                </ul>
+                <p style="margin-top: 12px;"><strong>Tiempo de respuesta en carrera:</strong> Siempre que el teléfono tenga señal, la respuesta llega rápido.</p>
+            </div>
+
+            <h3 class="subsection-title">Recuperación Post-Carrera</h3>
+
+            <div class="card success">
+                <h3>El protocolo no termina en la meta</h3>
+                <p>Completar 200 km deja el cuerpo en un estado de déficit profundo. La recuperación nutricional de las primeras 72 horas determina en gran medida qué tan rápido y bien se recupera el sistema musculoesquelético, inmune y hormonal.</p>
+                <p style="margin-top: 10px;"><strong>Inmediatamente al cruzar la meta (primeros 30 minutos):</strong> Aminoácidos de recuperación IBSport + carbohidratos de rápida absorción + 500 ml de agua con electrolitos. Aunque no haya apetito, es el momento de mayor ventana de recuperación.</p>
+                <p style="margin-top: 10px;"><strong>Días 1-3:</strong> Proteína alta en cada comida, carbohidratos sin restricción, hidratación activa. No restringir calorías. El cuerpo pedirá lo que necesita con hambre intensa — escucharla.</p>
+                <p style="margin-top: 10px;"><strong>Días 4-7:</strong> Retorno gradual a la alimentación normal. Actividad muy suave si el cuerpo lo permite. Masaje o baño de contraste para la recuperación muscular.</p>
+                <p style="margin-top: 10px;"><strong>Seguimiento post-carrera:</strong> Se hace una revisión de qué funcionó y qué no del protocolo nutricional durante el evento. Ese análisis queda documentado para la siguiente preparación.</p>
+            </div>
+        </div>
+
+    </div><!-- /content -->
+
+    <div class="footer">
+        <p>Isa Herra — Nutricionista Deportiva | eat&flow Nutrición Deportiva</p>
+        <p style="margin-top: 6px; opacity: 0.8;">@eatandflow.cr | @isaherra.13</p>
+        <p style="margin-top: 8px; font-size: 11.5px; opacity: 0.7;">Documento demostrativo — Perfil hipotético. Este plan no sustituye atención médica o nutricional personalizada.</p>
+    </div>
+
+</div><!-- /container -->
+
+<script>
+    function showSection(id) {
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        event.target.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>
+</body>
+</html>

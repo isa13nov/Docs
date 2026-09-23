@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Templates de Posts - Luis Diego Ramos</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; line-height: 1.6; color: #1a1a1a; background: #fafafa; }
+        
+        /* STICKY NAV */
+        .sticky-nav {
+            position: fixed; top: 0; left: 0; right: 0;
+            background: rgba(26, 26, 26, 0.98);
+            backdrop-filter: blur(10px); z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid #d4af37;
+        }
+        
+        .sticky-nav-content {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 40px;
+        }
+        
+        .nav-brand { font-size: 1.1em; font-weight: 300; color: #d4af37; letter-spacing: 1px; }
+        .nav-brand span { color: #ffffff; font-weight: 400; }
+        
+        /* HERO */
+        .hero {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            color: #ffffff; padding: 120px 40px 80px; text-align: center; margin-top: 60px;
+        }
+        .hero h1 { font-size: 2.8em; margin-bottom: 20px; font-weight: 300; }
+        .hero .subtitle { font-size: 1.3em; color: #d4af37; margin-bottom: 30px; }
+        
+        /* SECTIONS */
+        section { padding: 80px 40px; background: #ffffff; border-bottom: 1px solid #e5e5e5; }
+        section:nth-child(even) { background: #f8f8f8; }
+        section h2 {
+            font-size: 2.2em; margin-bottom: 30px; color: #1a1a1a;
+            font-weight: 300; text-align: center; position: relative; padding-bottom: 20px;
+        }
+        section h2::after {
+            content: ''; position: absolute; bottom: 0; left: 50%;
+            transform: translateX(-50%); width: 80px; height: 3px; background: #d4af37;
+        }
+        
+        /* TEMPLATE CARD */
+        .template-card {
+            background: #fff; border: 1px solid #e5e5e5;
+            border-radius: 8px; padding: 30px; margin: 30px 0;
+            border-left: 4px solid #d4af37;
+            position: relative;
+        }
+        
+        .template-header {
+            display: flex; justify-content: space-between;
+            align-items: center; margin-bottom: 20px;
+        }
+        
+        .template-title {
+            font-size: 1.5em; color: #1a1a1a; font-weight: 400;
+        }
+        
+        .template-type {
+            background: #d4af37; color: #1a1a1a;
+            padding: 6px 15px; border-radius: 4px;
+            font-size: 0.9em; font-weight: bold;
+        }
+        
+        .template-content {
+            background: #f8f8f8; padding: 25px;
+            border-radius: 6px; margin: 20px 0;
+            font-family: 'Georgia', serif;
+            line-height: 1.8; position: relative;
+        }
+        
+        .variable {
+            background: #fffbf0; padding: 2px 6px;
+            border-radius: 3px; color: #d4af37;
+            font-weight: bold;
+        }
+        
+        .copy-btn {
+            background: #d4af37; color: #1a1a1a;
+            border: none; padding: 12px 25px;
+            border-radius: 4px; cursor: pointer;
+            font-family: 'Georgia', serif;
+            font-size: 1em; font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .copy-btn:hover {
+            background: #f0c850;
+            transform: translateY(-2px);
+        }
+        
+        .instructions {
+            background: #fffbf0; padding: 15px;
+            border-left: 3px solid #d4af37;
+            margin-top: 15px; font-size: 0.95em;
+        }
+        
+        /* FOOTER */
+        footer {
+            background: #1a1a1a; color: #e0e0e0;
+            padding: 50px 40px; text-align: center;
+        }
+        footer h3 { color: #d4af37; margin-bottom: 20px; }
+        footer .copyright { margin-top: 30px; font-size: 0.9em; color: #999; }
+        
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2em; }
+            .template-header { flex-direction: column; gap: 15px; align-items: flex-start; }
+        }
+        
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+<body>
+
+    <nav class="sticky-nav">
+        <div class="sticky-nav-content">
+            <div class="nav-brand">Luis Diego Ramos <span>| Templates de Posts</span></div>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <h1>Templates de Posts Copy-Paste</h1>
+        <p class="subtitle">15 Plantillas Listas para Personalizar y Publicar</p>
+    </div>
+
+    <section>
+        <h2>ðŸ“ CÃ³mo Usar Estos Templates</h2>
+        <div style="max-width: 800px; margin: 0 auto; line-height: 1.8;">
+            <p style="margin-bottom: 20px;">Cada template estÃ¡ diseÃ±ado para un tipo especÃ­fico de post. Las variables en color <span class="variable">[DORADO]</span> deben ser reemplazadas con tu contenido especÃ­fico.</p>
+            <p style="margin-bottom: 20px;"><strong>Paso 1:</strong> SeleccionÃ¡ el template que necesitÃ¡s</p>
+            <p style="margin-bottom: 20px;"><strong>Paso 2:</strong> HacÃ© clic en "Copiar Template"</p>
+            <p style="margin-bottom: 20px;"><strong>Paso 3:</strong> ReemplazÃ¡ las variables [EN CORCHETES] con tu contenido</p>
+            <p><strong>Paso 4:</strong> PublicÃ¡ manteniendo el tono de voz profesional pero accesible</p>
+        </div>
+    </section>
+
+    <!-- TEMPLATE 1 -->
+    <section>
+        <div class="template-card">
+            <div class="template-header">
+                <h3 class="template-title">Template 1: Obra Destacada</h3>
+                <span class="template-type">PILAR 40%</span>
+            </div>
+            
+            <div class="template-content">
+<strong><span class="variable">[NOMBRE DE LA OBRA]</span> - <span class="variable">[UBICACIÃ“N]</span></strong><br><br>
+
+<span class="variable">[REFLEXIÃ“N CONCEPTUAL SOBRE LA PIEZA Y SU RELACIÃ“N CON ARQUEOLOGÃA URBANA - 2-3 LÃNEAS]</span><br><br>
+
+<span class="variable">[CONEXIÃ“N CON EL PROYECTO "REGISTROS DE REGISTROS" O CONCEPTO MÃS AMPLIO]</span><br><br>
+
+Fotografiado en pelÃ­cula <span class="variable">[TIPO DE PELÃCULA]</span>, formato 6x6, <span class="variable">[UBICACIÃ“N]</span> <span class="variable">[AÃ‘O]</span>.<br><br>
+
+<span class="variable">[PREGUNTA PARA ENGAGEMENT RELACIONADA CON LA REFLEXIÃ“N]</span><br><br>
+
+#arqueologiaubana #registroderegistros #fotografiaanalogica #artecontemporaneocostarica #derivaurbana #sanjosecostarica <span class="variable">[+ 14 HASHTAGS ESPECÃFICOS]</span>
+            </div>
+            
+            <button class="copy-btn" onclick="copyTemplate(this)">ðŸ“‹ Copiar Template</button>
+            
+            <div class="instructions">
+                <strong>Instrucciones:</strong> UsÃ¡ este template para posts de obra destacada (portfolio). Asegurate de que la reflexiÃ³n conceptual sea profunda pero accesible. La pregunta debe invitar a conversaciÃ³n genuina, no solo likes.
+            </div>
+        </div>
+    </section>
+
+    <!-- TEMPLATE 2 -->
+    <section>
+        <div class="template-card">
+            <div class="template-header">
+                <h3 class="template-title">Template 2: Behind the Scenes</h3>
+                <span class="template-type">PILAR 25%</span>
+            </div>
+            
+            <div class="template-content">
+<strong>El proceso detrÃ¡s de <span class="variable">[ASPECTO ESPECÃFICO DEL PROCESO]</span> ðŸ“·</strong><br><br>
+
+<span class="variable">[EXPLICACIÃ“N DEL PROCESO TÃ‰CNICO O CREATIVO]</span><br><br>
+
+<span class="variable">[POR QUÃ‰ ESTE PROCESO ES IMPORTANTE PARA EL CONCEPTO]</span><br><br>
+
+<span class="variable">[CONEXIÃ“N PERSONAL O ANÃ‰CDOTA SOBRE ESTE ASPECTO DEL TRABAJO]</span><br><br>
+
+<span class="variable">[PREGUNTA SOBRE PROCESO CREATIVO DE LA AUDIENCIA]</span><br><br>
+
+#procesoartistico #fotografiaanalogica #behindthescenes #pelliculafotografica <span class="variable">[+ 16 HASHTAGS]</span>
+            </div>
+            
+            <button class="copy-btn" onclick="copyTemplate(this)">ðŸ“‹ Copiar Template</button>
+            
+            <div class="instructions">
+                <strong>Instrucciones:</strong> MostrÃ¡ el lado humano y tÃ©cnico del trabajo. ExplicÃ¡ decisiones creativas de forma que eduque pero no aburra.
+            </div>
+        </div>
+    </section>
+
+    <!-- TEMPLATE 3 -->
+    <section>
+        <div class="template-card">
+            <div class="template-header">
+                <h3 class="template-title">Template 3: Concepto Educativo</h3>
+                <span class="template-type">PILAR 20%</span>
+            </div>
+            
+            <div class="template-content">
+<strong>Â¿QuÃ© es <span class="variable">[CONCEPTO A EXPLICAR]</span>? ðŸ™ï¸</strong><br><br>
+
+<span class="variable">[DEFINICIÃ“N CLARA Y ACCESIBLE DEL CONCEPTO]</span><br><br>
+
+<span class="variable">[CÃ“MO SE APLICA ESTE CONCEPTO EN TU TRABAJO ESPECÃFICAMENTE]</span><br><br>
+
+<span class="variable">[POR QUÃ‰ ES RELEVANTE O INTERESANTE PARA ENTENDER EL ARTE URBANO]</span><br><br>
+
+<span class="variable">[EJEMPLO CONCRETO O VISUAL]</span><br><br>
+
+<span class="variable">[PREGUNTA: Â¿TE INTERESA CONOCER MÃS SOBRE...?]</span><br><br>
+
+#arqueologiaubana #educacionartistica #arteconceptual #teoriaartistica <span class="variable">[+ 16 HASHTAGS]</span>
+            </div>
+            
+            <button class="copy-btn" onclick="copyTemplate(this)">ðŸ“‹ Copiar Template</button>
+            
+            <div class="instructions">
+                <strong>Instrucciones:</strong> EducÃ¡ sin ser pedante. ExplicÃ¡ conceptos complejos de forma simple. UsÃ¡ analogÃ­as cuando sea posible.
+            </div>
+        </div>
+    </section>
+
+    <!-- TEMPLATE 4 -->
+    <section>
+        <div class="template-card">
+            <div class="template-header">
+                <h3 class="template-title">Template 4: TÃ©cnica FotogrÃ¡fica</h3>
+                <span class="template-type">PILAR 5%</span>
+            </div>
+            
+            <div class="template-content">
+<strong>Â¿Por quÃ© <span class="variable">[DECISIÃ“N TÃ‰CNICA ESPECÃFICA]</span>? ðŸ“</strong><br><br>
+
+<span class="variable">[EXPLICACIÃ“N DE LA DECISIÃ“N TÃ‰CNICA]</span><br><br>
+
+<span class="variable">[RAZONES CONCEPTUALES (NO SOLO TÃ‰CNICAS) DE ESTA ELECCIÃ“N]</span><br><br>
+
+<span class="variable">[VENTAJAS O RESULTADOS ESPECÃFICOS DE ESTA TÃ‰CNICA]</span><br><br>
+
+<span class="variable">[PREGUNTA A LA COMUNIDAD SOBRE SUS PREFERENCIAS TÃ‰CNICAS]</span><br><br>
+
+#fotografiaanalogica #tecnicafotografica #filmtechnique <span class="variable">[+ 17 HASHTAGS]</span>
+            </div>
+            
+            <button class="copy-btn" onclick="copyTemplate(this)">ðŸ“‹ Copiar Template</button>
+            
+            <div class="instructions">
+                <strong>Instrucciones:</strong> ConectÃ¡ con fotÃ³grafos analÃ³gicos. CompartÃ­ conocimiento tÃ©cnico pero siempre conectalo con el concepto.
+            </div>
+        </div>
+    </section>
+
+    <!-- TEMPLATE 5 -->
+    <section>
+        <div class="template-card">
+            <div class="template-header">
+                <h3 class="template-title">Template 5: ExposiciÃ³n/Evento</h3>
+                <span class="template-type">PILAR 10%</span>
+            </div>
+            
+            <div class="template-content">
+<strong><span class="variable">[ANUNCIO/ARCHIVO]</span>: <span class="variable">[NOMBRE EXPOSICIÃ“N]</span> ðŸ›ï¸</strong><br><br>
+
+<span class="variable">[CONTEXTO: DÃ“NDE, CUÃNDO, TIPO DE EXPOSICIÃ“N]</span><br><br>
+
+<span class="variable">[QUÃ‰ SIGNIFICÃ“ ESTA EXPOSICIÃ“N PARA EL PROYECTO]</span><br><br>
+
+<span class="variable">[DETALLES DE LA CURADURÃA O DIÃLOGO CON OTRAS OBRAS]</span><br><br>
+
+<span class="variable">[CALL TO ACTION: VISITAR, SEGUIR, O REFLEXIÃ“N]</span><br><br>
+
+#exposicion #galerianacional #mac #artecostarica <span class="variable">[+ 16 HASHTAGS]</span>
+            </div>
+            
+            <button class="copy-btn" onclick="copyTemplate(this)">ðŸ“‹ Copiar Template</button>
+            
+            <div class="instructions">
+                <strong>Instrucciones:</strong> DemostrÃ¡ reconocimiento institucional sin sonar presumido. Enfocate en el valor cultural del evento.
+            </div>
+        </div>
+    </section>
+
+    <!-- TEMPLATE 6 -->
+    <section>
+        <div class="template-card">
+            <div class="template-header">
+                <h3 class="template-title">Template 6: Deriva Urbana</h3>
+                <span class="template-type">BTS ESPECIAL</span>
+            </div>
+            
+            <div class="template-content">
+<strong>Deriva urbana como mÃ©todo ðŸš¶</strong><br><br>
+
+<span class="variable">[DESCRIPCIÃ“N DEL RECORRIDO O METODOLOGÃA DE ESE DÃA]</span><br><br>
+
+Las mejores fotografÃ­as surgen cuando me permito perderme en la ciudad, cuando veo mÃ¡s allÃ¡ de lo evidente. <span class="variable">[DESCUBRIMIENTO O REFLEXIÃ“N ESPECÃFICA DE ESE RECORRIDO]</span><br><br>
+
+<span class="variable">[CONEXIÃ“N CON LA PRÃCTICA ARTÃSTICA MÃS AMPLIA]</span><br><br>
+
+Â¿PracticÃ¡s algÃºn tipo de deriva o exploraciÃ³n urbana?<br><br>
+
+#derivaurbana #urbanexploration #procesoartistico #metodologiacreativa <span class="variable">[+ 16 HASHTAGS]</span>
+            </div>
+            
+            <button class="copy-btn" onclick="copyTemplate(this)">ðŸ“‹ Copiar Template</button>
+        </div>
+    </section>
+
+    <!-- TEMPLATE 7 -->
+    <section>
+        <div class="template-card">
+            <div class="template-header">
+                <h3 class="template-title">Template 7: ReflexiÃ³n sobre AnalÃ³gico</h3>
+                <span class="template-type">EDUCATIVO</span>
+            </div>
+            
+            <div class="template-content">
+<strong><span class="variable">[ASPECTO ESPECÃFICO DE LO ANALÃ“GICO]</span> en la era digital</strong><br><br>
+
+<span class="variable">[REFLEXIÃ“N SOBRE POR QUÃ‰ ESTE ASPECTO ES VALIOSO]</span><br><br>
+
+Trabajo con pelÃ­cula no por nostalgia, sino porque <span class="variable">[RAZÃ“N CONCEPTUAL ESPECÃFICA]</span><br><br>
+
+<span class="variable">[EJEMPLO O ANÃ‰CDOTA QUE ILUSTRE EL PUNTO]</span><br><br>
+
+Â¿QuÃ© valor tiene para vos lo analÃ³gico en la era digital?<br><br>
+
+#fotografiaanalogica #archivoanalogico #pelliculafotografica <span class="variable">[+ 17 HASHTAGS]</span>
+            </div>
+            
+            <button class="copy-btn" onclick="copyTemplate(this)">ðŸ“‹ Copiar Template</button>
+        </div>
+    </section>
+
+    <!-- TEMPLATE 8 -->
+    <section>
+        <div class="template-card">
+            <div class="template-header">
+                <h3 class="template-title">Template 8: Serie TemÃ¡tica</h3>
+                <span class="template-type">OBRA DESTACADA</span>
+            </div>
+            
+            <div class="template-content">
+<strong><span class="variable">[NOMBRE SERIE]</span> - Pieza <span class="variable">[NÃšMERO]</span> de <span class="variable">[TOTAL]</span></strong><br><br>
+
+<span class="variable">[INTRODUCCIÃ“N A LA SERIE SI ES LA PRIMERA PIEZA, O CONTINUACIÃ“N DEL CONCEPTO]</span><br><br>
+
+<span class="variable">[LO QUE HACE ÃšNICA A ESTA PIEZA DENTRO DE LA SERIE]</span><br><br>
+
+<span class="variable">[REFLEXIÃ“N SOBRE LA SERIE COMPLETA]</span><br><br>
+
+<span class="variable">[PREGUNTA: Â¿CUÃL TE HA GUSTADO MÃS DE LA SERIE?]</span><br><br>
+
+#arqueologiaubana #serie <span class="variable">[+ 18 HASHTAGS]</span>
+            </div>
+            
+            <button class="copy-btn" onclick="copyTemplate(this)">ðŸ“‹ Copiar Template</button>
+        </div>
+    </section>
+
+    <!-- TEMPLATE 9 -->
+    <section>
+        <div class="template-card">
+            <div class="template-header">
+                <h3 class="template-title">Template 9: ComparaciÃ³n Temporal</h3>
+                <span class="template-type">OBRA DESTACADA</span>
+            </div>
+            
+            <div class="template-content">
+<strong>Entonces vs Ahora: <span class="variable">[UBICACIÃ“N]</span></strong><br><br>
+
+FotografiÃ© esta caja de registro en <span class="variable">[AÃ‘O]</span>. <span class="variable">[QUÃ‰ HA CAMBIADO DESDE ENTONCES]</span><br><br>
+
+<span class="variable">[REFLEXIÃ“N SOBRE PERMANENCIA VS CAMBIO EN LA CIUDAD]</span><br><br>
+
+Esta es precisamente la razÃ³n del proyecto: documentar antes de que desaparezca.<br><br>
+
+Â¿Has notado cambios significativos en tu barrio?<br><br>
+
+#arqueologiaubana #memoriaurbana #cambiourbano <span class="variable">[+ 17 HASHTAGS]</span>
+            </div>
+            
+            <button class="copy-btn" onclick="copyTemplate(this)">ðŸ“‹ Copiar Template</button>
+        </div>
+    </section>
+
+    <!-- TEMPLATE 10 -->
+    <section>
+        <div class="template-card">
+            <div class="template-header">
+                <h3 class="template-title">Template 10: Hallazgo Inesperado</h3>
+                <span class="template-type">BTS / OBRA</span>
+            </div>
+            
+            <div class="template-content">
+<strong>Hallazgos inesperados: <span class="variable">[DESCRIPCIÃ“N DEL HALLAZGO]</span></strong><br><br>
+
+Durante una deriva por <span class="variable">[UBICACIÃ“N]</span>, encontrÃ© <span class="variable">[QUÃ‰ ENCONTRASTE Y POR QUÃ‰ ES INTERESANTE]</span><br><br>
+
+<span class="variable">[POR QUÃ‰ ESTE HALLAZGO ES RELEVANTE PARA EL PROYECTO]</span><br><br>
+
+Estos momentos confirman que la ciudad siempre tiene mÃ¡s capas por descubrir.<br><br>
+
+Â¿CuÃ¡l ha sido tu hallazgo urbano mÃ¡s interesante?<br><br>
+
+#arqueologiaubana #hallazgourbano #derivaurbana <span class="variable">[+ 17 HASHTAGS]</span>
+            </div>
+            
+            <button class="copy-btn" onclick="copyTemplate(this)">ðŸ“‹ Copiar Template</button>
+        </div>
+    </section>
+
+    <!-- TEMPLATE 11 - LINKEDIN -->
+    <section>
+        <div class="template-card">
+            <div class="template-header">
+                <h3 class="template-title">Template 11: ArtÃ­culo LinkedIn - Reflexivo</h3>
+                <span class="template-type">LINKEDIN</span>
+            </div>
+            
+            <div class="template-content">
+<strong><span class="variable">[TÃTULO PROFESIONAL Y CONCEPTUAL]</span></strong><br><br>
+
+<span class="variable">[INTRODUCCIÃ“N QUE PLANTEA UNA PREGUNTA O PROBLEMA]</span><br><br>
+
+Mi proyecto "Registros de Registros" <span class="variable">[CÃ“MO ABORDA ESTE TEMA]</span><br><br>
+
+<span class="variable">[DESARROLLO CON 2-3 PUNTOS CLAVE NUMERADOS O EN PÃRRAFOS]</span><br><br>
+
+<span class="variable">[REFLEXIÃ“N FINAL O CALL TO ACTION PROFESIONAL]</span><br><br>
+
+#practicaartistica #artecontemporaneo #investigacionvisual #artistacostarricense <span class="variable">[+ 6 HASHTAGS PROFESIONALES]</span>
+            </div>
+            
+            <button class="copy-btn" onclick="copyTemplate(this)">ðŸ“‹ Copiar Template</button>
+            
+            <div class="instructions">
+                <strong>Para LinkedIn:</strong> Tono mÃ¡s profesional, terminologÃ­a acadÃ©mica apropiada, enfoque conceptual y teÃ³rico.
+            </div>
+        </div>
+    </section>
+
+    <!-- TEMPLATE 12 -->
+    <section>
+        <div class="template-card">
+            <div class="template-header">
+                <h3 class="template-title">Template 12: ColaboraciÃ³n/MenciÃ³n</h3>
+                <span class="template-type">INSTITUCIONAL</span>
+            </div>
+            
+            <div class="template-content">
+<strong>Agradecido con <span class="variable">[INSTITUCIÃ“N/PERSONA]</span> âœ¨</strong><br><br>
+
+<span class="variable">[CONTEXTO DE LA COLABORACIÃ“N O MENCIÃ“N]</span><br><br>
+
+<span class="variable">[QUÃ‰ SIGNIFICÃ“ ESTA COLABORACIÃ“N PARA EL PROYECTO]</span><br><br>
+
+<span class="variable">[REFLEXIÃ“N SOBRE LA IMPORTANCIA DEL APOYO INSTITUCIONAL/COMUNITARIO]</span><br><br>
+
+Gracias <span class="variable">[@USUARIO]</span> por <span class="variable">[RECONOCIMIENTO ESPECÃFICO]</span><br><br>
+
+#colaboracion #comunidadartistica #artecr <span class="variable">[+ 17 HASHTAGS]</span>
+            </div>
+            
+            <button class="copy-btn" onclick="copyTemplate(this)">ðŸ“‹ Copiar Template</button>
+        </div>
+    </section>
+
+    <!-- TEMPLATE 13 -->
+    <section>
+        <div class="template-card">
+            <div class="template-header">
+                <h3 class="template-title">Template 13: DÃ­a Internacional/EfemÃ©ride</h3>
+                <span class="template-type">OPORTUNO</span>
+            </div>
+            
+            <div class="template-content">
+<strong><span class="variable">[DÃA INTERNACIONAL DE...]</span> ðŸŒ</strong><br><br>
+
+<span class="variable">[CONEXIÃ“N DEL DÃA CON TU TRABAJO]</span><br><br>
+
+En "Registros de Registros", <span class="variable">[CÃ“MO TU PROYECTO SE RELACIONA CON EL TEMA DEL DÃA]</span><br><br>
+
+<span class="variable">[REFLEXIÃ“N MÃS AMPLIA SOBRE EL TEMA]</span><br><br>
+
+Â¿CÃ³mo celebrÃ¡s/observÃ¡s este dÃ­a desde tu prÃ¡ctica?<br><br>
+
+#<span class="variable">[HASHTAG DEL DÃA]</span> #arqueologiaubana <span class="variable">[+ 18 HASHTAGS]</span>
+            </div>
+            
+            <button class="copy-btn" onclick="copyTemplate(this)">ðŸ“‹ Copiar Template</button>
+            
+            <div class="instructions">
+                <strong>Usar solo cuando:</strong> El dÃ­a internacional tiene conexiÃ³n genuina con tu trabajo. No forzar.
+            </div>
+        </div>
+    </section>
+
+    <!-- TEMPLATE 14 -->
+    <section>
+        <div class="template-card">
+            <div class="template-header">
+                <h3 class="template-title">Template 14: Carrusel Educativo</h3>
+                <span class="template-type">EDUCATIVO</span>
+            </div>
+            
+            <div class="template-content">
+<strong><span class="variable">[NÃšMERO]</span> cosas que no sabÃ­as sobre <span class="variable">[TEMA]</span></strong><br><br>
+
+DeslizÃ¡ para aprender sobre <span class="variable">[ASPECTO ESPECÃFICO]</span> ðŸ‘‰<br><br>
+
+<span class="variable">[INTRODUCCIÃ“N BREVE QUE GENERE CURIOSIDAD]</span><br><br>
+
+ðŸ“¸ Cada imagen explica un concepto diferente sobre mi metodologÃ­a de trabajo.<br><br>
+
+Â¿CuÃ¡l te sorprendiÃ³ mÃ¡s?<br><br>
+
+#educacionartistica #arqueologiaubana #arteconceptual <span class="variable">[+ 17 HASHTAGS]</span>
+            </div>
+            
+            <button class="copy-btn" onclick="copyTemplate(this)">ðŸ“‹ Copiar Template</button>
+            
+            <div class="instructions">
+                <strong>Para carruseles:</strong> Primera imagen debe ser llamativa. Cada slide = 1 concepto claro. MÃ¡ximo 10 slides.
+            </div>
+        </div>
+    </section>
+
+    <!-- TEMPLATE 15 -->
+    <section>
+        <div class="template-card">
+            <div class="template-header">
+                <h3 class="template-title">Template 15: Pregunta a la Comunidad</h3>
+                <span class="template-type">ENGAGEMENT</span>
+            </div>
+            
+            <div class="template-content">
+<strong>Pregunta para la comunidad: <span class="variable">[PREGUNTA ESPECÃFICA]</span></strong><br><br>
+
+<span class="variable">[CONTEXTO DE POR QUÃ‰ HACÃ‰S ESTA PREGUNTA]</span><br><br>
+
+En mi proceso, <span class="variable">[TU RESPUESTA O APROXIMACIÃ“N AL TEMA]</span><br><br>
+
+Pero me interesa conocer: <span class="variable">[REFORMULACIÃ“N DE LA PREGUNTA CON MÃS CONTEXTO]</span><br><br>
+
+CompartÃ­ tu experiencia en comentarios ðŸ‘‡<br><br>
+
+#comunidadartistica #procesoartistico <span class="variable">[+ 18 HASHTAGS]</span>
+            </div>
+            
+            <button class="copy-btn" onclick="copyTemplate(this)">ðŸ“‹ Copiar Template</button>
+            
+            <div class="instructions">
+                <strong>Para engagement:</strong> La pregunta debe ser especÃ­fica y relevante. MostrÃ¡ tu postura primero para invitar a conversaciÃ³n.
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <h3>Mateo Arias</h3>
+        <p>Consultor en AutomatizaciÃ³n & TransformaciÃ³n Empresarial</p>
+        <p>Grupo Infinito Costa Rica</p>
+        <p class="copyright">Â© 2025 Grupo Infinito Costa Rica</p>
+    </footer>
+
+    <script>
+        function copyTemplate(button) {
+            const templateContent = button.previousElementSibling;
+            const text = templateContent.innerText;
+            
+            // Copy to clipboard
+            navigator.clipboard.writeText(text).then(() => {
+                // Change button text temporarily
+                const originalText = button.innerHTML;
+                button.innerHTML = 'âœ… Â¡Copiado!';
+                button.style.background = '#4CAF50';
+                
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.style.background = '#d4af37';
+                }, 2000);
+            });
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan Full Endurance | Andrés Induni | eat&flow</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #F5F9F7 0%, #E8F3EF 100%);
+            color: #2D4A3E;
+            line-height: 1.8;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 920px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 30px rgba(45,74,62,0.12);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1a5945 0%, #2D4A3E 100%);
+            color: white;
+            padding: 44px 30px;
+            text-align: center;
+            border-bottom: 4px solid #8bc34a;
+        }
+
+        .header .brand {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            opacity: 0.9;
+            margin-bottom: 18px;
+            text-transform: uppercase;
+        }
+
+        .header h1 { font-size: 30px; font-weight: 700; margin-bottom: 6px; }
+        .header .cliente { font-size: 22px; font-weight: 600; margin-top: 12px; }
+
+        .badge {
+            display: inline-block;
+            background: #ff9800;
+            color: white;
+            padding: 7px 22px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-top: 14px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .tabs {
+            display: flex;
+            overflow-x: auto;
+            background: white;
+            border-bottom: 2px solid #E8F3EF;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(45,74,62,0.06);
+        }
+
+        .tab {
+            padding: 15px 20px;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            font-size: 13px;
+            font-weight: 600;
+            color: #6c757d;
+            white-space: nowrap;
+            transition: all 0.3s;
+            flex-shrink: 0;
+        }
+
+        .tab:hover { background: #F5F9F7; color: #2D4A3E; }
+        .tab.active { color: #1a5945; border-bottom: 3px solid #1a5945; background: #F5F9F7; }
+
+        .content { padding: 40px 32px; }
+
+        .section { display: none; }
+        .section.active { display: block; animation: fadeIn 0.3s; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            font-size: 26px;
+            color: #1a5945;
+            margin-bottom: 28px;
+            padding-bottom: 14px;
+            border-bottom: 3px solid #8bc34a;
+        }
+
+        .subsection-title {
+            font-size: 20px;
+            color: #2D4A3E;
+            margin: 36px 0 18px;
+            font-weight: 700;
+        }
+
+        .card {
+            background: #F5FAF8;
+            border-left: 4px solid #8bc34a;
+            padding: 20px 22px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
+        .card h3 { color: #1a5945; font-size: 17px; margin-bottom: 12px; }
+        .card p { margin-bottom: 8px; font-size: 14.5px; }
+        .card ul { margin-left: 18px; margin-bottom: 8px; font-size: 14.5px; }
+
+        .card.highlight {
+            background: linear-gradient(135deg, #fff8f0, #fff3e6);
+            border-left: 4px solid #ff9800;
+        }
+
+        .card.success {
+            background: #e8f5e9;
+            border-left: 4px solid #43a047;
+        }
+
+        .card.warning {
+            background: #fffde7;
+            border-left: 4px solid #fdd835;
+        }
+
+        .card.critical {
+            background: #fce4ec;
+            border-left: 4px solid #e53935;
+        }
+
+        .card.dark {
+            background: #e8f0ee;
+            border-left: 4px solid #1a5945;
+        }
+
+        .orange-box {
+            background: linear-gradient(135deg, #fff8f0, #fff3e6);
+            border-left: 4px solid #ff9800;
+            padding: 20px 22px;
+            margin: 22px 0;
+            border-radius: 8px;
+        }
+
+        .orange-box p { margin-bottom: 8px; font-size: 14.5px; }
+
+        .info-box {
+            background: linear-gradient(135deg, #e8f5e9, #d4edda);
+            border-left: 4px solid #43a047;
+            padding: 20px 22px;
+            margin: 22px 0;
+            border-radius: 8px;
+        }
+
+        .warning-box {
+            background: #fffde7;
+            border-left: 4px solid #fdd835;
+            padding: 20px 22px;
+            margin: 22px 0;
+            border-radius: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+
+        table th {
+            background: #1a5945;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 700;
+        }
+
+        table td {
+            border-bottom: 1px solid #E8F3EF;
+            padding: 12px;
+        }
+
+        table tr:hover { background: #F5FAF8; }
+
+        .meal-plan {
+            background: #F5FAF8;
+            border-left: 4px solid #8bc34a;
+            padding: 18px 20px;
+            margin: 18px 0;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .meal-plan strong { color: #1a5945; }
+        .meal-plan p { margin-bottom: 6px; }
+
+        .whatsapp-box {
+            background: linear-gradient(135deg, #e8f5e9, #d4edda);
+            border-left: 4px solid #43a047;
+            padding: 20px 22px;
+            margin: 22px 0;
+            border-radius: 8px;
+        }
+
+        .whatsapp-box h3 { color: #2e7d32; margin-bottom: 12px; font-size: 17px; }
+        .whatsapp-box p { margin-bottom: 8px; font-size: 14.5px; }
+        .whatsapp-box ul { margin-left: 18px; margin-bottom: 8px; font-size: 14.5px; }
+
+        .recipe-card {
+            background: #F5FAF8;
+            border-left: 4px solid #ff9800;
+            padding: 18px 20px;
+            margin: 18px 0;
+            border-radius: 8px;
+        }
+
+        .recipe-card h4 { color: #1a5945; margin-bottom: 10px; }
+        .recipe-card p { margin-bottom: 6px; font-size: 14px; }
+        .recipe-card ul { margin-left: 18px; margin-bottom: 8px; font-size: 14px; }
+
+        .timeline {
+            margin: 20px 0;
+        }
+
+        .timeline-item {
+            background: #F5FAF8;
+            border-left: 4px solid #8bc34a;
+            padding: 18px 20px;
+            margin-bottom: 16px;
+            border-radius: 8px;
+        }
+
+        .timeline-item h4 { color: #1a5945; margin-bottom: 8px; font-size: 15px; font-weight: 700; }
+        .timeline-item p { margin-bottom: 6px; font-size: 14px; }
+        .timeline-item ul { margin-left: 18px; font-size: 14px; }
+
+        .footer {
+            background: #1a5945;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        .footer p { margin-bottom: 6px; }
+
+        .key-point {
+            background: linear-gradient(135deg, #fff8f0, #fff3e6);
+            border-left: 4px solid #ff9800;
+            padding: 15px 18px;
+            margin: 15px 0;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        strong { color: #1a5945; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <div class="brand">eat&flow</div>
+        <h1>Plan Full Endurance</h1>
+        <p style="font-size: 14px; opacity: 0.95; margin-top: 10px;">Asesoría Nutricional: Isa Herra</p>
+        <div class="cliente">Andrés Induni</div>
+        <span class="badge">Pack Full Nutrición</span>
+    </div>
+
+    <div class="tabs">
+        <button class="tab active" onclick="showSection('analisis')">Análisis</button>
+        <button class="tab" onclick="showSection('estrategia')">Estrategia</button>
+        <button class="tab" onclick="showSection('nutricion-diaria')">Nutrición Diaria</button>
+        <button class="tab" onclick="showSection('entrenamiento')">Plan de Entrenamiento</button>
+        <button class="tab" onclick="showSection('fueling')">Fueling en Ruta</button>
+        <button class="tab" onclick="showSection('recetas')">Recetas</button>
+        <button class="tab" onclick="showSection('cronograma')">Cronograma</button>
+        <button class="tab" onclick="showSection('seguimiento')">Seguimiento</button>
+    </div>
+
+    <div class="content">
+
+        <!-- ======= ANÁLISIS ======= -->
+        <div id="analisis" class="section active">
+            <h2 class="section-title">Análisis Inicial</h2>
+
+            <h3 class="subsection-title">Tu Situación Actual</h3>
+
+            <div class="card dark">
+                <h3>Perfil Biométrico</h3>
+                <table>
+                    <tr>
+                        <th>Métrica</th>
+                        <th>Valor</th>
+                        <th>Nota</th>
+                    </tr>
+                    <tr>
+                        <td>Edad</td>
+                        <td>47 años</td>
+                        <td>Dentro del rango óptimo para endurance</td>
+                    </tr>
+                    <tr>
+                        <td>Peso actual</td>
+                        <td>95 kg</td>
+                        <td>IMC 29.3 (sobrepeso leve)</td>
+                    </tr>
+                    <tr>
+                        <td>Altura</td>
+                        <td>180 cm</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td>Circunferencia cintura</td>
+                        <td>99 cm</td>
+                        <td>Índice de riesgo metabólico moderado</td>
+                    </tr>
+                    <tr>
+                        <td>Historial de peso</td>
+                        <td>90-97 kg (últimos 3 años)</td>
+                        <td>Estable pero sin progresión</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="orange-box">
+                <p><strong>Punto crítico que debés entender:</strong> Hace tres años que estás en una meseta de peso. No es porque seas "viejo". No es porque no tengas potencial. Es porque hay un desequilibrio fundamental entre lo que comés y lo que tu cuerpo necesita para rendir. Y aquí está lo importante que muchos no entienden: <strong>cuando comés poco y mal, tu cuerpo no adelgaza. Tu cuerpo se defiende.</strong></p>
+            </div>
+
+            <h3 class="subsection-title">El Problema que Más Te Afecta: La Relación con la Comida</h3>
+
+            <div class="card critical">
+                <h3>Diagnóstico Nutricional Honesto</h3>
+                <p><strong>Vos mismo lo dijiste:</strong> "Soy adicto a la comida" y "Evito comer dulces pero me encantan." Eso es el patrón clásico de restricción-compulsión. Cuando restringís mucho, tu cerebro reacciona con más ansia. Cuando te sentís culpable, comés más. Es un ciclo que no termina hasta que cambiamos la estrategia.</p>
+                <p style="margin-top: 10px;">La dieta KETO te funcionó al inicio porque fue restrictiva, pero por eso mismo no fue sostenible. Tu intento de ser vegetariano para adelgazar fracasó porque seguía siendo restricción. Cuando el sistema es basado en "no puedo", el cuerpo grita "necesito".</p>
+            </div>
+
+            <h3 class="subsection-title">Tus Entrenamientos: Talentoso pero Desnutrido</h3>
+
+            <div class="card success">
+                <h3>Lo que ya estás haciendo bien</h3>
+                <p>Tenés 5-10 años de ciclismo. Completaste rutas de 95-107 km con 1800-3200 m de ascenso. Manejás potencia (170W promedio) y frecuencia cardíaca coherente (FC máx 170, reposo 60). Eso no es poco. Eso demuestra capacidad real de endurance.</p>
+                <p style="margin-top: 10px;"><strong>El problema:</strong> Terminás "muerto de cansancio". Eso no es falta de capacidad. Es que estás llegando a la meta vacío de glucógeno. Tu cerebro y músculo no tuvieron la gasolina necesaria durante el viaje. Y eso es completamente manejable.</p>
+            </div>
+
+            <h3 class="subsection-title">Por Qué No Adelgazas Aunque Comas "Poco"</h3>
+
+            <div class="key-point">
+                <p><strong>Ciencia básica de metabolismo:</strong> Tu cuerpo necesita un mínimo de energía para funcionar. Si comés por debajo de eso durante una temporada larga, tu metabolismo baja. Tu cortisol sube. Tu cuerpo retiene grasa por si acaso viene otra "hambruna". Tu insulina se vuelve resistente. Y cuando finalmente comés (porque la hambre gana), todo se almacena como grasa porque tu cuerpo está en "modo supervivencia".</p>
+            </div>
+
+            <div class="card warning">
+                <h3>Tu Fueling en Ruta: Un Desastre Controlado</h3>
+                <p>Desayunás antes de salir. Tomas agua o hidratante. En las pulperías comés algo pero tú mismo dijiste "trato de no comer para tratar de adelgazar". Eso es el problema exacto. Durante un fondo de 6-7 horas, vos necesitás entre 200-280 gramos de carbohidratos adicionales. Estás llegando con 50 o menos. Por eso terminas "muerto".</p>
+            </div>
+
+            <h3 class="subsection-title">Los Calambres y la Disfunción Digestiva</h3>
+
+            <div class="card">
+                <h3>¿Por Qué Calambres Detrás de la Rodilla?</h3>
+                <p>Frecuentemente tenés hambre pero ganas de vomitar. Es un signo directo de malabsorción de glucosa y electrolitos. Tus músculos se contraen por falta de sodio. Tu estómago se revuelve porque no estás comiendo correctamente durante el esfuerzo. Esto se corrige en dos meses si hacemos bien el fueling.</p>
+            </div>
+
+            <div class="orange-box">
+                <p><strong>Dato importante:</strong> Creés que bebés 1.5 litros y que es lo adecuado. Pero tu sensación de hidratación es "muy mala". Necesitás incrementar a 3 litros en días de descanso y al menos 250-500 ml cada 30 minutos en ruta (dependiendo del calor). Eso es no solo agua, sino agua con electrolitos.</p>
+            </div>
+
+        </div>
+
+        <!-- ======= ESTRATEGIA ======= -->
+        <div id="estrategia" class="section">
+            <h2 class="section-title">Estrategia Global del Plan</h2>
+
+            <div class="orange-box">
+                <p><strong>Este plan tiene una filosofía clara:</strong> No vamos a restringir. Vamos a alimentarte correctamente. Vamos a condicionar tu cuerpo a usar la comida como lo que es: combustible y placer. Y lo más importante: vamos a hacerlo de forma que sea sostenible para toda tu vida como deportista.</p>
+            </div>
+
+            <h3 class="subsection-title">Pilares de la Estrategia</h3>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>1. Nutrición Diaria Robusta y Bien Distribuida</h4>
+                    <p>En lugar de comer poco esperando adelgazar, vamos a comer las calorías correctas repartidas en 4-5 momentos del día. Tu metabolismo se normaliza. Tu ansiedad desciende. Tu energía mejora.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>2. Introducir Carbohidratos de Calidad Todos Los Días</h4>
+                    <p>No son el enemigo. Son el combustible de un atleta de endurance. Arroz integral, batata, avena, pasta integral, tortillas. Estos van en tu almuerzo y cena, más los que uses en entrenamientos.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>3. Proteína Consistente en Cada Comida</h4>
+                    <p>Ya comés proteína. Vamos a mantenerlo pero con cantidades correctas. Una palma de mano de proteína en cada comida. Esto mantiene saciedad y preserva masa magra mientras bajamos grasa.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>4. Manejo Inteligente del Dulce</h4>
+                    <p>No lo vas a dejar. Lo vamos a reubicar. Los dulces que ames, los vas a comer en entrenamientos donde aportan valor. En casa, vamos a hacerlos más saludables (helados de yogurt griego con fruta, por ejemplo).</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>5. Estrategia de Fueling en Ruta Progresiva</h4>
+                    <p>Vamos a entrenar tu tracto gastrointestinal. Empezamos con entrenamientos cortos (1-2 horas) sin fueling. Luego 2-3 horas con fueling ligero. Luego los fondos largos con protocolo completo. Tu estómago se adapta.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>6. Plan de Entrenamiento Progresivo y Estructurado</h4>
+                    <p>Actualmente haces 3 días de ciclismo + funcionales. Vamos a darle estructura. Días suaves (recuperación), días de intensidad (intervalos), fondos largos progresivos cada domingo.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>7. Hidratación y Electrolitos como Prioridad</h4>
+                    <p>De 1.5 a 3 litros diarios. En ruta, hidratación cada 20-30 minutos con electrolitos. Los calambres desaparecen cuando el sodio es correcto.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>8. Este Mes: Nutrición. El Próximo: Sueño y Recuperación. Luego: Mecánica.</h4>
+                    <p>Priorizamos. Primero aseguramos que comas bien. El sueño mejora solo con mejor nutrición. La mecánica la vemos después. Si intentamos todo a la vez, nada se mejora.</p>
+                </div>
+            </div>
+
+            <h3 class="subsection-title">Objetivos del Plan (Mes 1)</h3>
+
+            <div class="card highlight">
+                <h3>Lo Que Vamos a Lograr</h3>
+                <table>
+                    <tr>
+                        <th>Objetivo</th>
+                        <th>Métrica</th>
+                        <th>Timeline</th>
+                    </tr>
+                    <tr>
+                        <td>Mejorar energía en fondos</td>
+                        <td>No llegas "muerto" al final</td>
+                        <td>Mes 1-2</td>
+                    </tr>
+                    <tr>
+                        <td>Reducir disfunción digestiva</td>
+                        <td>Sin náuseas ni vómitos durante entrenamientos</td>
+                        <td>Mes 1</td>
+                    </tr>
+                    <tr>
+                        <td>Reducir calambres</td>
+                        <td>Menos o ningún calambre en ruta</td>
+                        <td>Mes 1-2</td>
+                    </tr>
+                    <tr>
+                        <td>Mejorar recuperación</td>
+                        <td>Menos pesadez el día después de un fondo</td>
+                        <td>Mes 1</td>
+                    </tr>
+                    <tr>
+                        <td>Pérdida de peso gradual</td>
+                        <td>0.5-1 kg por semana</td>
+                        <td>Mes 1 en adelante</td>
+                    </tr>
+                    <tr>
+                        <td>Aumentar fondos largos</td>
+                        <td>De máximo 107 km a 125 km sostenible</td>
+                        <td>Mes 1-3</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3 class="subsection-title">Condiciones para el Éxito</h3>
+
+            <div class="card success">
+                <h3>Tu Compromiso</h3>
+                <p>Dijiste 100%. Bueno, aquí está lo que eso significa:</p>
+                <p style="margin-top: 10px;"><strong>Semana 1-4:</strong> Cocinar tú mismo. No vamos a recomendarte que comas en la pulpería. Vamos a darte recetas para que prepares en casa. Esto es no negociable si querés un cambio real.</p>
+                <p style="margin-top: 10px;"><strong>Si comes afuera:</strong> Solo en lugares donde puedas pedir pollo a la plancha con verdura y arroz integral. Pizzería premium con toppings saludables. Restaurante que no fría todo en manteca.</p>
+                <p style="margin-top: 10px;"><strong>Alarmas en el Garmin:</strong> Yo te envío el video. Vas a poner alarmas para los entrenamientos donde debes comer cada 45 minutos y cada 30 minutos para tomar agua/electrolitos. Es la única forma de crear un hábito nuevo.</p>
+                <p style="margin-top: 10px;"><strong>WhatsApp semanal:</strong> Cada viernes me mandas cómo te fue. Qué comiste. Cómo te sentiste en los entrenamientos. Si hay preguntas, respondo en menos de 24 horas.</p>
+            </div>
+
+            <h3 class="subsection-title">Los Próximos Pasos Inmediatos</h3>
+
+            <div class="orange-box">
+                <p><strong>1. Cambio de métodos de cocción:</strong> Vas a cambiar la manteca de cerdo por aceite de oliva. Las frituras las vas a eliminar. La preparación debe ser asado, al vapor o a la plancha. Aquí hay una ciencia detrás: las grasas trans y saturadas en exceso inflan tu tracto digestivo y generan más ansia de comida.</p>
+                <p style="margin-top: 10px;"><strong>2. Introducir el hidratante con electrolitos:</strong> No solo agua. Hidratante con sodio, potasio, magnesio. Esto es fundamental para la absorción de agua y para evitar los calambres.</p>
+                <p style="margin-top: 10px;"><strong>3. Bolsos para la bicicleta:</strong> Yo te envío videos. Vamos a usar un bolso sobre la manivela o el marco, más un bolso de agua de espalda. Para este mes, la mecánica la dejamos. Nos enfocamos en la nutrición.</p>
+            </div>
+
+        </div>
+
+        <!-- ======= NUTRICIÓN DIARIA ======= -->
+        <div id="nutricion-diaria" class="section">
+            <h2 class="section-title">Nutrición Diaria: Tu Plan Base</h2>
+
+            <div class="orange-box">
+                <p><strong>Lo Primero Que Debes Entender:</strong> Este plan no te pone en déficit calórico severo. Te pone en un déficit moderado y sostenible. Comés bien, comés con regularidad, tu metabolismo funciona normal, y gradualmente bajás de peso sin sacrificar rendimiento. De hecho, tu rendimiento mejora porque tu cuerpo tiene energía.</p>
+            </div>
+
+            <h3 class="subsection-title">Estructura del Día (Sin Entrenamiento)</h3>
+
+            <div class="meal-plan">
+                <strong>Desayuno (7:00 AM)</strong>
+                <p>1 huevo entero + 2 claras + 1 rebanada pan integral + 1 palma de mano de queso blanco bajo en grasa (preferentemente queso cottage o tipo tierno bajo en grasa) + 1 aguacate mediano + café o té sin azúcar.</p>
+                <p style="margin-top: 8px; color: #666;"><em>Por qué:</em> Proteína completa desde el inicio. Las grasas del aguacate y huevo son saludables. El pan integral da glucosa lenta. El queso bajo en grasa reduce calorías sin perder saciedad.</p>
+            </div>
+
+            <div class="meal-plan">
+                <strong>Merienda Media Mañana (10:00 AM)</strong>
+                <p>1 yogurt griego natural (150 g) + 1 puño de almendras + 1 fruta mediana (manzana, naranja o banano).</p>
+                <p style="margin-top: 8px; color: #666;"><em>Por qué:</em> Proteína + grasas saludables + carbohidrato. Mantiene saciedad hasta el almuerzo.</p>
+            </div>
+
+            <div class="meal-plan">
+                <strong>Almuerzo (13:00 PM)</strong>
+                <p>1 palma de mano de proteína magra (pollo, res magra o cerdo) + 1 puño de arroz integral o pasta integral cocida + 2 puños de verdura variada (brócoli, zanahoria, papaya verde, espinaca) al vapor, aderezada con vinagre de manzana, vinagre blanco, vinagre balsámico o limón y sal.</p>
+                <p style="margin-top: 8px; color: #666;"><em>Por qué:</em> Los carbohidratos integrales aquí son clave. Llenan, nutren, y no generan picos de insulina. Las verduras al vapor dan saciedad con pocas calorías.</p>
+            </div>
+
+            <div class="meal-plan">
+                <strong>Merienda Tarde (16:00 PM)</strong>
+                <p>Opción 1: 2 tortillitas de maíz + 40g de queso blanco bajo en grasa. Opción 2: 1 soda con 60g de frijoles molidos cocidos + 30g de queso blanco bajo en grasa.</p>
+                <p style="margin-top: 8px; color: #666;"><em>Por qué:</em> Este es tu "dulce" cultural. Es aceptable. Las tortillas y maíz son base de la alimentación costarricense. Las cantidades aquí son controladas para no exceder el déficit calórico.</p>
+            </div>
+
+            <div class="meal-plan">
+                <strong>Cena (19:00 PM)</strong>
+                <p>1 palma de mano de proteína + 1 puño de carbohidrato (yuca cocida, camote, arroz integral o papa) + 2-3 puños de verdura + 1 cucharada de aceite de oliva.</p>
+                <p style="margin-top: 8px; color: #666;"><em>Por qué:</em> Carbohidratos en la noche mejoran la saciedad y el sueño (si tiene magnesio, mejor aún). La proteína en la cena acelera el metabolismo nocturno.</p>
+            </div>
+
+            <h3 class="subsection-title">Estructura del Día (CON Entrenamiento de 60-90 minutos)</h3>
+
+            <div class="card highlight">
+                <h3>Importante: Cómo Cambiar el Día Si Entrenás</h3>
+                <p>Los días que entrenás (especialmente en la tarde o noche), vas a agregar un pre-entreno y un post-entreno. Tu consumo total de calorías sube ese día porque lo necesitás.</p>
+            </div>
+
+            <div class="meal-plan">
+                <strong>Pre-Entreno (30 min antes)</strong>
+                <p>Si entrenal después del trabajo: 1 banana mediana + 30g de proteína whey (en agua) O un yogurt griego + granola casera (1 puño pequeño).</p>
+                <p style="margin-top: 8px; color: #666;"><em>Por qué:</em> Carbohidrato rápido + proteína. No es mucho. Solo para que no llegues con el tanque vacío.</p>
+            </div>
+
+            <div class="meal-plan">
+                <strong>Post-Entreno (dentro de 30 min después)</strong>
+                <p>Opción 1: 1 sandwich de pan integral + proteína magra + verdura + 1 fruta. Opción 2: Batido con 1 banano + 30g proteína whey + 200ml de agua. Opción 3: Arroz con huevo y verdura.</p>
+                <p style="margin-top: 8px; color: #666;"><em>Por qué:</em> La ventana post-entreno es real. Proteína + carbohidrato dentro de 30 minutos acelera la recuperación muscular y repone glucógeno.</p>
+            </div>
+
+            <h3 class="subsection-title">Estructura del Día (FONDOS LARGOS - Domingo)</h3>
+
+            <div class="card dark">
+                <h3>Cuando Salís a Un Fondo de +3 Horas</h3>
+                <p><strong>Desayuno (6:00 AM, 2 horas antes de salir):</strong> 2 tostadas de pan blanco (sí, blanco, es lo que absorbes rápido) + 2 huevos + café + 1 banano pequeño. Come ligero pero consistente.</p>
+                <p style="margin-top: 10px;"><strong>En Ruta (ver sección de Fueling):</strong> Esto se detalla en la próxima sección. Pero en resumen: carbohidratos cada 45 minutos, sal, hidratación cada 30 minutos.</p>
+                <p style="margin-top: 10px;"><strong>Inmediatamente post-fondo:</strong> Proteína + carbohidratos. Si no tienes apetito, toma un licuado de banano con leche y proteína whey. Tu cuerpo necesita que reponga lo que gastó.</p>
+            </div>
+
+            <h3 class="subsection-title">Manejo del Dulce: No Restricción, Reubicación</h3>
+
+            <div class="orange-box">
+                <p><strong>Vos dijiste:</strong> "Que me dejen comer helados todos los días desayuno almuerzo y cena". Es un pedido honesto y legítimo. Pero aquí viene la verdad: eso no es compatible con bajar de peso.</p>
+                <p style="margin-top: 10px;"><strong>Ahora, lo que SÍ vamos a hacer:</strong></p>
+                <p style="margin-top: 10px;"><strong>1. Helados Caseros Saludables (todos los días si querés):</strong> Yogurt griego natural + fruta congelada + un poco de miel. Esto es un postre real, con proteína, sin azúcar industrial. Si quierés todos los días, dale. No engordan porque vienen con proteína que sacia.</p>
+                <p style="margin-top: 10px;"><strong>2. Un Dulce Normal en Entrenamientos Largos:</strong> Si estás en un fondo de 4+ horas, te permitís un dulce pequeño (confite, pedacito de queque, dulce de leche) en el transcurso de la rodada. Por qué funciona esto: durante el esfuerzo prolongado, ese azúcar se usa como combustible. No se almacena como grasa. Se transforma en energía que necesitás. Además, te calma la ansiedad por el dulce.</p>
+            </div>
+
+            <h3 class="subsection-title">Hidratación: De 1.5 a 3 Litros</h3>
+
+            <div class="card success">
+                <h3>Plan de Incremento Progresivo</h3>
+                <p><strong>Apenas te levantás:</strong> Toma 250ml (un vaso) de agua. Ojalá lo tengas al lado de la cama. Así empezás el día hidratado.</p>
+                <p style="margin-top: 10px;"><strong>Semana 1-2:</strong> 2 litros al día (8-10 vasos de 200ml). Distribuidos así: desayuno (300ml), media mañana (300ml), almuerzo (300ml), merienda (300ml), cena (400ml), noche (400ml).</p>
+                <p style="margin-top: 10px;"><strong>Semana 3-4:</strong> 2.5 litros al día.</p>
+                <p style="margin-top: 10px;"><strong>Semana 5+:</strong> 3 litros al día en días de descanso. Los días de entrenamiento puede ser más.</p>
+                <p style="margin-top: 10px;"><strong>Señal de éxito:</strong> Tu orina debe ser clara o ligeramente amarilla. Si es oscura, no bebés lo suficiente.</p>
+            </div>
+
+            <div class="warning-box">
+                <p><strong>Hidratante vs Agua:</strong> En días de descanso o entrenamientos suaves: agua normal. En entrenamientos de 60+ minutos o fondos: hidratante con electrolitos (sodio, potasio, magnesio). Puedes enviarme la tabla nutricional del hidratante que usas para confirmar que sea buena opción. Importante: no es lo mismo un suero de hidratación para farmacia (esos son para cuando tienes diarrea) que un hidratante deportivo. Los sueros de farmacia no tienen las sales que necesita un deportista. Si lo prefieres, el hidratante casero funciona igual: 1 litro agua + 1 cucharada miel + 1 cucharadita sal + jugo de limón.</p>
+            </div>
+
+        </div>
+
+        <!-- ======= PLAN DE ENTRENAMIENTO ======= -->
+        <div id="entrenamiento" class="section">
+            <h2 class="section-title">Plan de Entrenamiento Progresivo</h2>
+
+            <div class="orange-box">
+                <p><strong>Tu Situación Actual:</strong> Entrenas 3 días de ciclismo + 2 horas de funcionales. Es inconsistente. Ahora vas a tener estructura. Y lo más importante: <strong>cada fondo largo solo aumenta de distancia si cumpliste los entrenamientos entre semana Y comiste correctamente en el día a día.</strong> No es castigo. Es realidad fisiológica. Si no estás bien nutrido, no puedes rendir más.</p>
+            </div>
+
+            <h3 class="subsection-title">Estructura Semanal (Mes 1)</h3>
+
+            <div class="card dark">
+                <h3>Semanas 1-2: Consolidación Base</h3>
+                <table>
+                    <tr>
+                        <th>Día</th>
+                        <th>Actividad</th>
+                        <th>Duración</th>
+                        <th>Intensidad</th>
+                        <th>Fueling</th>
+                    </tr>
+                    <tr>
+                        <td>Lunes</td>
+                        <td>Descanso o Funcionales suaves</td>
+                        <td>45 min</td>
+                        <td>Recuperación</td>
+                        <td>No requiere</td>
+                    </tr>
+                    <tr>
+                        <td>Martes</td>
+                        <td>Ciclismo suave</td>
+                        <td>60 min</td>
+                        <td>Z2 (conversación cómoda)</td>
+                        <td>No requiere</td>
+                    </tr>
+                    <tr>
+                        <td>Miércoles</td>
+                        <td>Funcionales cardio</td>
+                        <td>45 min</td>
+                        <td>Moderado</td>
+                        <td>No requiere</td>
+                    </tr>
+                    <tr>
+                        <td>Jueves</td>
+                        <td>Ciclismo con intervalos suaves</td>
+                        <td>60 min total (10 min calentamiento + 40 min Z3/Z4 repartido + 10 min enfriamiento)</td>
+                        <td>Moderado-Alto</td>
+                        <td>No requiere (mín 1.5L agua con electrolitos)</td>
+                    </tr>
+                    <tr>
+                        <td>Viernes</td>
+                        <td>Descanso</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td>Sábado</td>
+                        <td>Descanso o paseo casual</td>
+                        <td>45 min máx</td>
+                        <td>Muy suave</td>
+                        <td>No requiere</td>
+                    </tr>
+                    <tr>
+                        <td>Domingo</td>
+                        <td>FONDO LARGO</td>
+                        <td>80 km (Semana 1) / 95 km (Semana 2)</td>
+                        <td>Z2 (conversación cómoda)</td>
+                        <td>Sí, ver protocolo</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="card dark">
+                <h3>Semanas 3-4: Incremento Progresivo</h3>
+                <table>
+                    <tr>
+                        <th>Día</th>
+                        <th>Actividad</th>
+                        <th>Duración</th>
+                        <th>Intensidad</th>
+                        <th>Fueling</th>
+                        <th>Nota</th>
+                    </tr>
+                    <tr>
+                        <td>Lunes</td>
+                        <td>Descanso o Funcionales suaves</td>
+                        <td>45 min</td>
+                        <td>Recuperación</td>
+                        <td>No requiere</td>
+                        <td>Recovery</td>
+                    </tr>
+                    <tr>
+                        <td>Martes</td>
+                        <td>Ciclismo suave</td>
+                        <td>70 min</td>
+                        <td>Z2</td>
+                        <td>Hidratante cada 30 min</td>
+                        <td>Incremento de 10 min</td>
+                    </tr>
+                    <tr>
+                        <td>Miércoles</td>
+                        <td>Funcionales cardio + fuerza</td>
+                        <td>50 min</td>
+                        <td>Moderado</td>
+                        <td>No requiere</td>
+                        <td>Focus en quads y glúteos (para bajar grasa)</td>
+                    </tr>
+                    <tr>
+                        <td>Jueves</td>
+                        <td>Ciclismo con intervalos medios</td>
+                        <td>75 min total</td>
+                        <td>Moderado-Alto</td>
+                        <td>Hidratante cada 30 min, mín 1.5L</td>
+                        <td>Puede incluir 3-4 repeticiones de 5 min en Z4</td>
+                    </tr>
+                    <tr>
+                        <td>Viernes</td>
+                        <td>Descanso</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td>Sábado</td>
+                        <td>Descanso</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td>Domingo</td>
+                        <td>FONDO LARGO</td>
+                        <td>110 km (Semana 3) / 125 km (Semana 4)</td>
+                        <td>Z2</td>
+                        <td>Protocolo 40-50 g CHO/hora (ver Fueling en Ruta)</td>
+                        <td>Si cumpliste los entrenamientos y nutrición, adelante. Si no, repite distancia anterior.</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3 class="subsection-title">Regla de Oro: Progresión Condicionada</h3>
+
+            <div class="card critical">
+                <h3>Cuándo SÍ Aumentas la Distancia del Fondo</h3>
+                <p><strong>Criterios que DEBEN cumplirse:</strong></p>
+                <p style="margin-top: 8px;">1. Completaste todos los entrenamientos entre semana (mínimo 4 de 5 días).</p>
+                <p style="margin-top: 4px;">2. Comiste correctamente cada día (sin saltarte comidas, sin binges de dulce).</p>
+                <p style="margin-top: 4px;">3. En los entrenamientos previos, seguiste el protocolo de fueling en los que lo requería.</p>
+                <p style="margin-top: 4px;">4. Te recuperaste bien del fondo anterior (sin lesión, sin enfermedad).</p>
+                <p style="margin-top: 10px;"><strong>Si ALGUNO de estos no se cumple:</strong> Repites la distancia anterior. No es castigo. Es que tu cuerpo no está listo. El incremento de distancia sin recuperación genera lesiones y agotamiento.</p>
+            </div>
+
+            <h3 class="subsection-title">Funcionales: Qué Significa "Cardio para Bajar Grasa"</h3>
+
+            <div class="card success">
+                <h3>Sesión de Funcionales (45-50 min)</h3>
+                <p><strong>Calentamiento (5 min):</strong> Trote suave, saltos de cuerda, movimientos dinámicos.</p>
+                <p style="margin-top: 8px;"><strong>Bloque 1 (15 min) — Fuerza en tren inferior:</strong></p>
+                <p style="margin-top: 4px;">3 series de: 10 sentadillas profundas + 10 estocadas por pierna + 15 saltos de box (o step up). Descanso 45 seg entre series.</p>
+                <p style="margin-top: 8px;"><strong>Bloque 2 (15 min) — Cardio de intensidad:</strong></p>
+                <p style="margin-top: 4px;">5 rondas de: 30 seg burpees o mountain climbers a alta intensidad + 30 seg trote lento + 30 seg descanso.</p>
+                <p style="margin-top: 8px;"><strong>Bloque 3 (10 min) — Core y estabilidad:</strong></p>
+                <p style="margin-top: 4px;">3 series: 20 crunches + 30 seg plancha + 15 leg raises. Descanso 30 seg.</p>
+                <p style="margin-top: 10px;"><strong>Por qué esto funciona:</strong> Combines cardio de alta intensidad (quema grasa) con fuerza (preserva músculo). Nada de máquinas. Tu peso corporal es suficiente.</p>
+            </div>
+
+            <h3 class="subsection-title">Ciclismo con Intervalos: Cómo Hacerlos</h3>
+
+            <div class="card highlight">
+                <h3>Estructura de Una Sesión de Intervalos en Bici (Jueves - 75 min total)</h3>
+                <p><strong>Calentamiento (10 min):</strong> Ritmo Z2 (conversación cómoda). Incrementa gradualmente la intensidad.</p>
+                <p style="margin-top: 10px;"><strong>Bloque de Intervalos (40 min total):</strong> 3-4 repeticiones de:</p>
+                <p style="margin-top: 6px;">1. Esfuerzo fuerte (Z4) durante 5 minutos. Tu frecuencia cardíaca debe estar entre 140-155 bpm. Es intenso, pero podés hablar en frases cortas. Sensación: 7-8 de 10 en esfuerzo.</p>
+                <p style="margin-top: 6px;">2. Recuperación (Z2) durante 3-4 minutos. Ritmo cómodo. FC baja a 120 bpm. Recuperas aliento completamente.</p>
+                <p style="margin-top: 6px;">3. Repite este ciclo 3-4 veces.</p>
+                <p style="margin-top: 10px;"><strong>Enfriamiento (10 min):</strong> Ritmo Z2 suave. Recuperación completa.</p>
+                <p style="margin-top: 10px;"><strong>Zonas de Frecuencia Cardíaca (basadas en tu FC máx de 170):</strong></p>
+                <p style="margin-top: 6px;">Z2 (Conversación cómoda): 110-130 bpm (65-76% FC máx)</p>
+                <p style="margin-top: 6px;">Z3 (Moderado): 131-145 bpm (77-85% FC máx)</p>
+                <p style="margin-top: 6px;">Z4 (Fuerte): 146-157 bpm (86-92% FC máx)</p>
+                <p style="margin-top: 10px;"><strong>Nota:</strong> No es necesario un poder medidor. Usa tu Garmin para ver la FC. Si no tienes FC, usa la "prueba del habla": si puedes conversar normal = Z2, si puedes hablar pero cuesta = Z3, si casi no puedes hablar = Z4.</p>
+            </div>
+
+        </div>
+
+        <!-- ======= FUELING EN RUTA ======= -->
+        <div id="fueling" class="section">
+            <h2 class="section-title">Fueling en Ruta: Estrategia Progresiva</h2>
+
+            <div class="orange-box">
+                <p><strong>Este es el cambio más importante que vamos a hacer.</strong> Actualmente, entras a un fondo sin un plan de reposición de carbohidratos y sales sin energía. Vamos a cambiar eso completamente. Tu estómago se adaptará en 2-3 semanas.</p>
+            </div>
+
+            <h3 class="subsection-title">Fase 1: Entrenamientos Cortos (Semanas 1-2)</h3>
+
+            <div class="card">
+                <h3>Entrenamientos de 60-90 Minutos (Martes y Jueves)</h3>
+                <p><strong>Solo agua o hidratante con electrolitos. Sin fueling sólido.</strong></p>
+                <p style="margin-top: 8px;">Cantidad: 150-200 ml cada 20 minutos de hidratante con electrolitos. Total aproximado: 500-600 ml en 60 minutos, 750 ml en 90 minutos.</p>
+                <p style="margin-top: 8px;"><strong>Propósito:</strong> Acostumbrar tu sistema gastrointestinal a procesar líquidos bajo esfuerzo. Si tu estómago no tolera esto, no tolerará comida sólida después.</p>
+            </div>
+
+            <h3 class="subsection-title">Fase 2: Fondos Medianos de Entrenamiento (Semanas 3-4)</h3>
+
+            <div class="card">
+                <h3>Fondos de 80-95 km (3.5-4 Horas)</h3>
+                <p><strong>Opción A (Carbohidrato sólido):</strong> Cada 45 minutos, come algo ligero:</p>
+                <p style="margin-top: 8px;">Opción 1: 1 banano pequeño o 1/2 banano grande.</p>
+                <p style="margin-top: 4px;">Opción 2: 3-4 galletitas de soda con mermelada.</p>
+                <p style="margin-top: 4px;">Opción 3: 1 barrita de granola.</p>
+                <p style="margin-top: 10px;"><strong>Hidratación:</strong> Hidratante con electrolitos cada 30 minutos, 200 ml.</p>
+                <p style="margin-top: 10px;"><strong>Total de carbohidratos:</strong> Aproximadamente 120-140 gramos en 4 horas (30-35 g/hora).</p>
+                <p style="margin-top: 10px;"><strong>Propósito:</strong> Entrenar tu tracto GI a procesar sólidos. Empezamos bajo (30 g/hora) y subimos gradualmente.</p>
+            </div>
+
+            <h3 class="subsection-title">Fase 3: Fondos Largos de Competencia (Semana 4+)</h3>
+
+            <div class="card highlight">
+                <h3>Fondos de 100+ km (5+ Horas)</h3>
+                <p><strong>Objetivo de carbohidratos: 200-280 gramos (40-50 g/hora)</strong></p>
+                <p style="margin-top: 10px;"><strong>Distribución de fueling cada 45 minutos:</strong></p>
+                <p style="margin-top: 8px;">Alternancia de sólido + líquido + gel:</p>
+                <p style="margin-top: 4px;"><strong>Minuto 0:</strong> Desayuno ligero 2 horas antes de salir (ver sección nutrición diaria).</p>
+                <p style="margin-top: 4px;"><strong>Minuto 45:</strong> 1 banano mediano + 250 ml hidratante.</p>
+                <p style="margin-top: 4px;"><strong>Minuto 90:</strong> 1 barrita (35-40g CHO) + 250 ml agua.</p>
+                <p style="margin-top: 4px;"><strong>Minuto 135:</strong> 1 gel (25-30g CHO) + 200 ml agua.</p>
+                <p style="margin-top: 4px;"><strong>Minuto 180:</strong> Sándwich ligero (pan blanco + queso o jamón) + 250 ml hidratante.</p>
+                <p style="margin-top: 4px;"><strong>Y repetir el ciclo cada 3 horas.</strong></p>
+                <p style="margin-top: 10px;"><strong>Extra: Un dulce pequeño si querés (1 confite, 1 bombón pequeño, 1 pedacito de queque) cada 2 horas.</strong> Por qué: Durante 5-6 horas de esfuerzo, tu cerebro necesita glucosa. Uno o dos confites de verdad no van a impactarte. Es para mantener la moral y la energía.</p>
+            </div>
+
+            <h3 class="subsection-title">Protocolo de Electrolitos y Sal</h3>
+
+            <div class="warning-box">
+                <p><strong>Esto es específico para evitar tus calambres:</strong></p>
+                <p style="margin-top: 8px;">Cada 2 horas en ruta, consume 500-600 mg de sodio adicional. Esto puede venir de:</p>
+                <p style="margin-top: 4px;">1. El hidratante (si tiene electrolitos, ya suma).</p>
+                <p style="margin-top: 4px;">2. Una cucharadita pequeña de sal de mesa en una comida sólida (ponla en un sándwich o en fruta).</p>
+                <p style="margin-top: 10px;"><strong>Magnesio:</strong> Cada noche, 300-400 mg de magnesio en forma de suplemento (citrato o glicinato). Esto mejora sueño y reduce calambres nocturnos.</p>
+            </div>
+
+            <h3 class="subsection-title">Qué Llevar en La Mochila (Fondo de 100+ km)</h3>
+
+            <div class="card dark">
+                <h3>Kit Nutricional Mínimo</h3>
+                <p><strong>Sólidos:</strong></p>
+                <p style="margin-top: 4px;">2 bananos medianos</p>
+                <p style="margin-top: 4px;">2-3 barritas de granola casera (ver recetas)</p>
+                <p style="margin-top: 4px;">1 sándwich ligero en bolsita plástica (pan blanco + queso)</p>
+                <p style="margin-top: 4px;">1 puño de almendras o mix de frutos secos</p>
+                <p style="margin-top: 10px;"><strong>Geles:</strong></p>
+                <p style="margin-top: 4px;">2 geles comerciales (IB Sport u otro) O caseros (ver recetas)</p>
+                <p style="margin-top: 10px;"><strong>Líquidos:</strong></p>
+                <p style="margin-top: 4px;">1 bidón de 500ml de hidratante con electrolitos en la bicicleta (vas recargando en pulperías)</p>
+                <p style="margin-top: 4px;">Mochila hidratante de espalda de 1-1.5 litros</p>
+                <p style="margin-top: 10px;"><strong>Suplementos:</strong></p>
+                <p style="margin-top: 4px;">1 pastilla de magnesio para tomar después (500 mg)</p>
+                <p style="margin-top: 10px;"><strong>Equipamiento (que me pedís que te envíe en video):</strong></p>
+                <p style="margin-top: 4px;">Bolso sobre la manivela o marco (para barrita, gel, sándwich)</p>
+                <p style="margin-top: 4px;">Botella o bidón de 500ml en la bicicleta</p>
+                <p style="margin-top: 4px;">Mochila hidratante de espalda de 1-2 litros</p>
+            </div>
+
+            <h3 class="subsection-title">Entrenamientos GI: Acostumbrando tu Estómago</h3>
+
+            <div class="card success">
+                <h3>Esto es Fundamental</h3>
+                <p>Tu estómago está acostumbrado a <strong>no comer en ruta</strong>. Eso genera náusea cuando finalmente comes algo. Vamos a enseñarle que es normal y seguro.</p>
+                <p style="margin-top: 10px;"><strong>Semana 1:</strong> Solo hidratante, sin sólidos. Acostúmbrate a beber regularmente.</p>
+                <p style="margin-top: 10px;"><strong>Semana 2:</strong> Agrega plátano o galleta ligera cada 45-60 minutos.</p>
+                <p style="margin-top: 10px;"><strong>Semana 3:</strong> Agrega geles o barrita.</p>
+                <p style="margin-top: 10px;"><strong>Semana 4+:</strong> Practica el protocolo completo en los fondos. Si en algún momento hay malestar, retrocede un paso.</p>
+            </div>
+
+        </div>
+
+        <!-- ======= RECETAS ======= -->
+        <div id="recetas" class="section">
+            <h2 class="section-title">Recetas Base para tu Mes</h2>
+
+            <h3 class="subsection-title">Desayunos</h3>
+
+            <div class="recipe-card">
+                <h4>Desayuno Estándar (Diario)</h4>
+                <p><strong>Ingredientes:</strong></p>
+                <p>1 huevo entero + 2 claras, 1 rebanada de pan integral, 40g de queso blanco bajo en grasa (preferentemente cottage o tierno bajo en grasa), 1 aguacate mediano, 1 café sin azúcar.</p>
+                <p style="margin-top: 10px;"><strong>Preparación:</strong> Fríe el huevo entero + claras en aceite de oliva (1 cucharadita). Tuesta el pan. Arma el plato. Come lentamente.</p>
+                <p style="margin-top: 10px;"><strong>Macros aproximadas:</strong> 320 cal, 22g proteína, 16g grasa, 25g carbohidrato.</p>
+            </div>
+
+            <div class="recipe-card">
+                <h4>Desayuno Alternativo: Avena con Proteína</h4>
+                <p><strong>Ingredientes:</strong></p>
+                <p>40g de avena en hojuelas, 200ml de agua, 30g de proteína whey en polvo (vainilla), 1 cucharadita de miel, 1 plátano pequeño picado, 1 puño de almendras.</p>
+                <p style="margin-top: 10px;"><strong>Preparación:</strong> Calienta el agua. Agrega la avena. Cuece 3-4 minutos. Retira del fuego, agrega la proteína whey y mezcla bien. Vierte en tazón. Decora con plátano, almendras y miel.</p>
+                <p style="margin-top: 10px;"><strong>Macros:</strong> 380 cal, 28g proteína, 10g grasa, 42g carbohidrato.</p>
+            </div>
+
+            <h3 class="subsection-title">Almuerzos Variados (Semana 1-2)</h3>
+
+            <div class="recipe-card">
+                <h4>Almuerzo Día 1: Pechuga de Pollo con Arroz Integral</h4>
+                <p><strong>Ingredientes (porción personal):</strong></p>
+                <p>150g de pechuga de pollo, 80g de arroz integral cocido, 150g de brócoli, 1 zanahoria mediana, 1 cucharada de aceite de oliva, sal y pimienta.</p>
+                <p style="margin-top: 10px;"><strong>Preparación:</strong> Sazona el pollo. Cocina a la plancha en aceite de oliva, 6-8 minutos por lado. El arroz lo cocés en agua hirviendo (30-35 min, proporción 1:3). Las verduras al vapor o salteadas en la misma sartén del pollo. Sirve todo junto.</p>
+                <p style="margin-top: 10px;"><strong>Macros:</strong> 520 cal, 48g proteína, 13g grasa, 55g carbohidrato.</p>
+            </div>
+
+            <div class="recipe-card">
+                <h4>Almuerzo Día 2: Res Magra con Papa y Verdura</h4>
+                <p><strong>Ingredientes:</strong></p>
+                <p>150g de carne de res magra (pulpa o solomo), 1 papa grande cocida, 2 puños de verdura mixta (chayote, papaya verde, brócoli), 1 cucharada de aceite de oliva.</p>
+                <p style="margin-top: 10px;"><strong>Preparación:</strong> Corta la carne en trozos de 2-3 cm. Sazona. Cocina a la plancha o grill hasta el término deseado (10-12 min total). La papa la cueces en agua con sal (15-20 min). Las verduras al vapor o en sartén. Sirve con un poco del jugo de la carne como salsa.</p>
+                <p style="margin-top: 10px;"><strong>Macros:</strong> 530 cal, 50g proteína, 15g grasa, 48g carbohidrato.</p>
+            </div>
+
+            <div class="recipe-card">
+                <h4>Almuerzo Día 3: Pasta Integral con Salsa de Tomate Natural</h4>
+                <p><strong>Ingredientes:</strong></p>
+                <p>100g de pasta integral seca, 150g de pollo cocido desmenuzado, 200ml de salsa de tomate casera (tomate maduro, cebolla, ajo, aceite), 2 puños de espinaca fresca, queso parmesano (30g).</p>
+                <p style="margin-top: 10px;"><strong>Preparación:</strong> Cocés la pasta en agua hirviendo con sal (10-12 min, según marca). Calienta la salsa en una sartén con el pollo. Agrega la espinaca al final (se marchita en 1-2 min). Sirve pasta, vierte la salsa, espolvorea queso.</p>
+                <p style="margin-top: 10px;"><strong>Macros:</strong> 480 cal, 40g proteína, 11g grasa, 58g carbohidrato.</p>
+            </div>
+
+            <div class="recipe-card">
+                <h4>Almuerzo Día 4: Cerdo Magro con Camote</h4>
+                <p><strong>Ingredientes:</strong></p>
+                <p>150g de lomo de cerdo, 1 camote grande cocido, 150g de zucchini y zanahoria, 1 cucharada de aceite de oliva.</p>
+                <p style="margin-top: 10px;"><strong>Preparación:</strong> Corta el cerdo en filetes de 1 cm. Sazona con sal, pimienta y un poco de comino. Cocina a la plancha 8-10 min total. El camote lo cueces con cáscara en agua hirviendo (20-25 min) y lo machacas si querés. Las verduras salteadas. Sirve todo junto.</p>
+                <p style="margin-top: 10px;"><strong>Macros:</strong> 520 cal, 48g proteína, 14g grasa, 52g carbohidrato.</p>
+            </div>
+
+            <h3 class="subsection-title">Helados Caseros Saludables (Para Comer Todos los Días Si Querés)</h3>
+
+            <div class="recipe-card">
+                <h4>Helado Casero Base: Yogurt Griego + Fruta Congelada</h4>
+                <p><strong>Ingredientes (una porción):</strong></p>
+                <p>150g de yogurt griego natural (sin azúcar), 100g de fruta congelada (fresa, arándanos, durazno, mango), 1/2 cucharadita de miel, 1 cucharada de granola casera (opcional).</p>
+                <p style="margin-top: 10px;"><strong>Preparación:</strong> Vierte el yogurt en un tazón. Agrega la fruta congelada. Si querés más cremoso, mezcla un poco antes de comer. Decora con miel y granola. Listo. Come inmediatamente.</p>
+                <p style="margin-top: 10px;"><strong>Macros:</strong> 180 cal, 18g proteína, 2g grasa, 22g carbohidrato.</p>
+                <p style="margin-top: 10px;"><strong>Por qué funciona:</strong> Tiene proteína (sacia), fruta natural (vitaminas), y es helado de verdad. Sin azúcar añadido. Sin culpa. Puedes hacerlo todos los días.</p>
+            </div>
+
+            <div class="recipe-card">
+                <h4>Helado Casero Alternativo: Smoothie Congelado</h4>
+                <p><strong>Ingredientes:</strong></p>
+                <p>200ml de leche descremada, 30g de proteína whey vainilla, 1 banano congelado (cortado en rodajas), 1/2 taza de arándanos congelados, 1 cucharadita de miel.</p>
+                <p style="margin-top: 10px;"><strong>Preparación:</strong> Licúa todo hasta obtener consistencia espesa (casi helado). Sirve inmediatamente en un vaso o tazón. Puedes tomar con cuchara o sorber con sorbete grueso.</p>
+                <p style="margin-top: 10px;"><strong>Macros:</strong> 220 cal, 25g proteína, 1g grasa, 28g carbohidrato.</p>
+            </div>
+
+            <h3 class="subsection-title">Barritas y Geles Caseros para Llevar en Ruta</h3>
+
+            <div class="recipe-card">
+                <h4>Barrita Casera de Avena y Banano (Haz Batch de 10)</h4>
+                <p><strong>Ingredientes:</strong></p>
+                <p>200g de avena en hojuelas, 150g de banano muy maduro (2-3 unidades), 100g de miel, 50g de almendras picadas, 30g de chocolate oscuro derretido (opcional), 1 huevo entero.</p>
+                <p style="margin-top: 10px;"><strong>Preparación:</strong></p>
+                <p style="margin-top: 4px;">1. Precalienta horno a 180°C. Aplasta los bananos con un tenedor.</p>
+                <p style="margin-top: 4px;">2. Mezcla: avena + banano aplastado + miel + almendras + huevo. Revuelve bien.</p>
+                <p style="margin-top: 4px;">3. Vierte en una bandeja cuadrada forrada con papel de horno.</p>
+                <p style="margin-top: 4px;">4. Hornea 25-30 minutos hasta que veas que se dora en los bordes.</p>
+                <p style="margin-top: 4px;">5. Retira. Enfría completamente. Corta en barras de 35-40g cada una.</p>
+                <p style="margin-top: 10px;"><strong>Macros por barrita (35g):</strong> 140 cal, 4g proteína, 5g grasa, 20g carbohidrato.</p>
+                <p style="margin-top: 10px;"><strong>Almacenamiento:</strong> Túpper hermético hasta 5 días en heladera, o congela y lleva directamente en la mochila (se descongela durante el viaje).</p>
+            </div>
+
+            <h3 class="subsection-title">Meriendas Diarias</h3>
+
+            <div class="recipe-card">
+                <h4>Opción 1: Yogurt + Granola Casera</h4>
+                <p>150g yogurt griego + 1 puño de granola casera + 1 manzana picada.</p>
+                <p style="margin-top: 10px;"><strong>Macros:</strong> 240 cal, 16g proteína, 8g grasa, 28g carbohidrato.</p>
+            </div>
+
+            <div class="recipe-card">
+                <h4>Opción 2: Queso + Tortillitas O Soda con Frijoles</h4>
+                <p>2 tortillitas de maíz + 40g de queso blanco bajo en grasa. O: 1 soda con 60g de frijoles molidos cocidos + 30g de queso blanco bajo en grasa.</p>
+                <p style="margin-top: 10px;"><strong>Macros:</strong> 210 cal, 12g proteína, 8g grasa, 22g carbohidrato.</p>
+            </div>
+
+        </div>
+
+        <!-- ======= CRONOGRAMA ======= -->
+        <div id="cronograma" class="section">
+            <h2 class="section-title">Cronograma de Implementación</h2>
+
+            <h3 class="subsection-title">Mes 1: Construcción de Base (Semanas 1-4)</h3>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>Semana 1 (Mayo 20-26): Adaptación Nutricional</h4>
+                    <p><strong>Nutrición:</strong> Implementa la estructura de 4 comidas + 1 merienda. Cambia a aceite de oliva. Come carbohidratos en almuerzo y cena.</p>
+                    <p style="margin-top: 8px;"><strong>Entrenamiento:</strong> 3 sesiones de ciclismo suave (60 min) + 2 sesiones de funcionales suaves (45 min). Fondo domingo: 80 km.</p>
+                    <p style="margin-top: 8px;"><strong>Fueling:</strong> Solo hidratante en ruta. Sin sólidos aún. Pero practica beber cada 20 minutos.</p>
+                    <p style="margin-top: 8px;"><strong>Hidratación diaria:</strong> 2 litros.</p>
+                    <p style="margin-top: 8px;"><strong>Seguimiento:</strong> WhatsApp viernes: cómo te sentiste, qué comiste, energía, calambres.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Semana 2 (Mayo 27 - Junio 2): Estabilización Nutricional</h4>
+                    <p><strong>Nutrición:</strong> La estructura ya debe ser natural. Agrega helados caseros de yogurt griego. Introduce un día flexible (lunes desayuno).</p>
+                    <p style="margin-top: 8px;"><strong>Entrenamiento:</strong> Igual estructura pero más consistente. Fondo domingo: 95 km (si completaste bem la semana anterior).</p>
+                    <p style="margin-top: 8px;"><strong>Fueling:</strong> En el fondo del domingo, agrega sólidos ligeros cada 45 min (plátano, galleta). Continúa hidratante solo en entrenamientos entre semana.</p>
+                    <p style="margin-top: 8px;"><strong>Hidratación diaria:</strong> 2-2.5 litros.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Semana 3 (Junio 3-9): Incremento de Volumen</h4>
+                    <p><strong>Nutrición:</strong> Sin cambios mayores. Perfecciona las cantidades. Empieza a medir porciones con palma de mano.</p>
+                    <p style="margin-top: 8px;"><strong>Entrenamiento:</strong> Entrenamientos entre semana suben levemente en duración (70 min ciclismo, 75 min con intervalos). Fondo domingo: 110 km (si cumpliste nutrición y entrenamientos).</p>
+                    <p style="margin-top: 8px;"><strong>Fueling:</strong> En fondos de 100+ km, protocolo de 40-45 g CHO/hora.</p>
+                    <p style="margin-top: 8px;"><strong>Hidratación diaria:</strong> 2.5-3 litros. Empieza a medir: cada hora debés consumir 250 ml.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Semana 4 (Junio 10-16): Consolidación y Preparación</h4>
+                    <p><strong>Nutrición:</strong> Cocina con mayor confianza. Ya conocés los tiempos. Experimenta con nuevas recetas si querés.</p>
+                    <p style="margin-top: 8px;"><strong>Entrenamiento:</strong> Estructura completa. Si todo va bien, fondo domingo: 125 km.</p>
+                    <p style="margin-top: 8px;"><strong>Fueling:</strong> Protocolo completo en ruta. Próximo mes: ajuste según cómo te sentiste.</p>
+                    <p style="margin-top: 8px;"><strong>Llamada de seguimiento:</strong> Después de esta semana, tenemos una llamada de 30 min para revisar mes 1 y planificar mes 2 (que será sueño + recuperación).</p>
+                </div>
+            </div>
+
+            <h3 class="subsection-title">Hitos Importantes</h3>
+
+            <div class="card dark">
+                <h3>Esto Es Lo Que Esperamos Ver en Tu Progreso</h3>
+                <table>
+                    <tr>
+                        <th>Semana</th>
+                        <th>Peso Esperado</th>
+                        <th>Energía en Fondos</th>
+                        <th>Síntomas GI</th>
+                        <th>Calambres</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>94-95 kg</td>
+                        <td>Sin cambio (aún ajustándose)</td>
+                        <td>Posible aumento inicial (es normal)</td>
+                        <td>Igual</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>94 kg</td>
+                        <td>Mejora ligera</td>
+                        <td>Disminuye</td>
+                        <td>Reducido o ausente (con buena hidratación y nutrición)</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>93 kg</td>
+                        <td>Mejora notable</td>
+                        <td>Muy reducido</td>
+                        <td>Mejora con el magnesio</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>92 kg</td>
+                        <td>Significativa (no terminás muerto)</td>
+                        <td>Casi ausente</td>
+                        <td>Reducido o ausente</td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+
+        <!-- ======= SEGUIMIENTO ======= -->
+        <div id="seguimiento" class="section">
+            <h2 class="section-title">Seguimiento y Ajuste</h2>
+
+            <h3 class="subsection-title">Estructura de Contacto</h3>
+
+            <div class="card success">
+                <h3>Check-in Semanal (Viernes por WhatsApp)</h3>
+                <p>Cada viernes a las 9 AM, mandame un breve mensaje con:</p>
+                <p style="margin-top: 8px;">1. Cómo te sentiste en los entrenamientos de la semana (energía, fatiga, molestias).</p>
+                <p style="margin-top: 4px;">2. El fondo del domingo (distancia, tiempo, cómo te fue con el fueling, si tuviste calambres).</p>
+                <p style="margin-top: 4px;">3. Cómo estuvo tu nutrición en el día a día (sin culpa, solo honestidad).</p>
+                <p style="margin-top: 4px;">4. Una pregunta que tengas.</p>
+                <p style="margin-top: 10px;">Respondo en menos de 24 horas.</p>
+            </div>
+
+            <div class="card">
+                <h3>Llamada Inicial de Aclaraciones (Primera Semana - Cuando Hayas Leído el Plan)</h3>
+                <p>Después de que recibas y leas este plan completo, schedulamos una llamada de 20-30 minutos para:</p>
+                <p style="margin-top: 8px;">1. Responder todas tus dudas sobre el plan.</p>
+                <p style="margin-top: 4px;">2. Aclarar puntos específicos que no te queden claros.</p>
+                <p style="margin-top: 4px;">3. Hacer ajustes menores si es necesario antes de empezar.</p>
+                <p style="margin-top: 8px;"><strong>Luego:</strong> En la Semana 4, yo te envío un nuevo formulario para que respondas cómo te fue el mes. Con esa información, hacemos el plan del Mes 2 (Sueño y Recuperación).</p>
+            </div>
+
+            <h3 class="subsection-title">Métricas de Seguimiento</h3>
+
+            <div class="card dark">
+                <h3>Cómo Saber Que El Plan Funciona</h3>
+                <table>
+                    <tr>
+                        <th>Métrica</th>
+                        <th>Qué Mide</th>
+                        <th>Señal de Éxito (Mes 1)</th>
+                    </tr>
+                    <tr>
+                        <td>Peso corporal</td>
+                        <td>Balance energético general</td>
+                        <td>Pérdida de 2-4 kg en 4 semanas (0.5-1 kg/semana)</td>
+                    </tr>
+                    <tr>
+                        <td>Energía en fondos</td>
+                        <td>Efectividad del fueling</td>
+                        <td>No terminas "muerto". Puedes conversar en los últimos 20 km</td>
+                    </tr>
+                    <tr>
+                        <td>Síntomas GI</td>
+                        <td>Tolerancia a carbohidratos en ruta</td>
+                        <td>Sin náusea ni vómito durante entrenamientos largos</td>
+                    </tr>
+                    <tr>
+                        <td>Calambres</td>
+                        <td>Protocolo de electrolitos</td>
+                        <td>Reducción de 50% o desaparición en ruta</td>
+                    </tr>
+                    <tr>
+                        <td>Recuperación post-fondo</td>
+                        <td>Eficacia de nutrición de recuperación</td>
+                        <td>Lunes no tienes las piernas tan pesadas. Puedes mover normal</td>
+                    </tr>
+                    <tr>
+                        <td>Consistencia de entrenamientos</td>
+                        <td>Adhesión al plan</td>
+                        <td>Completaste 4 de 5 días de entrenamiento todas las semanas</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3 class="subsection-title">Si Algo No Sale Como Esperamos</h3>
+
+            <div class="warning-box">
+                <p><strong>Escenario 1: No bajás de peso después de Semana 2.</strong></p>
+                <p style="margin-top: 6px;">Acción: Revisamos conjuntamente qué comiste. Posible: estás comiendo más de lo registrado, o hay restricción calórica insuficiente. Ajustamos porción de carbohidratos o agregamos actividad física adicional.</p>
+                <p style="margin-top: 10px;"><strong>Escenario 2: Síntomas GI se agravan (más náusea, no menos).</strong></p>
+                <p style="margin-top: 6px;">Acción: Retrocedemos en el fueling. Volvemos a solo hidratante una semana más. Luego agregamos sólidos MÁS lentamente.</p>
+                <p style="margin-top: 10px;"><strong>Escenario 3: Calambres no mejoran aunque tomes magnesio y electrolitos.</strong></p>
+                <p style="margin-top: 6px;">Acción: Posible deshidratación más profunda. Aumentamos hidratación a 3+ litros diarios. Y revisamos si hay déficit de potasio (comer más plátano, papaya, verduras).</p>
+                <p style="margin-top: 10px;"><strong>Escenario 4: Te resultó imposible cocinar todas las comidas (vacaciones, compromisos).</strong></p>
+                <p style="margin-top: 6px;">Acción: Entiendo. Vamos a reajustar para que sea más manejable. Pero te advierto: si no cocinás, es muy difícil lograr un cambio real. Podemos combinar 80% comidas caseras + 20% que comas afuera en lugares saludables.</p>
+            </div>
+
+            <h3 class="subsection-title">Próximos Meses (Adelanto)</h3>
+
+            <div class="card highlight">
+                <h3>Mes 2 (Julio): Sueño y Recuperación</h3>
+                <p>Después que afianzamos la nutrición diaria y el fueling, el próximo mes trabajaremos sueño y recuperación. Esto incluye: hora de dormir fija, protocolo de magnesio optimizado, timing de comidas para mejorar sueño, y posiblemente la introducción de napping post-entrenamiento.</p>
+                <p style="margin-top: 10px;">¿Por qué después y no ahora? Porque si duermes mal pero comés bien, mejoras. Si comés mal y duermes bien, no mejoras. Priorizamos.</p>
+            </div>
+
+            <div class="card highlight">
+                <h3>Mes 3 (Agosto): Mecánica y Equipamiento</h3>
+                <p>Una vez que tu nutrición es sólida y tu sueño es consistente, vamos a revisar: postura en bicicleta, presión de neumáticos, posición del sillín, ergonomía del manillar. Esto reduce lesiones y mejora la eficiencia en ascensos.</p>
+            </div>
+
+        </div>
+
+    </div><!-- /content -->
+
+    <div class="footer">
+        <p>Isa Herra — Nutricionista Deportiva | eat&flow Nutrición Deportiva</p>
+        <p style="margin-top: 6px; opacity: 0.9;">@eatandflow.cr | @isaherra.13</p>
+        <p style="margin-top: 8px; font-size: 12px; opacity: 0.8;">Este plan es personalizado y confidencial. Está diseñado específicamente para Andrés Induni basado en sus objetivos, historial y respuesta al entrenamiento.</p>
+    </div>
+
+</div><!-- /container -->
+
+<script>
+    function showSection(id) {
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        event.target.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>
+</body>
+</html>

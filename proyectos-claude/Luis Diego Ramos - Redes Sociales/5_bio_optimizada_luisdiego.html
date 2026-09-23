@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIO Optimizada - Luis Diego Ramos</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; line-height: 1.6; color: #1a1a1a; background: #fafafa; }
+        
+        .sticky-nav {
+            position: fixed; top: 0; left: 0; right: 0;
+            background: rgba(26, 26, 26, 0.98); z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid #d4af37;
+        }
+        
+        .sticky-nav-content {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 40px;
+        }
+        
+        .nav-brand { font-size: 1.1em; font-weight: 300; color: #d4af37; }
+        .nav-brand span { color: #ffffff; font-weight: 400; }
+        
+        .hero {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            color: #ffffff; padding: 120px 40px 80px; text-align: center; margin-top: 60px;
+        }
+        .hero h1 { font-size: 2.8em; margin-bottom: 20px; font-weight: 300; }
+        .hero .subtitle { font-size: 1.3em; color: #d4af37; }
+        
+        section { padding: 80px 40px; background: #ffffff; border-bottom: 1px solid #e5e5e5; }
+        section:nth-child(even) { background: #f8f8f8; }
+        section h2 {
+            font-size: 2.2em; margin-bottom: 30px; color: #1a1a1a;
+            font-weight: 300; text-align: center; position: relative; padding-bottom: 20px;
+        }
+        section h2::after {
+            content: ''; position: absolute; bottom: 0; left: 50%;
+            transform: translateX(-50%); width: 80px; height: 3px; background: #d4af37;
+        }
+        
+        .bio-card {
+            background: #fff; border: 1px solid #e5e5e5;
+            border-radius: 8px; padding: 30px; margin: 30px 0;
+            border-left: 4px solid #d4af37; max-width: 800px;
+            margin-left: auto; margin-right: auto;
+        }
+        
+        .bio-header {
+            font-size: 1.3em; color: #d4af37;
+            margin-bottom: 20px; font-weight: bold;
+        }
+        
+        .bio-content {
+            background: #f8f8f8; padding: 25px;
+            border-radius: 6px; font-size: 1.05em;
+            line-height: 1.8; margin: 20px 0;
+        }
+        
+        .char-count {
+            color: #999; font-size: 0.9em;
+            text-align: right; margin-top: 10px;
+        }
+        
+        .copy-btn {
+            background: #d4af37; color: #1a1a1a;
+            border: none; padding: 12px 25px;
+            border-radius: 4px; cursor: pointer;
+            font-family: 'Georgia', serif;
+            font-weight: bold;
+        }
+        
+        .copy-btn:hover { background: #f0c850; }
+        
+        .highlight-box {
+            background: #fffbf0; border-left: 4px solid #d4af37;
+            padding: 25px; margin: 25px 0; border-radius: 4px;
+        }
+        
+        footer {
+            background: #1a1a1a; color: #e0e0e0;
+            padding: 50px 40px; text-align: center;
+        }
+        footer h3 { color: #d4af37; margin-bottom: 20px; }
+        footer .copyright { margin-top: 30px; font-size: 0.9em; color: #999; }
+    </style>
+</head>
+<body>
+
+    <nav class="sticky-nav">
+        <div class="sticky-nav-content">
+            <div class="nav-brand">Luis Diego Ramos <span>| BIO Optimizada</span></div>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <h1>BIO Optimizada para Redes Sociales</h1>
+        <p class="subtitle">3 Versiones segÃºn Plataforma</p>
+    </div>
+
+    <section>
+        <h2>ðŸ“± Instagram BIO (150 caracteres)</h2>
+        
+        <div class="bio-card">
+            <div class="bio-header">VersiÃ³n Optimizada para Instagram</div>
+            
+            <div class="bio-content">
+ðŸ“¸ ArqueologÃ­a Urbana | FotografÃ­a AnalÃ³gica<br>
+ðŸ›ï¸ MAC | GalerÃ­a Nacional | Forbes<br>
+ðŸŽžï¸ Registros de Registros<br>
+ðŸ“ San JosÃ©, Costa Rica<br>
+ðŸ”— luisdiegoramos.com
+            </div>
+            
+            <div class="char-count">Caracteres: 148/150</div>
+            
+            <button class="copy-btn" onclick="copyBio(this)">ðŸ“‹ Copiar BIO</button>
+            
+            <div class="highlight-box" style="margin-top: 20px;">
+                <p><strong>Por quÃ© funciona:</strong></p>
+                <ul style="margin: 10px 0 0 20px;">
+                    <li>Emojis para escaneabilidad visual</li>
+                    <li>Keywords: "ArqueologÃ­a Urbana" + "FotografÃ­a AnalÃ³gica"</li>
+                    <li>Social proof: MAC, GalerÃ­a Nacional, Forbes</li>
+                    <li>Proyecto signature: "Registros de Registros"</li>
+                    <li>UbicaciÃ³n para contexto local</li>
+                    <li>Link para conversiÃ³n</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>ðŸ’¼ LinkedIn BIO (2000 caracteres)</h2>
+        
+        <div class="bio-card">
+            <div class="bio-header">VersiÃ³n Profesional para LinkedIn</div>
+            
+            <div class="bio-content">
+FotÃ³grafo documental especializado en arqueologÃ­a urbana y memoria visual. Mi prÃ¡ctica artÃ­stica investiga las capas invisibles de la ciudad contemporÃ¡nea mediante fotografÃ­a analÃ³gica de formato medio.<br><br>
+
+Mi proyecto principal, "Registros de Registros", documenta cajas de registro urbanas en Costa Rica como archivos involuntarios de intervenciÃ³n humana y memoria colectiva. Trabajo exclusivamente con pelÃ­cula fotogrÃ¡fica (Ilford HP5, Kodak Tri-X) en formato 6x6, creando un archivo fÃ­sico permanente que trasciende la obsolescencia tecnolÃ³gica.<br><br>
+
+<strong>Trayectoria Institucional:</strong><br>
+â€¢ Exposiciones individuales en GalerÃ­a Nacional de Costa Rica (2)<br>
+â€¢ ExposiciÃ³n en Museo de Arte Costarricense (MAC)<br>
+â€¢ Obra en colecciones permanentes: Banco Promerica, Banco Nacional<br>
+â€¢ Publicaciones: Forbes, Latin Trade, Traveler<br>
+â€¢ MenciÃ³n de honor Valoarte 2010<br>
+â€¢ ParticipaciÃ³n en Bienal Croma<br><br>
+
+Mi enfoque combina rigor documental con investigaciÃ³n conceptual, explorando temas de deriva urbana, palimpsesto visual, y el archivo como prÃ¡ctica artÃ­stica.<br><br>
+
+Disponible para:<br>
+â€¢ Exposiciones y proyectos curatoriales<br>
+â€¢ Colaboraciones institucionales<br>
+â€¢ Charlas y workshops sobre prÃ¡ctica fotogrÃ¡fica analÃ³gica<br>
+â€¢ Proyectos de documentaciÃ³n patrimonial urbana<br><br>
+
+ðŸ“§ luisdiego8965@gmail.com<br>
+ðŸŒ luisdiegoramos.com
+            </div>
+            
+            <div class="char-count">Caracteres: 1450/2000</div>
+            
+            <button class="copy-btn" onclick="copyBio(this)">ðŸ“‹ Copiar BIO</button>
+            
+            <div class="highlight-box" style="margin-top: 20px;">
+                <p><strong>Por quÃ© funciona en LinkedIn:</strong></p>
+                <ul style="margin: 10px 0 0 20px;">
+                    <li>Tono profesional e institucional</li>
+                    <li>Ã‰nfasis en trayectoria y logros verificables</li>
+                    <li>TerminologÃ­a acadÃ©mica apropiada</li>
+                    <li>CTA claro para oportunidades profesionales</li>
+                    <li>Keywords para bÃºsquedas: "arqueologÃ­a urbana", "documentaciÃ³n patrimonial"</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>ðŸ“˜ Facebook About</h2>
+        
+        <div class="bio-card">
+            <div class="bio-header">VersiÃ³n para Facebook</div>
+            
+            <div class="bio-content">
+FotÃ³grafo documental costarricense especializado en arqueologÃ­a urbana y fotografÃ­a analÃ³gica.<br><br>
+
+Mi proyecto "Registros de Registros" documenta las huellas invisibles de la ciudad: cajas de registro, infraestructura olvidada, y los palimpsestos urbanos que narran la historia no oficial de San JosÃ©.<br><br>
+
+Trabajo con pelÃ­cula fotogrÃ¡fica en formato 6x6, creando un archivo visual permanente de elementos urbanos destinados a desaparecer.<br><br>
+
+ðŸ›ï¸ Exposiciones en MAC y GalerÃ­a Nacional<br>
+ðŸ“° Publicado en Forbes, Latin Trade<br>
+ðŸŽ¨ Obra en colecciones de Banco Promerica y Banco Nacional<br><br>
+
+Para exposiciones, colaboraciones o adquisiciÃ³n de obra:<br>
+ðŸ“§ luisdiego8965@gmail.com<br>
+ðŸŒ luisdiegoramos.com
+            </div>
+            
+            <div class="char-count">Caracteres: 750</div>
+            
+            <button class="copy-btn" onclick="copyBio(this)">ðŸ“‹ Copiar BIO</button>
+        </div>
+    </section>
+
+    <section>
+        <h2>ðŸ’¡ Instrucciones de ImplementaciÃ³n</h2>
+        
+        <div class="highlight-box">
+            <h3 style="color: #d4af37; margin-bottom: 15px;">ConfiguraciÃ³n Instagram:</h3>
+            <ol style="margin: 10px 0 0 20px; line-height: 1.8;">
+                <li>CambiÃ¡ a cuenta de Creador o Empresa</li>
+                <li>CategorÃ­a: "Artista" o "FotÃ³grafo"</li>
+                <li>BotÃ³n de acciÃ³n: "Enviar email" o "Visitar sitio web"</li>
+                <li>Link en bio: luisdiegoramos.com</li>
+                <li>Highlights: Proyectos | Proceso | Exposiciones | Prensa</li>
+            </ol>
+        </div>
+
+        <div class="highlight-box">
+            <h3 style="color: #d4af37; margin-bottom: 15px;">ConfiguraciÃ³n LinkedIn:</h3>
+            <ol style="margin: 10px 0 0 20px; line-height: 1.8;">
+                <li>TÃ­tulo: "FotÃ³grafo Documental | ArqueologÃ­a Urbana | Arte ContemporÃ¡neo"</li>
+                <li>Industria: "Bellas Artes"</li>
+                <li>UbicaciÃ³n: "San JosÃ©, Costa Rica"</li>
+                <li>AÃ±adÃ­ experiencia: Exposiciones como "posiciones"</li>
+                <li>SecciÃ³n Featured: Links a artÃ­culos de Forbes, exposiciones</li>
+            </ol>
+        </div>
+
+        <div class="highlight-box">
+            <h3 style="color: #d4af37; margin-bottom: 15px;">Link Strategy:</h3>
+            <p style="margin: 10px 0;"><strong>Link primario:</strong> Siempre al sitio web luisdiegoramos.com</p>
+            <p><strong>Alternativa:</strong> Si necesitÃ¡s mÃºltiples links, usÃ¡ Linktree con mÃ¡ximo 4 links:</p>
+            <ul style="margin: 10px 0 0 20px;">
+                <li>ðŸŒ Sitio Web / Portfolio</li>
+                <li>ðŸ“§ Contacto para Exposiciones</li>
+                <li>ðŸ›’ Shop / Prints (si aplicable)</li>
+                <li>ðŸ“° Prensa / Features</li>
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <h3>Mateo Arias</h3>
+        <p>Consultor en AutomatizaciÃ³n & TransformaciÃ³n Empresarial</p>
+        <p>Grupo Infinito Costa Rica</p>
+        <p class="copyright">Â© 2025 Grupo Infinito Costa Rica</p>
+    </footer>
+
+    <script>
+        function copyBio(button) {
+            const bioContent = button.previousElementSibling.previousElementSibling;
+            const text = bioContent.innerText;
+            
+            navigator.clipboard.writeText(text).then(() => {
+                button.innerHTML = 'âœ… Â¡Copiado!';
+                button.style.background = '#4CAF50';
+                
+                setTimeout(() => {
+                    button.innerHTML = 'ðŸ“‹ Copiar BIO';
+                    button.style.background = '#d4af37';
+                }, 2000);
+            });
+        }
+    </script>
+
+</body>
+</html>
