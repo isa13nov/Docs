@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GuÃ­a de ImplementaciÃ³n - Luis Diego Ramos</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; line-height: 1.6; color: #1a1a1a; background: #fafafa; }
+        
+        .sticky-nav {
+            position: fixed; top: 0; left: 0; right: 0;
+            background: rgba(26, 26, 26, 0.98); z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid #d4af37;
+        }
+        
+        .sticky-nav-content {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 40px;
+        }
+        
+        .nav-brand { font-size: 1.1em; font-weight: 300; color: #d4af37; }
+        .nav-brand span { color: #ffffff; font-weight: 400; }
+        
+        .hero {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            color: #ffffff; padding: 120px 40px 80px; text-align: center; margin-top: 60px;
+        }
+        .hero h1 { font-size: 2.8em; margin-bottom: 20px; font-weight: 300; }
+        .hero .subtitle { font-size: 1.3em; color: #d4af37; }
+        
+        section { padding: 80px 40px; background: #ffffff; border-bottom: 1px solid #e5e5e5; }
+        section:nth-child(even) { background: #f8f8f8; }
+        section h2 {
+            font-size: 2.2em; margin-bottom: 30px; color: #1a1a1a;
+            font-weight: 300; text-align: center; position: relative; padding-bottom: 20px;
+        }
+        section h2::after {
+            content: ''; position: absolute; bottom: 0; left: 50%;
+            transform: translateX(-50%); width: 80px; height: 3px; background: #d4af37;
+        }
+        
+        .step-card {
+            background: #fff; border: 1px solid #e5e5e5;
+            border-radius: 8px; padding: 30px; margin: 30px 0;
+            border-left: 4px solid #d4af37;
+        }
+        
+        .step-header {
+            display: flex; align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .step-number {
+            background: #d4af37; color: #1a1a1a;
+            width: 50px; height: 50px;
+            border-radius: 50%; display: flex;
+            align-items: center; justify-content: center;
+            font-size: 1.5em; font-weight: bold;
+            margin-right: 20px; flex-shrink: 0;
+        }
+        
+        .step-title {
+            font-size: 1.5em; color: #1a1a1a;
+        }
+        
+        .checklist {
+            background: #f8f8f8; padding: 20px;
+            border-radius: 6px; margin: 15px 0;
+        }
+        
+        .checklist-item {
+            padding: 10px 0; padding-left: 30px;
+            position: relative; border-bottom: 1px solid #e5e5e5;
+        }
+        
+        .checklist-item:last-child { border-bottom: none; }
+        
+        .checklist-item::before {
+            content: 'â˜'; position: absolute; left: 0;
+            font-size: 1.3em; color: #d4af37;
+        }
+        
+        .timeline {
+            position: relative; padding-left: 40px; margin: 40px 0;
+        }
+        
+        .timeline::before {
+            content: ''; position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 2px; background: #d4af37;
+        }
+        
+        .timeline-item {
+            position: relative; padding-bottom: 30px;
+        }
+        
+        .timeline-item::before {
+            content: ''; position: absolute;
+            left: -47px; top: 5px;
+            width: 12px; height: 12px; border-radius: 50%;
+            background: #d4af37; border: 3px solid #ffffff;
+            box-shadow: 0 0 0 2px #d4af37;
+        }
+        
+        .timeline-item h4 {
+            color: #1a1a1a; font-size: 1.3em; margin-bottom: 10px;
+        }
+        
+        .highlight-box {
+            background: #fffbf0; border-left: 4px solid #d4af37;
+            padding: 25px; margin: 25px 0; border-radius: 4px;
+        }
+        
+        footer {
+            background: #1a1a1a; color: #e0e0e0;
+            padding: 50px 40px; text-align: center;
+        }
+        footer h3 { color: #d4af37; margin-bottom: 20px; }
+        footer .copyright { margin-top: 30px; font-size: 0.9em; color: #999; }
+    </style>
+</head>
+<body>
+
+    <nav class="sticky-nav">
+        <div class="sticky-nav-content">
+            <div class="nav-brand">Luis Diego Ramos <span>| GuÃ­a de ImplementaciÃ³n</span></div>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <h1>GuÃ­a de ImplementaciÃ³n Paso a Paso</h1>
+        <p class="subtitle">De Cero a Completamente Activo en 7 DÃ­as</p>
+    </div>
+
+    <section>
+        <h2>ðŸš€ Vista General</h2>
+        
+        <div class="highlight-box">
+            <p><strong>Objetivo:</strong> Tener todos los perfiles completamente optimizados y los primeros 10 posts publicados en 7 dÃ­as.</p>
+            <p style="margin-top: 15px;"><strong>Tiempo requerido:</strong> 2-3 horas/dÃ­a durante la primera semana, luego 1-2 horas/dÃ­a para mantenimiento.</p>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <h4>DÃ­a 1-2: Setup de Perfiles</h4>
+                <p>Crear y optimizar todas las cuentas</p>
+            </div>
+            <div class="timeline-item">
+                <h4>DÃ­a 3-4: Contenido Inicial</h4>
+                <p>Preparar y programar primeros 20-30 posts</p>
+            </div>
+            <div class="timeline-item">
+                <h4>DÃ­a 5-6: Herramientas y Workflow</h4>
+                <p>Configurar herramientas de programaciÃ³n</p>
+            </div>
+            <div class="timeline-item">
+                <h4>DÃ­a 7: Launch</h4>
+                <p>Primeras publicaciones y engagement</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PASO 1 -->
+    <section>
+        <div class="step-card">
+            <div class="step-header">
+                <div class="step-number">1</div>
+                <h3 class="step-title">Setup de Perfiles (DÃ­a 1)</h3>
+            </div>
+            
+            <h4 style="color: #d4af37; margin: 20px 0;">Instagram</h4>
+            <div class="checklist">
+                <div class="checklist-item">Crear cuenta de Instagram (o convertir existente)</div>
+                <div class="checklist-item">Cambiar a cuenta Profesional (Creador o Empresa)</div>
+                <div class="checklist-item">CategorÃ­a: "Artista" o "FotÃ³grafo"</div>
+                <div class="checklist-item">Subir foto de perfil (foto profesional o logo)</div>
+                <div class="checklist-item">Escribir BIO usando versiÃ³n optimizada (Doc #5)</div>
+                <div class="checklist-item">Agregar link: luisdiegoramos.com</div>
+                <div class="checklist-item">Configurar botÃ³n de contacto: "Enviar email"</div>
+                <div class="checklist-item">Email de contacto: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="177b627e64737e7270782f2e212257707a767e7b3974787a">[email&#160;protected]</a></div>
+            </div>
+
+            <h4 style="color: #d4af37; margin: 30px 0 20px;">LinkedIn</h4>
+            <div class="checklist">
+                <div class="checklist-item">Crear perfil de LinkedIn</div>
+                <div class="checklist-item">Foto profesional de alta calidad</div>
+                <div class="checklist-item">TÃ­tulo: "FotÃ³grafo Documental | ArqueologÃ­a Urbana"</div>
+                <div class="checklist-item">BIO completa usando versiÃ³n LinkedIn (Doc #5)</div>
+                <div class="checklist-item">Industria: "Bellas Artes"</div>
+                <div class="checklist-item">UbicaciÃ³n: "San JosÃ©, Costa Rica"</div>
+                <div class="checklist-item">Agregar experiencia: Exposiciones como posiciones</div>
+            </div>
+
+            <h4 style="color: #d4af37; margin: 30px 0 20px;">Facebook</h4>
+            <div class="checklist">
+                <div class="checklist-item">Crear PÃ¡gina de Facebook (no perfil personal)</div>
+                <div class="checklist-item">CategorÃ­a: "Artista"</div>
+                <div class="checklist-item">Foto de perfil y portada</div>
+                <div class="checklist-item">About usando versiÃ³n Facebook (Doc #5)</div>
+                <div class="checklist-item">InformaciÃ³n de contacto completa</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PASO 2 -->
+    <section>
+        <div class="step-card">
+            <div class="step-header">
+                <div class="step-number">2</div>
+                <h3 class="step-title">OptimizaciÃ³n Visual (DÃ­a 2)</h3>
+            </div>
+            
+            <h4 style="color: #d4af37; margin: 20px 0;">Instagram Highlights</h4>
+            <div class="checklist">
+                <div class="checklist-item">Crear Highlight: "ðŸ“¸ Proyectos" (Registros de Registros)</div>
+                <div class="checklist-item">Crear Highlight: "ðŸŽžï¸ Proceso" (Behind the scenes)</div>
+                <div class="checklist-item">Crear Highlight: "ðŸ›ï¸ Exposiciones" (Shows pasados)</div>
+                <div class="checklist-item">Crear Highlight: "ðŸ“° Prensa" (Menciones en medios)</div>
+            </div>
+
+            <h4 style="color: #d4af37; margin: 30px 0 20px;">Fotos de Perfil</h4>
+            <p style="margin: 15px 0;">
+                <strong>OpciÃ³n A:</strong> Foto profesional tuya (recomendado para LinkedIn)<br>
+                <strong>OpciÃ³n B:</strong> Imagen signature de tu trabajo (bueno para Instagram)<br>
+                <strong>Consistencia:</strong> Usar la MISMA foto en todas las plataformas
+            </p>
+
+            <div class="highlight-box">
+                <p><strong>Tip:</strong> La foto de perfil se ve pequeÃ±a (110x110px en Instagram). Debe ser reconocible incluso en tamaÃ±o thumbnail. 
+                EvitÃ¡ fotos con mucho detalle o elementos pequeÃ±os.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PASO 3 -->
+    <section>
+        <div class="step-card">
+            <div class="step-header">
+                <div class="step-number">3</div>
+                <h3 class="step-title">Contenido Inicial (DÃ­a 3-4)</h3>
+            </div>
+            
+            <h4 style="color: #d4af37; margin: 20px 0;">Preparar Primeros 20-30 Posts</h4>
+            <div class="checklist">
+                <div class="checklist-item">Seleccionar 20-30 fotos del sitio web o archivo</div>
+                <div class="checklist-item">Editar fotos en formato cuadrado (1080x1080px)</div>
+                <div class="checklist-item">Usar Calendar io 90 DÃ­as (Doc #2) como guÃ­a de copy</div>
+                <div class="checklist-item">Copiar copy de primeros 30 posts a un documento</div>
+                <div class="checklist-item">Copiar hashtags correspondientes</div>
+            </div>
+
+            <h4 style="color: #d4af37; margin: 30px 0 20px;">Especificaciones TÃ©cnicas</h4>
+            <div class="highlight-box">
+                <p><strong>Instagram Feed:</strong></p>
+                <ul style="margin: 10px 0 0 20px;">
+                    <li>Formato: Cuadrado 1:1 (1080x1080px)</li>
+                    <li>Calidad: JPG alta calidad (no comprimir demasiado)</li>
+                    <li>Sin watermark (o muy discreto)</li>
+                    <li>Mantener grain de pelÃ­cula visible</li>
+                </ul>
+
+                <p style="margin-top: 20px;"><strong>Instagram Stories:</strong></p>
+                <ul style="margin: 10px 0 0 20px;">
+                    <li>Formato: Vertical 9:16 (1080x1920px)</li>
+                    <li>Texto: Fuente legible, tamaÃ±o grande</li>
+                    <li>No mÃ¡s de 15 segundos por slide</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- PASO 4 -->
+    <section>
+        <div class="step-card">
+            <div class="step-header">
+                <div class="step-number">4</div>
+                <h3 class="step-title">Herramientas y ProgramaciÃ³n (DÃ­a 5)</h3>
+            </div>
+            
+            <h4 style="color: #d4af37; margin: 20px 0;">Herramientas Recomendadas</h4>
+            
+            <div style="background: #f8f8f8; padding: 20px; border-radius: 6px; margin: 15px 0;">
+                <h5 style="margin-bottom: 10px;">ðŸ“± Later (Recomendado)</h5>
+                <p><strong>PropÃ³sito:</strong> ProgramaciÃ³n de posts de Instagram</p>
+                <p><strong>Precio:</strong> Plan gratis (30 posts/mes) o Starter $18/mes</p>
+                <p><strong>Por quÃ©:</strong> Visualiza grid, programa posts, hashtags guardados</p>
+            </div>
+
+            <div style="background: #f8f8f8; padding: 20px; border-radius: 6px; margin: 15px 0;">
+                <h5 style="margin-bottom: 10px;">ðŸ“ Notion o Google Sheets</h5>
+                <p><strong>PropÃ³sito:</strong> Tracking de mÃ©tricas y calendario editorial</p>
+                <p><strong>Precio:</strong> Gratis</p>
+                <p><strong>Por quÃ©:</strong> Dashboard simple para KPIs</p>
+            </div>
+
+            <div style="background: #f8f8f8; padding: 20px; border-radius: 6px; margin: 15px 0;">
+                <h5 style="margin-bottom: 10px;">ðŸ“· Lightroom Mobile (Opcional)</h5>
+                <p><strong>PropÃ³sito:</strong> EdiciÃ³n rÃ¡pida desde el mÃ³vil</p>
+                <p><strong>Precio:</strong> $9.99/mes (Creative Cloud Photography)</p>
+                <p><strong>Por quÃ©:</strong> Mantener consistencia visual</p>
+            </div>
+
+            <h4 style="color: #d4af37; margin: 30px 0 20px;">Setup de Later</h4>
+            <div class="checklist">
+                <div class="checklist-item">Crear cuenta en Later.com</div>
+                <div class="checklist-item">Conectar cuenta de Instagram</div>
+                <div class="checklist-item">Subir primeros 20 posts</div>
+                <div class="checklist-item">Programar segÃºn calendario (Lunes/MiÃ©rcoles/Viernes 6pm)</div>
+                <div class="checklist-item">Guardar sets de hashtags en Later</div>
+                <div class="checklist-item">Configurar notificaciones mÃ³viles</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PASO 5 -->
+    <section>
+        <div class="step-card">
+            <div class="step-header">
+                <div class="step-number">5</div>
+                <h3 class="step-title">Seguir Cuentas EstratÃ©gicas (DÃ­a 6)</h3>
+            </div>
+            
+            <div class="checklist">
+                <div class="checklist-item">Seguir 30 galerÃ­as de la lista (Doc #6)</div>
+                <div class="checklist-item">Seguir 20 museos</div>
+                <div class="checklist-item">Seguir 20 artistas contemporÃ¡neos CR</div>
+                <div class="checklist-item">Seguir 15 curadores y gestores</div>
+                <div class="checklist-item">Seguir 10 medios especializados</div>
+                <div class="checklist-item">Seguir 5 coleccionistas conocidos</div>
+            </div>
+
+            <div class="highlight-box">
+                <p><strong>Importante:</strong> No sigas mÃ¡s de 100 cuentas el primer dÃ­a. Instagram puede penalizarte. 
+                Hacelo gradualmente: 30-40 cuentas por dÃ­a durante 3 dÃ­as.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PASO 6 -->
+    <section>
+        <div class="step-card">
+            <div class="step-header">
+                <div class="step-number">6</div>
+                <h3 class="step-title">Launch Day (DÃ­a 7)</h3>
+            </div>
+            
+            <h4 style="color: #d4af37; margin: 20px 0;">Primer Post</h4>
+            <p style="margin: 15px 0;">Tu primer post debe ser:</p>
+            <ul style="margin: 15px 0 15px 25px; line-height: 1.8;">
+                <li>Una obra destacada impactante</li>
+                <li>Copy que introduce el proyecto "Registros de Registros"</li>
+                <li>Hashtags completos (20-30)</li>
+                <li>Publicado entre 6pm-8pm</li>
+            </ul>
+
+            <h4 style="color: #d4af37; margin: 30px 0 20px;">Checklist de Launch</h4>
+            <div class="checklist">
+                <div class="checklist-item">Publicar primer post en Instagram (6pm)</div>
+                <div class="checklist-item">Publicar primer Story (behind the scenes del proyecto)</div>
+                <div class="checklist-item">Publicar primer post en LinkedIn (profesional, sobre el proyecto)</div>
+                <div class="checklist-item">Cross-post a Facebook</div>
+                <div class="checklist-item">Comentar en 5 cuentas estratÃ©gicas</div>
+                <div class="checklist-item">Responder cualquier comentario inmediatamente</div>
+            </div>
+
+            <div class="highlight-box">
+                <p><strong>Expectativas Realistas Primer DÃ­a:</strong></p>
+                <ul style="margin: 10px 0 0 20px;">
+                    <li>5-15 likes en el primer post</li>
+                    <li>0-3 comentarios</li>
+                    <li>1-5 nuevos seguidores</li>
+                </ul>
+                <p style="margin-top: 15px;">
+                    <strong>Esto es NORMAL.</strong> El algoritmo necesita tiempo para entender tu contenido. 
+                    La consistencia durante 30 dÃ­as es lo que importa.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PASO 7 -->
+    <section>
+        <div class="step-card">
+            <div class="step-header">
+                <div class="step-number">7</div>
+                <h3 class="step-title">Rutina Semanal de Mantenimiento</h3>
+            </div>
+            
+            <h4 style="color: #d4af37; margin: 20px 0;">Lunes</h4>
+            <ul style="margin: 15px 0 15px 25px; line-height: 1.8;">
+                <li>Revisar mÃ©tricas de la semana pasada</li>
+                <li>Programar posts de la semana en Later</li>
+                <li>Post de Instagram: Obra destacada (6pm)</li>
+                <li>30 min de engagement</li>
+            </ul>
+
+            <h4 style="color: #d4af37; margin: 30px 0 20px;">MiÃ©rcoles</h4>
+            <ul style="margin: 15px 0 15px 25px; line-height: 1.8;">
+                <li>Post de Instagram: BTS o Educativo (6:30pm)</li>
+                <li>Post de LinkedIn: ArtÃ­culo reflexivo</li>
+                <li>30 min de engagement</li>
+            </ul>
+
+            <h4 style="color: #d4af37; margin: 30px 0 20px;">Viernes</h4>
+            <ul style="margin: 15px 0 15px 25px; line-height: 1.8;">
+                <li>Post de Instagram: Obra destacada o Serie (7pm)</li>
+                <li>Cross-post a Facebook</li>
+                <li>30 min de engagement</li>
+            </ul>
+
+            <h4 style="color: #d4af37; margin: 30px 0 20px;">Domingo</h4>
+            <ul style="margin: 15px 0 15px 25px; line-height: 1.8;">
+                <li>Planificar contenido semana siguiente</li>
+                <li>Preparar imÃ¡genes y copy</li>
+                <li>Post LinkedIn (10am) si aplica</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- MÃ‰TRICAS -->
+    <section>
+        <h2>ðŸ“Š MÃ©tricas a Trackear (Semanalmente)</h2>
+        
+        <div class="highlight-box">
+            <p><strong>Dashboard Simple (Google Sheets):</strong></p>
+            
+            <table style="width: 100%; margin: 20px 0; border-collapse: collapse;">
+                <tr style="background: #f8f8f8;">
+                    <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">MÃ©trica</th>
+                    <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Meta Mes 1</th>
+                    <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Meta Mes 3</th>
+                </tr>
+                <tr>
+                    <td style="padding: 12px; border: 1px solid #ddd;">Seguidores</td>
+                    <td style="padding: 12px; border: 1px solid #ddd;">100-200</td>
+                    <td style="padding: 12px; border: 1px solid #ddd;">300-500</td>
+                </tr>
+                <tr style="background: #f8f8f8;">
+                    <td style="padding: 12px; border: 1px solid #ddd;">Engagement Rate</td>
+                    <td style="padding: 12px; border: 1px solid #ddd;">2-4%</td>
+                    <td style="padding: 12px; border: 1px solid #ddd;">3-5%</td>
+                </tr>
+                <tr>
+                    <td style="padding: 12px; border: 1px solid #ddd;">Consultas DM</td>
+                    <td style="padding: 12px; border: 1px solid #ddd;">3-5</td>
+                    <td style="padding: 12px; border: 1px solid #ddd;">10-15</td>
+                </tr>
+                <tr style="background: #f8f8f8;">
+                    <td style="padding: 12px; border: 1px solid #ddd;">Menciones Medios</td>
+                    <td style="padding: 12px; border: 1px solid #ddd;">0-1</td>
+                    <td style="padding: 12px; border: 1px solid #ddd;">2-3</td>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+    <!-- TROUBLESHOOTING -->
+    <section>
+        <h2>ðŸ”§ Troubleshooting ComÃºn</h2>
+        
+        <div class="highlight-box">
+            <h4 style="color: #d4af37; margin-bottom: 15px;">Problema: "No tengo suficientes fotos"</h4>
+            <p><strong>SoluciÃ³n:</strong> No necesitÃ¡s fotos nuevas cada semana. PodÃ©s:</p>
+            <ul style="margin: 10px 0 0 20px;">
+                <li>Re-publicar archivo antiguo con nuevo contexto</li>
+                <li>Mostrar la misma obra desde diferentes Ã¡ngulos o detalles</li>
+                <li>Hacer carruseles con mÃºltiples imÃ¡genes relacionadas</li>
+                <li>Posts educativos o BTS no requieren obra nueva</li>
+            </ul>
+        </div>
+
+        <div class="highlight-box" style="margin-top: 20px;">
+            <h4 style="color: #d4af37; margin-bottom: 15px;">Problema: "No sÃ© quÃ© escribir en el copy"</h4>
+            <p><strong>SoluciÃ³n:</strong> UsÃ¡ los templates (Doc #3) y el calendario (Doc #2). Ya hay 90 copies escritos. 
+            Solo personalizÃ¡ las variables.</p>
+        </div>
+
+        <div class="highlight-box" style="margin-top: 20px;">
+            <h4 style="color: #d4af37; margin-bottom: 15px;">Problema: "No crece rÃ¡pido"</h4>
+            <p><strong>SoluciÃ³n:</strong> Crecimiento orgÃ¡nico es LENTO pero SÃ“LIDO. En nicho de arte, 100-150 seguidores nuevos/mes 
+            es EXCELENTE si son la audiencia correcta. Preferir calidad sobre cantidad.</p>
+        </div>
+    </section>
+
+    <!-- OPCIONES DE SERVICIO -->
+    <section style="background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%); color: #ffffff;">
+        <h2 style="color: #ffffff;">ðŸ’¼ Opciones de Servicio</h2>
+        
+        <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+            <p style="font-size: 1.2em; margin-bottom: 40px; color: #cccccc;">
+                Â¿PreferÃ­s implementar esto por tu cuenta o necesitÃ¡s ayuda profesional?
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin: 40px 0;">
+                
+                <div style="background: rgba(255, 255, 255, 0.1); padding: 30px; border-radius: 8px; backdrop-filter: blur(10px);">
+                    <h3 style="color: #d4af37; margin-bottom: 15px;">DIY</h3>
+                    <div style="font-size: 2.5em; margin: 20px 0;">$2,200</div>
+                    <p style="margin-bottom: 15px;">ImplementÃ¡s vos mismo con estas guÃ­as completas</p>
+                    <ul style="list-style: none; padding: 0; line-height: 2; font-size: 0.95em;">
+                        <li>âœ“ Todos los documentos</li>
+                        <li>âœ“ Sin soporte adicional</li>
+                    </ul>
+                </div>
+
+                <div style="background: #d4af37; color: #1a1a1a; padding: 30px; border-radius: 8px; position: relative;">
+                    <div style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: #1a1a1a; color: #d4af37; padding: 5px 15px; border-radius: 20px; font-size: 0.85em; font-weight: bold;">
+                        RECOMENDADO
+                    </div>
+                    <h3 style="margin-bottom: 15px; margin-top: 10px;">Con AsesorÃ­a</h3>
+                    <div style="font-size: 2.5em; margin: 20px 0;">$2,800</div>
+                    <p style="margin-bottom: 15px;">ImplementÃ¡s con mi guÃ­a y seguimiento</p>
+                    <ul style="list-style: none; padding: 0; line-height: 2; font-size: 0.95em;">
+                        <li>âœ“ Llamada setup 90 min</li>
+                        <li>âœ“ 3 sesiones mensuales</li>
+                        <li>âœ“ Soporte WhatsApp</li>
+                    </ul>
+                </div>
+
+                <div style="background: rgba(255, 255, 255, 0.1); padding: 30px; border-radius: 8px; backdrop-filter: blur(10px);">
+                    <h3 style="color: #d4af37; margin-bottom: 15px;">Done-For-You</h3>
+                    <div style="font-size: 2.5em; margin: 20px 0;">$4,500</div>
+                    <p style="margin-bottom: 15px;">Yo lo implemento todo por vos</p>
+                    <ul style="list-style: none; padding: 0; line-height: 2; font-size: 0.95em;">
+                        <li>âœ“ Setup completo</li>
+                        <li>âœ“ ProgramaciÃ³n 90 posts</li>
+                        <li>âœ“ GestiÃ³n 3 meses</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div style="background: rgba(212, 175, 55, 0.15); padding: 25px; border-radius: 8px; margin-top: 40px; border-left: 4px solid #d4af37;">
+                <p style="font-size: 1.1em; text-align: left;">
+                    <strong style="color: #d4af37;">Comparativa detallada:</strong> ConsultÃ¡ el 
+                    <a href="0_INDICE_PLAN_COMPLETO.html" style="color: #d4af37; text-decoration: underline;">Ãndice Principal</a> 
+                    para ver el desglose completo de cada opciÃ³n, quÃ© incluye exactamente, y cÃ³mo elegir la mejor para tu situaciÃ³n.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CHECKLIST FINAL -->
+    <section>
+        <h2>âœ… Checklist Final Pre-Launch</h2>
+        
+        <div class="checklist" style="max-width: 800px; margin: 30px auto;">
+            <div class="checklist-item">Perfiles de Instagram, LinkedIn, Facebook creados y optimizados</div>
+            <div class="checklist-item">BIOs escritas con keywords correctos</div>
+            <div class="checklist-item">Links configurados a luisdiegoramos.com</div>
+            <div class="checklist-item">Instagram Highlights creados</div>
+            <div class="checklist-item">Primeros 20-30 posts preparados</div>
+            <div class="checklist-item">Copy y hashtags listos para cada post</div>
+            <div class="checklist-item">Later configurado y posts programados</div>
+            <div class="checklist-item">100 cuentas estratÃ©gicas seguidas</div>
+            <div class="checklist-item">Dashboard de mÃ©tricas creado</div>
+            <div class="checklist-item">Rutina diaria de engagement establecida (30 min)</div>
+        </div>
+    </section>
+
+    <footer>
+        <h3>Mateo Arias</h3>
+        <p>Consultor en AutomatizaciÃ³n & TransformaciÃ³n Empresarial</p>
+        <p>Gr

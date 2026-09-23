@@ -1,0 +1,1560 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan Maestro 18 Meses - Parte 1 | Isa Herra</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #F5F9F7 0%, #E8F3EF 100%);
+            color: #2D4A3E;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2D4A3E 0%, #3D5A4E 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        header p {
+            font-size: 18px;
+            opacity: 0.95;
+        }
+
+        .date-badge {
+            display: inline-block;
+            background: #E8924C;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        .vision-box {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            border-left: 5px solid #E8924C;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .vision-box h2 {
+            color: #2D4A3E;
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        .vision-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .stat-card {
+            background: #F5FAF8;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #9ECDB3;
+        }
+
+        .stat-card strong {
+            color: #E8924C;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 0;
+            flex-wrap: wrap;
+            background: white;
+            padding: 10px;
+            border-radius: 12px 12px 0 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .tab {
+            padding: 12px 20px;
+            background: #E8F3EF;
+            border: none;
+            cursor: pointer;
+            border-radius: 8px 8px 0 0;
+            font-size: 15px;
+            font-weight: 600;
+            color: #2D4A3E;
+            transition: all 0.3s ease;
+        }
+
+        .tab:hover {
+            background: #9ECDB3;
+            color: white;
+        }
+
+        .tab.active {
+            background: linear-gradient(135deg, #2D4A3E 0%, #3D5A4E 100%);
+            color: white;
+        }
+
+        .content {
+            background: white;
+            padding: 35px;
+            border-radius: 0 12px 12px 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            min-height: 500px;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            color: #2D4A3E;
+            font-size: 32px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #E8924C;
+        }
+
+        h3 {
+            color: #3D5A4E;
+            font-size: 24px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h4 {
+            color: #2D4A3E;
+            font-size: 20px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th {
+            background: linear-gradient(135deg, #2D4A3E 0%, #3D5A4E 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #E8F3EF;
+        }
+
+        tr:hover {
+            background: #F5FAF8;
+        }
+
+        .highlight-box {
+            background: #FFF5ED;
+            border-left: 4px solid #E8924C;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .success-box {
+            background: #E8F3EF;
+            border-left: 4px solid #9ECDB3;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .warning-box {
+            background: #FFF5ED;
+            border-left: 4px solid #D97B3A;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .checklist {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .checklist li {
+            padding: 10px;
+            margin: 8px 0;
+            background: #F5FAF8;
+            border-radius: 6px;
+            border-left: 3px solid #9ECDB3;
+        }
+
+        .checklist li:before {
+            content: "â˜ ";
+            color: #E8924C;
+            font-weight: bold;
+            margin-right: 10px;
+            font-size: 18px;
+        }
+
+        .phase-card {
+            background: white;
+            border: 2px solid #9ECDB3;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .phase-header {
+            background: linear-gradient(135deg, #2D4A3E 0%, #3D5A4E 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            margin: 30px 0;
+        }
+
+        .timeline:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, #E8924C 0%, #9ECDB3 100%);
+        }
+
+        .timeline-item {
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: -36px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #E8924C;
+            border: 4px solid white;
+            box-shadow: 0 0 0 2px #E8924C;
+        }
+
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .metric-card {
+            background: linear-gradient(135deg, #F5FAF8 0%, #E8F3EF 100%);
+            padding: 20px;
+            border-radius: 12px;
+            border: 2px solid #9ECDB3;
+            text-align: center;
+        }
+
+        .metric-card h4 {
+            color: #2D4A3E;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .metric-value {
+            font-size: 32px;
+            font-weight: bold;
+            color: #E8924C;
+            margin: 10px 0;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background: #E8F3EF;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 15px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #E8924C 0%, #D97B3A 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            transition: width 0.3s ease;
+        }
+
+        ul, ol {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        strong {
+            color: #2D4A3E;
+            font-weight: 600;
+        }
+
+        code {
+            background: #F5F9F7;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #D97B3A;
+        }
+
+        pre {
+            background: #2D4A3E;
+            color: #9ECDB3;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            header h1 {
+                font-size: 24px;
+            }
+
+            .tabs {
+                flex-direction: column;
+            }
+
+            .tab {
+                width: 100%;
+                border-radius: 8px;
+                margin-bottom: 5px;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            h3 {
+                font-size: 20px;
+            }
+        }
+
+        .nav-link {
+            display: inline-block;
+            background: #E8924C;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 20px 10px 20px 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background: #D97B3A;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(232, 146, 76, 0.4);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #6c757d;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>PLAN MAESTRO 18 MESES: $10K/MES + APP EAT&FLOW</h1>
+            <p>Isa Herra - Diciembre 2025 a Junio 2027</p>
+            <div class="date-badge">Parte 1 de 2 | Creado: 16 diciembre 2025, 9:51 AM</div>
+        </header>
+
+        <div class="vision-box">
+            <h2>VisiÃ³n Final (Junio 2027)</h2>
+            <div class="vision-stats">
+                <div class="stat-card">
+                    <strong>Ingresos Mensuales</strong>
+                    $10,000+ USD (â‚¡6M+)
+                </div>
+                <div class="stat-card">
+                    <strong>App Eat&Flow</strong>
+                    Lanzada, 500+ usuarios activos
+                </div>
+                <div class="stat-card">
+                    <strong>PosiciÃ³n</strong>
+                    Referente #1 nutriciÃ³n deportiva ultra-endurance CR
+                </div>
+                <div class="stat-card">
+                    <strong>Libertad</strong>
+                    25-30h trabajo/semana, resto entrenar/competir
+                </div>
+                <div class="stat-card">
+                    <strong>Deudas</strong>
+                    Reducidas 70%+ o eliminadas
+                </div>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <button class="tab active" onclick="openTab(event, 'overview')">Resumen Ejecutivo</button>
+            <button class="tab" onclick="openTab(event, 'ecosistema')">Ecosistema de Ingresos</button>
+            <button class="tab" onclick="openTab(event, 'app')">App Eat&Flow</button>
+            <button class="tab" onclick="openTab(event, 'fase1')">Fase 1: Desarrollo (M1-6)</button>
+            <button class="tab" onclick="openTab(event, 'fase2')">Fase 2: Crecimiento (M7-12)</button>
+        </div>
+
+        <div class="content">
+            <!-- TAB: RESUMEN EJECUTIVO -->
+            <div id="overview" class="tab-content active">
+                <h2>Resumen Ejecutivo</h2>
+                
+                <div class="highlight-box">
+                    <h3>La Propuesta</h3>
+                    <p><strong>Construir app Eat&Flow completa mientras escalo negocios actuales de â‚¡60k/mes a $10k/mes (â‚¡6M+) en 18 meses.</strong></p>
+                    <p>Esto no es un plan conservador. Es una ultra de negocios que requiere la misma disciplina que usas para correr 630km en 6 dÃ­as.</p>
+                </div>
+
+                <h3>NÃºmeros Clave</h3>
+                <div class="metric-grid">
+                    <div class="metric-card">
+                        <h4>SituaciÃ³n Actual</h4>
+                        <div class="metric-value">â‚¡60k</div>
+                        <p>Ingreso mensual (16 dic 2025)</p>
+                    </div>
+                    <div class="metric-card">
+                        <h4>Mes 6 (Jun 2026)</h4>
+                        <div class="metric-value">â‚¡1.5M</div>
+                        <p>App lista, ingresos creciendo</p>
+                    </div>
+                    <div class="metric-card">
+                        <h4>Mes 12 (Dic 2026)</h4>
+                        <div class="metric-value">â‚¡4.75M</div>
+                        <p>~$7,900/mes - En track</p>
+                    </div>
+                    <div class="metric-card">
+                        <h4>Mes 18 (Jun 2027)</h4>
+                        <div class="metric-value">â‚¡6.5M</div>
+                        <p>$10,845/mes - META âœ…</p>
+                    </div>
+                </div>
+
+                <h3>Tiempo de Trabajo por Fase</h3>
+                <div class="table-container">
+                    <table>
+                        <tr>
+                            <th>Fase</th>
+                            <th>Periodo</th>
+                            <th>Horas/Semana</th>
+                            <th>Enfoque Principal</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Fase 1: Desarrollo</strong></td>
+                            <td>Ene-Jun 2026</td>
+                            <td>50-60h</td>
+                            <td>Construir app + mantener ingresos</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Fase 2: Crecimiento</strong></td>
+                            <td>Jul-Dic 2026</td>
+                            <td>40-45h</td>
+                            <td>Escalar app + negocios</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Fase 3: $10K</strong></td>
+                            <td>Ene-Jun 2027</td>
+                            <td>30-35h</td>
+                            <td>Optimizar + consolidar</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="warning-box">
+                    <h4>Realidad Check</h4>
+                    <p><strong>Esto requiere:</strong></p>
+                    <ul>
+                        <li>50-60h/semana trabajo durante 6 meses (ademÃ¡s de 15-20h entrenamiento)</li>
+                        <li>Aprender a programar con Claude Code</li>
+                        <li>Sacrificar temporalmente vida social</li>
+                        <li>Manejar mÃºltiples proyectos simultÃ¡neos</li>
+                        <li>Disciplina de atleta de Ã©lite aplicada a negocios</li>
+                    </ul>
+                    <p><strong>Pero:</strong> Ya corriste 630km en 6 dÃ­as. Si pudiste con eso, puedes con esto.</p>
+                </div>
+
+                <h3>InversiÃ³n Total: ~$9,500 (18 meses)</h3>
+                <div class="table-container">
+                    <table>
+                        <tr>
+                            <th>CategorÃ­a</th>
+                            <th>Costo</th>
+                            <th>DescripciÃ³n</th>
+                        </tr>
+                        <tr>
+                            <td>Desarrollo App</td>
+                            <td>$1,500</td>
+                            <td>APIs, hosting, herramientas</td>
+                        </tr>
+                        <tr>
+                            <td>Marketing</td>
+                            <td>$7,000</td>
+                            <td>Ads, email marketing, diseÃ±o</td>
+                        </tr>
+                        <tr>
+                            <td>OperaciÃ³n</td>
+                            <td>$1,000</td>
+                            <td>Hosting videos, Zoom, fees</td>
+                        </tr>
+                        <tr>
+                            <td><strong>TOTAL</strong></td>
+                            <td><strong>$9,500</strong></td>
+                            <td>Financiable con ingresos crecientes</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <h3>Compatibilidad con Entrenamiento</h3>
+                <div class="success-box">
+                    <p><strong>Tu entrenamiento es SAGRADO y no se sacrifica.</strong></p>
+                    <p>El plan estÃ¡ diseÃ±ado alrededor de tus 46h/semana disponibles despuÃ©s de entrenar.</p>
+                    <ul>
+                        <li>Entrenamiento: 15-20h/semana (fijo)</li>
+                        <li>Trabajo Fase 1: 50-60h/semana</li>
+                        <li>Trabajo Fase 2: 40-45h/semana</li>
+                        <li>Trabajo Fase 3: 30-35h/semana</li>
+                    </ul>
+                    <p>Total mÃ¡ximo: 75-80h/semana (intenso pero factible para atleta de Ã©lite)</p>
+                </div>
+
+                <h3>Hitos CrÃ­ticos (Do or Die)</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h4>Mes 3 (Mar 2026)</h4>
+                        <p><strong>CHECK:</strong> Â¿EstÃ¡s generando â‚¡1M+/mes?</p>
+                        <p>SÃ â†’ Continuar plan | NO â†’ Reducir horas app 50%, intensificar charlas</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Mes 6 (Jun 2026)</h4>
+                        <p><strong>CHECK:</strong> Â¿App MVP completa?</p>
+                        <p>SÃ â†’ Lanzar julio | NO â†’ Lanzar cuando estÃ©, ajustar timeline</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Mes 9 (Sep 2026)</h4>
+                        <p><strong>CHECK:</strong> Â¿App tiene 50+ usuarios pagos?</p>
+                        <p>SÃ â†’ Acelerar marketing | NO â†’ Analizar por quÃ©, iterar producto</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Mes 12 (Dic 2026)</h4>
+                        <p><strong>CHECK:</strong> Â¿EstÃ¡s en $7k+/mes?</p>
+                        <p>SÃ â†’ Meta $10k factible | NO â†’ Revaluar streams de ingreso</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Mes 18 (Jun 2027)</h4>
+                        <p><strong>CHECK FINAL:</strong> Â¿$10k/mes + libertad?</p>
+                        <p>SÃ â†’ Ã‰XITO | CASI (>$8k) â†’ Ajustar 6 meses mÃ¡s | NO â†’ Pivotar</p>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <h3>Â¿Por QuÃ© Este Plan Puede Funcionar?</h3>
+                    <ol>
+                        <li><strong>Ya tienes la mentalidad:</strong> Disciplina de campeona mundial 3x</li>
+                        <li><strong>Ya tienes la audiencia:</strong> 43k seguidores + credibilidad atlÃ©tica</li>
+                        <li><strong>Ya tienes el expertise:</strong> Nutricionista + 18 aÃ±os experiencia deportiva</li>
+                        <li><strong>Ya tienes clientes:</strong> Base real que paga por tus servicios</li>
+                        <li><strong>La app es Ãºnica:</strong> No existe competencia directa en el mercado</li>
+                    </ol>
+                    <p><strong>Lo Ãºnico que falta es EJECUTAR con la misma disciplina que usas para entrenar.</strong></p>
+                </div>
+
+                <div style="margin-top: 40px; padding: 20px; background: #E8F3EF; border-radius: 8px;">
+                    <h4>NavegaciÃ³n del Plan</h4>
+                    <p>Este documento (Parte 1) contiene: Resumen, Ecosistema, App y Fases 1-2</p>
+                    <p><strong>Para ver Fase 3, Cronogramas, Recursos, Riesgos y PrÃ³ximos Pasos, abre la Parte 2</strong></p>
+                    <a href="plan_maestro_isa_parte2.html" class="nav-link">Ir a Parte 2 â†’</a>
+                </div>
+            </div>
+
+            <!-- TAB: ECOSISTEMA DE INGRESOS -->
+            <div id="ecosistema" class="tab-content">
+                <h2>Ecosistema de Ingresos Meta (Mes 18)</h2>
+
+                <div class="phase-card">
+                    <div class="phase-header">APP EAT&FLOW (Pasivo/Semi-pasivo)</div>
+                    <div class="table-container">
+                        <table>
+                            <tr>
+                                <th>Tier</th>
+                                <th>Usuarios</th>
+                                <th>Precio</th>
+                                <th>Ingreso Mensual</th>
+                            </tr>
+                            <tr>
+                                <td>FREE</td>
+                                <td>Ilimitados</td>
+                                <td>$0</td>
+                                <td>â‚¡0 (lead generation)</td>
+                            </tr>
+                            <tr>
+                                <td>PRO</td>
+                                <td>300</td>
+                                <td>$12/mes</td>
+                                <td>$3,600 (â‚¡2,160k)</td>
+                            </tr>
+                            <tr>
+                                <td>ELITE</td>
+                                <td>50</td>
+                                <td>$25/mes</td>
+                                <td>$1,250 (â‚¡750k)</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3"><strong>SUBTOTAL APP</strong></td>
+                                <td><strong>$4,850/mes (â‚¡2,910k)</strong></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <p><strong>Features PRO:</strong> Sync Strava + RescueTime, AI reconocimiento comida (10 fotos/dÃ­a), timing carbohidratos automÃ¡tico, reportes avanzados</p>
+                    <p><strong>Features ELITE:</strong> Todo PRO + planes nutricionales mensuales, consulta 15min/mes, AI coaching, prioridad features</p>
+                </div>
+
+                <div class="phase-card">
+                    <div class="phase-header">SERVICIOS 1:1 (Alto valor, bajo volumen)</div>
+                    <div class="table-container">
+                        <table>
+                            <tr>
+                                <th>Servicio</th>
+                                <th>Clientes</th>
+                                <th>Precio</th>
+                                <th>Ingreso Mensual</th>
+                            </tr>
+                            <tr>
+                                <td>VIP Partnership</td>
+                                <td>3</td>
+                                <td>â‚¡120k/mes</td>
+                                <td>â‚¡360k</td>
+                            </tr>
+                            <tr>
+                                <td>Consulta Completa</td>
+                                <td>5</td>
+                                <td>â‚¡45k/mes</td>
+                                <td>â‚¡225k</td>
+                            </tr>
+                            <tr>
+                                <td>Plan Mensual</td>
+                                <td>8</td>
+                                <td>â‚¡25k/mes</td>
+                                <td>â‚¡200k</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3"><strong>SUBTOTAL 1:1</strong></td>
+                                <td><strong>â‚¡785k ($1,310/mes)</strong></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <p><strong>Tiempo invertido:</strong> ~8-10h/semana total (mantenible largo plazo)</p>
+                    <p><strong>Estrategia:</strong> Enfoque en retenciÃ³n y alto valor, no volumen</p>
+                </div>
+
+                <div class="phase-card">
+                    <div class="phase-header">PROGRAMA GRUPAL (Escalable)</div>
+                    <div class="table-container">
+                        <table>
+                            <tr>
+                                <th>Programa</th>
+                                <th>Atletas</th>
+                                <th>Precio</th>
+                                <th>Ingreso Mensual</th>
+                            </tr>
+                            <tr>
+                                <td>Endurance Fuel Collective</td>
+                                <td>30</td>
+                                <td>â‚¡35k/mes</td>
+                                <td>â‚¡1,050k</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3"><strong>SUBTOTAL GRUPAL</strong></td>
+                                <td><strong>â‚¡1,050k ($1,750/mes)</strong></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <p><strong>Incluye:</strong> 1 webinar semanal en vivo (1h), grupo WhatsApp/Discord, biblioteca recursos, 1 plan base personalizado al entrar</p>
+                    <p><strong>Tiempo invertido:</strong> ~8h/semana (4h webinars + 2h prep + 2h moderaciÃ³n)</p>
+                    <p><strong>Lanzamiento:</strong> Mes 9, necesitas mÃ­nimo 10 comprometidos para abrir</p>
+                </div>
+
+                <div class="phase-card">
+                    <div class="phase-header">PRODUCTOS DIGITALES (Pasivo)</div>
+                    <div class="table-container">
+                        <table>
+                            <tr>
+                                <th>Producto</th>
+                                <th>Ventas/Mes</th>
+                                <th>Precio</th>
+                                <th>Ingreso Mensual</th>
+                            </tr>
+                            <tr>
+                                <td>Curso Flagship</td>
+                                <td>8</td>
+                                <td>â‚¡45k</td>
+                                <td>â‚¡360k</td>
+                            </tr>
+                            <tr>
+                                <td>MembresÃ­a Digital</td>
+                                <td>15 miembros</td>
+                                <td>â‚¡25k/mes</td>
+                                <td>â‚¡375k</td>
+                            </tr>
+                            <tr>
+                                <td>GuÃ­as (Tripwire)</td>
+                                <td>15</td>
+                                <td>â‚¡8.5k</td>
+                                <td>â‚¡127k</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3"><strong>SUBTOTAL DIGITAL</strong></td>
+                                <td><strong>â‚¡862k ($1,437/mes)</strong></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <p><strong>Curso Flagship:</strong> "Ultra-Endurance Nutrition Masterclass" - 6 mÃ³dulos en video</p>
+                    <p><strong>MembresÃ­a:</strong> Acceso todos los cursos + webinar mensual + comunidad</p>
+                    <p><strong>Tiempo invertido:</strong> 40h crear contenido inicial, luego 4-5h/mes mantenimiento</p>
+                </div>
+
+                <div class="phase-card">
+                    <div class="phase-header">CHARLAS & SPEAKING (Alto impacto)</div>
+                    <div class="table-container">
+                        <table>
+                            <tr>
+                                <th>Tipo</th>
+                                <th>Cantidad/Mes</th>
+                                <th>Precio</th>
+                                <th>Ingreso Mensual</th>
+                            </tr>
+                            <tr>
+                                <td>Charlas Presenciales</td>
+                                <td>3</td>
+                                <td>â‚¡200k</td>
+                                <td>â‚¡600k</td>
+                            </tr>
+                            <tr>
+                                <td>Webinars Corporativos</td>
+                                <td>6 empresas</td>
+                                <td>â‚¡50k</td>
+                                <td>â‚¡300k</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3"><strong>SUBTOTAL CHARLAS</strong></td>
+                                <td><strong>â‚¡900k ($1,500/mes)</strong></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <p><strong>Temas:</strong> "EnergÃ­a Inteligente", "El Atleta Corporativo", "De Sedentario a Finisher"</p>
+                    <p><strong>Tiempo invertido:</strong> ~6-8h/mes (prep + presenciales, webinars son grabados)</p>
+                    <p><strong>ProyecciÃ³n:</strong> TED talk aplicaciÃ³n Mes 10, keynote speaker establecida Mes 18</p>
+                </div>
+
+                <div class="highlight-box">
+                    <h3>TOTAL ECOSISTEMA MES 18</h3>
+                    <div class="metric-grid">
+                        <div class="metric-card">
+                            <h4>Ingresos Totales</h4>
+                            <div class="metric-value">â‚¡6,507k</div>
+                            <p>= $10,845/mes âœ…</p>
+                        </div>
+                        <div class="metric-card">
+                            <h4>Tiempo Trabajo</h4>
+                            <div class="metric-value">30-35h</div>
+                            <p>semana</p>
+                        </div>
+                        <div class="metric-card">
+                            <h4>Ingresos Pasivos</h4>
+                            <div class="metric-value">58%</div>
+                            <p>App + Digital</p>
+                        </div>
+                        <div class="metric-card">
+                            <h4>Libertad</h4>
+                            <div class="metric-value">100%</div>
+                            <p>Entrenar, competir, vivir</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>DistribuciÃ³n de Ingresos por Fuente</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 45%">App 45%</div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 26%">Grupal 16%</div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 21%">Charlas 14%</div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 20%">Digital 13%</div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 18%">1:1 12%</div>
+                </div>
+
+                <div class="success-box">
+                    <h4>Por QuÃ© Este Mix Funciona</h4>
+                    <ul>
+                        <li><strong>DiversificaciÃ³n:</strong> 5 fuentes independientes = resiliencia</li>
+                        <li><strong>Escalabilidad:</strong> App + Digital crecen sin lÃ­mite de tiempo</li>
+                        <li><strong>Alto valor:</strong> VIP + Charlas generan ingresos significativos con poco tiempo</li>
+                        <li><strong>Pasivo:</strong> 58% ingresos no requieren tu presencia activa</li>
+                        <li><strong>Credibilidad:</strong> Cada stream refuerza los demÃ¡s (cliente app â†’ charla â†’ 1:1)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- TAB: APP EAT&FLOW -->
+            <div id="app" class="tab-content">
+                <h2>App Eat&Flow: Arquitectura Completa</h2>
+
+                <div class="highlight-box">
+                    <h3>La Propuesta de Valor Ãšnica</h3>
+                    <p><strong>"El Ãºnico sistema que calcula tu nutriciÃ³n real basado en tu vida real"</strong></p>
+                    <ul>
+                        <li>Actividad fÃ­sica real (Strava automÃ¡tico)</li>
+                        <li>Estilo de vida real (RescueTime + manual)</li>
+                        <li>TDEE dinÃ¡mico dÃ­a a dÃ­a (no estimaciones genÃ©ricas)</li>
+                        <li>Timing carbohidratos pre/durante/post segÃºn tu calendario</li>
+                        <li>AI reconocimiento comida (foto â†’ macros)</li>
+                    </ul>
+                    <p><strong>Esto NO existe en el mercado actual.</strong> MyFitnessPal, TrainingPeaks, Cronometer tienen piezas, pero nadie lo integra todo.</p>
+                </div>
+
+                <h3>Features Core (MVP - Meses 1-6)</h3>
+
+                <div class="phase-card">
+                    <h4>1. IntegraciÃ³n Strava</h4>
+                    <ul>
+                        <li>OAuth authentication (conectar cuenta Strava)</li>
+                        <li>Sync automÃ¡tico actividades (webhook para nuevas actividades)</li>
+                        <li>Parse datos: distancia, tiempo, elevaciÃ³n, tipo actividad, kcal quemadas</li>
+                        <li>CÃ¡lculo TSS (Training Stress Score) por actividad</li>
+                        <li>DetecciÃ³n automÃ¡tica tipo entreno (fondo, tempo, recovery, intervalo)</li>
+                        <li>Display calendario actividades prÃ³ximos 7 dÃ­as</li>
+                    </ul>
+                    <p><strong>Tiempo desarrollo:</strong> 50h (Semanas 3-4)</p>
+                </div>
+
+                <div class="phase-card">
+                    <h4>2. Tracking Estilo de Vida</h4>
+                    <p><strong>OpciÃ³n A: IntegraciÃ³n RescueTime API</strong></p>
+                    <ul>
+                        <li>Conectar cuenta RescueTime</li>
+                        <li>Sync automÃ¡tico tiempo por categorÃ­a</li>
+                        <li>Calcular horas sentado, parado, movimiento ligero</li>
+                    </ul>
+                    <p><strong>OpciÃ³n B: Input Manual</strong></p>
+                    <ul>
+                        <li>Formulario simple: "Hoy pasÃ© X horas sentado, Y horas parado, Z horas caminando"</li>
+                        <li>Sleep tracking (horas dormidas)</li>
+                        <li>Stress level (escala 1-10)</li>
+                    </ul>
+                    <p><strong>ImplementaciÃ³n:</strong> OpciÃ³n B primero (mÃ¡s simple), OpciÃ³n A en Fase 2</p>
+                    <p><strong>Tiempo desarrollo:</strong> 15h</p>
+                </div>
+
+                <div class="phase-card">
+                    <h4>3. Motor de CÃ¡lculo (TU PROPIEDAD INTELECTUAL)</h4>
+                    <p><strong>Algoritmo TDEE DinÃ¡mico:</strong></p>
+                    <pre>
+TDEE_total = BMR + EAT + NEAT + TEF
+
+BMR (Basal Metabolic Rate):
+- Mifflin-St Jeor: (10 Ã— peso_kg) + (6.25 Ã— altura_cm) - (5 Ã— edad) + s
+  donde s = +5 para hombres, -161 para mujeres
+
+EAT (Exercise Activity Thermogenesis):
+- Sync Strava: suma kcal todas las actividades del dÃ­a
+- Si no tiene Strava: 0
+
+NEAT (Non-Exercise Activity Thermogenesis):
+- Sedentario (8h+ sentado): BMR Ã— 0.15
+- Ligero (4-7h sentado): BMR Ã— 0.25
+- Moderado (2-3h sentado): BMR Ã— 0.35
+- Activo (<2h sentado): BMR Ã— 0.45
+
+TEF (Thermic Effect of Food):
+- 10% del total (BMR + EAT + NEAT)
+
+TDEE_total = BMR + EAT + NEAT + (BMR + EAT + NEAT) Ã— 0.10
+                    </pre>
+                    <p><strong>Timing Carbohidratos:</strong></p>
+                    <pre>
+Para actividad en calendario prÃ³ximas 24h:
+
+PRE-ENTRENO (2-3h antes):
+- DuraciÃ³n < 1h: 1g/kg peso
+- DuraciÃ³n 1-2h: 1.5g/kg peso
+- DuraciÃ³n > 2h: 2g/kg peso
+
+DURANTE (solo si > 1h):
+- Hora 1: 30-40g
+- Hora 2: 40-50g
+- Hora 3+: 50-60g
+- Ratio maltodextrina:fructosa = 1:0.8 (optimal)
+
+POST-ENTRENO (30min ventana):
+- Intensidad alta: 1.2g/kg peso
+- Intensidad media: 1g/kg peso
+- Recovery: 0.8g/kg peso
+
+DÃAS DESCANSO:
+- Reducir 30% carbos totales
+- Mantener proteÃ­na
+- Aumentar grasas saludables
+                    </pre>
+                    <p><strong>Tiempo desarrollo:</strong> 40h (Semanas 5-6)</p>
+                </div>
+
+                <div class="phase-card">
+                    <h4>4. Log Comidas + AI Reconocimiento</h4>
+                    <p><strong>Manual:</strong></p>
+                    <ul>
+                        <li>Base datos 500 alimentos CR mÃ¡s comunes</li>
+                        <li>Search inteligente</li>
+                        <li>Input porciones (gramos, tazas, unidades)</li>
+                        <li>Display macros + running total vs TDEE</li>
+                    </ul>
+                    <p><strong>AI con Claude Vision:</strong></p>
+                    <ul>
+                        <li>Upload foto comida</li>
+                        <li>Claude identifica alimentos + estima porciones</li>
+                        <li>Calcula macros aproximados</li>
+                        <li>Usuario confirma/ajusta</li>
+                    </ul>
+                    <p><strong>Tiempo desarrollo:</strong> Manual 45h, AI 60h</p>
+                </div>
+
+                <h3>Tech Stack Recomendado</h3>
+
+                <div class="table-container">
+                    <table>
+                        <tr>
+                            <th>Componente</th>
+                            <th>TecnologÃ­a</th>
+                            <th>Costo</th>
+                        </tr>
+                        <tr>
+                            <td>Backend</td>
+                            <td>Node.js + Express</td>
+                            <td>Gratis (Vercel)</td>
+                        </tr>
+                        <tr>
+                            <td>Base Datos</td>
+                            <td>Supabase (Postgres)</td>
+                            <td>Gratis hasta 500MB</td>
+                        </tr>
+                        <tr>
+                            <td>Frontend Web</td>
+                            <td>Next.js 14 + TailwindCSS</td>
+                            <td>Gratis (Vercel)</td>
+                        </tr>
+                        <tr>
+                            <td>Mobile Apps</td>
+                            <td>React Native + Expo</td>
+                            <td>Gratis (cÃ³digo)</td>
+                        </tr>
+                        <tr>
+                            <td>AI</td>
+                            <td>Claude API (Vision + Text)</td>
+                            <td>$3-15 per 1M tokens</td>
+                        </tr>
+                        <tr>
+                            <td>Payments</td>
+                            <td>Stripe</td>
+                            <td>2.9% + $0.30/tx</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <h3>Roadmap Desarrollo (535h total = 6.5 meses)</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h4>Semanas 1-2 (40h)</h4>
+                        <p>Setup + Auth + DiseÃ±o UI</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Semanas 3-4 (50h)</h4>
+                        <p>IntegraciÃ³n Strava completa</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Semanas 5-6 (40h)</h4>
+                        <p>Motor CÃ¡lculo TDEE</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Semanas 7-8 (45h)</h4>
+                        <p>Log Comidas Manual</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Semanas 9-11 (60h)</h4>
+                        <p>AI Reconocimiento Comida</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Semanas 12-14 (50h)</h4>
+                        <p>Timing Carbohidratos</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Semanas 15-16 (40h)</h4>
+                        <p>Reportes y GrÃ¡ficas</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Semanas 17-20 (80h)</h4>
+                        <p>React Native Apps (iOS + Android)</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Semanas 21-24 (70h)</h4>
+                        <p>Testing + Refinamiento</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Semanas 25-28 (60h)</h4>
+                        <p>Pre-Launch + Submissions</p>
+                    </div>
+                </div>
+
+                <div class="success-box">
+                    <h4>Ventajas de Este Stack</h4>
+                    <ul>
+                        <li><strong>Costo inicial casi $0:</strong> Todo en tiers gratuitos hasta 50+ usuarios</li>
+                        <li><strong>Escalable:</strong> Crece con tu negocio, paga por uso</li>
+                        <li><strong>Moderno:</strong> TecnologÃ­as actuales, documentaciÃ³n abundante</li>
+                        <li><strong>Claude-friendly:</strong> Todo compatible con Claude Code para desarrollo</li>
+                        <li><strong>Un cÃ³digo base:</strong> Compartir lÃ³gica entre web y mobile</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- TAB: FASE 1 -->
+            <div id="fase1" class="tab-content">
+                <h2>Fase 1: Supervivencia + Desarrollo App (Meses 1-6)</h2>
+                <p><strong>Enero - Junio 2026</strong></p>
+
+                <div class="metric-grid">
+                    <div class="metric-card">
+                        <h4>Objetivo Financiero</h4>
+                        <div class="metric-value">â‚¡800k-1.2M</div>
+                        <p>por mes</p>
+                    </div>
+                    <div class="metric-card">
+                        <h4>Objetivo App</h4>
+                        <div class="metric-value">MVP</div>
+                        <p>completo y lanzado</p>
+                    </div>
+                    <div class="metric-card">
+                        <h4>Tiempo Trabajo</h4>
+                        <div class="metric-value">50-60h</div>
+                        <p>por semana</p>
+                    </div>
+                    <div class="metric-card">
+                        <h4>Entrenamiento</h4>
+                        <div class="metric-value">15-20h</div>
+                        <p>SAGRADO</p>
+                    </div>
+                </div>
+
+                <div class="warning-box">
+                    <h3>Esta es la Fase MÃ¡s Dura</h3>
+                    <p>6 meses trabajando 50-60h/semana mientras entrenas 15-20h. Es una ultra de negocios.</p>
+                    <p><strong>Pero:</strong> Si pasas esta fase, el resto es downhill. La app estarÃ¡ lista, los ingresos estarÃ¡n creciendo, y todo serÃ¡ mÃ¡s fÃ¡cil.</p>
+                </div>
+
+                <h3>DistribuciÃ³n Tiempo Semanal Tipo</h3>
+                <pre>
+LUNES-VIERNES (50h trabajo + 15h entreno = 65h):
+6:00-9:30    Entrenamiento (variable segÃºn dÃ­a)
+9:30-12:00   DEEP WORK: Desarrollo app (2.5h)
+12:00-1:00   Almuerzo + descanso
+1:00-4:00    INGRESOS: Clientes 1:1 + prospecciÃ³n (3h)
+4:00-5:00    App development o admin (1h)
+5:00-6:00    Marketing: DMs, posts, emails (1h)
+
+SÃBADO (10h trabajo + 4h entreno):
+5:00-8:00    Fondo largo
+9:30-12:30   App development (3h)
+1:30-4:30    Clientes + prospecciÃ³n (3h)
+4:30-5:30    Planning semana (1h)
+
+DOMINGO (3h trabajo + 8h entreno):
+5:00-1:00    Fondo ultra largo
+3:00-6:00    App development o catch-up (3h)
+
+TOTAL: 53h trabajo + 17h entreno = 70h semana
+                </pre>
+
+                <h3>CronologÃ­a Mes a Mes</h3>
+
+                <div class="phase-card">
+                    <div class="phase-header">Mes 1 (Enero 2026) - â‚¡915k meta</div>
+                    <div class="table-container">
+                        <table>
+                            <tr>
+                                <th>Fuente</th>
+                                <th>Meta</th>
+                                <th>Ingreso</th>
+                            </tr>
+                            <tr>
+                                <td>Pack â‚¡15k</td>
+                                <td>8 clientes</td>
+                                <td>â‚¡120k</td>
+                            </tr>
+                            <tr>
+                                <td>Plan â‚¡25k</td>
+                                <td>6 clientes</td>
+                                <td>â‚¡150k</td>
+                            </tr>
+                            <tr>
+                                <td>Consulta â‚¡45k</td>
+                                <td>3 clientes</td>
+                                <td>â‚¡135k</td>
+                            </tr>
+                            <tr>
+                                <td>Charlas</td>
+                                <td>3</td>
+                                <td>â‚¡450k</td>
+                            </tr>
+                            <tr>
+                                <td>GestiÃ³n redes</td>
+                                <td>1</td>
+                                <td>â‚¡60k</td>
+                            </tr>
+                            <tr>
+                                <td><strong>TOTAL</strong></td>
+                                <td></td>
+                                <td><strong>â‚¡915k</strong></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <p><strong>Trabajo App (65h mes):</strong></p>
+                    <ul class="checklist">
+                        <li>Setup + Auth (40h)</li>
+                        <li>IntegraciÃ³n Strava parte 1 (25h)</li>
+                    </ul>
+
+                    <p><strong>Acciones Ingresos:</strong></p>
+                    <ul class="checklist">
+                        <li>20 DMs/dÃ­a proactivos</li>
+                        <li>Outreach 5 empresas/semana para charlas feb</li>
+                        <li>Post Instagram 3x/semana</li>
+                    </ul>
+
+                    <div class="highlight-box">
+                        <h4>EVENTO: Camino de Mulas (29 Ene - 3 Feb 2026)</h4>
+                        <p><strong>630km, 15,000m elevaciÃ³n</strong></p>
+                        <p>Semana 21-27 Ene: Intensificar trabajo (compensar)</p>
+                        <p>Semana 29 Ene - 3 Feb: PAUSAR trabajo, solo competir</p>
+                        <p>Post-carrera: Contenido GOLD Instagram sobre nutriciÃ³n durante 6 dÃ­as</p>
+                    </div>
+                </div>
+
+                <div class="phase-card">
+                    <div class="phase-header">Mes 2 (Febrero 2026) - â‚¡955k meta</div>
+                    <p><strong>Ingresos:</strong> Pack â‚¡15k Ã— 10, Plan â‚¡25k Ã— 7, Consulta Ã— 4, Charlas Ã— 3 = â‚¡955k</p>
+                    <p><strong>App (85h):</strong> Completar Strava + Motor TDEE + Inicio Log Manual</p>
+                    <p><strong>Acciones:</strong></p>
+                    <ul class="checklist">
+                        <li>Crear lead magnet PDF</li>
+                        <li>Setup landing page captura emails</li>
+                        <li>Dashboard TDEE funcional</li>
+                    </ul>
+                </div>
+
+                <div class="phase-card">
+                    <div class="phase-header">Mes 3 (Marzo 2026) - â‚¡1.16M meta</div>
+                    <p><strong>Ingresos:</strong> Pack Ã— 12, Plan Ã— 8, Consulta Ã— 4, Charlas Ã— 4 = â‚¡1,160k</p>
+                    <p><strong>App (85h):</strong> Log Manual completo + AI Reconocimiento Comida</p>
+                    
+                    <div class="success-box">
+                        <h4>HITO CRÃTICO MES 3</h4>
+                        <p><strong>CHECK: Â¿Generando â‚¡1M+/mes?</strong></p>
+                        <p>âœ… SÃ â†’ Continuar | âŒ NO â†’ Reducir app 50%, intensificar charlas</p>
+                    </div>
+                </div>
+
+                <div class="phase-card">
+                    <div class="phase-header">Mes 4 (Abril 2026) - â‚¡1.32M meta</div>
+                    <p><strong>Ingresos:</strong> 1:1 â‚¡630k + Charlas â‚¡600k + Digital â‚¡85k = â‚¡1,315k</p>
+                    <p><strong>App (90h):</strong> Timing Carbohidratos + Reportes y GrÃ¡ficas</p>
+                    <p><strong>Acciones:</strong> Crear curso flagship (40h inversiÃ³n)</p>
+                </div>
+
+                <div class="phase-card">
+                    <div class="phase-header">Mes 5 (Mayo 2026) - â‚¡1.36M meta</div>
+                    <p><strong>Ingresos:</strong> 1:1 â‚¡625k + Charlas â‚¡600k + Curso Ã— 3 = â‚¡1,360k</p>
+                    <p><strong>App (80h):</strong> React Native App mobile</p>
+                    <p><strong>Acciones:</strong> Beta privada 5 usuarios (clientes gratis)</p>
+                </div>
+
+                <div class="phase-card">
+                    <div class="phase-header">Mes 6 (Junio 2026) - â‚¡1.50M + APP LISTA</div>
+                    <p><strong>Ingresos:</strong> 1:1 â‚¡720k + Charlas â‚¡600k + Curso Ã— 4 = â‚¡1,500k</p>
+                    <p><strong>App (100h):</strong> Testing + Refinamiento + Pre-Launch</p>
+                    
+                    <div class="success-box">
+                        <h4>MILESTONE CRÃTICO</h4>
+                        <ul class="checklist">
+                            <li>App MVP 100% completa</li>
+                            <li>Beta 20 usuarios testeando</li>
+                            <li>Landing page marketing lista</li>
+                            <li>Video demo profesional</li>
+                            <li>Lista espera 200+ emails</li>
+                            <li>Submissions App Store + Google Play</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <h3>STATUS FIN FASE 1</h3>
+                    <div class="metric-grid">
+                        <div class="metric-card">
+                            <h4>Ingresos</h4>
+                            <div class="metric-value">â‚¡1.5M</div>
+                            <p>~$2,500/mes</p>
+                        </div>
+                        <div class="metric-card">
+                            <h4>App</h4>
+                            <div class="metric-value">100%</div>
+                            <p>MVP completo</p>
+                        </div>
+                        <div class="metric-card">
+                            <h4>Deuda</h4>
+                            <div class="metric-value">-30%</div>
+                            <p>Reducida</p>
+                        </div>
+                        <div class="metric-card">
+                            <h4>Siguiente</h4>
+                            <div class="metric-value">Fase 2</div>
+                            <p>Escalar</p>
+                        </div>
+                    </div>
+                    <p><strong>Has sobrevivido la fase mÃ¡s dura. De aquÃ­ en adelante, todo es momentum.</strong></p>
+                </div>
+            </div>
+
+            <!-- TAB: FASE 2 -->
+            <div id="fase2" class="tab-content">
+                <h2>Fase 2: Crecimiento + Escala App (Meses 7-12)</h2>
+                <p><strong>Julio - Diciembre 2026</strong></p>
+
+                <div class="metric-grid">
+                    <div class="metric-card">
+                        <h4>Objetivo Financiero</h4>
+                        <div class="metric-value">â‚¡2.5-3.5M</div>
+                        <p>por mes</p>
+                    </div>
+                    <div class="metric-card">
+                        <h4>Objetivo App</h4>
+                        <div class="metric-value">200-300</div>
+                        <p>usuarios pagos</p>
+                    </div>
+                    <div class="metric-card">
+                        <h4>Tiempo Trabajo</h4>
+                        <div class="metric-value">40-45h</div>
+                        <p>por semana</p>
+                    </div>
+                    <div class="metric-card">
+                        <h4>Entrenamiento</h4>
+                        <div class="metric-value">15-20h</div>
+                        <p>SAGRADO</p>
+                    </div>
+                </div>
+
+                <div class="success-box">
+                    <h3>Momentum Phase</h3>
+                    <p>La app estÃ¡ lista. Los ingresos estÃ¡n creciendo. Ahora es cuestiÃ³n de ESCALAR lo que ya funciona.</p>
+                    <p>Tiempo de trabajo baja a 40-45h/semana. MÃ¡s sostenible, menos burnout risk.</p>
+                </div>
+
+                <div class="phase-card">
+                    <div class="phase-header">Mes 7 (Julio 2026) - LANZAMIENTO APP - â‚¡2.05M</div>
+                    <div class="table-container">
+                        <table>
+                            <tr>
+                                <th>Fuente</th>
+                                <th>Meta</th>
+                                <th>Ingreso</th>
+                            </tr>
+                            <tr>
+                                <td>Servicios 1:1</td>
+                                <td>Mix</td>
+                                <td>â‚¡805k</td>
+                            </tr>
+                            <tr>
+                                <td>Charlas Ã— 4</td>
+                                <td>4</td>
+                                <td>â‚¡800k</td>
+                            </tr>
+                            <tr>
+                                <td>Curso Ã— 5</td>
+                                <td>5</td>
+                                <td>â‚¡225k</td>
+                            </tr>
+                            <tr>
+                                <td><strong>APP Beta (30 PRO)</strong></td>
+                                <td>30</td>
+                                <td><strong>â‚¡216k</strong></td>
+                            </tr>
+                            <tr>
+                                <td><strong>TOTAL</strong></td>
+                                <td></td>
+                                <td><strong>â‚¡2,046k</strong></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <p><strong>App Pricing Lanzamiento:</strong></p>
+                    <ul>
+                        <li><strong>FREE:</strong> Ilimitados (lead generation)</li>
+                        <li><strong>PRO:</strong> $12/mes (â‚¡7,200) - Promo 30% OFF primer mes</li>
+                        <li><strong>ELITE:</strong> $25/mes (â‚¡15,000)</li>
+                    </ul>
+
+                    <p><strong>Estrategia Lanzamiento:</strong></p>
+                    <ul class="checklist">
+                        <li>Semana 1: Anuncio Instagram + email lista (200)</li>
+                        <li>Semana 2: Lanzamiento pÃºblico + Product Hunt</li>
+                        <li>Semana 3-4: Contenido educativo app (7 posts)</li>
+                        <li>Meta: 100 FREE, 30 PRO, 5 ELITE</li>
+                    </ul>
+                </div>
+
+                <div class="phase-card">
+                    <div class="phase-header">Mes 8 (Agosto 2026) - â‚¡2.34M</div>
+                    <p><strong>Ingresos:</strong> 1:1 â‚¡715k + Charlas â‚¡800k + Digital â‚¡270k + <strong>APP (60 PRO + 8 ELITE) â‚¡552k</strong> = â‚¡2,337k</p>
+                    <p><strong>Acciones:</strong> Iterar features, agregar RescueTime, mejorar AI, ads $200/mes</p>
+                </div>
+
+                <div class="phase-card">
+                    <div class="phase-header">Mes 9 (Sept 2026) - â‚¡3.16M + PROGRAMA GRUPAL</div>
+                    <div class="table-container">
+                        <table>
+                            <tr>
+                                <td>Servicios 1:1</td>
+                                <td>â‚¡715k</td>
+                            </tr>
+                            <tr>
+                                <td><strong>PROGRAMA GRUPAL (15 atletas)</strong></td>
+                                <td><strong>â‚¡525k</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Charlas Ã— 4</td>
+                                <td>â‚¡800k</td>
+                            </tr>
+                            <tr>
+                                <td>Digital</td>
+                                <td>â‚¡360k</td>
+                            </tr>
+                            <tr>
+                                <td>APP (80 PRO + 12 ELITE)</td>
+                                <td>â‚¡756k</td>
+                            </tr>
+                            <tr>
+                                <td><strong>TOTAL</strong></td>
+                                <td><strong>â‚¡3,156k</strong></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="success-box">
+                        <h4>Lanzamiento Programa Grupal</h4>
+                        <p><strong>"Endurance Fuel Collective" - â‚¡35k/mes</strong></p>
+                        <ul class="checklist">
+                            <li>Pre-venta 2 semanas</li>
+                            <li>MÃ­nimo 10 comprometidos para abrir</li>
+                            <li>Webinar gratuito explicativo</li>
+                            <li>Early bird: â‚¡28k primer mes</li>
+                        </ul>
+                        <p><strong>Incluye:</strong> Webinar semanal + Discord + Biblioteca + Plan base personalizado</p>
+                    </div>
+                </div>
+
+                <div class="phase-card">
+                    <div class="phase-header">Mes 10-12 (Oct-Dic 2026) - Escalar Todo</div>
+                    <ul>
+                        <li><strong>Mes 10:</strong> â‚¡3.5M (Grupal 20, APP 120 PRO + 18 ELITE)</li>
+                        <li><strong>Mes 11:</strong> â‚¡4.1M (Grupal 22, APP 140 PRO + 22 ELITE, <strong>TED aplicaciÃ³n</strong>)</li>
+                        <li><strong>Mes 12:</strong> â‚¡4.75M (Grupal 25, APP 150 PRO + 25 ELITE)</li>
+                    </ul>
+
+                    <div class="table-container">
+                        <table>
+                            <tr>
+                                <th>Fuente</th>
+                                <th>Mes 12</th>
+                            </tr>
+                            <tr>
+                                <td>Servicios 1:1</td>
+                                <td>â‚¡785k</td>
+                            </tr>
+                            <tr>
+                                <td>Programa Grupal (25)</td>
+                                <td>â‚¡875k</td>
+                            </tr>
+                            <tr>
+                                <td>Charlas + Webinars</td>
+                                <td>â‚¡1,100k</td>
+                            </tr>
+                            <tr>
+                                <td>Digital</td>
+                                <td>â‚¡540k</td>
+                            </tr>
+                            <tr>
+                                <td><strong>APP (175 pagos)</strong></td>
+                                <td><strong>â‚¡1,455k</strong></td>
+                            </tr>
+                            <tr>
+                                <td><strong>TOTAL</strong></td>
+                                <td><strong>â‚¡4,755k (~$7,925)</strong></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="success-box">
+                    <h4>HITO CRÃTICO MES 12</h4>
+                    <p><strong>CHECK: Â¿EstÃ¡s en $7k+/mes?</strong></p>
+                    <p>âœ… SÃ â†’ Meta $10k factible Fase 3</p>
+                    <p>âš ï¸ NO â†’ Revaluar streams, ajustar</p>
+                </div>
+
+                <div class="highlight-box">
+                    <h3>STATUS FIN FASE 2</h3>
+                    <div class="metric-grid">
+                        <div class="metric-card">
+                            <h4>Ingresos</h4>
+                            <div class="metric-value">â‚¡4.75M</div>
+                            <p>~$7,925/mes</p>
+                        </div>
+                        <div class="metric-card">
+                            <h4>App Usuarios</h4>
+                            <div class="metric-value">175</div>
+                            <p>pagos activos</p>
+                        </div>
+                        <div class="metric-card">
+                            <h4>Programa Grupal</h4>
+                            <div class="metric-value">25</div>
+                            <p>atletas</p>
+                        </div>
+                        <div class="metric-card">
+                            <h4>Momentum</h4>
+                            <div class="metric-value">ALTO</div>
+                            <p>Todo escalando</p>
+                        </div>
+                    </div>
+                    <p><strong>A 3 meses de $10k. El sistema funciona. Ahora solo optimizar.</strong></p>
+                </div>
+
+                <div style="margin-top: 40px; padding: 20px; background: #E8F3EF; border-radius: 8px;">
+                    <h4>ContinÃºa en Parte 2</h4>
+                    <p>Para ver Fase 3, Cronogramas detallados, Recursos, Riesgos, Sistema de EjecuciÃ³n y PrÃ³ximos Pasos...</p>
+                    <a href="plan_maestro_isa_parte2.html" class="nav-link">Ir a Parte 2 â†’</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p><strong>Plan Maestro 18 Meses - Parte 1 de 2</strong></p>
+            <p>Isa Herra | eat&flow | Creado: 16 diciembre 2025</p>
+        </div>
+    </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+                tabcontent[i].classList.remove("active");
+            }
+            
+            tablinks = document.getElementsByClassName("tab");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+            
+            document.getElementById(tabName).style.display = "block";
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+    </script>
+</body>
+</html>

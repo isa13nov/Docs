@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GuÃ­a de Hashtags - Luis Diego Ramos</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; line-height: 1.6; color: #1a1a1a; background: #fafafa; }
+        
+        .sticky-nav {
+            position: fixed; top: 0; left: 0; right: 0;
+            background: rgba(26, 26, 26, 0.98); z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid #d4af37;
+        }
+        
+        .sticky-nav-content {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 40px;
+        }
+        
+        .nav-brand { font-size: 1.1em; font-weight: 300; color: #d4af37; }
+        .nav-brand span { color: #ffffff; font-weight: 400; }
+        
+        .hero {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            color: #ffffff; padding: 120px 40px 80px; text-align: center; margin-top: 60px;
+        }
+        .hero h1 { font-size: 2.8em; margin-bottom: 20px; font-weight: 300; }
+        .hero .subtitle { font-size: 1.3em; color: #d4af37; }
+        
+        section { padding: 80px 40px; background: #ffffff; border-bottom: 1px solid #e5e5e5; }
+        section:nth-child(even) { background: #f8f8f8; }
+        section h2 {
+            font-size: 2.2em; margin-bottom: 30px; color: #1a1a1a;
+            font-weight: 300; text-align: center; position: relative; padding-bottom: 20px;
+        }
+        section h2::after {
+            content: ''; position: absolute; bottom: 0; left: 50%;
+            transform: translateX(-50%); width: 80px; height: 3px; background: #d4af37;
+        }
+        
+        .hashtag-category {
+            background: #fff; border: 1px solid #e5e5e5;
+            border-radius: 8px; padding: 30px; margin: 30px 0;
+            border-left: 4px solid #d4af37;
+        }
+        
+        .category-header {
+            display: flex; justify-content: space-between;
+            align-items: center; margin-bottom: 20px;
+        }
+        
+        .category-title {
+            font-size: 1.5em; color: #1a1a1a;
+        }
+        
+        .category-count {
+            background: #d4af37; color: #1a1a1a;
+            padding: 6px 15px; border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .hashtag-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px; margin: 20px 0;
+        }
+        
+        .hashtag-item {
+            background: #f8f8f8; padding: 10px 15px;
+            border-radius: 4px; color: #d4af37;
+            font-weight: bold; cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .hashtag-item:hover {
+            background: #d4af37; color: #ffffff;
+        }
+        
+        .copy-all-btn {
+            background: #d4af37; color: #1a1a1a;
+            border: none; padding: 12px 25px;
+            border-radius: 4px; cursor: pointer;
+            font-family: 'Georgia', serif;
+            font-weight: bold; margin-top: 15px;
+        }
+        
+        .copy-all-btn:hover {
+            background: #f0c850;
+        }
+        
+        .highlight-box {
+            background: #fffbf0; border-left: 4px solid #d4af37;
+            padding: 25px; margin: 25px 0; border-radius: 4px;
+        }
+        
+        footer {
+            background: #1a1a1a; color: #e0e0e0;
+            padding: 50px 40px; text-align: center;
+        }
+        footer h3 { color: #d4af37; margin-bottom: 20px; }
+        footer .copyright { margin-top: 30px; font-size: 0.9em; color: #999; }
+        
+        @media (max-width: 768px) {
+            .hashtag-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="sticky-nav">
+        <div class="sticky-nav-content">
+            <div class="nav-brand">Luis Diego Ramos <span>| GuÃ­a de Hashtags</span></div>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <h1>GuÃ­a de Hashtags EstratÃ©gicos</h1>
+        <p class="subtitle">100+ Hashtags Organizados por CategorÃ­a</p>
+    </div>
+
+    <section>
+        <h2>ðŸ“‹ CÃ³mo Usar Esta GuÃ­a</h2>
+        <div class="highlight-box">
+            <p><strong>Estrategia de Hashtags:</strong></p>
+            <ul style="margin: 15px 0 0 25px; line-height: 1.8;">
+                <li>UsÃ¡ 20-30 hashtags por post (Instagram permite 30)</li>
+                <li>Mezcla de categorÃ­as: 40% Blue Ocean + 30% Arte + 20% UbicaciÃ³n + 10% TÃ©cnica</li>
+                <li>EvitÃ¡ hashtags genÃ©ricos (#love #instagood #photooftheday)</li>
+                <li>ActualizÃ¡ y rotÃ¡ hashtags cada mes segÃºn performance</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- CATEGORÃA 1: BLUE OCEAN -->
+    <section>
+        <div class="hashtag-category">
+            <div class="category-header">
+                <h3 class="category-title">ðŸŒŠ CategorÃ­a 1: Blue Ocean (Cero Competencia)</h3>
+                <span class="category-count">20 hashtags</span>
+            </div>
+            
+            <p style="margin-bottom: 20px; color: #666;">
+                Estos son los hashtags con CERO o muy baja competencia. Son los que te posicionan como Ãºnico en tu nicho.
+            </p>
+            
+            <div class="hashtag-grid">
+                <div class="hashtag-item">#arqueologiaubana</div>
+                <div class="hashtag-item">#derivaurbana</div>
+                <div class="hashtag-item">#museosinvoluntarios</div>
+                <div class="hashtag-item">#cartografiÐ°visual</div>
+                <div class="hashtag-item">#palimpsestourbanÎ¿</div>
+                <div class="hashtag-item">#registrourbano</div>
+                <div class="hashtag-item">#registroderegistros</div>
+                <div class="hashtag-item">#exploracionfotografica</div>
+                <div class="hashtag-item">#huellasinvisibles</div>
+                <div class="hashtag-item">#infraestructuracitadina</div>
+                <div class="hashtag-item">#arqueologiavisual</div>
+                <div class="hashtag-item">#documentacionpatrimonial</div>
+                <div class="hashtag-item">#ciudadvisible</div>
+                <div class="hashtag-item">#memoriaurbana</div>
+                <div class="hashtag-item">#cajasderegistro</div>
+                <div class="hashtag-item">#archivourbano</div>
+                <div class="hashtag-item">#observacionurbana</div>
+                <div class="hashtag-item">#geografiafotografica</div>
+                <div class="hashtag-item">#urbanografia</div>
+                <div class="hashtag-item">#espaciodocumentado</div>
+            </div>
+            
+            <button class="copy-all-btn" onclick="copyCategory(this)">ðŸ“‹ Copiar Todos</button>
+        </div>
+    </section>
+
+    <!-- CATEGORÃA 2: ARTE CONTEMPORÃNEO -->
+    <section>
+        <div class="hashtag-category">
+            <div class="category-header">
+                <h3 class="category-title">ðŸŽ¨ CategorÃ­a 2: Arte ContemporÃ¡neo CR</h3>
+                <span class="category-count">20 hashtags</span>
+            </div>
+            
+            <div class="hashtag-grid">
+                <div class="hashtag-item">#artecontemporaneocostarica</div>
+                <div class="hashtag-item">#artecr</div>
+                <div class="hashtag-item">#artistÐ°costarricense</div>
+                <div class="hashtag-item">#galerianacional</div>
+                <div class="hashtag-item">#museomac</div>
+                <div class="hashtag-item">#artecostarica</div>
+                <div class="hashtag-item">#costaricaarte</div>
+                <div class="hashtag-item">#artistascr</div>
+                <div class="hashtag-item">#practicaartistica</div>
+                <div class="hashtag-item">#arteconceptual</div>
+                <div class="hashtag-item">#contemporaryartcr</div>
+                <div class="hashtag-item">#galeriascr</div>
+                <div class="hashtag-item">#culturacr</div>
+                <div class="hashtag-item">#arteycultura</div>
+                <div class="hashtag-item">#bienalcr</div>
+                <div class="hashtag-item">#valoarte</div>
+                <div class="hashtag-item">#exposicioncr</div>
+                <div class="hashtag-item">#museoscr</div>
+                <div class="hashtag-item">#centroamericanart</div>
+                <div class="hashtag-item">#latinamericanart</div>
+            </div>
+            
+            <button class="copy-all-btn" onclick="copyCategory(this)">ðŸ“‹ Copiar Todos</button>
+        </div>
+    </section>
+
+    <!-- CATEGORÃA 3: FOTOGRAFÃA ANALÃ“GICA -->
+    <section>
+        <div class="hashtag-category">
+            <div class="category-header">
+                <h3 class="category-title">ðŸ“· CategorÃ­a 3: FotografÃ­a AnalÃ³gica</h3>
+                <span class="category-count">20 hashtags</span>
+            </div>
+            
+            <div class="hashtag-grid">
+                <div class="hashtag-item">#fotografiaanalogica</div>
+                <div class="hashtag-item">#filmisnotdead</div>
+                <div class="hashtag-item">#analogphotography</div>
+                <div class="hashtag-item">#shootfilm</div>
+                <div class="hashtag-item">#believeinfilm</div>
+                <div class="hashtag-item">#pelliculafotografica</div>
+                <div class="hashtag-item">#mediumformat</div>
+                <div class="hashtag-item">#6x6</div>
+                <div class="hashtag-item">#120film</div>
+                <div class="hashtag-item">#hasselblad</div>
+                <div class="hashtag-item">#ilfordhp5</div>
+                <div class="hashtag-item">#kodaktrix</div>
+                <div class="hashtag-item">#blackandwhitefilm</div>
+                <div class="hashtag-item">#filmcamera</div>
+                <div class="hashtag-item">#analogcamera</div>
+                <div class="hashtag-item">#filmphotography</div>
+                <div class="hashtag-item">#filmcommunity</div>
+                <div class="hashtag-item">#squareformat</div>
+                <div class="hashtag-item">#grainfeed</div>
+                <div class="hashtag-item">#analogvibes</div>
+            </div>
+            
+            <button class="copy-all-btn" onclick="copyCategory(this)">ðŸ“‹ Copiar Todos</button>
+        </div>
+    </section>
+
+    <!-- CATEGORÃA 4: UBICACIÃ“N -->
+    <section>
+        <div class="hashtag-category">
+            <div class="category-header">
+                <h3 class="category-title">ðŸ“ CategorÃ­a 4: UbicaciÃ³n (Costa Rica)</h3>
+                <span class="category-count">20 hashtags</span>
+            </div>
+            
+            <div class="hashtag-grid">
+                <div class="hashtag-item">#costarica</div>
+                <div class="hashtag-item">#sanjosecostarica</div>
+                <div class="hashtag-item">#sanjosecr</div>
+                <div class="hashtag-item">#costaricadaily</div>
+                <div class="hashtag-item">#puravida</div>
+                <div class="hashtag-item">#costaricacool</div>
+                <div class="hashtag-item">#gam</div>
+                <div class="hashtag-item">#barriÎ¿amon</div>
+                <div class="hashtag-item">#barrioscalante</div>
+                <div class="hashtag-item">#paseocolon</div>
+                <div class="hashtag-item">#chepe</div>
+                <div class="hashtag-item">#urbanocr</div>
+                <div class="hashtag-item">#ciudadcr</div>
+                <div class="hashtag-item">#centrosanjose</div>
+                <div class="hashtag-item">#ticÎ¿senelmundo</div>
+                <div class="hashtag-item">#visitcostarica</div>
+                <div class="hashtag-item">#discovercr</div>
+                <div class="hashtag-item">#centroamerica</div>
+                <div class="hashtag-item">#culturacr</div>
+                <div class="hashtag-item">#patrimoniocr</div>
+            </div>
+            
+            <button class="copy-all-btn" onclick="copyCategory(this)">ðŸ“‹ Copiar Todos</button>
+        </div>
+    </section>
+
+    <!-- CATEGORÃA 5: INSTITUCIONAL -->
+    <section>
+        <div class="hashtag-category">
+            <div class="category-header">
+                <h3 class="category-title">ðŸ›ï¸ CategorÃ­a 5: Institucional/GalerÃ­as</h3>
+                <span class="category-count">20 hashtags</span>
+            </div>
+            
+            <div class="hashtag-grid">
+                <div class="hashtag-item">#galeria</div>
+                <div class="hashtag-item">#museo</div>
+                <div class="hashtag-item">#exposicion</div>
+                <div class="hashtag-item">#curador</div>
+                <div class="hashtag-item">#coleccionismo</div>
+                <div class="hashtag-item">#artecollector</div>
+                <div class="hashtag-item">#contemporaryart</div>
+                <div class="hashtag-item">#fineart</div>
+                <div class="hashtag-item">#artexhibition</div>
+                <div class="hashtag-item">#galleryart</div>
+                <div class="hashtag-item">#curatedart</div>
+                <div class="hashtag-item">#artcurator</div>
+                <div class="hashtag-item">#exhibicion</div>
+                <div class="hashtag-item">#artshow</div>
+                <div class="hashtag-item">#museografia</div>
+                <div class="hashtag-item">#curadurÃ­a</div>
+                <div class="hashtag-item">#espacioartistico</div>
+                <div class="hashtag-item">#galeriadeart e</div>
+                <div class="hashtag-item">#artspace</div>
+                <div class="hashtag-item">#culturalheritage</div>
+            </div>
+            
+            <button class="copy-all-btn" onclick="copyCategory(this)">ðŸ“‹ Copiar Todos</button>
+        </div>
+    </section>
+
+    <!-- COMBINACIONES RECOMENDADAS -->
+    <section>
+        <h2>ðŸ’¡ Combinaciones Recomendadas por Tipo de Post</h2>
+        
+        <div class="hashtag-category">
+            <h3 style="color: #d4af37; margin-bottom: 20px;">Para Posts de Obra Destacada:</h3>
+            <p style="background: #f8f8f8; padding: 15px; border-radius: 4px; font-family: monospace; line-height: 2;">
+                #arqueologiaubana #registroderegistros #fotografiaanalogica #artecontemporaneocostarica #derivaurbana #sanjosecostarica #ilfordhp5 #mediumformat #espaciourbano #memoriacolectiva #palimpsestourbanÎ¿ #arteconceptual #artecr #galerianacional #6x6 #filmisnotdead #documentalfotografico #ciudadvisible #costaricaarte #analogphotography
+            </p>
+            <button class="copy-all-btn" onclick="copyText(this.previousElementSibling.innerText)">ðŸ“‹ Copiar</button>
+        </div>
+
+        <div class="hashtag-category">
+            <h3 style="color: #d4af37; margin-bottom: 20px;">Para Posts Behind the Scenes:</h3>
+            <p style="background: #f8f8f8; padding: 15px; border-radius: 4px; font-family: monospace; line-height: 2;">
+                #procesoartistico #fotografiaanalogica #behindthescenes #pelliculafotografica #hasselblad #mediumformat #filmcamera #analogprocess #filmisnotdead #shootfilm #believeinfilm #artistprocess #filmcommunity #6x6photography #blackandwhitefilm #derivaurbana #artecr #darkroom #analogcamera #arqueologiaubana
+            </p>
+            <button class="copy-all-btn" onclick="copyText(this.previousElementSibling.innerText)">ðŸ“‹ Copiar</button>
+        </div>
+
+        <div class="hashtag-category">
+            <h3 style="color: #d4af37; margin-bottom: 20px;">Para Posts Educativos/Conceptuales:</h3>
+            <p style="background: #f8f8f8; padding: 15px; border-radius: 4px; font-family: monospace; line-height: 2;">
+                #arqueologiaubana #educacionartistica #arteconceptual #teoriaartistica #espaciourbano #practicaartistica #investigacionvisual #arteyciudad #criticaurbana #estudiosurbanos #geografiaurbana #culturacr #artecontemporaneocostarica #artecr #observacionurbana #memoriaurbana #derivaurbana #urbanstudies #documentalfotografico #contemporaryart
+            </p>
+            <button class="copy-all-btn" onclick="copyText(this.previousElementSibling.innerText)">ðŸ“‹ Copiar</button>
+        </div>
+    </section>
+
+    <section>
+        <h2>âš ï¸ Hashtags a EVITAR</h2>
+        <div class="highlight-box">
+            <p><strong>NUNCA uses estos hashtags genÃ©ricos:</strong></p>
+            <ul style="margin: 15px 0 0 25px; line-height: 1.8; color: #999; text-decoration: line-through;">
+                <li>#love #instagood #photooftheday #picoftheday</li>
+                <li>#beautiful #amazing #follow #followme #like4like</li>
+                <li>#instadaily #instalike #photography (demasiado genÃ©rico)</li>
+                <li>#art (8M+ posts, imposible destacar)</li>
+                <li>#photo #pic #photographer (genÃ©ricos)</li>
+            </ul>
+            <p style="margin-top: 20px;"><strong>Por quÃ© evitarlos:</strong> Tienen millones de posts, audiencia no cualificada, y no ayudan a posicionarte en tu nicho especÃ­fico.</p>
+        </div>
+    </section>
+
+    <footer>
+        <h3>Mateo Arias</h3>
+        <p>Consultor en AutomatizaciÃ³n & TransformaciÃ³n Empresarial</p>
+        <p>Grupo Infinito Costa Rica</p>
+        <p class="copyright">Â© 2025 Grupo Infinito Costa Rica</p>
+    </footer>
+
+    <script>
+        function copyCategory(button) {
+            const category = button.previousElementSibling;
+            const hashtags = Array.from(category.querySelectorAll('.hashtag-item'))
+                .map(item => item.innerText)
+                .join(' ');
+            
+            copyText(hashtags);
+            
+            button.innerHTML = 'âœ… Â¡Copiados!';
+            button.style.background = '#4CAF50';
+            
+            setTimeout(() => {
+                button.innerHTML = 'ðŸ“‹ Copiar Todos';
+                button.style.background = '#d4af37';
+            }, 2000);
+        }
+        
+        function copyText(text) {
+            navigator.clipboard.writeText(text);
+        }
+    </script>
+
+</body>
+</html>

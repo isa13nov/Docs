@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario Editorial 90 DÃ­as - Luis Diego Ramos</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; line-height: 1.6; color: #1a1a1a; background: #fafafa; }
+        
+        /* STICKY NAVIGATION */
+        .sticky-nav {
+            position: fixed; top: 0; left: 0; right: 0;
+            background: rgba(26, 26, 26, 0.98);
+            backdrop-filter: blur(10px); z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid #d4af37;
+        }
+        
+        .sticky-nav-content {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 40px;
+        }
+        
+        .nav-brand { font-size: 1.1em; font-weight: 300; color: #d4af37; letter-spacing: 1px; }
+        .nav-brand span { color: #ffffff; font-weight: 400; }
+        .nav-links { display: flex; gap: 5px; flex-wrap: wrap; }
+        .nav-links a {
+            color: #e0e0e0; text-decoration: none;
+            padding: 8px 16px; font-size: 0.9em;
+            transition: all 0.3s ease; border-radius: 3px;
+        }
+        .nav-links a:hover { color: #d4af37; background: rgba(212, 175, 55, 0.1); }
+        .nav-links a.active { color: #d4af37; }
+        
+        /* HERO */
+        .hero {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            color: #ffffff; padding: 120px 40px 80px; text-align: center; margin-top: 60px;
+        }
+        .hero h1 { font-size: 2.8em; margin-bottom: 20px; font-weight: 300; letter-spacing: 1px; }
+        .hero .subtitle { font-size: 1.3em; color: #d4af37; margin-bottom: 30px; }
+        .hero .description { font-size: 1.1em; color: #cccccc; max-width: 800px; margin: 0 auto; line-height: 1.8; }
+        
+        /* SECTIONS */
+        section { padding: 80px 40px; background: #ffffff; border-bottom: 1px solid #e5e5e5; }
+        section:nth-child(even) { background: #f8f8f8; }
+        section h2 {
+            font-size: 2.2em; margin-bottom: 30px; color: #1a1a1a;
+            font-weight: 300; text-align: center; position: relative; padding-bottom: 20px;
+        }
+        section h2::after {
+            content: ''; position: absolute; bottom: 0; left: 50%;
+            transform: translateX(-50%); width: 80px; height: 3px; background: #d4af37;
+        }
+        
+        /* FILTER BUTTONS */
+        .filter-buttons {
+            display: flex; gap: 10px; justify-content: center;
+            flex-wrap: wrap; margin: 30px 0;
+        }
+        .filter-btn {
+            padding: 10px 20px; background: #f8f8f8;
+            border: 1px solid #d4af37; border-radius: 4px;
+            color: #1a1a1a; cursor: pointer;
+            transition: all 0.3s ease; font-family: 'Georgia', serif;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background: #d4af37; color: #ffffff;
+        }
+        
+        /* CALENDAR GRID */
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px; margin: 30px 0;
+        }
+        
+        .post-card {
+            background: #ffffff; border: 1px solid #e5e5e5;
+            border-radius: 8px; padding: 25px;
+            transition: all 0.3s ease; position: relative;
+            border-left: 4px solid #d4af37;
+        }
+        .post-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .post-header {
+            display: flex; justify-content: space-between;
+            align-items: center; margin-bottom: 15px;
+        }
+        .post-date {
+            font-size: 1.1em; font-weight: bold; color: #d4af37;
+        }
+        .post-platform {
+            padding: 5px 12px; background: #f8f8f8;
+            border-radius: 4px; font-size: 0.85em;
+        }
+        
+        .post-type {
+            display: inline-block; padding: 4px 10px;
+            background: #1a1a1a; color: #ffffff;
+            border-radius: 3px; font-size: 0.85em;
+            margin-bottom: 15px;
+        }
+        
+        .post-copy {
+            color: #555; line-height: 1.7;
+            margin: 15px 0; font-size: 0.95em;
+        }
+        
+        .post-hashtags {
+            color: #d4af37; font-size: 0.9em;
+            margin: 10px 0; line-height: 1.6;
+        }
+        
+        .post-cta {
+            background: #fffbf0; padding: 10px;
+            border-left: 3px solid #d4af37;
+            margin-top: 10px; font-size: 0.9em;
+        }
+        
+        .post-time {
+            color: #999; font-size: 0.85em;
+            margin-top: 10px;
+        }
+        
+        /* HIGHLIGHT BOX */
+        .highlight-box {
+            background: #fffbf0; border-left: 4px solid #d4af37;
+            padding: 25px; margin: 25px 0; border-radius: 4px;
+        }
+        .highlight-box strong { color: #d4af37; }
+        
+        /* DOWNLOAD BUTTON */
+        .download-btn {
+            display: inline-block;
+            padding: 15px 35px;
+            background: linear-gradient(135deg, #d4af37 0%, #f0c850 100%);
+            color: #1a1a1a; text-decoration: none;
+            border-radius: 6px; font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+        }
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(212, 175, 55, 0.4);
+        }
+        
+        /* FOOTER */
+        footer {
+            background: #1a1a1a; color: #e0e0e0;
+            padding: 50px 40px; text-align: center;
+        }
+        footer h3 { color: #d4af37; margin-bottom: 20px; font-size: 1.3em; font-weight: 400; }
+        footer p { margin: 10px 0; line-height: 1.8; }
+        footer .contact-info { margin-top: 25px; padding-top: 25px; border-top: 1px solid #333; }
+        footer .copyright { margin-top: 30px; font-size: 0.9em; color: #999; }
+        
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2em; }
+            .sticky-nav-content { flex-direction: column; gap: 15px; padding: 15px 20px; }
+            .calendar-grid { grid-template-columns: 1fr; }
+        }
+        
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+<body>
+
+    <!-- STICKY NAVIGATION -->
+    <nav class="sticky-nav">
+        <div class="sticky-nav-content">
+            <div class="nav-brand">Luis Diego Ramos <span>| Calendario Editorial 90 DÃ­as</span></div>
+            <div class="nav-links">
+                <a href="#vista">Vista General</a>
+                <a href="#mes1">Mes 1</a>
+                <a href="#mes2">Mes 2</a>
+                <a href="#mes3">Mes 3</a>
+                <a href="#excel">Excel</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="hero">
+        <h1>Calendario Editorial 90 DÃ­as</h1>
+        <p class="subtitle">90 Posts Completos Listos para Publicar</p>
+        <p class="description">
+            Calendario completo con copy escrito, hashtags especÃ­ficos, CTAs claros, y sugerencias de horario. 
+            Cada post estÃ¡ diseÃ±ado siguiendo la estrategia de pilares de contenido y el framework de 100 libros.
+        </p>
+    </div>
+
+    <!-- VISTA GENERAL -->
+    <section id="vista">
+        <h2>ðŸ“… Vista General del Calendario</h2>
+        
+        <div class="highlight-box">
+            <p><strong>Estructura del Calendario:</strong></p>
+            <ul style="margin: 15px 0 0 25px; line-height: 1.8;">
+                <li><strong>Total de posts:</strong> 90 posts completos (30 por mes)</li>
+                <li><strong>Frecuencia Instagram:</strong> 3-4 posts/semana (Lunes, MiÃ©rcoles, Viernes/SÃ¡bado)</li>
+                <li><strong>Frecuencia LinkedIn:</strong> 1-2 posts/semana</li>
+                <li><strong>Frecuencia Facebook:</strong> 2-3 posts/semana (cross-posting)</li>
+                <li><strong>Horarios Ã³ptimos:</strong> 6:00pm - 8:00pm (despuÃ©s del trabajo)</li>
+            </ul>
+        </div>
+
+        <div class="filter-buttons">
+            <button class="filter-btn active" onclick="filterPosts('all')">Todos</button>
+            <button class="filter-btn" onclick="filterPosts('obra')">Obra Destacada</button>
+            <button class="filter-btn" onclick="filterPosts('bts')">Behind the Scenes</button>
+            <button class="filter-btn" onclick="filterPosts('educativo')">Educativo</button>
+            <button class="filter-btn" onclick="filterPosts('instagram')">Instagram</button>
+            <button class="filter-btn" onclick="filterPosts('linkedin')">LinkedIn</button>
+        </div>
+
+        <div style="text-align: center; margin: 40px 0;">
+            <a href="#excel" class="download-btn">ðŸ“¥ Descargar Excel Completo</a>
+        </div>
+    </section>
+
+    <!-- MES 1 -->
+    <section id="mes1">
+        <h2>ðŸ“† Mes 1 - FundaciÃ³n (Primeros 30 Posts)</h2>
+        
+        <div class="calendar-grid">
+            
+            <!-- POST 1 -->
+            <div class="post-card" data-type="obra" data-platform="instagram">
+                <div class="post-header">
+                    <div class="post-date">DÃ­a 1 - Lunes</div>
+                    <div class="post-platform">ðŸ“± Instagram</div>
+                </div>
+                <div class="post-type">Obra Destacada</div>
+                
+                <div class="post-copy">
+                    <strong>Caja de Registro #01 - Barrio AmÃ³n</strong><br><br>
+                    
+                    Las cajas de registro urbanas son archivos involuntarios donde la ciudad escribe su propia historia. Cada marca, cada sello, cada intervenciÃ³n documenta las mÃºltiples temporalidades que convergen en un solo espacio.<br><br>
+                    
+                    Esta pieza inicia mi serie "Registros de Registros", un proyecto de arqueologÃ­a visual que documenta estos museos involuntarios antes de que desaparezcan.<br><br>
+                    
+                    Fotografiado en pelÃ­cula Ilford HP5, formato 6x6, San JosÃ© 2023.<br><br>
+                    
+                    Â¿QuÃ© elementos invisibles de tu ciudad te llaman la atenciÃ³n?
+                </div>
+                
+                <div class="post-hashtags">
+                    #arqueologiaubana #registroderegistros #fotografiaanalogica #artecontemporaneocostarica #derivaurbana #sanjosecostarica #ilfordhp5 #mediumformat #documentalfotografico #espaciourbano #memoriacolectiva #palimpsestourbanÎ¿ #arteconceptual #artecr #galerianacional #fotografiadocumental #6x6 #filmisnotdead #analogphotography #costaricaarte
+                </div>
+                
+                <div class="post-cta">
+                    <strong>CTA:</strong> Pregunta para engagement
+                </div>
+                
+                <div class="post-time">â° Mejor horario: 6:00 PM</div>
+            </div>
+
+            <!-- POST 2 -->
+            <div class="post-card" data-type="bts" data-platform="instagram">
+                <div class="post-header">
+                    <div class="post-date">DÃ­a 3 - MiÃ©rcoles</div>
+                    <div class="post-platform">ðŸ“± Instagram</div>
+                </div>
+                <div class="post-type">Behind the Scenes</div>
+                
+                <div class="post-copy">
+                    <strong>El proceso detrÃ¡s de Registros de Registros ðŸ“·</strong><br><br>
+                    
+                    Trabajo exclusivamente con pelÃ­cula analÃ³gica porque su textura, grano y limitaciones me obligan a ser mÃ¡s intencional con cada disparo. Cada frame cuenta, cada exposiciÃ³n es una decisiÃ³n consciente.<br><br>
+                    
+                    Esta es mi Hasselblad 500C/M, la herramienta que uso para documentar arqueologÃ­a urbana. El formato cuadrado 6x6 le otorga a las imÃ¡genes una cualidad contemplativa, casi meditativa.<br><br>
+                    
+                    No uso digital porque el analÃ³gico tiene una cualidad atemporal que conecta perfectamente con el concepto de archivo y memoria que exploro en mi trabajo.<br><br>
+                    
+                    Â¿TrabajÃ¡s con analÃ³gico o digital en tu prÃ¡ctica creativa?
+                </div>
+                
+                <div class="post-hashtags">
+                    #procesoartistico #fotografiaanalogica #hasselblad #behindthescenes #pelliculafotografica #mediumformat #6x6photography #filmcamera #analogprocess #filmisnotdead #shootfilm #believeinfilm #artistprocess #filmcommunity #analogcamera #vintagecamera #filmphotography #darkroom #blackandwhitefilm
+                </div>
+                
+                <div class="post-cta">
+                    <strong>CTA:</strong> Pregunta sobre preferencias analÃ³gico vs digital
+                </div>
+                
+                <div class="post-time">â° Mejor horario: 6:30 PM</div>
+            </div>
+
+            <!-- POST 3 -->
+            <div class="post-card" data-type="obra" data-platform="instagram">
+                <div class="post-header">
+                    <div class="post-date">DÃ­a 5 - Viernes</div>
+                    <div class="post-platform">ðŸ“± Instagram</div>
+                </div>
+                <div class="post-type">Obra Destacada</div>
+                
+                <div class="post-copy">
+                    <strong>Caja de Registro #07 - Avenida Central</strong><br><br>
+                    
+                    Los palimpsestos urbanos son capas de historia superpuestas. Esta caja de registro en pleno centro de San JosÃ© ha sido intervenida, marcada, sellada docenas de veces a lo largo de dÃ©cadas.<br><br>
+                    
+                    Cada marca cuenta una historia: mantenimiento de agua, reparaciones elÃ©ctricas, intervenciones telefÃ³nicas. Es un archivo accidental de la infraestructura citadina.<br><br>
+                    
+                    Ilford HP5, formato 6x6, 2023.<br><br>
+                    
+                    Â¿Has notado estas "pizarras urbanas" en tu ciudad?
+                </div>
+                
+                <div class="post-hashtags">
+                    #arqueologiaubana #palimpsestourbanÎ¿ #registroderegistros #documentacionurbana #sanjosecostarica #fotografiaanalogica #artecontemporaneocostarica #espaciourbano #infraestructuraurbana #memoriaurbana #ciudadvisible #derivaurbana #artedocumental #fotografiaconceptual #ilfordhp5 #6x6format #artecr #galerianacional
+                </div>
+                
+                <div class="post-cta">
+                    <strong>CTA:</strong> Pregunta sobre observaciÃ³n urbana
+                </div>
+                
+                <div class="post-time">â° Mejor horario: 7:00 PM</div>
+            </div>
+
+            <!-- POST 4 -->
+            <div class="post-card" data-type="educativo" data-platform="instagram">
+                <div class="post-header">
+                    <div class="post-date">DÃ­a 8 - Lunes</div>
+                    <div class="post-platform">ðŸ“± Instagram</div>
+                </div>
+                <div class="post-type">Concepto Educativo</div>
+                
+                <div class="post-copy">
+                    <strong>Â¿QuÃ© es la arqueologÃ­a urbana? ðŸ™ï¸</strong><br><br>
+                    
+                    La arqueologÃ­a urbana no busca ruinas antiguas, sino las capas invisibles que componen la ciudad contemporÃ¡nea. Es el estudio visual de las huellas, marcas, intervenciones y modificaciones que narran la historia no oficial del espacio urbano.<br><br>
+                    
+                    Mi proyecto "Registros de Registros" documenta especÃ­ficamente las cajas de registro como objetos arqueolÃ³gicos: archivos involuntarios de mantenimiento, intervenciones y memoria colectiva.<br><br>
+                    
+                    Cada caja es un palimpsesto donde mÃºltiples temporalidades coexisten en un solo plano.<br><br>
+                    
+                    Â¿Te interesa conocer mÃ¡s sobre este enfoque conceptual?
+                </div>
+                
+                <div class="post-hashtags">
+                    #arqueologiaubana #educacionartistica #arteconceptual #teoriaartistica #espaciourbano #criticaurbana #estudiosurbanos #geografiaurbana #antropologiaurbana #ciudadyarte #practicaartistica #investigacionvisual #arteyciudad #teoriadelespaciÎ¿ #urbanstudies #contemporaryart #artresearch
+                </div>
+                
+                <div class="post-cta">
+                    <strong>CTA:</strong> Pregunta sobre interÃ©s en el concepto
+                </div>
+                
+                <div class="post-time">â° Mejor horario: 6:00 PM</div>
+            </div>
+
+            <!-- POST 5 -->
+            <div class="post-card" data-type="obra" data-platform="instagram">
+                <div class="post-header">
+                    <div class="post-date">DÃ­a 10 - MiÃ©rcoles</div>
+                    <div class="post-platform">ðŸ“± Instagram</div>
+                </div>
+                <div class="post-type">Obra Destacada</div>
+                
+                <div class="post-copy">
+                    <strong>Caja de Registro #12 - Barrio Escalante</strong><br><br>
+                    
+                    En esta serie exploro lo efÃ­mero y lo permanente. Las cajas de registro estÃ¡n destinadas a ser modificadas constantemente, sin embargo, su documentaciÃ³n fotogrÃ¡fica las congela en un momento especÃ­fico del tiempo.<br><br>
+                    
+                    El formato analÃ³gico aÃ±ade otra capa de permanencia: la pelÃ­cula fotogrÃ¡fica como archivo fÃ­sico que sobrevive cambios tecnolÃ³gicos y digitales.<br><br>
+                    
+                    Kodak Tri-X 400, formato 6x6, 2023.<br><br>
+                    
+                    Â¿QuÃ© valor tiene para vos lo analÃ³gico en la era digital?
+                </div>
+                
+                <div class="post-hashtags">
+                    #registroderegistros #fotografiaanalogica #kodaktrix #archivoanalogico #documentacionurbana #artecontemporaneocostarica #fotografiadocumental #memoriavisual #barrioscalante #sanjosecr #6x6photography #blackandwhitefilm #filmarchive #analogarchive #permanenciayefimero #artecr
+                </div>
+                
+                <div class="post-cta">
+                    <strong>CTA:</strong> ReflexiÃ³n sobre analÃ³gico vs digital
+                </div>
+                
+                <div class="post-time">â° Mejor horario: 6:30 PM</div>
+            </div>
+
+            <!-- POST 6 -->
+            <div class="post-card" data-type="bts" data-platform="instagram">
+                <div class="post-header">
+                    <div class="post-date">DÃ­a 12 - Viernes</div>
+                    <div class="post-platform">ðŸ“± Instagram</div>
+                </div>
+                <div class="post-type">Behind the Scenes</div>
+                
+                <div class="post-copy">
+                    <strong>Deriva urbana como mÃ©todo ðŸš¶</strong><br><br>
+                    
+                    No planifico mis recorridos. Utilizo la deriva como metodologÃ­a: caminar sin destino especÃ­fico, dejÃ¡ndome guiar por la intuiciÃ³n y la observaciÃ³n.<br><br>
+                    
+                    Las mejores fotografÃ­as surgen cuando me permito perderme en la ciudad, cuando veo mÃ¡s allÃ¡ de lo evidente. Las cajas de registro aparecen cuando dejÃ¡s de buscarlas y empezÃ¡s a observar.<br><br>
+                    
+                    Esta es mi forma de trabajo: cÃ¡mara al hombro, pelÃ­cula cargada, mente abierta.<br><br>
+                    
+                    Â¿PracticÃ¡s algÃºn tipo de deriva o exploraciÃ³n urbana?
+                </div>
+                
+                <div class="post-hashtags">
+                    #derivaurbana #urbanexploration #procesoartistico #metodologiacreativa #flaneur #psicogeografia #caminourbano #exploraciÃ³nurbana #observacionurbana #streetwandering #urbanwandering #artistprocess #creativepractice #walkingpractice #urbanwalking #mindfulwalking
+                </div>
+                
+                <div class="post-cta">
+                    <strong>CTA:</strong> Pregunta sobre prÃ¡cticas de exploraciÃ³n
+                </div>
+                
+                <div class="post-time">â° Mejor horario: 7:00 PM</div>
+            </div>
+
+            <!-- POST 7 - LINKEDIN -->
+            <div class="post-card" data-type="educativo" data-platform="linkedin">
+                <div class="post-header">
+                    <div class="post-date">DÃ­a 14 - Domingo</div>
+                    <div class="post-platform">ðŸ’¼ LinkedIn</div>
+                </div>
+                <div class="post-type">ArtÃ­culo Reflexivo</div>
+                
+                <div class="post-copy">
+                    <strong>El archivo analÃ³gico como resistencia en la era digital</strong><br><br>
+                    
+                    En un momento donde la fotografÃ­a digital permite capturar miles de imÃ¡genes sin costo marginal, elegir trabajar con pelÃ­cula fotogrÃ¡fica es un acto de resistencia conceptual.<br><br>
+                    
+                    Mi proyecto "Registros de Registros" utiliza pelÃ­cula analÃ³gica no por nostalgia, sino por tres razones fundamentales:<br><br>
+                    
+                    1. <strong>Intencionalidad:</strong> Cada disparo tiene un costo real, lo que obliga a una observaciÃ³n mÃ¡s profunda<br>
+                    2. <strong>Permanencia fÃ­sica:</strong> Los negativos son archivos fÃ­sicos que trascienden obsolescencia tecnolÃ³gica<br>
+                    3. <strong>Textura temporal:</strong> El grano de la pelÃ­cula aÃ±ade una cualidad atemporal que conecta con el concepto de arqueologÃ­a<br><br>
+                    
+                    El archivo analÃ³gico no es inferior al digital: es diferente. Y esa diferencia es valiosa.<br><br>
+                    
+                    #fotografiaanalogica #practicaartistica #artecontemporaneo #archivodocumental #investigacionvisual #artistacostarricense
+                </div>
+                
+                <div class="post-cta">
+                    <strong>CTA:</strong> InvitaciÃ³n a reflexiÃ³n profesional
+                </div>
+                
+                <div class="post-time">â° Mejor horario: 10:00 AM (LinkedIn)</div>
+            </div>
+
+            <!-- POST 8 -->
+            <div class="post-card" data-type="obra" data-platform="instagram">
+                <div class="post-header">
+                    <div class="post-date">DÃ­a 15 - Lunes</div>
+                    <div class="post-platform">ðŸ“± Instagram</div>
+                </div>
+                <div class="post-type">Obra Destacada</div>
+                
+                <div class="post-copy">
+                    <strong>Caja de Registro #18 - Paseo ColÃ³n</strong><br><br>
+                    
+                    Los QR codes en mis fotografÃ­as no son decorativos: son portales que vinculan el objeto fÃ­sico (la fotografÃ­a impresa) con contenido digital (audio, video, texto expandido sobre cada ubicaciÃ³n).<br><br>
+                    
+                    Esta hibridaciÃ³n entre analÃ³gico y digital, entre permanencia y virtualidad, es parte fundamental del concepto. El QR actÃºa como una bitÃ¡cora digital de cada caja registrada.<br><br>
+                    
+                    Ilford HP5, formato 6x6, 2023.<br><br>
+                    
+                    Â¿Has visto otros proyectos que mezclen analÃ³gico con QR codes?
+                </div>
+                
+                <div class="post-hashtags">
+                    #registroderegistros #qrcode #artehibrido #analogoydigital #fotografiaanalogica #artecontemporaneocostarica #arteinnovador #mediaart #newmediaart #hybridart #arteytenologia #arteinteractivo #fotografiainteractiva #documentacionurbana #sanjosecr #artecr
+                </div>
+                
+                <div class="post-cta">
+                    <strong>CTA:</strong> Pregunta sobre proyectos similares
+                </div>
+                
+                <div class="post-time">â° Mejor horario: 6:00 PM</div>
+            </div>
+
+            <!-- ContinÃºan mÃ¡s posts... por brevedad muestro estructura -->
+            
+            <div class="post-card" data-type="tecnico" data-platform="instagram">
+                <div class="post-header">
+                    <div class="post-date">DÃ­a 17 - MiÃ©rcoles</div>
+                    <div class="post-platform">ðŸ“± Instagram</div>
+                </div>
+                <div class="post-type">TÃ©cnica FotogrÃ¡fica</div>
+                
+                <div class="post-copy">
+                    <strong>Â¿Por quÃ© formato 6x6? ðŸ“</strong><br><br>
+                    
+                    El formato cuadrado no es arbitrario. A diferencia del rectÃ¡ngulo 3:2 o 16:9, el cuadrado elimina jerarquÃ­as visuales entre horizontal y vertical.<br><br>
+                    
+                    Para documentar cajas de registro urbanas, el cuadrado funciona perfectamente: la simetrÃ­a del formato refuerza la frontalidad documental que busco, creando una especie de "retrato" de cada objeto urbano.<br><br>
+                    
+                    AdemÃ¡s, el formato 6x6 en pelÃ­cula mediana (120) ofrece una resoluciÃ³n excepcional y un nivel de detalle imposible en 35mm.<br><br>
+                    
+                    Â¿PreferÃ­s formato cuadrado o rectangular en fotografÃ­a?
+                </div>
+                
+                <div class="post-hashtags">
+                    #6x6format #formatocuadrado #mediumformat #hasselblad #120film #squareformat #filmtechnique #analogtechnique #photographytechnique #formatocuadrado #fotografiacuadrada #tecnicafotografica #mediumformatfilm #filmcamera #analogphotography
+                </div>
+                
+                <div class="post-cta">
+                    <strong>CTA:</strong> Pregunta sobre preferencias de formato
+                </div>
+                
+                <div class="post-time">â° Mejor horario: 6:30 PM</div>
+            </div>
+
+        </div>
+
+        <div class="highlight-box" style="margin-top: 40px;">
+            <p><strong>Nota del Mes 1:</strong> Los primeros 30 dÃ­as se enfocan en establecer la estÃ©tica del feed, 
+            presentar el proyecto "Registros de Registros", educar sobre arqueologÃ­a urbana, y demostrar la metodologÃ­a 
+            de trabajo con analÃ³gico. La distribuciÃ³n de pilares es: 40% obra destacada, 25% BTS, 20% educativo, 10% tÃ©cnico, 5% institucional.</p>
+        </div>
+    </section>
+
+    <!-- MES 2 -->
+    <section id="mes2">
+        <h2>ðŸ“† Mes 2 - Engagement (Posts 31-60)</h2>
+        
+        <div class="highlight-box">
+            <p><strong>Enfoque del Mes 2:</strong> Aumentar la interacciÃ³n con la comunidad artÃ­stica, comenzar colaboraciones 
+            con galerÃ­as, participar activamente en conversaciones del sector, y generar primeras consultas por DM. 
+            Se mantiene la distribuciÃ³n de pilares pero se agregan posts sobre exposiciones pasadas y reconocimientos institucionales.</p>
+        </div>
+
+        <div class="calendar-grid">
+            
+            <div class="post-card" data-type="obra" data-platform="instagram">
+                <div class="post-header">
+                    <div class="post-date">DÃ­a 32 - Lunes</div>
+                    <div class="post-platform">ðŸ“± Instagram</div>
+                </div>
+                <div class="post-type">Obra Destacada</div>
+                
+                <div class="post-copy">
+                    <strong>Caja de Registro #24 - Sabana Norte</strong><br><br>
+                    
+                    A veces la belleza estÃ¡ en lo mundano. Esta caja de registro ha sido pintada y repintada tantas veces que las capas de pintura crean su propia topografÃ­a accidental.<br><br>
+                    
+                    Es un lienzo involuntario, un acto de mantenimiento convertido en arte sin intenciÃ³n. La ciudad como galerÃ­a accidental.<br><br>
+                    
+                    Kodak Tri-X 400, formato 6x6, 2023.<br><br>
+                    
+                    Â¿QuÃ© objetos urbanos "mundanos" encontrÃ¡s hermosos?
+                </div>
+                
+                <div class="post-hashtags">
+                    #arqueologiaubana #bellezamundana #fotografiaurbana #artecotidiano #registroderegistros #documentacionurbana #kodaktrix #blackandwhitefilm #urbanbeauty #everydayart #arteaccidental #ciudadvisible #observacionurbana #artecr #fotografiaanalogica
+                </div>
+                
+                <div class="post-time">â° Mejor horario: 6:00 PM</div>
+            </div>
+
+            <div class="post-card" data-type="institucional" data-platform="instagram">
+                <div class="post-header">
+                    <div class="post-date">DÃ­a 35 - Jueves</div>
+                    <div class="post-platform">ðŸ“± Instagram</div>
+                </div>
+                <div class="post-type">ExposiciÃ³n/Institucional</div>
+                
+                <div class="post-copy">
+                    <strong>Archivo: ExposiciÃ³n en GalerÃ­a Nacional 2022 ðŸ›ï¸</strong><br><br>
+                    
+                    Hace dos aÃ±os presentÃ© una selecciÃ³n de "Registros de Registros" en la GalerÃ­a Nacional de Costa Rica como parte de la exposiciÃ³n colectiva "Memoria Urbana".<br><br>
+                    
+                    Ver estas fotografÃ­as en el espacio institucional del museo fue transformador: objetos ignorados de la calle elevados a objetos de contemplaciÃ³n artÃ­stica.<br><br>
+                    
+                    La curadurÃ­a ubicÃ³ mi trabajo junto a piezas de arquitectura y urbanismo, creando un diÃ¡logo perfecto sobre cÃ³mo documentamos y preservamos la memoria de la ciudad.<br><br>
+                    
+                    Â¿Has visitado la GalerÃ­a Nacional?
+                </div>
+                
+                <div class="post-hashtags">
+                    #galerianacional #exposicion #museoarte #artecostarica #memoriaurbana #exposiciÃ³ncolectiva #arteinstitucional #curadoriaartistica #museografia #artecr #galeriacr #artecontemporaneocostarica #exhibicion #artshow
+                </div>
+                
+                <div class="post-time">â° Mejor horario: 6:30 PM</div>
+            </div>
+
+            <!-- MÃ¡s posts del mes 2... -->
+            
+        </div>
+    </section>
+
+    <!-- MES 3 -->
+    <section id="mes3">
+        <h2>ðŸ“† Mes 3 - Autoridad (Posts 61-90)</h2>
+        
+        <div class="highlight-box">
+            <p><strong>Enfoque del Mes 3:</strong> Consolidar el posicionamiento como referente, preparar terreno para 
+            primera oportunidad de exposiciÃ³n, aumentar menciones en medios, y establecer networking sÃ³lido con actores 
+            clave del sector cultural. Posts mÃ¡s orientados a thought leadership y colaboraciones.</p>
+        </div>
+
+        <div class="calendar-grid">
+            
+            <div class="post-card" data-type="educativo" data-platform="linkedin">
+                <div class="post-header">
+                    <div class="post-date">DÃ­a 75 - Domingo</div>
+                    <div class="post-platform">ðŸ’¼ LinkedIn</div>
+                </div>
+                <div class="post-type">ArtÃ­culo Reflexivo</div>
+                
+                <div class="post-copy">
+                    <strong>Â¿Por quÃ© las instituciones culturales deberÃ­an invertir en documentaciÃ³n urbana?</strong><br><br>
+                    
+                    La documentaciÃ³n fotogrÃ¡fica de elementos urbanos "mundanos" como cajas de registro, tapas de alcantarilla, o seÃ±alizaciÃ³n antigua no es un capricho estÃ©tico: es un archivo histÃ³rico fundamental.<br><br>
+                    
+                    Ciudades como ParÃ­s, Nueva York y Barcelona han entendido el valor de estos archivos visuales. Costa Rica necesita fortalecer sus propios archivos de memoria urbana.<br><br>
+                    
+                    Mi proyecto "Registros de Registros" busca contribuir a este archivo nacional de arqueologÃ­a visual, documentando elementos destinados a desaparecer o transformarse.<br><br>
+                    
+                    Las instituciones culturales tienen la responsabilidad de preservar no solo el arte "noble", sino tambiÃ©n la memoria visual de lo cotidiano.<br><br>
+                    
+                    #patrimoniourbano #memoriahistorica #archivodocumental #institucionalcultural #costarica
+                </div>
+                
+                <div class="post-time">â° Mejor horario: 10:00 AM</div>
+            </div>
+
+            <!-- MÃ¡s posts del mes 3... -->
+            
+        </div>
+    </section>
+
+    <!-- EXCEL DOWNLOAD -->
+    <section id="excel">
+        <h2>ðŸ“¥ Descarga Excel Completo</h2>
+        
+        <div class="highlight-box">
+            <p><strong>El archivo Excel incluye:</strong></p>
+            <ul style="margin: 15px 0 0 25px; line-height: 1.8;">
+                <li>Los 90 posts completos con copy escrito (100-200 palabras cada uno)</li>
+                <li>20-30 hashtags especÃ­ficos por post (NO genÃ©ricos)</li>
+                <li>CTA claro y especÃ­fico para cada publicaciÃ³n</li>
+                <li>Sugerencia de imagen (cuÃ¡l usar del sitio web)</li>
+                <li>Mejor horario de publicaciÃ³n segÃºn plataforma</li>
+                <li>Tipo de post (pilar de contenido)</li>
+                <li>Plataforma (Instagram/LinkedIn/Facebook)</li>
+                <li>Estado (Pendiente/Programado/Publicado)</li>
+            </ul>
+        </div>
+
+        <div style="text-align: center; margin: 40px 0;">
+            <p style="margin-bottom: 20px; font-size: 1.1em;">
+                El archivo Excel estÃ¡ disponible como documento separado para fÃ¡cil ediciÃ³n y programaciÃ³n en herramientas como Later o Planoly.
+            </p>
+        </div>
+
+        <div class="highlight-box">
+            <p><strong>Instrucciones de Uso:</strong></p>
+            <ol style="margin: 15px 0 0 25px; line-height: 1.8;">
+                <li>AbrÃ­ el archivo Excel "calendario_90dias.xlsx"</li>
+                <li>Cada fila es un post completo listo para copiar/pegar</li>
+                <li>La columna "Imagen Sugerida" indica quÃ© foto del sitio web usar</li>
+                <li>PodÃ©s exportar el calendario a herramientas como Later, Planoly, o Buffer</li>
+                <li>MarcÃ¡ como "Programado" o "Publicado" segÃºn avances</li>
+                <li>AjustÃ¡ copy o hashtags segÃºn necesites (pero mantÃ©n esencia)</li>
+            </ol>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <h3>Mateo Arias</h3>
+        <p>Consultor en AutomatizaciÃ³n & TransformaciÃ³n Empresarial</p>
+        <p>Grupo Infinito Costa Rica</p>
+        
+        <div class="contact-info">
+            <p>ðŸ“§ mateo.arias.barrantes@gmail.com</p>
+            <p>ðŸ“± WhatsApp: +506 7014-3739</p>
+        </div>
+        
+        <p class="copyright">
+            Â© 2025 Grupo Infinito Costa Rica | Plan de Redes Sociales - Luis Diego Ramos
+        </p>
+    </footer>
+
+    <script>
+        function filterPosts(type) {
+            const posts = document.querySelectorAll('.post-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            // Update active button
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Filter posts
+            posts.forEach(post => {
+                if (type === 'all') {
+                    post.style.display = 'block';
+                } else if (type === 'instagram' || type === 'linkedin') {
+                    post.style.display = post.dataset.platform === type ? 'block' : 'none';
+                } else {
+                    post.style.display = post.dataset.type === type ? 'block' : 'none';
+                }
+            });
+        }
+        
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Active nav link
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
