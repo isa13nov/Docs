@@ -6,3 +6,6 @@
 - Última actualización: 2026-08-19T20:23:44.509884+00:00
 - Documentos de conocimiento del proyecto: 0
 
+## Conversaciones personales
+
+Ver `conversaciones/README.md` — chats propios rescatados del historial de claude.ai relacionados con este tema.

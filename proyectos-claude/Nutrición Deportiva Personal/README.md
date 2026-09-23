@@ -40,3 +40,7 @@ Optimización meal prep y portabilidad fondos largos
 - `3a84daaa-7c0b-4fcf-84c8-85aaa63683c4.txt` (texto extraído del PDF original, no el binario)
 - `9. Advanced Nutrition and Human Metabolism.txt` (texto extraído del PDF original, no el binario)
 - `Manual_basico_N_clinica_y_Dietetica_Valencia_2012.txt` (texto extraído del PDF original, no el binario)
+
+## Conversaciones personales
+
+Ver `conversaciones/README.md` — chats propios rescatados del historial de claude.ai relacionados con este tema.
