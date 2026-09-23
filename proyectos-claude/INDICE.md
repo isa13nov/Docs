@@ -13,7 +13,5 @@
 - **CR 360** — 0 docs — `proyectos-claude/CR 360/`
 - **Ciclo Menstrual /deporte/rendimiento/recuperacion** — 0 docs — `proyectos-claude/Ciclo Menstrual -deporte-rendimiento-recuperacion/`
 
-## Conversaciones (chats)
-
-Pendiente de clasificar por proyecto — ver `_conversaciones-sin-clasificar/` y nota en README raíz.
+Nota: se migró únicamente el "project knowledge" (documentos) de cada proyecto. Las conversaciones de chat no se incluyeron por decisión explícita.
 
