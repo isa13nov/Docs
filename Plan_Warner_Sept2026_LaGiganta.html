@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan Septiembre 2026 | Warner García | eat&flow</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #F5F9F7;
+            color: #2D4A3E;
+            line-height: 1.75;
+            padding: 3px;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 28px rgba(45,74,62,0.11);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1a5945 0%, #2D4A3E 100%);
+            color: white;
+            padding: 34px 16px;
+            text-align: center;
+            border-bottom: 4px solid #8bc34a;
+        }
+
+        .header .brand { font-size: 17px; font-weight: 700; letter-spacing: 4px; opacity: 0.85; margin-bottom: 12px; text-transform: uppercase; }
+        .header h1 { font-size: 24px; font-weight: 800; margin-bottom: 5px; }
+        .header .cliente { font-size: 18px; font-weight: 600; margin-top: 8px; }
+
+        .badge {
+            display: inline-block;
+            background: #ff9800;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            margin-top: 10px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .urgente {
+            background: #e53935;
+            color: white;
+            text-align: center;
+            padding: 10px 16px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .tabs {
+            display: flex;
+            overflow-x: auto;
+            background: white;
+            border-bottom: 2px solid #E8F3EF;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(45,74,62,0.06);
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .tabs::-webkit-scrollbar { height: 3px; }
+        .tabs::-webkit-scrollbar-thumb { background: #8bc34a; border-radius: 2px; }
+
+        .tab {
+            padding: 12px 13px;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            font-size: 12px;
+            font-weight: 700;
+            color: #6c757d;
+            white-space: nowrap;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+
+        .tab:hover { background: #F5F9F7; color: #2D4A3E; }
+        .tab.active { color: #1a5945; border-bottom: 3px solid #1a5945; background: #F5F9F7; }
+
+        .content { padding: 20px 12px; }
+
+        .section { display: none; }
+        .section.active { display: block; animation: fadeIn 0.25s; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            font-size: 21px;
+            color: #1a5945;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #8bc34a;
+            font-weight: 800;
+        }
+
+        .sub {
+            font-size: 13px;
+            font-weight: 800;
+            color: #1a5945;
+            margin: 26px 0 12px;
+            padding: 7px 12px;
+            background: #e8f0ee;
+            border-radius: 6px;
+            border-left: 3px solid #1a5945;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        p { font-size: 14px; margin-bottom: 9px; }
+        p:last-child { margin-bottom: 0; }
+        strong { color: #1a5945; }
+        ul { margin-left: 16px; margin-bottom: 10px; font-size: 14px; }
+        ul li { margin-bottom: 4px; }
+        ol { margin-left: 16px; margin-bottom: 10px; font-size: 14px; }
+        ol li { margin-bottom: 5px; }
+
+        .card {
+            background: #F5FAF8;
+            border-left: 4px solid #8bc34a;
+            padding: 14px 16px;
+            margin-bottom: 14px;
+            border-radius: 8px;
+        }
+
+        .card h3 { color: #1a5945; font-size: 15px; margin-bottom: 9px; font-weight: 700; }
+        .card p { font-size: 14px; margin-bottom: 7px; }
+        .card p:last-child { margin-bottom: 0; }
+        .card ul { margin-left: 15px; font-size: 14px; }
+        .card ul li { margin-bottom: 4px; }
+
+        .card.naranja { background: linear-gradient(135deg, #fff8f0, #fff3e6); border-left-color: #ff9800; }
+        .card.verde { background: #e8f5e9; border-left-color: #43a047; }
+        .card.rojo { background: #fce4ec; border-left-color: #e53935; }
+        .card.oscuro { background: #e8f0ee; border-left-color: #1a5945; }
+        .card.cafe { background: #fff8e1; border-left-color: #f9a825; }
+
+        .hora-bloque {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 12px;
+            align-items: flex-start;
+        }
+
+        .hora-tag {
+            background: #1a5945;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 800;
+            white-space: nowrap;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .hora-tag.naranja { background: #ff9800; }
+        .hora-tag.rojo { background: #e53935; }
+        .hora-tag.azul { background: #1565c0; }
+        .hora-tag.morado { background: #6a1b9a; }
+
+        .hora-content { flex: 1; }
+        .hora-content p { margin-bottom: 4px; font-size: 14px; }
+        .hora-content strong { color: #1a5945; }
+
+        .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 14px 0; }
+
+        table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 420px; }
+        table th { background: #1a5945; color: white; padding: 9px 11px; text-align: left; font-weight: 700; }
+        table td { border-bottom: 1px solid #E8F3EF; padding: 9px 11px; vertical-align: top; font-size: 13px; }
+        table tr:hover { background: #F5FAF8; }
+
+        .alerta {
+            background: #fce4ec;
+            border: 2px solid #e53935;
+            border-radius: 8px;
+            padding: 13px 15px;
+            margin: 14px 0;
+            font-size: 14px;
+            color: #7a0000;
+            line-height: 1.6;
+        }
+
+        .alerta strong { color: #b71c1c; }
+
+        .info {
+            background: #e8f5e9;
+            border-left: 4px solid #43a047;
+            padding: 13px 15px;
+            margin: 14px 0;
+            border-radius: 8px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .naranja-box {
+            background: linear-gradient(135deg, #fff8f0, #fff3e6);
+            border-left: 4px solid #ff9800;
+            padding: 13px 15px;
+            margin: 14px 0;
+            border-radius: 8px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .naranja-box p { margin-bottom: 7px; }
+
+        .badge-pill {
+            display: inline-block;
+            padding: 2px 9px;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: 700;
+            margin-right: 3px;
+        }
+
+        .pill-v { background: #e8f5e9; color: #1b5e20; }
+        .pill-r { background: #fce4ec; color: #b71c1c; }
+        .pill-n { background: #fff3e6; color: #e65100; }
+
+        .footer {
+            background: #1a5945;
+            color: white;
+            padding: 18px;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        .footer p { color: white; margin-bottom: 4px; }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="header">
+        <div class="brand">eat&flow</div>
+        <h1>Plan Septiembre 2026</h1>
+        <p style="font-size:12px;opacity:.85;margin-top:7px;">Asesoría Nutricional y de Entrenamiento: Isa Herra</p>
+        <div class="cliente">Warner García Flores</div>
+        <span class="badge">La Giganta · Carrera de Aventura · Mes 3</span>
+    </div>
+
+    <div class="urgente">LA GIGANTA — SÁBADO 26 DE SEPTIEMBRE · 250 KM · +5,000 m · OBJETIVO: 13 HORAS</div>
+
+    <div class="tabs">
+        <button class="tab active" onclick="show('carga',this)">Carga de Carbos</button>
+        <button class="tab" onclick="show('viernes',this)">Viernes en Ruta</button>
+        <button class="tab" onclick="show('sabado-pre',this)">Sábado Pre-Carrera</button>
+        <button class="tab" onclick="show('protocolo',this)">Protocolo Carrera</button>
+        <button class="tab" onclick="show('recuperacion',this)">Recuperación</button>
+        <button class="tab" onclick="show('aventura',this)">Carrera Aventura</button>
+        <button class="tab" onclick="show('octubre',this)">Plan Octubre</button>
+    </div>
+
+    <div class="content">
+
+        <!-- ======= CARGA DE CARBOS HOY JUEVES ======= -->
+        <div id="carga" class="section active">
+            <h2 class="section-title">Carga de Carbohidratos — Jueves 24 de Septiembre</h2>
+
+            <div class="naranja-box">
+                <p><strong>La carga de carbohidratos empieza ahora.</strong> Son las 3 PM del jueves. Tenés 40 horas antes de la largada. El objetivo de hoy y mañana es llenar los depósitos de glucógeno muscular y hepático al máximo posible, sin inflar el estómago ni meter nada que tu sistema digestivo no conozca bien. Todo lo que comés estas dos días debe ser familiar — no es momento de probar recetas nuevas.</p>
+                <p style="margin-top:7px;">La meta es llegar al sábado con los músculos y el hígado con glucógeno al 100%. Para lograrlo, aumentamos la proporción de carbohidratos en cada comida y reducimos levemente la grasa y la fibra para que la digestión sea más rápida y el almacenamiento más eficiente.</p>
+            </div>
+
+            <div class="sub">Merienda de hoy — Jueves 3:00-4:00 PM</div>
+
+            <div class="hora-bloque">
+                <span class="hora-tag naranja">AHORA</span>
+                <div class="hora-content">
+                    <p><strong>2 bananos maduros + 1 porción de galletas de avena bajas en azúcar + 1 vaso de jugo natural de fruta (naranja, pipa, maracuyá)</strong></p>
+                    <p>Aprox. 80-90 g de carbohidrato. Comé todo aunque no tengas mucha hambre — el cuerpo necesita el combustible, no la señal de hambre.</p>
+                    <p>No agregues grasa ni proteína pesada en esta merienda — querés velocidad de digestión y almacenamiento directo.</p>
+                </div>
+            </div>
+
+            <div class="sub">Cena de hoy — Jueves 7:00-8:00 PM</div>
+
+            <div class="hora-bloque">
+                <span class="hora-tag">CENA</span>
+                <div class="hora-content">
+                    <p><strong>Opción A — La que más recomiendo:</strong></p>
+                    <p>Pasta o arroz blanco (no integral esta noche — el arroz blanco se digiere más rápido y almacena glucógeno más eficientemente en la fase de carga) · 1.5 a 2 tazas de pasta o arroz cocido · proteína magra: pollo a la plancha o atún · sin ensalada cruda ni vegetales con mucha fibra esta noche · pan blanco o tostadas si querés más volumen de carbo.</p>
+                    <p style="margin-top:6px;"><strong>Cantidad de arroz o pasta:</strong> más de lo normal. Esta noche el plato debe tener el doble de carbohidrato de lo que acostumbrás.</p>
+                    <p style="margin-top:6px;"><strong>Opción B si cocinás en casa:</strong> arroz blanco con pollo desmenuzado + 1 tortilla de maíz + jugo natural. Sencillo, conocido y efectivo.</p>
+                    <p style="margin-top:6px;"><strong>Frijoles:</strong> solo si sabés que no te caen mal y que no te generan gases. Si hay alguna duda, dejálos para después de la carrera. Esta noche no es el momento de arriesgar molestia digestiva.</p>
+                    <p style="margin-top:6px;"><strong>Postre:</strong> 1 banano maduro o 1 vaso pequeño de jugo. No te saltés esto — es carbohidrato extra que se almacena mientras dormís.</p>
+                </div>
+            </div>
+
+            <div class="card verde">
+                <h3>Hidratación hoy</h3>
+                <p>Meta: 3 litros de agua durante el día, más allá de lo que tomés con las comidas. Empezá con la hidratación ahora. La orina debe verse de color amarillo muy claro a casi transparente antes de dormir. Si está oscura, tomá más agua.</p>
+                <p style="margin-top:6px;">No alcohol. No refresco. No café después de las 6 PM — el sueño de esta noche es parte de la preparación.</p>
+            </div>
+
+            <div class="card oscuro">
+                <h3>Suplementos hoy</h3>
+                <p><strong>Creatina:</strong> tomála con la cena de esta noche si no la tomaste en el desayuno. No la omitás.</p>
+                <p><strong>Colágeno + vitamina C:</strong> tomálo con la cena de esta noche para darle tiempo al tejido conectivo antes del esfuerzo.</p>
+                <p><strong>Magnesio glicinato:</strong> tomálo 30-40 minutos antes de dormir. Ayuda al sueño y previene calambres mañana.</p>
+                <p><strong>Omega 3 y vitamina D:</strong> normales con la cena.</p>
+            </div>
+        </div>
+
+        <!-- ======= VIERNES EN RUTA ======= -->
+        <div id="viernes" class="section">
+            <h2 class="section-title">Viernes 25 de Septiembre — Día de Viaje a Bagaces</h2>
+
+            <div class="naranja-box">
+                <p>El viernes es un día crítico que mucha gente subestima. Estás viajando, el nerviosismo sube, la rutina se rompe. La tentación es comer poco o de más por ansiedad. El plan es concreto y no deja margen a la improvisación.</p>
+            </div>
+
+            <div class="sub">Desayuno — Viernes en casa antes de salir</div>
+
+            <div class="hora-bloque">
+                <span class="hora-tag">DESAYUNO</span>
+                <div class="hora-content">
+                    <p><strong>Gallo pinto (arroz blanco + frijoles, si los tolerás bien) + 2 huevos + 2 claras + 1-2 tostadas de pan blanco + café sin azúcar + 1 banano maduro</strong></p>
+                    <p>Carbohidrato total: aprox. 90-100 g. Proteína: 24-28 g. Esta es la comida más importante del viernes.</p>
+                    <p style="margin-top:5px;"><strong>Si los frijoles te generan gases:</strong> sustituilos por más arroz o una tostada extra. No arriesguás la digestión el día antes de la carrera.</p>
+                </div>
+            </div>
+
+            <div class="sub">Almuerzo — Viernes en ruta hacia Bagaces (llevarlo preparado)</div>
+
+            <div class="alerta">
+                <p><strong>Este almuerzo hay que llevarlo preparado desde casa</strong> porque en el camino a Bagaces no podés controlar lo que te ponen, cuánto aceite usan ni las proporciones. Preparálo la mañana del viernes antes de salir — tarda 15 minutos.</p>
+            </div>
+
+            <div class="hora-bloque">
+                <span class="hora-tag azul">ALMUERZO</span>
+                <div class="hora-content">
+                    <p><strong>Tuper 1 — Carbohidrato principal:</strong> 1.5 tazas de arroz blanco cocido con cúrcuma y sal. Sin grasa extra.</p>
+                    <p><strong>Tuper 2 — Proteína:</strong> 150-180 g de pechuga de pollo cocida en tiras o desmenuzada. Condimentada con sal, ajo y pimienta. Sin salsa pesada.</p>
+                    <p><strong>Tuper 3 — Complemento:</strong> 1 papa mediana cocida en cubos o 1 camote cocido.</p>
+                    <p><strong>Extra:</strong> 2-3 galletas de avena bajas en azúcar o 1 tostada en bolsa.</p>
+                    <p style="margin-top:6px;">Carbohidrato total: aprox. 100-110 g. Proteína: 40-45 g. Grasa: mínima.</p>
+                    <p style="margin-top:6px;"><strong>Sin ensalada cruda ni vegetales fibrosos hoy.</strong> La fibra enlentece la digestión y lo último que querés antes de una carrera es fermentación intestinal.</p>
+                </div>
+            </div>
+
+            <div class="sub">Merienda de la tarde — Viernes 3:00-4:00 PM (ya en Bagaces)</div>
+
+            <div class="hora-bloque">
+                <span class="hora-tag naranja">MERIENDA</span>
+                <div class="hora-content">
+                    <p><strong>2 bananos maduros + 1 porción de galletas de avena bajas en azúcar + 500 ml de Tailwind mezclado</strong></p>
+                    <p>Esta merienda también carga glucógeno y empieza la hidratación pre-carrera con electrolitos. El Tailwind a esta hora asegura que llegás al sábado con sodio y potasio bien cargados.</p>
+                    <p style="margin-top:5px;">Carbohidrato: aprox. 80-85 g.</p>
+                </div>
+            </div>
+
+            <div class="sub">Cena — Viernes en Bagaces (la contratan allá)</div>
+
+            <div class="hora-bloque">
+                <span class="hora-tag">CENA</span>
+                <div class="hora-content">
+                    <p><strong>Menú sugerido:</strong></p>
+                    <p><strong>Arroz blanco abundante</strong> — pedí doble porción de arroz. Es la base de la cena.</p>
+                    <p><strong>Proteína magra:</strong> pollo a la plancha, filete de pescado o atún. Evitá carnes muy grasas o fritas esta noche.</p>
+                    <p><strong>Tortillas de maíz o pan blanco:</strong> 2-3 unidades como carbohidrato extra.</p>
+                    <p><strong>Jugo natural</strong> en lugar de refresco.</p>
+                    <p style="margin-top:6px;"><strong>Cantidad de carbohidrato en esta cena:</strong> más de lo normal. Si el plato viene con papa o yuca además del arroz, comételas. Esta noche todo el carbohidrato que entre va directo al músculo.</p>
+                    <p style="margin-top:6px;"><strong>No comer ensalada cruda, no comer mucha grasa, no comer picante, no probar nada nuevo.</strong></p>
+                    <p style="margin-top:6px;"><strong>Hora ideal de la cena:</strong> entre 7:00 y 8:00 PM máximo. Necesitás al menos 8 horas de digestión antes de la largada.</p>
+                    <p style="margin-top:6px;"><strong>Postre:</strong> 1 banano o 1 vaso de jugo natural.</p>
+                </div>
+            </div>
+
+            <div class="card verde">
+                <h3>Hidratación viernes</h3>
+                <p>3 litros de agua durante el día + 500 ml de Tailwind en la merienda de la tarde. Antes de dormir tomá 500 ml más de agua. La orina antes de dormir debe verse casi transparente.</p>
+            </div>
+
+            <div class="card oscuro">
+                <h3>Suplementos viernes</h3>
+                <p><strong>Con el desayuno:</strong> creatina + omega 3 + vitamina D.</p>
+                <p><strong>30-60 min antes del almuerzo:</strong> colágeno + vitamina C. Aprovechar el movimiento del viaje como estímulo articular.</p>
+                <p><strong>Antes de dormir:</strong> magnesio glicinato 400 mg. Fundamental para el sueño de esta noche y para prevenir calambres mañana durante la carrera.</p>
+            </div>
+
+            <div class="card naranja">
+                <h3>El sueño del viernes es parte del rendimiento</h3>
+                <p>Intentá estar en cama entre 9:00 y 10:00 PM. La largada es a las 5:00 AM del sábado, así que necesitás levantarte entre 3:00 y 3:30 AM para desayunar con tiempo. Dormir 5-6 horas antes de un ultra no es ideal pero es suficiente si los dos días anteriores dormiste bien. No te obsesionés con el sueño — la ansiedad pre-carrera es normal.</p>
+            </div>
+        </div>
+
+        <!-- ======= SÁBADO PRE-CARRERA ======= -->
+        <div id="sabado-pre" class="section">
+            <h2 class="section-title">Sábado 26 — Mañana Pre-Carrera</h2>
+
+            <div class="sub">Desayuno — 3:00-3:30 AM (2-2.5 horas antes de la largada)</div>
+
+            <div class="alerta">
+                <p><strong>El menú dice pinto con huevo.</strong> Esto funciona bien con ajustes de cantidad y una nota importante sobre los frijoles.</p>
+            </div>
+
+            <div class="hora-bloque">
+                <span class="hora-tag rojo">3:00 AM</span>
+                <div class="hora-content">
+                    <p><strong>Gallo pinto</strong> — pedí porción abundante. El arroz es el protagonista, los frijoles son el complemento. Si esta mañana sentís el estómago bien y sabés que los frijoles no te generan gas ni molestia, los comés sin problema. Si hay la mínima duda, pedí el plato con más arroz y menos frijoles o solo arroz.</p>
+                    <p style="margin-top:5px;"><strong>2 huevos enteros + 2 claras</strong> — si el menú lo permite. Si solo hay 2 huevos, está bien así.</p>
+                    <p style="margin-top:5px;"><strong>1-2 tostadas de pan blanco</strong> con un toque mínimo de mantequilla si se puede — o sin nada.</p>
+                    <p style="margin-top:5px;"><strong>Café:</strong> 1 taza. El café a esta hora tiene un doble efecto: activa el sistema digestivo (lo cual es bueno para vaciar el intestino antes de la carrera) y empieza el estímulo de cafeína.</p>
+                    <p style="margin-top:5px;"><strong>1 banano maduro</strong> al terminar el desayuno — carbohidrato de rápida disponibilidad que entra justo antes de la largada.</p>
+                    <p style="margin-top:7px;">Carbohidrato total desayuno: 90-100 g. Proteína: 24-30 g.</p>
+                </div>
+            </div>
+
+            <div class="hora-bloque" style="margin-top:14px;">
+                <span class="hora-tag naranja">5:00 AM</span>
+                <div class="hora-content">
+                    <p><strong>20-30 minutos antes de la largada:</strong> 1 gel con cafeína (100 mg) + 300 ml de Tailwind mezclado.</p>
+                    <p>Este es el primer disparo de cafeína del día. Activa el sistema nervioso, mejora la percepción del esfuerzo y prepara el metabolismo para el trabajo de alta intensidad desde el kilómetro 1.</p>
+                </div>
+            </div>
+
+            <div class="sub">Preparación del equipamiento nutricional — Noche del viernes o madrugada</div>
+
+            <div class="card oscuro">
+                <h3>Lo que hay que tener listo antes de salir</h3>
+                <p><strong>Bidones (2 × 600 ml = 1.2 L):</strong> ambos con Tailwind mezclado — 2 scoops por bidón. Ya tenés 50 g de carbohidrato por bidón más electrolitos.</p>
+                <p style="margin-top:6px;"><strong>Camelback (2 L):</strong> agua pura. El camelback es el depósito de agua, no de Tailwind. El Tailwind concentrado más el calor de Bagaces puede dar náuseas si se mezcla en el camelback. Usálo para agua pura que añadís cuando mezclás más Tailwind en los bidones.</p>
+                <p style="margin-top:6px;"><strong>Bolso del manillar:</strong> geles, colados de bebé, galletas en bolsa zip.</p>
+                <p style="margin-top:6px;"><strong>Bolso del sillín:</strong> comida sólida (ver sección Protocolo Carrera), herramientas, crema rozaduras.</p>
+                <p style="margin-top:6px;"><strong>Bolsillos del jersey:</strong> los geles de cafeína van aquí para acceso rápido sin bajar la velocidad.</p>
+            </div>
+        </div>
+
+        <!-- ======= PROTOCOLO CARRERA ======= -->
+        <div id="protocolo" class="section">
+            <h2 class="section-title">Protocolo de Carrera — La Giganta 250 km</h2>
+
+            <div class="naranja-box">
+                <p><strong>El objetivo es 13 horas. Son 250 km con más de 5,000 m de desnivel.</strong> Eso da un promedio de 19.2 km/h incluyendo paradas. Para lograrlo la energía no puede ser un obstáculo en ningún momento de la carrera. El protocolo está diseñado para que el intestino nunca quede vacío y el músculo nunca entre en déficit de glucosa.</p>
+            </div>
+
+            <div class="sub">Capacidad de carga calculada</div>
+
+            <div class="card oscuro">
+                <h3>Lo que podés llevar con 4.5 kg de carga total</h3>
+                <p><strong>Hidratación (aprox. 3.2 kg con líquido):</strong> 2 bidones × 600 ml + camelback 2 L = 3.2 L de líquido.</p>
+                <p style="margin-top:6px;"><strong>Comida (aprox. 800 g - 1 kg disponibles):</strong> con ese peso podés llevar comida para 3-4 horas de autonomía sin parar a comprar nada. Las tiendas y sodas en ruta cubren el resto.</p>
+                <p style="margin-top:6px;">El sistema es: salís con 3-4 horas de comida encima y rellenás en cada tienda o soda que encontrés en el camino. Es de día, todo está disponible.</p>
+            </div>
+
+            <div class="sub">Las Papas — Evaluación y Preparación</div>
+
+            <div class="card naranja">
+                <h3>¿Son buena opción las papas en carrera?</h3>
+                <p><strong>Sí, con condiciones.</strong> La papa cocida es una de las mejores comidas reales para ultra endurance: carbohidrato de alta densidad (25-30 g por 100 g de papa cocida), sodio natural, fácil de masticar, tolerable para el intestino bajo esfuerzo y que te genera sensación de saciedad real — algo que los geles no hacen.</p>
+                <p style="margin-top:7px;"><strong>Cómo llevarlas:</strong></p>
+                <ul>
+                    <li>Cocinás 4-5 papas medianas la noche anterior hasta que estén bien tiernas.</li>
+                    <li>Las dejás enfriar completamente, las cortás en cubos medianos o las partís a la mitad.</li>
+                    <li>Las salás generosamente — la sal en las papas es sodio directo que el cuerpo necesita en calor.</li>
+                    <li>Las metés en una bolsa zip bien cerrada dentro del bolso del sillín.</li>
+                    <li>En ruta: abrís la bolsa, comés con la mano o con tenedor pequeño. Sin calentar, a temperatura ambiente están perfectas.</li>
+                </ul>
+                <p style="margin-top:7px;"><strong>Cantidad:</strong> 4-5 papas medianas dan aprox. 400-500 g. Eso son 100-125 g de carbohidrato solo de papas. Las repartís durante las primeras 4-5 horas de carrera — no las comés todas de una.</p>
+                <p style="margin-top:7px;"><strong>Otras opciones sólidas para llevar desde casa:</strong> colados de bebé de camote o fruta (ya los usás bien), galletas de avena bajas en azúcar en bolsa zip, 2-3 bananos para las primeras 2 horas.</p>
+            </div>
+
+            <div class="sub">Protocolo de Energía — 60-70 g de Carbohidrato por Hora</div>
+
+            <div class="table-wrap"><table>
+                <tr><th>Tiempo</th><th>Acción</th><th>CHO aprox.</th><th>Notas</th></tr>
+                <tr>
+                    <td><strong>0:00-0:30</strong></td>
+                    <td>Solo agua del camelback. No comés todavía.</td>
+                    <td>—</td>
+                    <td>El cuerpo está usando el desayuno. No sobrecarguésel estómago al inicio.</td>
+                </tr>
+                <tr>
+                    <td><strong>0:30</strong></td>
+                    <td>Primer bidón Tailwind (todo o medio bidón)</td>
+                    <td>30-50 g</td>
+                    <td>Empezá el ciclo de hidratación.</td>
+                </tr>
+                <tr>
+                    <td><strong>0:45</strong></td>
+                    <td>1 banano maduro o 1 colado de bebé</td>
+                    <td>25-27 g</td>
+                    <td>Primera comida sólida en ruta.</td>
+                </tr>
+                <tr>
+                    <td><strong>1:00</strong></td>
+                    <td>Medio bidón Tailwind + agua del camelback</td>
+                    <td>25 g</td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td><strong>1:30</strong></td>
+                    <td>2-3 cubos de papa salada + galletas de avena</td>
+                    <td>35-40 g</td>
+                    <td>Comida sólida. Masticá bien.</td>
+                </tr>
+                <tr>
+                    <td><strong>2:00</strong></td>
+                    <td>Bidón Tailwind completo</td>
+                    <td>50 g</td>
+                    <td>Rellenalo si encontrás agua.</td>
+                </tr>
+                <tr>
+                    <td><strong>2:30</strong></td>
+                    <td>1 gel SIN cafeína + agua</td>
+                    <td>30-40 g</td>
+                    <td>Reservá los de cafeína para después de la hora 4.</td>
+                </tr>
+                <tr>
+                    <td><strong>3:00</strong></td>
+                    <td>Papa salada + Tailwind</td>
+                    <td>60-65 g</td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td><strong>3:30-4:00</strong></td>
+                    <td>Parada en tienda o soda si hay una</td>
+                    <td>Variable</td>
+                    <td>Rellenar bidones, comprar comida sólida. Ver lista abajo.</td>
+                </tr>
+                <tr>
+                    <td><strong>Hora 4 en adelante</strong></td>
+                    <td>Continuar ciclo cada 30-45 min</td>
+                    <td>60-70 g/h</td>
+                    <td>Alternar Tailwind + sólido + gel según disponibilidad.</td>
+                </tr>
+            </table></div>
+
+            <div class="sub">Protocolo de Cafeína</div>
+
+            <div class="card rojo">
+                <h3>Cafeína estratégica — no desde el inicio</h3>
+                <p>Ya tomaste café en el desayuno (aprox. 80-100 mg de cafeína) y un gel con cafeína antes de la largada (100 mg). Con eso arrancás con 180-200 mg activos. El límite diario recomendado para rendimiento deportivo es 500 mg — eso deja margen para 3 tomas más durante la carrera, bien distribuidas:</p>
+                <p style="margin-top:7px;"><strong>Antes de la largada:</strong> 1 gel con cafeína de 100 mg + café del desayuno (~80-100 mg). Total acumulado: ~180-200 mg.</p>
+                <p style="margin-top:6px;"><strong>Hora 4-5 de carrera:</strong> 1 gel con cafeína de 100 mg. Este es el momento en que el cuerpo empieza a acusar el esfuerzo acumulado — la cafeína retrasa esa percepción de fatiga. Total acumulado: ~280-300 mg.</p>
+                <p style="margin-top:6px;"><strong>Hora 8-9:</strong> 1 gel con cafeína de 100 mg. A este punto todavía te faltan 4-5 horas de carrera. Es el empujón más importante. Total acumulado: ~380-400 mg.</p>
+                <p style="margin-top:6px;"><strong>Hora 11-12 (tramo final, si lo necesitás):</strong> 1 gel con cafeína de 100 mg solo si sentís que la fatiga mental está afectando el rendimiento. Total acumulado: ~480-500 mg. Este es el techo — no tomés más.</p>
+                <p style="margin-top:7px;"><strong>Regla importante:</strong> siempre tomá el gel de cafeína con agua, nunca solo. La cafeína sin hidratación bajo esfuerzo puede causar náuseas y deshidratación. Y si en algún momento sentís palpitaciones, ansiedad o malestar gástrico, no tomás la siguiente dosis.</p>
+            </div>
+
+            <div class="sub">Protocolo de Hidratación y Sales</div>
+
+            <div class="card verde">
+                <h3>Bagaces es caliente. La hidratación es crítica.</h3>
+                <p><strong>Regla base:</strong> 500-600 ml de líquido por hora. En calor extremo o subidas fuertes, hasta 750 ml.</p>
+                <p style="margin-top:7px;"><strong>Distribución:</strong></p>
+                <ul>
+                    <li><strong>Tailwind en los bidones:</strong> cada 30 minutos medio bidón (300 ml). Eso ya trae sodio, potasio, calcio y magnesio.</li>
+                    <li><strong>Agua del camelback:</strong> para los momentos entre Tailwind. Nunca dejes pasar más de 20 minutos sin tomar algo.</li>
+                </ul>
+                <p style="margin-top:7px;"><strong>Cápsulas de sal:</strong> tomá 1 cápsula cada 45-60 minutos si estás sudando fuerte o si el calor es intenso. El Tailwind ya trae electrolitos pero en calor extremo el cuerpo pierde más sodio del que el hidratante repone. Las cápsulas son el seguro.</p>
+                <p style="margin-top:7px;"><strong>Señales de que necesitás más sal:</strong> calambres musculares, náuseas sin razón aparente, sensación de hinchazón aunque hayas tomado mucha agua (paradoja de hiponatremia — demasiada agua sin sodio).</p>
+                <p style="margin-top:7px;"><strong>Señales de deshidratación:</strong> orina oscura en las paradas, dolor de cabeza, mareos, ritmo cardíaco elevado sin cambio de esfuerzo.</p>
+                <p style="margin-top:7px;"><strong>En cada punto de recarga de agua:</strong> llenálos bidones aunque no estén vacíos. No esperés a quedarte sin nada.</p>
+            </div>
+
+            <div class="sub">Qué Comprar en Tiendas y Sodas Durante la Carrera</div>
+
+            <div class="card cafe">
+                <h3>Es de día — todo está disponible</h3>
+                <p>La ventaja de La Giganta siendo de día completo es que podés comprar en cualquier tienda o soda del recorrido. Estas son las mejores opciones por orden de recomendación:</p>
+                <p style="margin-top:7px;"><strong>Opciones ideales:</strong></p>
+                <ul>
+                    <li>Bananos maduros — los mejores amigos del ultra. Carbohidrato, potasio, fácil de comer pedaleando.</li>
+                    <li>Galletas de soda o crackers — carbohidrato + sodio, digestión fácil.</li>
+                    <li>Arroz con frijoles o casado en soda — si hay tiempo para parar 5-10 minutos en las horas centrales de la carrera (horas 5-8). Es la comida más completa y te sostiene por 2-3 horas.</li>
+                    <li>Agua fría — para tomar y para echarte en el cuello y la cabeza si el calor aprieta.</li>
+                    <li>Jugo natural de cajita o pipa fría — carbohidrato líquido de rápida absorción.</li>
+                    <li>Pan dulce simple o galletas dulces — en emergencia energética, lo que sea que tenga azúcar y esté disponible.</li>
+                </ul>
+                <p style="margin-top:7px;"><strong>Evitá en tiendas:</strong> frituras, chicharrón, embutidos, comida muy grasosa. La grasa bajo esfuerzo intenso enlentece el vaciado gástrico y puede generar malestar digestivo.</p>
+                <p style="margin-top:7px;"><strong>Powerade en tienda:</strong> si no hay otra opción de hidratante, compralo. En ese contexto es mejor que nada. Pero siempre priorizá el Tailwind de tus bidones primero.</p>
+            </div>
+
+            <div class="sub">Sistema de Alarmas</div>
+
+            <div class="card oscuro">
+                <h3>Configurá esto antes de la largada</h3>
+                <p><strong>Alarma A — cada 30 minutos:</strong> tomar Tailwind o agua.</p>
+                <p><strong>Alarma B — cada 45 minutos:</strong> comer algo sólido.</p>
+                <p><strong>Alarma C — cada 60 minutos:</strong> revisar la señal de sed y de orina en la próxima parada. Si no has orinado en más de 2 horas, aumentás el volumen de líquido.</p>
+                <p style="margin-top:7px;">Con el calor de Bagaces y el esfuerzo, el cuerpo suprime la señal de hambre y sed. Las alarmas son el sistema que reemplaza esa señal cuando no funciona.</p>
+            </div>
+        </div>
+
+        <!-- ======= RECUPERACIÓN ======= -->
+        <div id="recuperacion" class="section">
+            <h2 class="section-title">Recuperación Post La Giganta</h2>
+
+            <div class="naranja-box">
+                <p>La carrera de aventura es el <strong>10 de octubre</strong> — quedan 14 días después de La Giganta. Eso es tiempo suficiente para recuperarse completamente y llegar en buen estado si el protocolo de recuperación se sigue con la misma disciplina que el protocolo de carrera. Lo que hacés en las primeras 2 horas post carrera determina si la semana siguiente la pasás adolorido en cama o volviendo a entrenar.</p>
+            </div>
+
+            <div class="sub">Primeros 30 Minutos Después de Cruzar la Meta</div>
+
+            <div class="hora-bloque">
+                <span class="hora-tag verde" style="background:#43a047;">0-30 min</span>
+                <div class="hora-content">
+                    <p><strong>Proteína:</strong> 1 scoop de Basic Whey en agua — dentro de los primeros 30 minutos. La ventana de síntesis proteica está completamente abierta después de 13 horas de esfuerzo muscular. No la pierdas.</p>
+                    <p style="margin-top:5px;"><strong>Carbohidrato rápido:</strong> 2 bananos + 500 ml de jugo natural o bebida con azúcar. El músculo necesita recargar glucógeno de inmediato para iniciar el proceso de reparación.</p>
+                    <p style="margin-top:5px;"><strong>Agua:</strong> empezá a tomar agua apenas terminés. Antes de la proteína si el estómago no aguanta sólidos. 500 ml en los primeros 15 minutos.</p>
+                    <p style="margin-top:5px;"><strong>Sal:</strong> si tenés cápsulas de sal disponibles, tomá 1-2. El sodio es lo primero que se perdió y lo primero que necesitás reponer para que los fluidos se queden en el cuerpo.</p>
+                </div>
+            </div>
+
+            <div class="hora-bloque" style="margin-top:12px;">
+                <span class="hora-tag azul">1-2 horas</span>
+                <div class="hora-content">
+                    <p><strong>Comida real completa:</strong> cuando el estómago lo permita (generalmente 45-90 minutos después de terminar). Una comida normal con proteína + carbohidrato + vegetales. Si hay soda disponible en Bagaces: casado con pollo, arroz, frijoles y ensalada.</p>
+                    <p style="margin-top:5px;">Esta es la comida más importante del día. No la saltés aunque no tengas hambre — el apetito post ultra puede estar suprimido por horas pero el cuerpo necesita el combustible.</p>
+                    <p style="margin-top:5px;"><strong>Frijoles aquí sí van</strong> — ya no estás en carrera, la fibra es bienvenida para reiniciar el tracto digestivo.</p>
+                </div>
+            </div>
+
+            <div class="hora-bloque" style="margin-top:12px;">
+                <span class="hora-tag morado">Noche del sábado</span>
+                <div class="hora-content">
+                    <p><strong>Cena ligera pero completa:</strong> proteína + carbohidrato suave. No comida pesada ni grasa — el sistema digestivo está procesando el esfuerzo y puede estar sensible.</p>
+                    <p style="margin-top:5px;"><strong>Magnesio glicinato:</strong> 400 mg antes de dormir. Ayuda a la relajación muscular, mejora el sueño de recuperación y previene el dolor muscular tardío.</p>
+                    <p style="margin-top:5px;"><strong>Colágeno + vitamina C:</strong> tomálo en la noche. La síntesis de colágeno para reparar tendones y ligamentos ocurre principalmente durante el sueño.</p>
+                    <p style="margin-top:5px;"><strong>Hidratación:</strong> seguí tomando agua toda la noche. Apuntá a 500 ml antes de dormir.</p>
+                </div>
+            </div>
+
+            <div class="sub">Domingo 27 — Primer Día de Recuperación</div>
+
+            <div class="card verde">
+                <h3>No entrenás. No hay culpa por eso.</h3>
+                <p><strong>Actividad:</strong> caminata suave 20-30 minutos si el cuerpo lo permite. Sin bicicleta, sin acondicionamiento, sin esfuerzo.</p>
+                <p style="margin-top:6px;"><strong>Alimentación del domingo:</strong> 3 comidas completas con proteína abundante + carbohidrato + vegetales. No dieta de recuperación especial — simplemente comer bien y a tiempo.</p>
+                <p style="margin-top:6px;"><strong>Proteína del domingo:</strong> apuntá a 1.8-2 g por kg de peso. Para 75.6 kg eso son 136-151 g de proteína distribuidos en las 3 comidas. Ejemplo: desayuno 3-4 huevos, almuerzo 180-200 g de pollo, cena 150 g de pescado o atún.</p>
+                <p style="margin-top:6px;"><strong>Hidratación:</strong> 3 litros mínimo. La orina debe volver a ser amarillo claro durante el día.</p>
+                <p style="margin-top:6px;"><strong>Foam roller:</strong> 20 minutos en cuádriceps, isquiotibiales, glúteos y pantorrillas. Lento, con presión sostenida. Esto acelera la recuperación muscular significativamente.</p>
+                <p style="margin-top:6px;"><strong>Suplementos:</strong> todos los normales. El magnesio es especialmente importante esta noche también.</p>
+            </div>
+
+            <div class="sub">Semana del 28 de Septiembre al 4 de Octubre</div>
+
+            <div class="card">
+                <h3>Recuperación progresiva</h3>
+                <div class="table-wrap"><table>
+                    <tr><th>Día</th><th>Actividad</th><th>Nutrición</th></tr>
+                    <tr><td>Lunes 28</td><td>Descanso o caminata suave. Foam roller 20 min.</td><td>Proteína alta + carbohidrato moderado. Hidratación 3 L.</td></tr>
+                    <tr><td>Martes 29</td><td>Ciclismo suave Z1-Z2, máximo 45 min. Sin acondicionamiento.</td><td>Normal según el plan. Pre y post entreno.</td></tr>
+                    <tr><td>Miércoles 30</td><td>Acondicionamiento Sesión A — 70% de la carga habitual. Sin forzar.</td><td>Normal. Si hay dolor muscular, aumentá la proteína ese día.</td></tr>
+                    <tr><td>Jueves 1 Oct</td><td>Ciclismo Z2, 60-75 min.</td><td>Normal.</td></tr>
+                    <tr><td>Viernes 2 Oct</td><td>Descanso o ciclismo muy suave 30 min. Empezá a preparar el equipo para la carrera de aventura.</td><td>Iniciar carga de carbos moderada: +20% de carbohidrato en cada comida.</td></tr>
+                    <tr><td>Sábado 3 Oct</td><td>Primer día carrera de aventura.</td><td>Ver pestaña Carrera Aventura.</td></tr>
+                    <tr><td>Domingo 4 Oct</td><td>Segundo día carrera de aventura.</td><td>Ver pestaña Carrera Aventura.</td></tr>
+                </table></div>
+            </div>
+        </div>
+
+        <!-- ======= CARRERA DE AVENTURA ======= -->
+        <div id="aventura" class="section">
+            <h2 class="section-title">Carrera de Aventura — 3 y 4 de Octubre</h2>
+
+            <div class="alerta">
+                <p><strong>Aún no tenés los detalles del evento</strong> (km por disciplina, formato de etapas, tiempos). Este protocolo se construye sobre lo que sabemos: hay bicicleta, carrera a pie, remo y rápel, y el evento dura dos días. Cuando tengas el roadbook o el perfil oficial, me lo mandás por WhatsApp y ajusto el protocolo específico antes del 3 de octubre.</p>
+            </div>
+
+            <div class="naranja-box">
+                <p><strong>La diferencia clave con La Giganta:</strong> en una carrera de aventura multidisciplina hay transiciones entre deportes. Esos momentos son ventanas de oro para comer y beber bien — mientras te cambiás el calzado, te ponés el chaleco de running o subís al kayak, tenés 2-5 minutos de manos libres. Vamos a aprovechar cada una.</p>
+            </div>
+
+            <div class="sub">Estrategia de Cajas de Abastecimiento</div>
+
+            <div class="card oscuro">
+                <h3>Preparar bolsas por etapa antes de salir</h3>
+                <p>Las carreras de aventura tienen puntos de transición donde podés dejar cajas o bolsas de avituallamiento. Preparás todo en casa y lo dejás en el cajón correspondiente. En la transición no pensás — solo abrís la bolsa y ejecutás.</p>
+                <p style="margin-top:8px;"><strong>La semana antes de la carrera preparás:</strong></p>
+                <ul>
+                    <li><strong>Bolsa Transición 1 (Bici → Run):</strong> ver detalle abajo.</li>
+                    <li><strong>Bolsa Transición 2 (Run → Remo):</strong> ver detalle abajo.</li>
+                    <li><strong>Bolsa Transición 3 (Remo → Rápel u otra):</strong> ver detalle abajo.</li>
+                    <li><strong>Caja general:</strong> alimentos extras, Tailwind en polvo, geles de repuesto, cápsulas de sal.</li>
+                </ul>
+            </div>
+
+            <div class="sub">Detalle de Cada Transición</div>
+
+            <div class="hora-bloque">
+                <span class="hora-tag azul">T1 — Bici a Run</span>
+                <div class="hora-content">
+                    <p><strong>Mientras te cambiás las zapatillas y ponés el chaleco de running:</strong></p>
+                    <p><strong>1 emparedado de frijol negro + queso sin lactosa + tomate en pan blanco</strong> — preparado la noche anterior y guardado en bolsa zip. El frijol da carbohidrato + proteína vegetal, el queso proteína + grasa para sostenibilidad, el tomate hidratación + vitamina C. Se come en 2-3 mordidas mientras te ponés los tenis.</p>
+                    <p style="margin-top:5px;"><strong>300 ml de Tailwind</strong> en botellita ya mezclada — tomátela entera en la transición.</p>
+                    <p style="margin-top:5px;"><strong>En el chaleco para el run:</strong> 3-4 geles (alternando con y sin cafeína según hora del día), colados de bebé de camote, 1-2 bananos si caben.</p>
+                </div>
+            </div>
+
+            <div class="hora-bloque" style="margin-top:12px;">
+                <span class="hora-tag naranja">T2 — Run a Remo</span>
+                <div class="hora-content">
+                    <p><strong>Mientras te cambiás a ropa de remo y revisás el kayak:</strong></p>
+                    <p><strong>1 banano + galletas de avena + 1 gel</strong> — carbohidrato de rápida absorción para la etapa de remo.</p>
+                    <p style="margin-top:5px;"><strong>500 ml de Tailwind</strong> ya mezclado en botella — tomá la mitad en la transición, la otra mitad llevala en el kayak.</p>
+                    <p style="margin-top:5px;"><strong>En el kayak:</strong> 1 botella de Tailwind + 1-2 colados de bebé bien asegurados. El remo es un esfuerzo de tren superior — el intestino trabaja diferente en posición sentada remando que pedaleando. Optá por alimentos líquidos o semilíquidos durante esta etapa.</p>
+                </div>
+            </div>
+
+            <div class="hora-bloque" style="margin-top:12px;">
+                <span class="hora-tag morado">T3 — Remo a Rápel</span>
+                <div class="hora-content">
+                    <p><strong>El rápel es un esfuerzo corto y técnico — no necesitás mucho combustible para él.</strong></p>
+                    <p><strong>1 gel con cafeína + agua</strong> — el foco y la concentración que necesitás para el rápel se ven favorecidos por la cafeína. Tomálo 10-15 minutos antes de la bajada.</p>
+                    <p style="margin-top:5px;"><strong>Después del rápel:</strong> reponés con carbohidrato sólido antes de la siguiente etapa.</p>
+                </div>
+            </div>
+
+            <div class="sub">Alimentación General Durante la Carrera de Aventura</div>
+
+            <div class="card verde">
+                <h3>Las mismas reglas de La Giganta aplican aquí</h3>
+                <p><strong>60-70 g de carbohidrato por hora</strong> de esfuerzo activo.</p>
+                <p><strong>500-600 ml de líquido por hora</strong>, más en calor.</p>
+                <p><strong>Sales cada 45-60 minutos</strong> si hay calor o esfuerzo intenso.</p>
+                <p><strong>Cafeína escalonada</strong> según las horas del evento — reservála para los momentos críticos de fatiga y para la noche si la carrera es nocturna.</p>
+                <p style="margin-top:7px;"><strong>Lo que cambia:</strong> en el remo el movimiento intestinal es diferente al de la bici o el running. Preferí alimentos líquidos o semilíquidos en esa etapa. En el rápel no comés durante la bajada — lo hacés en la transición antes y después.</p>
+            </div>
+
+            <div class="card naranja">
+                <h3>Lo que necesito para cerrar este protocolo</h3>
+                <p>Mandame por WhatsApp en cuanto tengas esta información:</p>
+                <ul>
+                    <li>Distancia de cada etapa (km de bici, km de run, km de remo, altura del rápel).</li>
+                    <li>Si el evento tiene puntos de control con avituallamiento o si es completamente autoasistida.</li>
+                    <li>A qué hora empieza el evento el sábado 3 de octubre.</li>
+                    <li>Si hay etapa nocturna o si termina el primer día.</li>
+                </ul>
+                <p style="margin-top:7px;">Con eso ajusto las cantidades exactas por etapa, las bolsas de transición y el protocolo de cafeína.</p>
+            </div>
+        </div>
+
+        <!-- ======= PLAN OCTUBRE ======= -->
+        <div id="octubre" class="section">
+            <h2 class="section-title">Plan de Octubre — Entrenamiento y Alimentación</h2>
+
+            <div class="naranja-box">
+                <p>Indicaste que este es el último plan mensual completo y que luego trabajaríamos por específicos. Octubre entonces cierra el ciclo con dos objetivos: terminar bien la carrera de aventura del 3-4 de octubre y dejar instalados los hábitos que sostengan el rendimiento de forma autónoma.</p>
+            </div>
+
+            <div class="sub">Cambios en Acondicionamiento — Más Peso e Intensidad</div>
+
+            <div class="card">
+                <h3>Progresión de carga en Sesión A y B</h3>
+                <p>Pediste más peso e intensidad. La base de los ejercicios se mantiene igual — lo que cambia es la carga y el volumen:</p>
+                <p style="margin-top:7px;"><strong>Sesión A — Tren inferior y core:</strong></p>
+                <ul>
+                    <li>Sentadilla goblet: aumentá 2-4 kg respecto al mes pasado. Si ibas con 10 kg, probá con 14 kg.</li>
+                    <li>Estocadas: agregá mancuernas en ambas manos si no lo hacías.</li>
+                    <li>Step-ups: subís a 20 repeticiones por pierna o agregás peso.</li>
+                    <li>Planchas: 60-75 segundos por serie en lugar de 45.</li>
+                    <li>Agregás al final: 3 series de 12 sentadillas búlgaras (pie trasero en banco) con mancuernas. Este ejercicio es el mejor para fuerza unilateral de ciclista.</li>
+                </ul>
+                <p style="margin-top:7px;"><strong>Sesión B — Espalda, hombros y core:</strong></p>
+                <ul>
+                    <li>Remos con mancuerna: subís 2-3 kg en el brazo derecho. Izquierdo según tolere el hombro.</li>
+                    <li>Remos en TRX: aumentás la inclinación del cuerpo para mayor dificultad (más horizontal = más difícil).</li>
+                    <li>Agregás: 3 series de 10 press de hombro neutro con mancuernas (palmas hacia adentro) — menos agresivo para el hombro izquierdo que el press clásico.</li>
+                    <li>Pallof press: aumentás la resistencia de la banda o el ángulo del TRX.</li>
+                </ul>
+                <p style="margin-top:7px;"><strong>Frecuencia:</strong> si el trabajo permite, dos sesiones semanales. Si hay semanas con mucho trabajo físico laboral como en agosto, una sesión de calidad vale más que dos a medias.</p>
+            </div>
+
+            <div class="sub">Más Opciones de Recetas — Lo que Pediste</div>
+
+            <div class="card cafe">
+                <h3>Desayunos nuevos</h3>
+                <p><strong>Opción 1 — Tostadas con aguacate y huevo:</strong> 2 rebanadas de pan integral tostado + medio aguacate aplastado con sal y limón + 2 huevos pasados por agua (4 minutos) encima. Café. Listo en 8 minutos.</p>
+                <p style="margin-top:6px;"><strong>Opción 2 — Batido proteico completo:</strong> 1 scoop Basic Whey + 1 banano maduro + 1 taza de avena en hojuela + 300 ml de leche sin lactosa + hielo. En la licuadora 1 minuto. Carbohidrato + proteína + grasa sin cocinar nada.</p>
+                <p style="margin-top:6px;"><strong>Opción 3 — Huevos revueltos con camote:</strong> 2 huevos enteros + 2 claras + 1 camote mediano cocido en cubos salteado con aceite de oliva y comino. Prepará el camote la noche anterior.</p>
+            </div>
+
+            <div class="card cafe">
+                <h3>Almuerzos y cenas nuevos</h3>
+                <p><strong>Opción 1 — Bowl de atún:</strong> 1 lata de atún en agua + arroz integral + 1 aguacate + maíz cocido + jugo de limón. Sin cocinar proteína — todo listo en 5 minutos si el arroz ya está preparado.</p>
+                <p style="margin-top:6px;"><strong>Opción 2 — Lentejas con huevo duro:</strong> lentejas cocidas (las hacés en la olla del día de cocina) + 2 huevos duros + arroz + zanahoria rallada con limón. Diferente textura a los frijoles pero igual de nutritivo.</p>
+                <p style="margin-top:6px;"><strong>Opción 3 — Wrap de pollo:</strong> tortilla de maíz + pollo desmenuzado (ya preparado) + frijoles negros + aguacate + tomate. Se arma en 3 minutos. Ideal para cenas rápidas entre semana.</p>
+                <p style="margin-top:6px;"><strong>Opción 4 — Arroz con huevo frito y vegetales:</strong> 1 taza de arroz integral + 2 huevos fritos + brócoli salteado + sal de soya. Cena de 10 minutos que funciona perfectamente post acondicionamiento.</p>
+            </div>
+
+            <div class="card cafe">
+                <h3>Meriendas nuevas</h3>
+                <p><strong>Opción 1 — Mix de frutos secos y fruta:</strong> 1 puñado de almendras o nueces + 1 manzana. Sin preparación.</p>
+                <p style="margin-top:6px;"><strong>Opción 2 — Tostada con mantequilla de maní y banano:</strong> 1 rebanada de pan integral + mantequilla de maní casera + rodajas de banano. 2 minutos.</p>
+                <p style="margin-top:6px;"><strong>Opción 3 — Edamame con sal:</strong> si encontrás edamame congelado en el supermercado, es una de las mejores meriendas para un atleta — proteína completa, fibra, hierro. Cocés en microondas 3 minutos con sal.</p>
+                <p style="margin-top:6px;"><strong>Opción 4 — Yogurt sin lactosa con granola:</strong> ya que cambiaste a productos sin lactosa, buscá yogurt sin lactosa natural + 2 cucharadas de granola sin azúcar añadida + fruta fresca.</p>
+            </div>
+
+            <div class="sub">Ajuste por Productos Sin Lactosa</div>
+
+            <div class="card verde">
+                <h3>Buena decisión — el plan se adapta</h3>
+                <p>Ya comprás productos sin lactosa. Eso simplifica todo. Las sustituciones del plan original quedan así:</p>
+                <ul>
+                    <li><strong>Yogurt griego:</strong> yogurt sin lactosa natural — misma función, sin problema digestivo. Buscálo en supermercados o PriceSmart.</li>
+                    <li><strong>Leche en recetas:</strong> leche sin lactosa o leche de almendra sin azúcar.</li>
+                    <li><strong>Queso en comidas:</strong> queso sin lactosa o queso duro añejo (los quesos muy curados naturalmente tienen poca lactosa).</li>
+                    <li><strong>Post entreno:</strong> la Basic Whey que tenés no tiene lactosa — seguís igual.</li>
+                </ul>
+            </div>
+
+            <div class="sub">Desayuno en Casa — El Hábito Pendiente</div>
+
+            <div class="card rojo">
+                <h3>1-2 días por semana no es suficiente</h3>
+                <p>Agosto cerró con desayuno en casa solo 1-2 días por semana. Ese dato es el que más limita el progreso en composición corporal. Para octubre la meta es 5 días por semana mínimo.</p>
+                <p style="margin-top:7px;">El único cambio que pido para lograrlo: <strong>dejá el ingrediente del desayuno listo la noche anterior.</strong> Los 2 huevos en la mesa. El pan ya en la tostadora. El café ya puesto. Eso reduce la fricción de la mañana al mínimo posible. Si lo que frenó en agosto fue el tiempo, 5 minutos es todo lo que lleva el desayuno más rápido del plan.</p>
+            </div>
+
+            <div class="sub">Seguimiento de Octubre</div>
+
+            <div class="card oscuro">
+                <h3>Check-in lunes 6 de octubre</h3>
+                <p>El lunes después de la carrera de aventura hacemos el check-in de cierre. Me mandás por WhatsApp:</p>
+                <ul>
+                    <li>Cómo fue La Giganta: tiempo final, cómo funcionó el fueling, qué falló, qué fue bien.</li>
+                    <li>Cómo fue la carrera de aventura.</li>
+                    <li>Medidas corporales del lunes 6 en ayunas.</li>
+                    <li>Cómo te sentís después de dos competencias en dos semanas.</li>
+                </ul>
+                <p style="margin-top:7px;">Con eso cerramos el ciclo del plan mensual y definimos cómo trabajamos los específicos a partir de noviembre.</p>
+            </div>
+        </div>
+
+    </div><!-- /content -->
+
+    <div class="footer">
+        <p>Isa Herra | @isaherra.13</p>
+        <p>eat&flow Asesoría Nutricional y Deportiva</p>
+        <p>Consultas y seguimiento por WhatsApp</p>
+    </div>
+
+</div>
+
+<script>
+    function show(id, el) {
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        el.classList.add('active');
+    }
+</script>
+
+</body>
+</html>
